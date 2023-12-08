@@ -1,0 +1,45 @@
+
+.react-datetime-picker__inputGroup__input{
+    min-width: 1.0em;
+    outline: none;
+}
+
+.react-datetime-picker__wrapper{
+    max-width: 50%;
+padding: 5px;
+border-radius: 5px;
+}
+
+.react-calendar__tile--active{
+    background: rgb(49, 49, 243) !important ;
+    font-weight:300;
+}
+.react-calendar__tile--now {
+    background: #d6d6d5 !important;
+}
+
+/* ------------------jodit */
+
+.jodit-container{
+    width: 100% !important;
+    height: 500px !important;
+    margin: auto;
+    /* margin-top: 30px; */
+    /* padding-bottom: 50px; */
+}
+.Jodit-wysiwyg{
+    width: 100% !important;
+    /* height: 700px!important; */
+    /* margin: auto; */
+}
+
+.jodit-container:not(.jodit_inline) .jodit-wysiwyg {
+    width: 100% !important;
+    height: 400px!important;
+
+}
+
+.jodit-status-bar a.jodit-status-bar-link {
+    display: none;
+}
+

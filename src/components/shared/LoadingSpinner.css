@@ -1,0 +1,35 @@
+
+.spinner {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .spinner-circle::before,
+  .spinner-circle::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    animation: spinner-b4c8mmsm 0.4s backwards, spinner-49opz7sm 1s 0.4s infinite ease;
+    border: 4px solid #474bff;
+    border-radius: 50%;
+    box-shadow: 0 -24px 0 -4px #474bff;
+    position: absolute;
+  }
+  
+  .spinner-circle::after {
+    animation-delay: 0s, 1s;
+  }
+  
+  @keyframes spinner-b4c8mmsm {
+    from {
+      box-shadow: 0 0 0 -4px #474bff;
+    }
+  }
+  
+  @keyframes spinner-49opz7sm {
+    to {
+      transform: rotate(360deg);
+    }
+  }
