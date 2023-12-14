@@ -18,7 +18,9 @@ const Banner = () => {
 							of avid readers.
 						</Typography>
 						<div className="text-center md:text-start ">
-							<Button className="bg-blue-500 my-2 w-full md:w-44">Contact me</Button>
+							<Button className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive my-2 w-full md:w-44">
+								Contact me
+							</Button>
 						</div>
 					</div>
 				</div>

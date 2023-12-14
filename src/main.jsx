@@ -6,17 +6,20 @@ import { ThemeContextProvider } from "./context/ThemeContextProvider.jsx";
 import { DashboardContextProvider } from "./context/DashboardContext.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 import { DataContextProvider } from "./context/DataContext.jsx";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<AuthProvider>
-			<ThemeContextProvider>
-				<DashboardContextProvider>
-					<DataContextProvider>
-						<App />
-					</DataContextProvider>
-				</DashboardContextProvider>
-			</ThemeContextProvider>
-		</AuthProvider>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<ThemeContextProvider>
+					<DashboardContextProvider>
+						<DataContextProvider>
+							<App />
+						</DataContextProvider>
+					</DashboardContextProvider>
+				</ThemeContextProvider>
+			</AuthProvider>
+		</QueryClientProvider>
 	</React.StrictMode>
 );

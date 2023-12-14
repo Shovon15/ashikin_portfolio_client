@@ -13,7 +13,7 @@ const AdminProfile = () => {
 		<div className="min-h-screen">
 			<div className="">
 				<div className="flex gap-5 items-center">
-					<img src="https://i.ibb.co/r3bmK5n/tom.png" className="w-44 rounded-full" />
+					<img src="https://i.ibb.co/r3bmK5n/tom.png" className="w-24 rounded-full" />
 					<div>
 						<div className="flex gap-1 items-center">
 							<img className="w-5 h-5" src={shieldIcon} />
@@ -41,9 +41,9 @@ const AdminProfile = () => {
 					</Button>
 				</div>
 			</div>
-			<div className="w-full flex gap-12 justify-center items-center px-10 ">
+			<div className="w-full flex felx-col gap-12 justify-center items-center px-10 ">
 				<EventSummary />
-				<BlogSummary />
+				{/* <BlogSummary /> */}
 			</div>
 		</div>
 	);

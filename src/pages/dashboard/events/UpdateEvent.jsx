@@ -1,53 +1,77 @@
 /* eslint-disable no-unused-vars */
 import { Button, IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
-import { useContext, useRef, useState } from "react";
-import { post } from "../../../utils/fetchApi";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import JoditEditor from "jodit-react";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import DateTimePicker from "react-datetime-picker";
-
-// ----------------date picker css
-import "react-datetime-picker/dist/DateTimePicker.css";
-import "react-calendar/dist/Calendar.css";
-import "react-clock/dist/Clock.css";
-
-import "./CreateEvent.css";
+import JoditEditor from "jodit-react";
+import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../../../context/DataContext";
-import handleFileUpload from "../../../helper/ImageUploader";
-
-import { LuUploadCloud } from "react-icons/lu";
+import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import { BsTrashFill } from "react-icons/bs";
+import { LuUploadCloud } from "react-icons/lu";
+import handleFileUpload from "../../../helper/ImageUploader";
+import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
+import { put } from "../../../utils/fetchApi";
 
-const CreateEvent = () => {
+const UpdateEvent = () => {
+	const { fetchEventById, receiveEventById } = useContext(DataContext);
+
 	const [title, setTitle] = useState("");
 	const [eventType, setEventType] = useState("");
+	const [oldImage, setOldImage] = useState("");
 	const [image, setImage] = useState(null);
-	const [dateTime, setDateTime] = useState(new Date());
+	const [dateTime, setDateTime] = useState("");
 	const [content, setContent] = useState("");
 	const [showErrorState, setShowErrorState] = useState(false);
 	const [fileName, setFileName] = useState("No file selected");
 	const [isLoading, setIsLoading] = useState(false);
 
+	const [isUpdateImage, setIsUpdateImage] = useState(false);
+
 	const editor = useRef(null);
 
 	const navigate = useNavigate();
+
+	const { id } = useParams();
+	// console.log(receiveEventById);
+
+	useEffect(() => {
+		const fetchEvent = async () => {
+			setIsLoading(true);
+			await fetchEventById(id);
+			setIsLoading(false);
+		};
+		fetchEvent();
+	}, []);
+
+	useEffect(() => {
+		if (Object.keys(receiveEventById).length !== 0) {
+			setTitle(receiveEventById.title);
+			setEventType(receiveEventById.eventType);
+			setOldImage(receiveEventById.cover);
+			setDateTime(new Date(receiveEventById.dateTime));
+			setContent(receiveEventById.content);
+		}
+	}, [receiveEventById]);
+
+	const handleUploadImage = () => {
+		setIsUpdateImage(true);
+	};
 
 	const handleEventForm = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 		let imgData = {};
-		if (image) {
+		if (isUpdateImage && image) {
 			imgData = await handleFileUpload(image);
 		}
 
 		const formData = {
 			title,
 			eventType,
-			cover: imgData?.url || null,
 			content,
 			dateTime: dateTime.toString(),
+			...(isUpdateImage ? { cover: imgData?.url || null } : {}),
 		};
 
 		if (Object.values(formData).some((field) => !field)) {
@@ -60,7 +84,7 @@ const CreateEvent = () => {
 		setShowErrorState(false);
 
 		try {
-			const res = await post("events/write-event", formData);
+			const res = await put(`events/${id}`, formData);
 			showSuccessToast(res.data?.message);
 			setIsLoading(false);
 			navigate("/dashboard/events");
@@ -72,23 +96,25 @@ const CreateEvent = () => {
 			setIsLoading(false);
 		}
 	};
-
 	const selectData = [
 		{
-			name: "Free",
+			name: "free",
 			value: "free",
 		},
 		{
-			name: "Premium",
+			name: "premium",
 			value: "premium",
 		},
 	];
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
-		<div className="">
+		<div className="px-10">
 			<HeaderText>Add Event</HeaderText>
 			<form onSubmit={handleEventForm}>
-				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-1/2 flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-textPrimary dark:text-white py-2">
 							Event Title <span className="text-red-500">*</span>
@@ -96,6 +122,7 @@ const CreateEvent = () => {
 						<Input
 							size="lg"
 							color="blue"
+							value={title}
 							label="Event Title"
 							className="text-gray-500 dark:text-white"
 							style={{ fontSize: "18px", fontWeight: "normal" }}
@@ -122,7 +149,7 @@ const CreateEvent = () => {
 										fontWeight: "normal",
 										color: eventType === item.value ? "#2196F3" : "black",
 									}}
-									className="m-2 border-b border-gray-500 rounded-none"
+									className="m-2"
 								>
 									{item.name}
 								</Option>
@@ -133,47 +160,68 @@ const CreateEvent = () => {
 						<p className="font-bold text-textPrimary dark:text-white py-2">
 							Cover Image <span className="text-red-500">*</span>
 						</p>
-						<div
-							className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
-								image ? "border-blue-500" : "border-gray-500"
-							}`}
-							onClick={() => document.querySelector(".input-field").click()}
-						>
-							<input
-								type="file"
-								accept="image/*"
-								className="input-field"
-								hidden
-								onChange={({ target: { files } }) => {
-									files[0] && setFileName(files[0].name);
-									if (files) {
-										setImage(files[0]);
-									}
-								}}
-							/>
-							{image ? (
-								<img src={URL.createObjectURL(image)} className="w-full h-full p-5" alt={fileName} />
-							) : (
-								<div className="flex flex-col items-center gap-2 dark:text-white">
-									<LuUploadCloud className="w-12 h-12" />
-									<p>Browse file to upload</p>
+						{!isUpdateImage ? (
+							<div>
+								<img src={oldImage} alt="..." />
+								<div className="flex justify-center mt-2">
+									<Button className="py-3 bg-textPrimary" onClick={handleUploadImage}>
+										Upload new Image
+									</Button>
 								</div>
-							)}
-						</div>
-						<section className="flex justify-end gap-3 items-center bg-gray-300 rounded-md mt-1 p-2">
-							{fileName}
-							{image !== null && (
-								<IconButton variant="text" className="rounded-full">
-									<BsTrashFill
-										onClick={() => {
-											setFileName("No file selected");
-											setImage(null);
+							</div>
+						) : (
+							<>
+								<div
+									className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
+										image ? "border-blue-500" : "border-gray-500"
+									}`}
+									onClick={() => document.querySelector(".input-field").click()}
+								>
+									<input
+										type="file"
+										accept="image/*"
+										className="input-field"
+										hidden
+										onChange={({ target: { files } }) => {
+											files[0] && setFileName(files[0].name);
+											if (files) {
+												setImage(files[0]);
+											}
 										}}
-										className="w-5 h-5 text-red-500 cursor-pointer"
 									/>
-								</IconButton>
-							)}
-						</section>
+									{image ? (
+										<img
+											src={URL.createObjectURL(image)}
+											className="w-full h-full p-5"
+											alt={fileName}
+										/>
+									) : (
+										<div className="flex flex-col items-center gap-2">
+											<LuUploadCloud className="w-12 h-12" />
+											<p>Browse file to upload</p>
+										</div>
+									)}
+								</div>
+								<section className="flex justify-end gap-3 items-center bg-gray-300 rounded-md mt-1 p-2">
+									{fileName}
+									{image !== null && (
+										<IconButton variant="text" className="rounded-full">
+											<BsTrashFill
+												onClick={() => {
+													setFileName("No file selected");
+													setImage(null);
+												}}
+												className="w-5 h-5 text-red-500 cursor-pointer"
+											/>
+										</IconButton>
+									)}
+								</section>
+								<p className="text-red-500 text-sm py-2">
+									Note: If you don&apos;t want to upload a new cover image, please refresh the page
+									before clicking the update button.
+								</p>
+							</>
+						)}
 					</div>
 				</div>
 				<div className="my-5 flex flex-col ">
@@ -195,7 +243,7 @@ const CreateEvent = () => {
 						className="h-full"
 					/>
 				</div>
-				<div className="w-full md:w-2/6 md:mx-auto my-10 ">
+				<div className="mx-auto my-10 w-2/6">
 					{/* {showErrorState && (
 						<p className="text-red-500 text-lg font-normal text-center pb-2">Fill in all input field</p>
 					)} */}
@@ -204,7 +252,7 @@ const CreateEvent = () => {
 						variant="text"
 						className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white capitalize text-lg py-2 w-full"
 					>
-						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Submit"}
+						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Update"}
 					</Button>
 				</div>
 			</form>
@@ -212,4 +260,4 @@ const CreateEvent = () => {
 	);
 };
 
-export default CreateEvent;
+export default UpdateEvent;

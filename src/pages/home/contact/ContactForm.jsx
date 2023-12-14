@@ -101,7 +101,11 @@ const ContactForm = () => {
 					</div>
 				</div>
 				<div className="flex justify-center">
-					<Button type="submit" variant="text" className="capitalize text-xl bg-blue-300 py-2">
+					<Button
+						type="submit"
+						variant="text"
+						className="capitalize text-xl bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive py-2 text-white"
+					>
 						Send
 					</Button>
 				</div>

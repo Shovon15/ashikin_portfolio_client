@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// export const baseURL = import.meta.env.VITE_API_BASE_URL
-export const baseURL = "http://localhost:5000/api/";
+export const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 axios.interceptors.request.use(
 	(config) => {
@@ -42,16 +41,16 @@ export function post(url, data, contentType = "application/json") {
 		},
 	});
 }
-// export function put(url, data, contentType = "application/json") {
-// 	return axios({
-// 		method: "PUT",
-// 		url: url,
-// 		data: data,
-// 		headers: {
-// 			"Content-Type": contentType,
-// 		},
-// 	});
-// }
+export function put(url, data, contentType = "application/json") {
+	return axios({
+		method: "PUT",
+		url: url,
+		data: data,
+		headers: {
+			"Content-Type": contentType,
+		},
+	});
+}
 export function get(url) {
 	return axios({
 		method: "GET",
@@ -65,9 +64,9 @@ export function getWithParams(url, params) {
 		params: params,
 	});
 }
-// export function del(url) {
-// 	return axios({
-// 		method: "DELETE",
-// 		url: url,
-// 	});
-// }
+export function del(url) {
+	return axios({
+		method: "DELETE",
+		url: url,
+	});
+}

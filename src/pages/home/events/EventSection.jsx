@@ -1,24 +1,28 @@
 import { Button, Typography, Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 import EventCard from "../../../components/card/EventCard";
-import { useState, useContext, useEffect } from "react";
-import { DataContext } from "../../../context/DataContext";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
+import { get } from "../../../utils/fetchApi";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const EventSection = () => {
 	const [events, setEvents] = useState([]);
 	const [tabValue, setTabValue] = useState("all");
-	const [isLoading, setIsLoading] = useState(true);
-	const { receiveEvent, fetchEventData } = useContext(DataContext);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true);
-			await fetchEventData();
-			setIsLoading(false);
-		};
-		fetchData();
-	}, []);
+	const { data: eventData = [], isLoading } = useQuery({
+		queryKey: ["eventData"],
+		queryFn: async () => {
+			const res = await get("events");
+			let data = await res?.data?.payload?.data;
+
+			data = data.filter((item) => item.isPublished);
+
+			return data;
+		},
+	});
+	// console.log(eventData, "eventData");
 
 	const tabButtondata = [
 		{
@@ -37,49 +41,43 @@ const EventSection = () => {
 	];
 
 	useEffect(() => {
-		if (receiveEvent && receiveEvent.length > 0) {
+		if (eventData && eventData.length > 0) {
 			let filteredEvents;
 
 			if (tabValue === "all") {
-				const freeEvents = receiveEvent.filter((event) => event.eventType === "free").slice(0, 2);
-				const premiumEvent = receiveEvent.find((event) => event.eventType === "premium");
+				const freeEvents = eventData.filter((event) => event.eventType === "free").slice(0, 2);
+				const premiumEvent = eventData.find((event) => event.eventType === "premium");
 
 				filteredEvents = [...freeEvents, premiumEvent];
 			} else if (tabValue === "free") {
-				filteredEvents = receiveEvent.filter((event) => event.eventType === "free");
+				filteredEvents = eventData.filter((event) => event.eventType === "free");
 			} else if (tabValue === "premium") {
-				filteredEvents = receiveEvent.filter((event) => event.eventType === "premium");
+				filteredEvents = eventData.filter((event) => event.eventType === "premium");
 			}
 
 			setEvents(filteredEvents);
 		}
-	}, [tabValue, receiveEvent]);
+	}, [tabValue, eventData]);
 
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
 
 	return (
-		<div className="">
+		<div className="p-0 lg:p-5">
 			<div className=" mx-auto max-w-[1300px]">
-				<Typography
-					variant="h2"
-					color="blue-gray"
-					className="flex justify-center font-bold mb-3 text-3xl dark:text-darkTextPrimary"
-				>
-					Upcoming Events
-				</Typography>
+				<HeaderText>Upcoming Events</HeaderText>
 
 				<Tabs id="custom-animation" value="all">
 					<TabsHeader
-						className="w-full md:w-[26rem] md:max-w-96 mx-auto flex flex-col md:flex-row
-						 dark:bg-blue-gray-200 dark:border dark:border-blue-500 mb-5"
+						className="w-full md:w-[26rem] md:max-w-96 mx-auto  flex flex-col md:flex-row
+						  bg-[#0F172A] dark:border dark:border-blue-500 mb-5"
 						indicatorProps={{
-							className: "bg-blue-500 shadow-md !text-white",
+							className: "bg-buttonPrimary  shadow-md ",
 						}}
 					>
 						{tabButtondata.map(({ label, value }) => (
-							<Tab key={value} value={value} onClick={() => setTabValue(value)}>
+							<Tab key={value} value={value} onClick={() => setTabValue(value)} className="text-white">
 								{label}
 							</Tab>
 						))}
@@ -103,8 +101,8 @@ const EventSection = () => {
 				</Tabs>
 				<div className="text-center my-5">
 					<Link to="/events">
-						<Button variant="outlined" className="dark:text-darkTextPrimary dark:border-white">
-							View all
+						<Button variant="outlined" className=" border-borderPrimary text-textPrimary px-12">
+							View More
 						</Button>
 					</Link>
 				</div>

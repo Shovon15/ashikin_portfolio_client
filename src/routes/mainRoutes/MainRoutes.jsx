@@ -14,6 +14,8 @@ import EventViewPage from "../../pages/home/events/EventViewPage";
 import EventRegister from "../../pages/home/events/EventRegister";
 import EventsPage from "../../pages/home/events/EventsPage";
 import ScrollToTop from "../../hooks/StartTop";
+import UpdateEvent from "../../pages/dashboard/events/UpdateEvent";
+import DashboardOverview from "../../pages/dashboard/DashboardOverview";
 
 const MainRoutes = () => {
 	return (
@@ -23,9 +25,9 @@ const MainRoutes = () => {
 				{/* ---------------------------public route--------------------- */}
 				<Route element={<Main />}>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/events" element={<EventsPage />} />
-					<Route path="/events/:id" element={<EventViewPage />} />
-					<Route path="/events/register/:id" element={<EventRegister />} />
+					<Route path="events" element={<EventsPage />} />
+					<Route path="events/:id" element={<EventViewPage />} />
+					<Route path="events/register/:id" element={<EventRegister />} />
 				</Route>
 				{/* ---------------------------admin route--------------------- */}
 				<Route path="/login" element={<Login />} />
@@ -36,11 +38,13 @@ const MainRoutes = () => {
 						</PrivateRoute>
 					}
 				>
-					<Route path="/dashboard" element={<AdminProfile />} />
-					<Route path="/dashboard/events" element={<EventManage />} />
-					<Route path="/dashboard/events/write-event" element={<CreateEvent />} />
-					<Route path="/dashboard/blogs" element={<BlogManage />} />
-					<Route path="/dashboard/admin" element={<AdminProfile />} />
+					<Route path="dashboard" element={<AdminProfile />} />
+					<Route path="dashboard/events" element={<EventManage />} />
+					<Route path="dashboard/events/write-event" element={<CreateEvent />} />
+					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
+					<Route path="dashboard/blogs" element={<BlogManage />} />
+					<Route path="dashboard/admin" element={<AdminProfile />} />
+					<Route path="dashboard/profile" element={<DashboardOverview />} />
 				</Route>
 				<Route
 					path="*"

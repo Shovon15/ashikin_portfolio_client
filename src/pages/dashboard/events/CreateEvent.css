@@ -1,14 +1,40 @@
-
+ul{
+    /* padding: 0px!important; */
+   /* background: #2273dc!important; */
+}
+/* ----------------------------------- */
 .react-datetime-picker__inputGroup__input{
-    min-width: 1.0em;
+    /* min-width: 1.0em; */
+    color: #2273dc;
     outline: none;
+}
+.react-calendar{
+    border-radius: 5px;
 }
 
 .react-datetime-picker__wrapper{
-    max-width: 50%;
+    /* max-width: 50%; */
 padding: 5px;
 border-radius: 5px;
 }
+
+@media screen and (min-width: 720px) {
+    .react-datetime-picker__wrapper {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 719px) {
+    .react-datetime-picker__wrapper {
+        max-width: 100%;
+    }
+}
+
+.react-datetime-picker__inputGroup__divider{
+    color: #2273dc;
+    padding: 5px;
+}
+
 
 .react-calendar__tile--active{
     background: rgb(49, 49, 243) !important ;

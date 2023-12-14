@@ -7,19 +7,34 @@ module.exports = withMT({
 	theme: {
 		extend: {
 			colors: {
-				primary: "#A2FF86",
-				secondary: "#ACC8E5",
-				buttonPrimary: "#164B60",
-				buttonSecondary: "#fff",
-				buttonDanger: "#D92728",   //color: red
-				textPrimary: "#1B6B93",    //color:
-				textSecondary: "#ACC8E5",
-				borderPrimary: "#4FC0D0",
-				borderDark: "#1D42B0",
-				darkPrimary: "#0F172A",
-				darkSecondary: "#1D42B0",
-				darkTextPrimary: "#fff",
-				darkTextSecondary: "",
+				// secondary is for dark mode-------------
+				bgPrimary: "#FFFFFF",
+				bgSecondary: "#0F172A",
+
+				buttonPrimary: "#1565C0",
+				buttonHover: "#42A5F5",
+				buttonActive: "#1E53D9",
+				buttonSecondary: "",
+
+				textPrimary: "#1565C0", //color: blue-500
+				textSecondary: "#FFFFFF",
+
+				borderPrimary: "#1565C0",
+				borderSecondary: "#2196F3", //blue
+
+				// primary: "#A2FF86",
+				// secondary: "#ACC8E5",
+				// buttonPrimary: "#164B60",
+				// buttonSecondary: "#fff",
+				// buttonDanger: "#D92728", //color: red
+				// textPrimary: "#1B6B93", //color:
+				// textSecondary: "#ACC8E5",
+				// borderPrimary: "#4FC0D0",
+				// borderDark: "#1D42B0",
+				// darkPrimary: "#0F172A",
+				// darkSecondary: "#1D42B0",
+				// darkTextPrimary: "#fff",
+				// darkTextSecondary: "",
 			},
 		},
 		fontFamily: {

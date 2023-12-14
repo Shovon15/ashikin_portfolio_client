@@ -46,7 +46,7 @@ const Login = () => {
 		try {
 			setIsLoading(true);
 
-			const response = await axios.post("http://localhost:5000/api/admin/login", loginData);
+			const response = await axios.post("https://ashikin-portfolio-server.vercel.app/api/admin/login", loginData);
 			const userData = response.data?.payload;
 			// console.log(userData.user);
 			setUser(userData);

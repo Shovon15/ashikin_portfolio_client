@@ -1,37 +1,34 @@
-import { useContext } from "react";
-import { DataContext } from "../../../context/DataContext";
-import { Typography } from "@material-tailwind/react";
 import EventCard from "../../../components/card/EventCard";
-import { useState } from "react";
-import { useEffect } from "react";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner";
+import { get } from "../../../utils/fetchApi";
+import { useQuery } from "@tanstack/react-query";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const EventsPage = () => {
-	const { receiveEvent, fetchEventData } = useContext(DataContext);
-	console.log(receiveEvent);
-	const [isLoading, setIsLoading] = useState(true);
-	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true);
-			await fetchEventData();
-			setIsLoading(false);
-		};
-		fetchData();
-	}, []);
+	const {
+		data: eventData = [],
+		isLoading,
+	} = useQuery({
+		queryKey: ["eventData"],
+		queryFn: async () => {
+			const res = await get("events");
+			const data = await res?.data?.payload?.data;
+
+			return data;
+		},
+	});
 
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
 	return (
 		<div className="p-5 md:p-10">
-			<Typography variant="h2" className="text-center">
-				Events
-			</Typography>
+			<HeaderText>Events</HeaderText>
 
 			<div className="flex flex-wrap flex-grow gap-4">
 				{!isLoading &&
-					receiveEvent.length !== 0 &&
-					receiveEvent.map((event) => <EventCard key={event._id} data={event} />)}
+					eventData.length !== 0 &&
+					eventData.map((event) => <EventCard key={event._id} data={event} />)}
 			</div>
 		</div>
 	);

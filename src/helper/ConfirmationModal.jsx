@@ -3,14 +3,6 @@ import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from "@materia
 import { useEffect, useRef } from "react";
 
 const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteModalOpen }) => {
-	// const { windowWidth } = useContext(DashboardContext);
-	// const { openNav } = useContext(ThemeContext);
-	// console.log(openNav);
-	// let size = "xl";
-	// if (openNav) {
-	// 	size = "md";
-	// }
-
 	let deleteRef = useRef();
 
 	useEffect(() => {
@@ -37,7 +29,7 @@ const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteM
 				}}
 				ref={deleteRef}
 			>
-				<DialogHeader className="text-blue-500 mx-auto"> {content?.title}</DialogHeader>
+				<DialogHeader className="text-textPrimary mx-auto"> {content?.title}</DialogHeader>
 				<DialogBody divider className="text-red-500 font-semibold h-24 flex items-center">
 					Warning: Deleting this Event is Permanent and Cannot be Undone.
 				</DialogBody>

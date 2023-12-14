@@ -1,4 +1,3 @@
-import React from "react";
 import { Accordion, AccordionHeader, AccordionBody, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 
@@ -35,7 +34,7 @@ export function FaqSection() {
 				<AccordionHeader
 					onClick={() => handleOpen(1)}
 					className={`border-b-0 transition-colors dark:text-white ${
-						open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
+						open === 1 ? "text-textPrimary hover:!text-blue-700" : ""
 					}`}
 				>
 					What is Material Tailwind?
@@ -50,7 +49,7 @@ export function FaqSection() {
 				<AccordionHeader
 					onClick={() => handleOpen(2)}
 					className={`border-b-0 dark:text-white transition-colors ${
-						open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
+						open === 2 ? "text-textPrimary hover:!text-blue-700" : ""
 					}`}
 				>
 					How to use Material Tailwind?
@@ -65,7 +64,7 @@ export function FaqSection() {
 				<AccordionHeader
 					onClick={() => handleOpen(3)}
 					className={`border-b-0 dark:text-white transition-colors ${
-						open === 3 ? "text-blue-500 hover:!text-blue-700" : ""
+						open === 3 ? "text-textPrimary hover:!text-blue-700" : ""
 					}`}
 				>
 					What can I do with Material Tailwind?

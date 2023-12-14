@@ -10,7 +10,7 @@ const ParticalBg = () => {
 	return (
 		<div className=" ">
 			<Particles
-				className="h-[600px] lg:h-[450px] "
+				className="h-[600px] lg:h-[550px] "
 				id="tsparticles"
 				init={particlesInit}
 				options={{

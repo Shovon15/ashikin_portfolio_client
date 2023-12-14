@@ -36,8 +36,6 @@ const EventViewPage = () => {
 		return <LoadingSpinner />;
 	}
 
-	// ---------------image path----------------------
-	const imagePath = cover.replace("public", "");
 	const dateAndTime = new Date(dateTime);
 	// -------------date-----------------------
 	const formattedDate = dateAndTime.toLocaleDateString("en-US", {
@@ -75,15 +73,13 @@ const EventViewPage = () => {
 							<p className="text-center p-2 text-xl  dark:text-white">{eventType}</p>
 							<div className="flex justify-center">
 								<Link to={`/events/register/${id}`}>
-									<Button className="bg-blue-500 dark:text-white">Register now</Button>
+									<Button className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white ">
+										Register now
+									</Button>
 								</Link>
 							</div>
 							<div className="flex justify-center py-5 -mb-[14rem]">
-								<img
-									src={`http://localhost:5000` + imagePath}
-									alt="card-image"
-									className=" object-cover h-full rounded-xl"
-								/>
+								<img src={cover} alt="card-image" className=" object-cover h-full rounded-xl" />
 							</div>
 						</div>
 					</div>
@@ -140,7 +136,9 @@ const EventViewPage = () => {
 						)}
 						<div className="py-5 flex justify-center">
 							<Link to={`/events/register/${id}`}>
-								<Button className="bg-blue-500 dark:text-white">Register now</Button>
+								<Button className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white">
+									Register now
+								</Button>
 							</Link>
 						</div>
 					</div>

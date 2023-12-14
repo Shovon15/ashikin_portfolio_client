@@ -51,8 +51,9 @@ const ViewModal = ({ isOpen, onClose, content }) => {
 							minute: "numeric",
 						})}
 					</Typography>
+					{/* <img  alt="..."/> */}
 					<img
-						src={`http://localhost:5000` + content?.cover?.replace("public", "")}
+						src={content?.cover}
 						alt="card-image"
 						className=" object-contain h-full mx-auto"
 						width="400"

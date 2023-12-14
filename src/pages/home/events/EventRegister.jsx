@@ -165,7 +165,11 @@ const EventRegister = () => {
 					</div>
 				</div>
 				<div className="flex justify-center pb-10">
-					<Button type="submit" variant="text" className="capitalize text-xl bg-blue-500 py-2 w-full">
+					<Button
+						type="submit"
+						variant="text"
+						className="capitalize text-xl bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white py-2 w-full"
+					>
 						Submit
 					</Button>
 				</div>

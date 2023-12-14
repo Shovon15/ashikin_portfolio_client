@@ -6,8 +6,6 @@ export function EventCard({ data }) {
 	const { _id, title, cover, dateTime, eventType } = data;
 	// console.log(data);
 
-	const imagePath = cover.replace("public", "");
-
 	const dateAndTime = new Date(dateTime);
 
 	const formattedDate = dateAndTime.toLocaleDateString("en-US", {
@@ -25,7 +23,7 @@ export function EventCard({ data }) {
 	});
 
 	return (
-		<Card className="relative bg-white w-full max-w-[25rem]  mx-auto flex-grow cursor-pointer hover:ring-2 hover:ring-borderPrimary dark:hover:ring-borderDark dark:bg-[#071b4a]">
+		<Card className="relative bg-white w-full h-auto max-w-[25rem]  mx-auto flex-grow cursor-pointer hover:ring-2 hover:ring-borderPrimary dark:hover:ring-borderDark dark:bg-[#071b4a]">
 			<div
 				className={`absolute top-3 right-5 z-10 px-2 text-white text-lg rounded-md ${
 					eventType === "free" ? "bg-green-900" : "bg-orange-700"
@@ -35,7 +33,7 @@ export function EventCard({ data }) {
 			</div>
 			<CardHeader floated={false} color="blue-gray" className="relative h-56 m-0 rounded-b-none dark:shadow-none">
 				<img
-					src={`http://localhost:5000` + imagePath}
+					src={cover}
 					alt="card-image"
 					className=" object-fill h-full rounded-xl duration-300 hover:scale-110 rounded-b-none"
 					width="400"
@@ -59,12 +57,7 @@ export function EventCard({ data }) {
 			</CardBody>
 			<CardFooter className="pt-0 mx-auto">
 				<Link to={`/events/${_id}`}>
-					<Button
-						variant="outlined"
-						className="focus:outline-none focus:ring-0 hover:bg-cyan-700 bg-cyan-500 hover:text-white border-buttonPrimary px-8 capitalize text-lg py-2"
-					>
-						Details
-					</Button>
+					<Button className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive">Details</Button>
 				</Link>
 			</CardFooter>
 		</Card>
