@@ -14,10 +14,10 @@ export default function MultiLayer() {
 	return (
 		<div ref={ref} className="w-full h-[25rem] overflow-hidden relative grid place-items-center">
 			<motion.div style={{ y: textY }} className="font-bold text-white text-7xl md:text-9xl relative z-10">
-				<Banner/>
+				<Banner />
 			</motion.div>
 
-			{/* <motion.div
+			<motion.div
 				className="absolute inset-0 z-0"
 				style={{
 					backgroundImage: `${img}`,
@@ -33,7 +33,7 @@ export default function MultiLayer() {
 					backgroundPosition: "bottom",
 					backgroundSize: "cover",
 				}}
-			/> */}
+			/>
 		</div>
 	);
 }

@@ -6,7 +6,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import { CgErase } from "react-icons/cg";
 import { TfiWrite } from "react-icons/tfi";
 import { TfiPencilAlt } from "react-icons/tfi";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
@@ -154,6 +154,9 @@ export function AdminSidebar() {
 					setIsLogOutModalOpen
 				/>
 			</div>
+			<Link to="/">
+				<Button className="bg-buttonPrimary w-full capitalize text-lg py-2">Home</Button>
+			</Link>
 		</div>
 	);
 }

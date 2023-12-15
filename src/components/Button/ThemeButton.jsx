@@ -52,7 +52,8 @@ const ThemeButton = () => {
 	return (
 		<div ref={themeRef}>
 			<button
-				className="bg-gray-200 dark:bg-[#0d204d] dark:border dark:border-blue-500 hover:bg-gray-300 p-2 rounded-md text-black
+			
+				className="bg-inherit  dark:border dark:border-blue-500 hover:bg-gray-300 p-2 rounded-md text-black
              dark:text-white dark:hover:text-white "
 				onClick={() => setThemeMenu(!themeMenu)}
 			>

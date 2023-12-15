@@ -22,7 +22,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="bg-white dark:bg-bgSecondary ">
+		<div className="bg-white dark:bg-bgSecondary  !scroll-smooth">
 			{loading ? (
 				// Loader component or loading indicator
 				<LoadingSpinner />

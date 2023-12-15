@@ -17,7 +17,7 @@ module.exports = withMT({
 				buttonSecondary: "",
 
 				textPrimary: "#1565C0", //color: blue-500
-				textSecondary: "#FFFFFF",
+				textSecondary: "#808080",
 
 				borderPrimary: "#1565C0",
 				borderSecondary: "#2196F3", //blue

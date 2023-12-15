@@ -1,7 +1,7 @@
-import { Drawer, IconButton, Typography } from "@material-tailwind/react";
+import { Button, Drawer, IconButton, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { TfiWrite } from "react-icons/tfi";
 
 const DashboardDrawer = () => {
@@ -50,6 +50,7 @@ const DashboardDrawer = () => {
 						</svg>
 					</IconButton>
 				</div>
+
 				<div>
 					<list className="p-0">
 						{links.map((linkItem) => (
@@ -68,6 +69,11 @@ const DashboardDrawer = () => {
 						))}
 					</list>
 				</div>
+				<Link to="/">
+					<Button onClick={toggleDrawer} className="bg-buttonPrimary w-full">
+						Home
+					</Button>
+				</Link>
 			</Drawer>
 		</>
 	);

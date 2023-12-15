@@ -47,7 +47,7 @@ const EventManage = () => {
 			return data;
 		},
 	});
-	console.log(eventData, "eventData");
+	// console.log(eventData, "eventData");
 
 	useEffect(() => {
 		refetch();

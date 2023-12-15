@@ -16,6 +16,8 @@ import EventsPage from "../../pages/home/events/EventsPage";
 import ScrollToTop from "../../hooks/StartTop";
 import UpdateEvent from "../../pages/dashboard/events/UpdateEvent";
 import DashboardOverview from "../../pages/dashboard/DashboardOverview";
+import Services from "../../pages/home/services/Services";
+import BlogPage from "../../pages/home/blogs/BlogPage";
 
 const MainRoutes = () => {
 	return (
@@ -26,6 +28,8 @@ const MainRoutes = () => {
 				<Route element={<Main />}>
 					<Route path="/" element={<HomePage />} />
 					<Route path="events" element={<EventsPage />} />
+					<Route path="services" element={<Services />} />
+					<Route path="blogs" element={<BlogPage />} />
 					<Route path="events/:id" element={<EventViewPage />} />
 					<Route path="events/register/:id" element={<EventRegister />} />
 				</Route>

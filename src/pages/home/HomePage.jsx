@@ -22,8 +22,8 @@ const HomePage = () => {
 			<div className=" max-w-[1300px] mx-auto p-5">
 				<EventSection />
 				<BLogSection />
-				{/* <MultiLayer />
-			<div className="">
+				{/* <MultiLayer /> */}
+				{/*<div className="">
 				<motion.div animate={{ y: -100, scale: 1 }} initial={{ scale: 0 }} className="bg-red-500 ">
 					1
 				</motion.div>

@@ -1,4 +1,4 @@
-import { IconButton, Navbar, Typography } from "@material-tailwind/react";
+import { IconButton, Typography } from "@material-tailwind/react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
