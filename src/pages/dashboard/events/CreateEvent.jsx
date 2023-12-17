@@ -4,7 +4,6 @@ import { useContext, useRef, useState } from "react";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import JoditEditor from "jodit-react";
 import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import DateTimePicker from "react-datetime-picker";
 
@@ -20,6 +19,7 @@ import handleFileUpload from "../../../helper/ImageUploader";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import { Editor } from "@tinymce/tinymce-react";
 
 const CreateEvent = () => {
 	const [title, setTitle] = useState("");
@@ -31,7 +31,7 @@ const CreateEvent = () => {
 	const [fileName, setFileName] = useState("No file selected");
 	const [isLoading, setIsLoading] = useState(false);
 
-	const editor = useRef(null);
+	const editorRef = useRef(null);
 
 	const navigate = useNavigate();
 
@@ -184,23 +184,26 @@ const CreateEvent = () => {
 					</label>
 					<DateTimePicker onChange={setDateTime} value={dateTime} />
 				</div>
-
+				{/* text-editor */}
 				<div className="h-auto">
 					<p className="font-bold text-textPrimary dark:text-white py-2">
 						Event Text <span className="text-red-500">*</span>
 					</p>
-					<JoditEditor
-						ref={editor}
-						value={content}
-						tabIndex={1} // tabIndex of textarea
-						onBlur={(newContent) => setContent(newContent)}
-						className="h-full"
+					<Editor
+						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
+						onInit={(evt, editor) => {
+							editorRef.current = editor;
+							editor.on("change", (changeEvent) => setContent(editor.getContent()));
+						}}
+						init={{
+							plugins:
+								"anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
+							toolbar:
+								"undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+						}}
 					/>
 				</div>
 				<div className="w-full md:w-2/6 md:mx-auto my-10 ">
-					{/* {showErrorState && (
-						<p className="text-red-500 text-lg font-normal text-center pb-2">Fill in all input field</p>
-					)} */}
 					<Button
 						type="submit"
 						variant="text"

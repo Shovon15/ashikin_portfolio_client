@@ -3,7 +3,6 @@ import { Button, IconButton, Input, Option, Select, Spinner } from "@material-ta
 import { useContext, useEffect, useRef, useState } from "react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import DateTimePicker from "react-datetime-picker";
-import JoditEditor from "jodit-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../../../context/DataContext";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner";
@@ -13,6 +12,7 @@ import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import { put } from "../../../utils/fetchApi";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import { Editor } from "@tinymce/tinymce-react";
 
 const UpdateEvent = () => {
 	const { fetchEventById } = useContext(DataContext);
@@ -30,12 +30,11 @@ const UpdateEvent = () => {
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
 	const [eventData, setEventData] = useState(false);
 
-	const editor = useRef(null);
+	const editorRef = useRef(null);
 
 	const navigate = useNavigate();
 
 	const { id } = useParams();
-	// console.log(receiveEventById);
 
 	useEffect(() => {
 		const fetchEvent = async () => {
@@ -239,18 +238,22 @@ const UpdateEvent = () => {
 					<p className="font-bold text-textPrimary dark:text-white py-2">
 						Event Text <span className="text-red-500">*</span>
 					</p>
-					<JoditEditor
-						ref={editor}
-						value={content}
-						tabIndex={1} // tabIndex of textarea
-						onBlur={(newContent) => setContent(newContent)}
-						className="h-full"
+					<Editor
+						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
+						onInit={(evt, editor) => {
+							editorRef.current = editor;
+							editor.on("change", (changeEvent) => setContent(editor.getContent()));
+						}}
+						init={{
+							plugins:
+								"anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
+							toolbar:
+								"undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+						}}
+						initialValue={content}
 					/>
 				</div>
 				<div className="mx-auto my-10 w-2/6">
-					{/* {showErrorState && (
-						<p className="text-red-500 text-lg font-normal text-center pb-2">Fill in all input field</p>
-					)} */}
 					<Button
 						type="submit"
 						variant="text"

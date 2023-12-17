@@ -49,7 +49,7 @@ import "tinymce/plugins/wordcount";
 import "tinymce/plugins/emoticons/js/emojis";
 
 // Content styles, including inline UI like fake cursors
-/* eslint import/no-webpack-loader-syntax: off */
+// /* eslint import/no-webpack-loader-syntax: off */
 // import contentCss from "!!raw-loader!tinymce/skins/content/default/content.min.css";
 // import contentUiCss from "!!raw-loader!tinymce/skins/ui/oxide/content.min.css";
 

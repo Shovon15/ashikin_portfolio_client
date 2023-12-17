@@ -19,6 +19,7 @@ import Services from "../../pages/home/services/Services";
 import BlogPage from "../../pages/home/blogs/BlogPage";
 import UpdateProfile from "../../pages/dashboard/admin/UpdateProfile";
 import UpdatePassword from "../../pages/dashboard/admin/UpdatePassword";
+import CreateBlog from "../../pages/dashboard/blogs/CreateBlog";
 
 const MainRoutes = () => {
 	return (
@@ -50,6 +51,7 @@ const MainRoutes = () => {
 					<Route path="dashboard/events/write-event" element={<CreateEvent />} />
 					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
 					<Route path="dashboard/blogs" element={<BlogManage />} />
+					<Route path="dashboard/blogs/write-blog" element={<CreateBlog />} />
 					<Route path="dashboard/admin" element={<AdminProfile />} />
 					<Route path="dashboard/profile" element={<AdminProfile />} />
 				</Route>
