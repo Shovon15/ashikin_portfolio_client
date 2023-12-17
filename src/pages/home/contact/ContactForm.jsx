@@ -110,6 +110,7 @@ const ContactForm = () => {
 				<div className="flex justify-center mt-5">
 					<Button
 						type="submit"
+						data-aos="fade-up"
 						className=" bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-14"
 					>
 						Send

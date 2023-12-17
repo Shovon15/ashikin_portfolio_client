@@ -11,7 +11,7 @@ const PrimaryButton = ({ className, children }) => {
 	return (
 		<Button
 			className={`${className}  bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl`}
-			
+			data-aos="fade-up"
 		>
 			{children}
 		</Button>
