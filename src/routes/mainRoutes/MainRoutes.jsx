@@ -18,6 +18,8 @@ import UpdateEvent from "../../pages/dashboard/events/UpdateEvent";
 import DashboardOverview from "../../pages/dashboard/DashboardOverview";
 import Services from "../../pages/home/services/Services";
 import BlogPage from "../../pages/home/blogs/BlogPage";
+import UpdateProfile from "../../pages/dashboard/admin/UpdateProfile";
+import UpdatePassword from "../../pages/dashboard/admin/UpdatePassword";
 
 const MainRoutes = () => {
 	return (
@@ -42,13 +44,15 @@ const MainRoutes = () => {
 						</PrivateRoute>
 					}
 				>
-					<Route path="dashboard" element={<AdminProfile />} />
+					<Route path="dashboard" element={<DashboardOverview />} />
+					<Route path="dashboard/profile-update" element={<UpdateProfile />} />
+					<Route path="dashboard/password-update" element={<UpdatePassword />} />
 					<Route path="dashboard/events" element={<EventManage />} />
 					<Route path="dashboard/events/write-event" element={<CreateEvent />} />
 					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
 					<Route path="dashboard/blogs" element={<BlogManage />} />
 					<Route path="dashboard/admin" element={<AdminProfile />} />
-					<Route path="dashboard/profile" element={<DashboardOverview />} />
+					<Route path="dashboard/profile" element={<AdminProfile />} />
 				</Route>
 				<Route
 					path="*"

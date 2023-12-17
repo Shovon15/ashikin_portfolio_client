@@ -7,7 +7,6 @@ import image5 from "../../../assets/image/modern-equipped-computer-lab.jpg";
 
 import { IoMdCheckmark } from "react-icons/io";
 import AOS from "aos";
-import "aos/dist/aos.css";
 import { Button } from "@material-tailwind/react";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 

@@ -1,85 +1,13 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-
-import { MdOutlineEvent } from "react-icons/md";
-import { BsPencilSquare } from "react-icons/bs";
-import { CgErase } from "react-icons/cg";
 import { TfiWrite } from "react-icons/tfi";
-import { TfiPencilAlt } from "react-icons/tfi";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../../context/AuthProvider";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
+import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
-import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from "@material-tailwind/react";
-import ConfirmationModal from "../../../helper/ConfirmationModal";
+import { Button, List } from "@material-tailwind/react";
+
+import LogoutButton from "../../../components/Button/LogoutButton";
 
 export function AdminSidebar() {
-	const { user, setUser } = useContext(AuthContext);
 	const { isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
-
-	const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
-
-	const navigate = useNavigate();
-
-	const handleLogoutModal = () => {
-		setIsLogOutModalOpen(true);
-	};
-	const cancleLogoutModal = () => setIsLogOutModalOpen(false);
-
-	const handleLogoutEvent = () => {
-		try {
-			localStorage.removeItem("user");
-			setUser(null);
-			setIsLogOutModalOpen(false);
-			showSuccessToast("Logout");
-			navigate("/login");
-		} catch (error) {
-			console.error("Error during logout:", error);
-			showErrorToast(error);
-		}
-	};
-	const ConfirmationModal = ({ isOpen, onClose, content, successAction, setIsLogOutModalOpen }) => {
-		// let logoutRef = useRef();
-
-		// useEffect(() => {
-		// 	let handler = (e) => {
-		// 		if (logoutRef.current && !logoutRef.current.contains(e.target)) {
-		// 			setIsLogOutModalOpen(false);
-		// 		}
-		// 	};
-		// 	document.addEventListener("mousedown", handler);
-		// 	return () => {
-		// 		document.removeEventListener("mousedown", handler);
-		// 	};
-		// });
-
-		return (
-			<Dialog
-				size="md"
-				open={isOpen}
-				onClose={onClose}
-				animate={{
-					mount: { scale: 1, y: 0 },
-					unmount: { scale: 0.9, y: -100 },
-				}}
-				// ref={logoutRef}
-			>
-				<DialogHeader className="text-textPrimary flex justify-center">Logout</DialogHeader>
-				<DialogBody divider className="text-red-500 font-bold h-24 flex justify-center items-center">
-					Do you really want to logout!
-				</DialogBody>
-				<DialogFooter>
-					<Button variant="text" color="red" onClick={onClose} className="mr-1">
-						<span>Cancel</span>
-					</Button>
-					<Button variant="gradient" color="green" onClick={() => successAction(content)}>
-						<span>Logout</span>
-					</Button>
-				</DialogFooter>
-			</Dialog>
-		);
-	};
 
 	const activeClass =
 		"!bg-buttonPrimary hover:!bg-buttonHover activee:!bg-buttonActive text-white dark:text-gray-300 font-bold";
@@ -125,7 +53,7 @@ export function AdminSidebar() {
 					</svg>
 				</div>
 			</div>
-			<list className="p-0">
+			<List className="p-0">
 				{links.map((linkItem) => (
 					<NavLink
 						key={linkItem.name}
@@ -137,23 +65,12 @@ export function AdminSidebar() {
 						{linkItem.name}
 					</NavLink>
 				))}
-			</list>
+			</List>
 
-			<div className="my-5 w-full">
-				<Button
-					onClick={handleLogoutModal}
-					variant="text"
-					className="w-full px-[4rem] py-2 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white"
-				>
-					Logout
-				</Button>
-				<ConfirmationModal
-					isOpen={isLogOutModalOpen}
-					onClose={cancleLogoutModal}
-					successAction={handleLogoutEvent}
-					setIsLogOutModalOpen
-				/>
+			<div>
+				<LogoutButton />
 			</div>
+
 			<Link to="/">
 				<Button className="bg-buttonPrimary w-full capitalize text-lg py-2">Home</Button>
 			</Link>

@@ -1,20 +1,20 @@
 import { Button, Card, Input, Spinner, Typography } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { PiEye } from "react-icons/pi";
-import { PiEyeClosed } from "react-icons/pi";
+import { PiEye, PiEyeClosed } from "react-icons/pi";
 import loginIcon from "../../assets/icon/user.png";
-import axios from "axios";
 import { showErrorToast, showSuccessToast } from "../../components/shared/ToastMessage";
 import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { post } from "../../utils/fetchApi";
+import Cookies from "js-cookie";
 
 const Login = () => {
-	const { user, setUser } = useContext(AuthContext);
+	const { user, fetchData } = useContext(AuthContext);
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	// console.log(user);
+
 	const {
 		register,
 		formState: { errors },
@@ -46,14 +46,18 @@ const Login = () => {
 		try {
 			setIsLoading(true);
 
-			const response = await axios.post("https://ashikin-portfolio-server.vercel.app/api/admin/login", loginData);
-			const userData = response.data?.payload;
-			// console.log(userData.user);
-			setUser(userData);
+			const response = await post("admin/login", loginData);
+			const userToken = response.data.payload?.token;
+			Cookies.set("token", userToken, {
+				expires: 30,
+			});
+			fetchData();
+			// setCookie("token", userToken);
 			showSuccessToast(response.data.message);
 			setIsLoading(false);
 			navigate("/dashboard");
 		} catch (error) {
+			console.log(error);
 			showErrorToast(error?.response?.data.message);
 			setIsLoading(false);
 		}

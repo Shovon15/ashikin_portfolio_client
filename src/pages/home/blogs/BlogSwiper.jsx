@@ -8,7 +8,7 @@ import "swiper/css/scrollbar";
 
 import { IoMdArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
-import BlogCard from "../../../components/card/BlogCard";
+import BlogCard from "../../../components/card/admin/blog/BlogCard";
 
 const BlogSwiper = () => {
 	const data = [

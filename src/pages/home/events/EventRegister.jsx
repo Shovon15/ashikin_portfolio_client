@@ -1,14 +1,19 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DataContext } from "../../../context/DataContext";
 import { useParams } from "react-router-dom";
+import Aos from "aos";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
+import GoBackButton from "../../../components/Button/GoBackButton";
 
 const EventRegister = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	const { fetchEventById, receiveEventById } = useContext(DataContext);
+	const { fetchEventById } = useContext(DataContext);
 	const { id } = useParams();
+
+	const [eventData, setEventData] = useState({});
 	const {
 		register,
 		formState: { errors },
@@ -18,12 +23,18 @@ const EventRegister = () => {
 	useEffect(() => {
 		const fetchEvent = async () => {
 			setIsLoading(true);
-			await fetchEventById(id);
+			const event = await fetchEventById(id);
+			setEventData(event);
 			setIsLoading(false);
 		};
 		fetchEvent();
 	}, []);
-	const { title, dateTime, eventType } = receiveEventById;
+
+	useEffect(() => {
+		Aos.init({ duration: 1000 });
+	}, []);
+
+	const { title, dateTime, eventType } = eventData;
 	const dateAndTime = new Date(dateTime);
 	// -------------date-----------------------
 	const formattedDate = dateAndTime.toLocaleDateString("en-US", {
@@ -55,10 +66,13 @@ const EventRegister = () => {
 		<div className="w-full lg:w-[60rem] flex flex-col lg:flex-row-reverse mx-auto justify-start p-5 ">
 			{!isLoading && (
 				<>
-					<div className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 dark:text-gray-400">
-						<p className="text-xl font-semibold text-center">{title}</p>
+					<div
+						data-aos="zoom-in"
+						className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 "
+					>
+						<p className="text-2xl font-semibold text-center text-textPrimary">{title}</p>
 						<p className="">{eventType} event</p>
-						<p className="">
+						<p className="text-textSecondary">
 							{formattedDate}
 							<span>|</span>
 							{formattedTime}
@@ -67,29 +81,28 @@ const EventRegister = () => {
 				</>
 			)}
 			<form onSubmit={handleSubmit(handleAddItems)} className="w-full lg:w-9/12 lg:p-5">
-				<Typography variant="h2" className="text-center py-5 dark:text-gray-400">
-					EventRegister
-				</Typography>
+				<GoBackButton />
+				<HeaderText className="py-5">EventRegister</HeaderText>
 				<div className="flex flex-col lg:flex-row gap-5">
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							variant="standard"
 							color="blue"
 							label="First Name"
 							{...register("firstName", {
-								required: "First Name is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.firstName}
 						/>
 						{errors.firstName && <p className="text-red-500 text-sm ">{errors.firstName.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							variant="standard"
 							color="blue"
 							label="Last Name"
 							{...register("lastName", {
-								required: "Last name is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.lastName}
 						/>
@@ -97,25 +110,25 @@ const EventRegister = () => {
 					</div>
 				</div>
 				<div className="flex flex-col lg:flex-row gap-5 pt-5">
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							variant="standard"
 							color="blue"
 							label="Whatsapp Number"
 							{...register("whatsapp", {
-								required: "Whatsapp Number is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.whatsapp}
 						/>
 						{errors.whatsapp && <p className="text-red-500 text-sm ">{errors.whatsapp.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							variant="standard"
 							color="blue"
 							label="Phone Number"
 							{...register("phone", {
-								required: "Phone Number is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.phone}
 						/>
@@ -123,25 +136,25 @@ const EventRegister = () => {
 					</div>
 				</div>
 				<div className="flex flex-col gap-5 py-5">
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							color="blue"
 							variant="standard"
 							label="Email"
 							{...register("email", {
-								required: "Email is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.email}
 						/>
 						{errors.email && <p className="text-red-500 text-sm ">{errors.email.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							color="blue"
 							variant="standard"
 							label="Institute name with designation"
 							{...register("instituteName", {
-								required: "institution name is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.instituteName}
 						/>
@@ -149,13 +162,13 @@ const EventRegister = () => {
 							<p className="text-red-500 text-sm ">{errors.instituteName.message}</p>
 						)}
 					</div>
-					<div className="flex flex-col gap-1 w-full">
+					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							color="blue"
 							variant="standard"
 							label="Sender Account Number"
 							{...register("accountNumber", {
-								required: "Sender Account Number is Required *",
+								required: "Required *",
 							})}
 							error={!!errors.accountNumber}
 						/>
@@ -167,8 +180,8 @@ const EventRegister = () => {
 				<div className="flex justify-center pb-10">
 					<Button
 						type="submit"
-						variant="text"
-						className="capitalize text-xl bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white py-2 w-full"
+						data-aos="fade-up"
+						className="bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-12"
 					>
 						Submit
 					</Button>

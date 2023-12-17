@@ -17,7 +17,7 @@ const DashboardLayout = () => {
 				<div
 					className={`${
 						isSidebarOpen ? "w-full lg:ml-72" : "w-full"
-					} min-h-screen p-5 transition-all duration-300 ease-in-out`}
+					} min-h-screen p-5 transition-all duration-300 ease-in-out dark:bg-bgSecondary`}
 				>
 					<Outlet />
 				</div>

@@ -19,6 +19,7 @@ import handleFileUpload from "../../../helper/ImageUploader";
 
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
+import GoBackButton from "../../../components/Button/GoBackButton";
 
 const CreateEvent = () => {
 	const [title, setTitle] = useState("");
@@ -86,6 +87,7 @@ const CreateEvent = () => {
 
 	return (
 		<div className="">
+			<GoBackButton />
 			<HeaderText>Add Event</HeaderText>
 			<form onSubmit={handleEventForm}>
 				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">

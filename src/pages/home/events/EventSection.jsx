@@ -1,5 +1,5 @@
-import { Button, Typography, Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
-import EventCard from "../../../components/card/EventCard";
+import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
+import EventCard from "../../../components/card/admin/event/EventCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner";
@@ -7,9 +7,14 @@ import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
+import Aos from "aos";
+
+import PrimaryButton from "../../../components/Button/PrimaryButton";
+
 const EventSection = () => {
 	const [events, setEvents] = useState([]);
 	const [tabValue, setTabValue] = useState("all");
+	const [activeTab, setActiveTab] = useState("all");
 
 	const { data: eventData = [], isLoading } = useQuery({
 		queryKey: ["eventData"],
@@ -18,7 +23,6 @@ const EventSection = () => {
 			let data = await res?.data?.payload?.data;
 
 			data = data.filter((item) => item.isPublished);
-
 			return data;
 		},
 	});
@@ -59,55 +63,74 @@ const EventSection = () => {
 		}
 	}, [tabValue, eventData]);
 
+	useEffect(() => {
+		Aos.init({ duration: 1000 });
+	}, []);
+
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
 
 	return (
-		<div className="p-0 lg:p-5">
-			<div className=" mx-auto max-w-[1300px]">
-				<HeaderText>Upcoming Events</HeaderText>
-
-				<Tabs id="custom-animation" value="all">
-					<TabsHeader
-						className="w-full md:w-[26rem] md:max-w-96 mx-auto  flex flex-col md:flex-row
-						  bg-[#0F172A] dark:border dark:border-blue-500 mb-5"
-						indicatorProps={{
-							className: "bg-buttonPrimary  shadow-md ",
-						}}
-					>
-						{tabButtondata.map(({ label, value }) => (
-							<Tab key={value} value={value} onClick={() => setTabValue(value)} className="text-white">
-								{label}
-							</Tab>
-						))}
-					</TabsHeader>
-					<TabsBody
-						animate={{
-							initial: { y: 250 },
-							mount: { y: 0 },
-							unmount: { y: 250 },
-						}}
-					>
-						<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
-							{events.length > 0 &&
-								events.map((event) => (
-									<TabPanel key={event._id} value={tabValue} className="p-0">
-										<EventCard data={event} />
-									</TabPanel>
+		<>
+			{eventData.length > 0 && (
+				<div className="p-5 mx-auto max-w-[1300px]">
+					<HeaderText className="py-5">Upcoming Events</HeaderText>
+					<div className="">
+						<Tabs id="custom-animation" value="all">
+							<TabsHeader
+								className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
+						  bg-inherit items-center mb-5 py-3 px-5"
+								data-aos="fade-up"
+								indicatorProps={{
+									className: "shadow-none bg-transparent",
+								}}
+							>
+								{tabButtondata.map(({ label, value }) => (
+									<Tab
+										key={value}
+										value={value}
+										onClick={() => {
+											setTabValue(value);
+											setActiveTab(value);
+										}}
+										className={
+											activeTab === value
+												? "text-white bg-gradient-to-r from-cyan-500 to-blue-700 py-2.5 rounded-lg capitalize text-lg"
+												: "text-textSecondary hover:ring-1 hover:ring-blue-600 py-2 rounded-lg capitalize text-lg px-2"
+										}
+									>
+										{label}
+									</Tab>
 								))}
+							</TabsHeader>
+							<TabsBody
+								animate={{
+									initial: { y: 250 },
+									mount: { y: 0 },
+									unmount: { y: 250 },
+								}}
+								// data-aos="flip-left"
+							>
+								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
+									{events.length > 0 &&
+										events.map((event) => (
+											<TabPanel key={event._id} value={tabValue} className="p-0">
+												<EventCard data={event} />
+											</TabPanel>
+										))}
+								</div>
+							</TabsBody>
+						</Tabs>
+						<div className="text-center my-5">
+							<Link to="/events">
+								<PrimaryButton className="px-10 mt-5">View More</PrimaryButton>
+							</Link>
 						</div>
-					</TabsBody>
-				</Tabs>
-				<div className="text-center my-5">
-					<Link to="/events">
-						<Button variant="outlined" className=" border-borderPrimary text-textPrimary px-12">
-							View More
-						</Button>
-					</Link>
+					</div>
 				</div>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 

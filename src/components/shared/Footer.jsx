@@ -1,58 +1,62 @@
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
-const LINKS = [
-	{
-		title: "Product",
-		items: ["Overview", "Features", "Solutions", "Tutorials"],
-	},
-	{
-		title: "Company",
-		items: ["About us", "Careers", "Press", "News"],
-	},
-	{
-		title: "Resource",
-		items: ["Blog", "Newsletter", "Events", "Help center"],
-	},
-];
-
-const currentYear = new Date().getFullYear();
-
-export function Footer() {
+const Footer = () => {
 	return (
-		<footer className="relative w-full bg-gray-400 py-10">
-			<div className="mx-auto w-full max-w-7xl px-8">
-				<div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-					<Link to="/login">
-						<Typography variant="h5" className="mb-6">
-							Ashikin Alam
+		<footer className="w-full bg-white p-8">
+			<div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+				<p className="font-bold text-xl">Ashikin Alam</p>
+				<ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+					<li>
+						<Typography
+							color="blue-gray"
+							className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+						>
+							About Us
 						</Typography>
+					</li>
+					<li>
+						<Typography
+							color="blue-gray"
+							className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+						>
+							License
+						</Typography>
+					</li>
+					<li>
+						<Typography
+							color="blue-gray"
+							className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+						>
+							Contribute
+						</Typography>
+					</li>
+					<li>
+						<Typography
+							color="blue-gray"
+							className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+						>
+							Contact Us
+						</Typography>
+					</li>
+					<Link to="/login">
+						<li>
+							<Typography
+								color="blue-gray"
+								className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+							>
+								Admin
+							</Typography>
+						</li>
 					</Link>
-					<div className="grid grid-cols-3 justify-between gap-4">
-						{LINKS.map(({ title, items }) => (
-							<ul key={title}>
-								<Typography variant="small" color="blue-gray" className="mb-3 font-medium opacity-40">
-									{title}
-								</Typography>
-								{items.map((link) => (
-									<li key={link}>
-										<Typography
-											as="a"
-											href="#"
-											// color="gray"
-											className="py-1.5 font-normal transition-colors hover:text-blue-gray-900"
-										>
-											{link}
-										</Typography>
-									</li>
-								))}
-							</ul>
-						))}
-					</div>
-				</div>
+				</ul>
 			</div>
+			<hr className="my-8 border-blue-gray-50" />
+			<Typography color="blue-gray" className="text-center font-normal">
+				&copy; Copyright
+			</Typography>
 		</footer>
 	);
-}
+};
 
 export default Footer;

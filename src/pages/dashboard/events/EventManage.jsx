@@ -89,7 +89,6 @@ const EventManage = () => {
 				showErrorToast(response.message);
 			}
 		} catch (error) {
-			// console.error(error.response?.data?.message);
 			showErrorToast(error.response?.data?.message);
 		}
 	};
@@ -152,7 +151,7 @@ const EventManage = () => {
 							<tbody className="dark:bg-darkPrimary ">
 								{eventData.map(
 									({ _id, title, cover, eventType, content, isPublished, dateTime }, index) => (
-										<tr key={_id} className="even:bg-gray-200 even:dark:bg-gray-800 text-center ">
+										<tr key={_id} className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500">
 											<td className="p-2 w-5">
 												<Typography variant="small" className="font-bold ">
 													{index + 1 + "."}
@@ -196,33 +195,20 @@ const EventManage = () => {
 											</td>
 											<td className="p-2 w-32">
 												<p>
-													{isPublished ? (
-														<Button
-															onClick={() =>
-																handlePublished({
-																	id: _id,
-																	isPublished,
-																	eventType,
-																})
-															}
-															className="bg-green-500 capitalize text-sm text-white py-1 px-2"
-														>
-															Published
-														</Button>
-													) : (
-														<Button
-															onClick={() =>
-																handlePublished({
-																	id: _id,
-																	isPublished,
-																	eventType,
-																})
-															}
-															className="bg-red-300 capitalize text-sm text-white py-1 px-2"
-														>
-															Unpublished
-														</Button>
-													)}
+													<Button
+														onClick={() =>
+															handlePublished({
+																id: _id,
+																isPublished,
+																eventType,
+															})
+														}
+														className={`capitalize text-sm text-white py-1 px-2 ${
+															isPublished ? "bg-green-500" : "bg-red-300"
+														}`}
+													>
+														{isPublished ? "published" : "unpublished"}
+													</Button>
 												</p>
 											</td>
 											<td className="p-2 flex gap-3 justify-center items-center w-44">
@@ -276,7 +262,7 @@ const EventManage = () => {
 						onClose={handleCloseDeleteModal}
 						content={deletingEventData}
 						successAction={handleDeleteEvent}
-						setDeleteModalOpen
+						setDeleteModalOpen={setDeleteModalOpen}
 					/>
 				</div>
 			)}

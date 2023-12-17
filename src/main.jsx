@@ -7,6 +7,7 @@ import { DashboardContextProvider } from "./context/DashboardContext.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 import { DataContextProvider } from "./context/DataContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>

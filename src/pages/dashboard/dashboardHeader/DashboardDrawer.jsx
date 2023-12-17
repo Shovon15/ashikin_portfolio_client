@@ -1,8 +1,9 @@
-import { Button, Drawer, IconButton, Typography } from "@material-tailwind/react";
+import { Button, Drawer, IconButton, List, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import { Link, NavLink } from "react-router-dom";
 import { TfiWrite } from "react-icons/tfi";
+import LogoutButton from "../../../components/Button/LogoutButton";
 
 const DashboardDrawer = () => {
 	const { isDrawerOpen, toggleDrawer } = useContext(DashboardContext);
@@ -52,7 +53,7 @@ const DashboardDrawer = () => {
 				</div>
 
 				<div>
-					<list className="p-0">
+					<List className="p-0">
 						{links.map((linkItem) => (
 							<NavLink
 								key={linkItem.name}
@@ -67,8 +68,9 @@ const DashboardDrawer = () => {
 								{linkItem.name}
 							</NavLink>
 						))}
-					</list>
+					</List>
 				</div>
+				<LogoutButton />
 				<Link to="/">
 					<Button onClick={toggleDrawer} className="bg-buttonPrimary w-full">
 						Home

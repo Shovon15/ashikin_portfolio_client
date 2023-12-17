@@ -6,7 +6,7 @@ import ThemeButton from "../../../components/Button/ThemeButton";
 const DashboardNav = () => {
 	const { toggleDrawer, isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
 	const { user } = useContext(AuthContext);
-
+	const { name, avatar } = user;
 	return (
 		<div
 			// className="sticky inset-0 z-20 h-max max-w-full flex bg-white dark:bg-darkPrimary rounded-none shadow-lg border-none px-4 py-2 h-26"
@@ -15,9 +15,9 @@ const DashboardNav = () => {
 		>
 			<div className="flex justify-between lg:justify-start lg:gap-5 items-center">
 				<div className="flex gap-2 items-center">
-					<img src="https://i.ibb.co/r3bmK5n/tom.png" alt="..." className="w-12 h-12 rounded-full" />
+					<img src={avatar} alt="..." className="w-12 h-12 rounded-full" />
 					<Typography variant="h2" className="text-lg text-textPrimary">
-						{user?.name}
+						{name}
 					</Typography>
 				</div>
 				{/* ---------------------sidebar button------------------- */}

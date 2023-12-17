@@ -1,4 +1,4 @@
-import img from "../../../assets/image/smiling-young-man.jpg";
+import img from "../../../assets/image/banner-demo-img.jpg";
 import imgBg from "../../../assets/image/bg.jpg";
 import { useEffect } from "react";
 import Aos from "aos";
@@ -9,9 +9,9 @@ const Banner = () => {
 	}, []);
 
 	return (
-		<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5 md:pb-0">
-			<div className="w-full md:w-1/2 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
-				<p data-aos="fade-up" className="font-bold text-3xl md:text-5xl">
+		<div className="flex flex-col md:flex-row pb-5 md:pb-0">
+			<div className="w-full md:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
+				<p data-aos="fade-up" className="font-bold text-3xl md:text-5xl text-textPrimary ">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 				</p>
 				<p data-aos="fade-up" className="text-textSecondary text-justify">
@@ -21,16 +21,16 @@ const Banner = () => {
 				</p>
 			</div>
 
-			<div className="w-full md:w-1/2 relative">
+			<div className="w-full md:w-7/12 relative">
 				<img
 					src={imgBg}
 					alt="..."
-					className="pl-[100px]  md:pl-[120px] h-[300px] md:h-[500px]"
+					className="pl-[100px] md:pl-[120px] h-[350px] md:h-[600px]"
 					data-aos="fade-right"
 				/>
 				<img
 					src={img}
-					className="absolute top-[90px] left-10 md:left-0 w-44 h-54 md:w-80 md:h-96"
+					className="absolute top-[90px] md:top-[150px] left-10 md:left-0 w-40 h-56 md:w-80 md:h-96"
 					data-aos="fade-up"
 					data-aos-anchor-placement="center-bottom"
 				/>

@@ -3,6 +3,7 @@ import MainRoutes from "./routes/mainRoutes/MainRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./components/shared/LoadingSpinner";
+import "aos/dist/aos.css";
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="bg-white dark:bg-bgSecondary  !scroll-smooth">
+		<div className="bg-white   !scroll-smooth">
 			{loading ? (
 				// Loader component or loading indicator
 				<LoadingSpinner />

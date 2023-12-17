@@ -1,25 +1,32 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { createContext, useState } from "react";
+import { get } from "../utils/fetchApi";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-	const initialUser = JSON.parse(localStorage.getItem("user")) || null;
+	const [user, setUser] = useState(null);
 
-	const [user, setUser] = useState(initialUser);
-	const [isLoading, setIsLoading] = useState(false);
-
+	const fetchData = async () => {
+		const cookies = Cookies.get("token");
+		// console.log(cookies);
+		if (cookies) {
+			const data = await get(`admin/${cookies}`);
+			setUser(data.data?.payload?.user);
+		}
+		if (!cookies) {
+			setUser(null);
+		}
+	};
 	useEffect(() => {
-		setIsLoading(true);
-		localStorage.setItem("user", JSON.stringify(user));
-		setIsLoading(false);
-	}, [user]);
+		fetchData();
+	}, []);
 
 	const authInfo = {
 		user,
-		setUser,
-		isLoading,
+		fetchData,
 	};
 	return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };

@@ -12,9 +12,10 @@ import { LuUploadCloud } from "react-icons/lu";
 import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import { put } from "../../../utils/fetchApi";
+import GoBackButton from "../../../components/Button/GoBackButton";
 
 const UpdateEvent = () => {
-	const { fetchEventById, receiveEventById } = useContext(DataContext);
+	const { fetchEventById } = useContext(DataContext);
 
 	const [title, setTitle] = useState("");
 	const [eventType, setEventType] = useState("");
@@ -27,6 +28,7 @@ const UpdateEvent = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
+	const [eventData, setEventData] = useState(false);
 
 	const editor = useRef(null);
 
@@ -38,21 +40,22 @@ const UpdateEvent = () => {
 	useEffect(() => {
 		const fetchEvent = async () => {
 			setIsLoading(true);
-			await fetchEventById(id);
+			const data = await fetchEventById(id);
+			setEventData(data);
 			setIsLoading(false);
 		};
 		fetchEvent();
 	}, []);
 
 	useEffect(() => {
-		if (Object.keys(receiveEventById).length !== 0) {
-			setTitle(receiveEventById.title);
-			setEventType(receiveEventById.eventType);
-			setOldImage(receiveEventById.cover);
-			setDateTime(new Date(receiveEventById.dateTime));
-			setContent(receiveEventById.content);
+		if (Object.keys(eventData).length !== 0) {
+			setTitle(eventData.title);
+			setEventType(eventData.eventType);
+			setOldImage(eventData.cover);
+			setDateTime(new Date(eventData.dateTime));
+			setContent(eventData.content);
 		}
-	}, [receiveEventById]);
+	}, [eventData]);
 
 	const handleUploadImage = () => {
 		setIsUpdateImage(true);
@@ -106,12 +109,13 @@ const UpdateEvent = () => {
 			value: "premium",
 		},
 	];
-	if (isLoading) {
-		return <LoadingSpinner />;
-	}
+	// if (isLoading) {
+	// 	return <LoadingSpinner />;
+	// }
 
 	return (
 		<div className="px-10">
+			<GoBackButton />
 			<HeaderText>Add Event</HeaderText>
 			<form onSubmit={handleEventForm}>
 				<div className="w-1/2 flex flex-col gap-2 pb-2">

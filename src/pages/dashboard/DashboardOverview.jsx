@@ -1,80 +1,54 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
-import { showSuccessToast } from "../../components/shared/ToastMessage";
+import { Button, Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+
+import shieldIcon from "../../assets/icon/shield.png";
 
 const DashboardOverview = () => {
-	const { user, setUser } = useContext(AuthContext);
-	const navigate = useNavigate();
-	const handleLogout = () => {
-		localStorage.removeItem("user");
-		setUser(null);
-		showSuccessToast("Logout");
-		navigate("/login");
-	};
+	const { user } = useContext(AuthContext);
+	const { avatar, name } = user;
 	return (
-		<div>
-			<p>DashboardOverview</p>
-			{/* <div>
-				<p>user name:{user.name}</p>
-				<p>user id:{user.id}</p>
-				<Button onClick={handleLogout}>Logout</Button>
-			</div> */}
-			<div className="relative overflow-x-auto">
-				<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-					<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-						<tr>
-							<th scope="col" className="px-6 py-3">
-								Product name
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Color
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Category
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Price
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-							<th
-								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+		<div className="min-h-screen">
+			<div className="">
+				<div className="flex gap-5 items-center">
+					<img src={avatar} className="w-24 rounded-full" />
+					<div>
+						<div className="flex gap-1 items-center">
+							<img className="w-5 h-5" src={shieldIcon} />
+							<Typography
+								variant="paragraph"
+								className=" text-textPrimary text-xl font-bold dark:text-darkTextPrimary "
 							>
-								Apple MacBook Pro 17
-							</th>
-							<td className="px-6 py-4">Silver</td>
-							<td className="px-6 py-4">Laptop</td>
-							<td className="px-6 py-4">$2999</td>
-						</tr>
-						<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-							<th
-								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-							>
-								Microsoft Surface Pro
-							</th>
-							<td className="px-6 py-4">White</td>
-							<td className="px-6 py-4">Laptop PC</td>
-							<td className="px-6 py-4">$1999</td>
-						</tr>
-						<tr className="bg-white dark:bg-gray-800">
-							<th
-								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-							>
-								Magic Mouse 2
-							</th>
-							<td className="px-6 py-4">Black</td>
-							<td className="px-6 py-4">Accessories</td>
-							<td className="px-6 py-4">$99</td>
-						</tr>
-					</tbody>
-				</table>
+								Admin
+							</Typography>
+						</div>
+						<Typography
+							variant="h5"
+							className="mb-2 text-textPrimary text-4xl dark:text-darkTextPrimary font-bold"
+						>
+							{name}
+						</Typography>
+					</div>
+				</div>
+				<div className="py-5 px-2 flex flex-col md:flex-row gap-5">
+					<Link to="/dashboard/profile-update">
+						<Button
+							variant="text"
+							className="bg-green-600 hover:bg-green-400 active:bg-green-700 text-white capitalize text-lg py-2"
+						>
+							Update Profile
+						</Button>
+					</Link>
+					<Link to="/dashboard/password-update">
+						<Button
+							variant="text"
+							className="bg-green-600 hover:bg-green-400 active:bg-green-700 text-white capitalize text-lg py-2"
+						>
+							Update Password
+						</Button>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

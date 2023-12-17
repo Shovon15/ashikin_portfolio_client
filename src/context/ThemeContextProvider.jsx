@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+
 import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext();
@@ -66,28 +66,13 @@ export const ThemeContextProvider = ({ children }) => {
 		};
 	}, []);
 
-	// ---------for click outside nav close--------------------
-	let menuRef = useRef();
 
-	useEffect(() => {
-		let handler = (e) => {
-			if (menuRef.current && !menuRef.current.contains(e.target)) {
-				setOpenNav(false);
-				setThemeMenu(false);
-			}
-		};
-		document.addEventListener("mousedown", handler);
-		return () => {
-			document.removeEventListener("mousedown", handler);
-		};
-	});
 
 	const dashboardInfo = {
 		theme,
 		onThemeSwitcherItemClick,
 		scrollPosition,
 		openNav,
-		menuRef,
 		themeMenu,
 		setThemeMenu,
 		setOpenNav,

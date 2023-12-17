@@ -1,14 +1,11 @@
-import EventCard from "../../../components/card/EventCard";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import { get } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
+import EventCard from "../../../components/card/admin/event/EventCard";
 
 const EventsPage = () => {
-	const {
-		data: eventData = [],
-		isLoading,
-	} = useQuery({
+	const { data: eventData = [], isLoading } = useQuery({
 		queryKey: ["eventData"],
 		queryFn: async () => {
 			const res = await get("events");
