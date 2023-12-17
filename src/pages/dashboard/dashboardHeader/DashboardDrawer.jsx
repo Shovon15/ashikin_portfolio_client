@@ -29,14 +29,14 @@ const DashboardDrawer = () => {
 
 	const activeClass = "!bg-buttonPrimary text-white font-bold";
 	const SidebarClass =
-		"flex gap-3 items-center bg-gray-200 py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400 my-2";
+		"flex gap-3 items-center bg-gray-200 py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400";
 
 	return (
 		<>
 			<Drawer open={isDrawerOpen} onClose={toggleDrawer} className="p-4 min-h-screen">
 				<div className="mb-6 flex items-center justify-between">
 					<Typography variant="h5" color="blue-gray">
-						Material Tailwind
+						Dashboard
 					</Typography>
 					<IconButton variant="text" color="blue-gray" onClick={toggleDrawer}>
 						<svg

@@ -20,6 +20,8 @@ import BlogPage from "../../pages/home/blogs/BlogPage";
 import UpdateProfile from "../../pages/dashboard/admin/UpdateProfile";
 import UpdatePassword from "../../pages/dashboard/admin/UpdatePassword";
 import CreateBlog from "../../pages/dashboard/blogs/CreateBlog";
+import ForgetPassword from "../../pages/dashboard/ForgetPassword";
+import ResetPassword from "../../pages/dashboard/ResetPassword";
 
 const MainRoutes = () => {
 	return (
@@ -37,6 +39,8 @@ const MainRoutes = () => {
 				</Route>
 				{/* ---------------------------admin route--------------------- */}
 				<Route path="/login" element={<Login />} />
+				<Route path="/forget-password" element={<ForgetPassword />} />
+				<Route path="/reset-password/:id/:token" element={<ResetPassword />} />
 				<Route
 					element={
 						<PrivateRoute>

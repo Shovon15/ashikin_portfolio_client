@@ -12,7 +12,7 @@ export function AdminSidebar() {
 	const activeClass =
 		"!bg-buttonPrimary hover:!bg-buttonHover activee:!bg-buttonActive text-white dark:text-gray-300 font-bold";
 	const SidebarClass =
-		"flex gap-3 items-center dark:text-white bg-gray-200 dark:bg-[#13254f] py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400 my-2";
+		"flex gap-3 items-center dark:text-white bg-gray-200 dark:bg-[#13254f] py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400";
 
 	const links = [
 		{

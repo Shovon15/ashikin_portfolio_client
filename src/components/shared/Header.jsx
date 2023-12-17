@@ -3,7 +3,7 @@ import { Navbar, IconButton, Collapse, Tooltip } from "@material-tailwind/react"
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo/Logo-New.png";
 import { ThemeContext } from "../../context/ThemeContextProvider";
-import ThemeButton from "../Button/ThemeButton";
+// import ThemeButton from "../Button/ThemeButton";
 import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 // import "./header.css";
@@ -64,7 +64,7 @@ export function Header() {
 		"text-textSecondary hover:text-textPrimary text-md  font-semibold ease-in-out duration-100 cursor-pointer px-3 py-3 md:py-2 border-b rounded-none border-gray-500 lg:border-none  lg:bg-inherit  rounded-md md:bg-inherit w-full capitalize ";
 
 	const navList = (
-		<div className="flex flex-col md:flex-row gap-5 md:items-center px-3 md:px-0  border-b border-gray-500 lg:border-none">
+		<div className="flex flex-col lg:flex-row gap-5 lg:items-center px-3 lg:px-0 border-b border-gray-500 lg:border-none w-full">
 			<ul className="mb-4 mt-4 w-full flex flex-col gap-1 lg:gap-5 lg:mb-0 lg:mt-0 lg:flex-row items-start lg:items-center ">
 				{navListData.map(({ id, name, link }) => (
 					<NavLink
@@ -78,7 +78,7 @@ export function Header() {
 					</NavLink>
 				))}
 			</ul>
-			<div className="flex gap-3 pb-8 md:pb-0 pl-5 md:pl-0">
+			<div className="flex gap-3 pb-8 lg:pb-0 pl-5 lg:pl-0">
 				<Tooltip
 					content="facebook"
 					placement="top"
@@ -106,9 +106,9 @@ export function Header() {
 					</a>
 				</Tooltip>
 			</div>
-			<div className="pl-0 md:pl-10 hidden">
+			{/* <div className="pl-0 md:pl-10 hidden">
 				<ThemeButton />
-			</div>
+			</div> */}
 		</div>
 	);
 
@@ -131,7 +131,6 @@ export function Header() {
 				</Link>
 				<div className="flex items-center gap-2">
 					<div className=" hidden lg:block">{navList}</div>
-
 					<IconButton
 						variant="text"
 						className="ml-auto h-6 w-6 text-gray-700   hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
