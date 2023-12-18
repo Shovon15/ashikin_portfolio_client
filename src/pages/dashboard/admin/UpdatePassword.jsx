@@ -2,11 +2,11 @@ import { Button, Input, Spinner } from "@material-tailwind/react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import { useContext, useState } from "react";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import { post } from "../../../utils/fetchApi";
 import { AuthContext } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const UpdatePassword = () => {
 	const [oldPassword, setOldPassword] = useState("");

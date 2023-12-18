@@ -17,7 +17,7 @@ const GoBackButton = () => {
 		<Button
 			onClick={goBack}
 			variant="text"
-			className="flex gap-2 items-center capitalize text-md dark:text-white dark:bg-blue-300"
+			className="flex gap-2 items-center capitalize text-md dark:text-white dark:bg-blue-300 px-2 py-2"
 			data-aos="fade-up"
 		>
 			<IoIosArrowBack className="w-5 h-5" /> Go Back

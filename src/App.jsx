@@ -2,8 +2,8 @@ import { ToastContainer } from "react-toastify";
 import MainRoutes from "./routes/mainRoutes/MainRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "./components/shared/LoadingSpinner";
 import "aos/dist/aos.css";
+import LoadingSpinner from "./components/shared/loadingSpinner/LoadingSpinner";
 
 function App() {
 	const [loading, setLoading] = useState(true);

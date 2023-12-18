@@ -1,4 +1,5 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Button } from "@material-tailwind/react";
+/* eslint-disable react/prop-types */
+import { Card, CardHeader, CardBody, Typography } from "@material-tailwind/react";
 import { RiStarSFill } from "react-icons/ri";
 
 const BlogCard = ({ item }) => {

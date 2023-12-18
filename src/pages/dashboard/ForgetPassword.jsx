@@ -4,8 +4,9 @@ import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Input, Spinner } from "@material-tailwind/react";
 import loginIcon from "../../assets/icon/user.png";
-import { showErrorToast, showSuccessToast } from "../../components/shared/ToastMessage";
+
 import { post } from "../../utils/fetchApi";
+import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
 
 const ForgetPassword = () => {
 	const { user } = useContext(AuthContext);

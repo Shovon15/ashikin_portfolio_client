@@ -2,7 +2,6 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Main from "../../layouts/Main";
 import HomePage from "../../pages/home/HomePage";
 import DashboardLayout from "../../layouts/DashboardLayout";
-import AdminProfile from "../../pages/dashboard/admin/AdminProfile";
 import Login from "../../pages/dashboard/Login";
 import EventManage from "../../pages/dashboard/events/EventManage";
 import BlogManage from "../../pages/dashboard/blogs/BlogManage";
@@ -22,6 +21,7 @@ import UpdatePassword from "../../pages/dashboard/admin/UpdatePassword";
 import CreateBlog from "../../pages/dashboard/blogs/CreateBlog";
 import ForgetPassword from "../../pages/dashboard/ForgetPassword";
 import ResetPassword from "../../pages/dashboard/ResetPassword";
+import InvitationPage from "../../pages/dashboard/invitations/InvitationPage";
 
 const MainRoutes = () => {
 	return (
@@ -56,16 +56,15 @@ const MainRoutes = () => {
 					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
 					<Route path="dashboard/blogs" element={<BlogManage />} />
 					<Route path="dashboard/blogs/write-blog" element={<CreateBlog />} />
-					<Route path="dashboard/admin" element={<AdminProfile />} />
-					<Route path="dashboard/profile" element={<AdminProfile />} />
+					<Route path="dashboard/invitations" element={<InvitationPage />} />
 				</Route>
 				<Route
 					path="*"
 					element={
 						<div className="flex flex-col gap-5 justify-center items-center min-h-screen">
-							<p className="text-center font-bold text-3xl">Page not found</p>
+							<p className="text-center text-textPrimary font-bold text-3xl">Page not found</p>
 							<Link to="/">
-								<Button variant="outlined" className="dark:text-white text-black">
+								<Button className="bg-gradient-to-r from-cyan-500 to-blue-700 px-8 dark:text-white text-black">
 									home
 								</Button>
 							</Link>

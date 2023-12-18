@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
-
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
 	const [theme, setTheme] = useState(localStorage.theme || "system");
-	const [scrollPosition, setScrollPosition] = useState(0);
-
-	const [openNav, setOpenNav] = useState(false);
 	const [themeMenu, setThemeMenu] = useState(false);
 
 	if (
@@ -52,30 +48,11 @@ export const ThemeContextProvider = ({ children }) => {
 		}
 	}
 
-	useEffect(() => {
-		window.addEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
-		return () => {
-			window.removeEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
-		};
-	}, []);
-
-	useEffect(() => {
-		window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
-		return () => {
-			window.removeEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
-		};
-	}, []);
-
-
-
 	const dashboardInfo = {
 		theme,
 		onThemeSwitcherItemClick,
-		scrollPosition,
-		openNav,
 		themeMenu,
 		setThemeMenu,
-		setOpenNav,
 	};
 	return <ThemeContext.Provider value={dashboardInfo}>{children}</ThemeContext.Provider>;
 };

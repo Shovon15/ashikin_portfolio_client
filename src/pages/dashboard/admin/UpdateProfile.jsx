@@ -4,11 +4,11 @@ import { Button, IconButton, Input, Spinner } from "@material-tailwind/react";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import handleFileUpload from "../../../helper/ImageUploader";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const UpdateProfile = () => {
 	const [name, setName] = useState("");

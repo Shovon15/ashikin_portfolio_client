@@ -5,9 +5,10 @@ import { PiEye, PiEyeClosed } from "react-icons/pi";
 import loginIcon from "../../assets/icon/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { showErrorToast, showSuccessToast } from "../../components/shared/ToastMessage";
+
 import { AuthContext } from "../../context/AuthProvider";
 import { post } from "../../utils/fetchApi";
+import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
 
 const Login = () => {
 	const { user, fetchData } = useContext(AuthContext);

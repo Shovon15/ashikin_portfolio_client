@@ -2,6 +2,11 @@
 import { useEffect, useState } from "react";
 import { Button, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
+import ViewModal from "../../../helper/ViewModal";
+import ConfirmationModal from "../../../helper/ConfirmationModal";
+import { del, get, put } from "../../../utils/fetchApi";
+import { useQuery } from "@tanstack/react-query";
 
 import { FiPlus } from "react-icons/fi";
 import { FaTrashAlt } from "react-icons/fa";
@@ -9,14 +14,8 @@ import { VscScreenFull } from "react-icons/vsc";
 import { BiSolidEdit } from "react-icons/bi";
 import { TbSortAscendingNumbers } from "react-icons/tb";
 import { TbSortDescendingNumbers } from "react-icons/tb";
-
-import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import LoadingSpinner from "../../../components/shared/LoadingSpinner";
-import ViewModal from "../../../helper/ViewModal";
-import ConfirmationModal from "../../../helper/ConfirmationModal";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
-import { del, get, put } from "../../../utils/fetchApi";
-import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const EventManage = () => {
 	// -------view Modal------------------
@@ -85,7 +84,7 @@ const EventManage = () => {
 				refetch();
 				showSuccessToast(updatedIsPublished ? "Published" : "Unpublished");
 			} else {
-				console.error(`Unexpected response status: ${response.message}`);
+				// console.error(`Unexpected response status: ${response.message}`);
 				showErrorToast(response.message);
 			}
 		} catch (error) {
@@ -100,14 +99,14 @@ const EventManage = () => {
 	}
 
 	return (
-		<div className="min-h-screen ">
-			<HeaderText>Manage Events</HeaderText>
-			<div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 justify-between items-center pb-5 pr-10">
+		<div className="min-h-screen pb-10">
+			<HeaderText className="pb-5">Manage Events</HeaderText>
+			<div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 justify-between items-center pb-5 ">
 				<div className="flex gap-2 items-center">
 					<p className="dark:text-white">Sort by created time order:</p>
 					<Button
 						onClick={() => setSortOrder(!sortOrder)}
-						className="px-5 py-1 bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive"
+						className="px-5 py-1 bg-gradient-to-r from-cyan-500 to-blue-700 "
 					>
 						{sortOrder ? (
 							<TbSortAscendingNumbers className="w-7 h-7" />
@@ -117,7 +116,7 @@ const EventManage = () => {
 					</Button>
 				</div>
 				<Link to="/dashboard/events/write-event">
-					<Button className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive capitalize text-md flex items-center gap-2">
+					<Button className="bg-gradient-to-r from-cyan-500 to-blue-700  capitalize text-md flex items-center gap-2">
 						<FiPlus className="w-6 h-6" /> new event
 					</Button>
 				</Link>
@@ -151,7 +150,10 @@ const EventManage = () => {
 							<tbody className="dark:bg-darkPrimary ">
 								{eventData.map(
 									({ _id, title, cover, eventType, content, isPublished, dateTime }, index) => (
-										<tr key={_id} className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500">
+										<tr
+											key={_id}
+											className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500"
+										>
 											<td className="p-2 w-5">
 												<Typography variant="small" className="font-bold ">
 													{index + 1 + "."}
@@ -256,7 +258,12 @@ const EventManage = () => {
 						</table>
 					</div>
 
-					<ViewModal isOpen={isViewModalOpen} onClose={handleCloseViewModal} content={viewEventData} />
+					<ViewModal
+						isOpen={isViewModalOpen}
+						onClose={handleCloseViewModal}
+						content={viewEventData}
+						setViewModalOpen={setViewModalOpen}
+					/>
 					<ConfirmationModal
 						isOpen={isDeleteModalOpen}
 						onClose={handleCloseDeleteModal}

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-
 import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from "@material-tailwind/react";
-import { showErrorToast, showSuccessToast } from "../shared/ToastMessage";
+import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -72,22 +71,20 @@ const LogoutButton = () => {
 	};
 
 	return (
-		<div>
-			<div className="my-5 w-full">
-				<Button
-					onClick={() => setIsLogOutModalOpen(true)}
-					variant="text"
-					className="w-full px-[4rem] py-2 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white"
-				>
-					Logout
-				</Button>
-				<ConfirmationModal
-					isOpen={isLogOutModalOpen}
-					onClose={cancleLogoutModal}
-					successAction={handleLogoutEvent}
-					setIsLogOutModalOpen={setIsLogOutModalOpen}
-				/>
-			</div>
+		<div className="">
+			<Button
+				onClick={() => setIsLogOutModalOpen(true)}
+				variant="text"
+				className="py-2 px-8 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white"
+			>
+				Logout
+			</Button>
+			<ConfirmationModal
+				isOpen={isLogOutModalOpen}
+				onClose={cancleLogoutModal}
+				successAction={handleLogoutEvent}
+				setIsLogOutModalOpen={setIsLogOutModalOpen}
+			/>
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Typography } from "@material-tailwind/react";
@@ -8,8 +9,8 @@ import { RxDoubleArrowUp } from "react-icons/rx";
 import { BsClock } from "react-icons/bs";
 import { BsCalendar2Check } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
-import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const EventViewPage = () => {
 	const { fetchEventById } = useContext(DataContext);

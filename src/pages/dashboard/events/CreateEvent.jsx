@@ -4,7 +4,6 @@ import { useContext, useRef, useState } from "react";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import DateTimePicker from "react-datetime-picker";
 
 // ----------------date picker css
@@ -20,6 +19,7 @@ import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { Editor } from "@tinymce/tinymce-react";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const CreateEvent = () => {
 	const [title, setTitle] = useState("");
@@ -63,13 +63,11 @@ const CreateEvent = () => {
 		try {
 			const res = await post("events/write-event", formData);
 			showSuccessToast(res.data?.message);
-			setIsLoading(false);
 			navigate("/dashboard/events");
 		} catch (err) {
-			// console.error(err, "err");
-			showErrorToast(err.message);
 			setShowErrorState(false);
 			showErrorToast(err?.response?.data.message || "An error occurred");
+		} finally {
 			setIsLoading(false);
 		}
 	};
@@ -88,7 +86,7 @@ const CreateEvent = () => {
 	return (
 		<div className="">
 			<GoBackButton />
-			<HeaderText>Add Event</HeaderText>
+			<HeaderText className="py-5">Create Event</HeaderText>
 			<form onSubmit={handleEventForm}>
 				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
 					<div>
@@ -124,7 +122,6 @@ const CreateEvent = () => {
 										fontWeight: "normal",
 										color: eventType === item.value ? "#2196F3" : "black",
 									}}
-									className="m-2 border-b border-gray-500 rounded-none"
 								>
 									{item.name}
 								</Option>
@@ -182,7 +179,7 @@ const CreateEvent = () => {
 					<label className="font-bold text-textPrimary dark:text-white py-2">
 						Select date and time of event <span className="text-red-500">*</span>
 					</label>
-					<DateTimePicker onChange={setDateTime} value={dateTime} />
+					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
 				</div>
 				{/* text-editor */}
 				<div className="h-auto">
@@ -207,7 +204,8 @@ const CreateEvent = () => {
 					<Button
 						type="submit"
 						variant="text"
-						className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white capitalize text-lg py-2 w-full"
+						className="bg-gradient-to-r from-cyan-500 to-blue-700  text-white capitalize text-lg py-2 w-full"
+						disabled={isLoading}
 					>
 						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Submit"}
 					</Button>

@@ -2,7 +2,6 @@ import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/re
 import EventCard from "../../../components/card/admin/event/EventCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
@@ -10,6 +9,7 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import Aos from "aos";
 
 import PrimaryButton from "../../../components/Button/PrimaryButton";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const EventSection = () => {
 	const [events, setEvents] = useState([]);

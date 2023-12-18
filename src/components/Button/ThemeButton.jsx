@@ -6,6 +6,7 @@ import { ThemeContext } from "../../context/ThemeContextProvider";
 
 const ThemeButton = () => {
 	const { theme, themeMenu, setThemeMenu, onThemeSwitcherItemClick } = useContext(ThemeContext);
+	// let theme = "dark";
 	const iconOptions = [
 		{
 			icon: <IoSunnyOutline className="w-6 h-6" />,
@@ -52,7 +53,6 @@ const ThemeButton = () => {
 	return (
 		<div ref={themeRef}>
 			<button
-			
 				className="bg-inherit  dark:border dark:border-blue-500 hover:bg-gray-300 p-2 rounded-md text-black
              dark:text-white dark:hover:text-white "
 				onClick={() => setThemeMenu(!themeMenu)}
@@ -77,7 +77,7 @@ const ThemeButton = () => {
 							}}
 							id="theme-switcher"
 							className={`px-4 py-2 rounded-md  hover:bg-gray-300 dark:hover:text-blue-800 flex justify-between gap-2
-            						 ${theme === text ? "text-textPrimary bg-gray-300"  : "text-black dark:text-white"}`}
+            						 ${theme === text ? "text-textPrimary bg-gray-300" : "text-black dark:text-white"}`}
 						>
 							{text}
 							{icon}

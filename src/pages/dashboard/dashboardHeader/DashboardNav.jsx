@@ -7,9 +7,9 @@ const DashboardNav = () => {
 	const { toggleDrawer, isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
 	const { user } = useContext(AuthContext);
 	const { name, avatar } = user;
+
 	return (
 		<div
-			// className="sticky inset-0 z-20 h-max max-w-full flex bg-white dark:bg-darkPrimary rounded-none shadow-lg border-none px-4 py-2 h-26"
 			className="w-full flex items-center sticky inset-0 z-10 px-5 py-2 lg:px-10  bg-white dark:bg-bgSecondary"
 			style={{ boxShadow: "0 5px 2px -2px rgba(0, 0, 0, 0.1)" }}
 		>

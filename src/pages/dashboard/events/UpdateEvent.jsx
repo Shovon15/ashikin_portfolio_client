@@ -5,14 +5,14 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import DateTimePicker from "react-datetime-picker";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../../../context/DataContext";
-import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import { BsTrashFill } from "react-icons/bs";
 import { LuUploadCloud } from "react-icons/lu";
 import handleFileUpload from "../../../helper/ImageUploader";
-import { showErrorToast, showSuccessToast } from "../../../components/shared/ToastMessage";
 import { put } from "../../../utils/fetchApi";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { Editor } from "@tinymce/tinymce-react";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const UpdateEvent = () => {
 	const { fetchEventById } = useContext(DataContext);
@@ -26,6 +26,7 @@ const UpdateEvent = () => {
 	const [showErrorState, setShowErrorState] = useState(false);
 	const [fileName, setFileName] = useState("No file selected");
 	const [isLoading, setIsLoading] = useState(false);
+	const [isDataLoading, setIsDataLoading] = useState(false);
 
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
 	const [eventData, setEventData] = useState(false);
@@ -38,10 +39,10 @@ const UpdateEvent = () => {
 
 	useEffect(() => {
 		const fetchEvent = async () => {
-			setIsLoading(true);
+			setIsDataLoading(true);
 			const data = await fetchEventById(id);
 			setEventData(data);
-			setIsLoading(false);
+			setIsDataLoading(false);
 		};
 		fetchEvent();
 	}, []);
@@ -88,16 +89,15 @@ const UpdateEvent = () => {
 		try {
 			const res = await put(`events/${id}`, formData);
 			showSuccessToast(res.data?.message);
-			setIsLoading(false);
 			navigate("/dashboard/events");
 		} catch (err) {
-			// console.error(err, "err");
-			showErrorToast(err.message);
 			setShowErrorState(false);
 			showErrorToast(err?.response?.data.message || "An error occurred");
+		} finally {
 			setIsLoading(false);
 		}
 	};
+
 	const selectData = [
 		{
 			name: "free",
@@ -108,16 +108,17 @@ const UpdateEvent = () => {
 			value: "premium",
 		},
 	];
-	// if (isLoading) {
-	// 	return <LoadingSpinner />;
-	// }
+
+	if (isDataLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
-		<div className="px-10">
+		<div>
 			<GoBackButton />
-			<HeaderText>Add Event</HeaderText>
+			<HeaderText className="py-5">Update Event</HeaderText>
 			<form onSubmit={handleEventForm}>
-				<div className="w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-full md:w-1/2 flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-textPrimary dark:text-white py-2">
 							Event Title <span className="text-red-500">*</span>
@@ -127,7 +128,7 @@ const UpdateEvent = () => {
 							color="blue"
 							value={title}
 							label="Event Title"
-							className="text-gray-500 dark:text-white"
+							className="text-gray-800 dark:text-white"
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setTitle(ev.target.value)}
 						/>
@@ -152,7 +153,6 @@ const UpdateEvent = () => {
 										fontWeight: "normal",
 										color: eventType === item.value ? "#2196F3" : "black",
 									}}
-									className="m-2"
 								>
 									{item.name}
 								</Option>
@@ -167,7 +167,10 @@ const UpdateEvent = () => {
 							<div>
 								<img src={oldImage} alt="..." />
 								<div className="flex justify-center mt-2">
-									<Button className="py-3 bg-textPrimary" onClick={handleUploadImage}>
+									<Button
+										className="py-3 bg-gradient-to-r from-cyan-500 to-blue-700 "
+										onClick={handleUploadImage}
+									>
 										Upload new Image
 									</Button>
 								</div>
@@ -231,7 +234,7 @@ const UpdateEvent = () => {
 					<label className="font-bold text-textPrimary dark:text-white py-2">
 						Select date and time of event <span className="text-red-500">*</span>
 					</label>
-					<DateTimePicker onChange={setDateTime} value={dateTime} />
+					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
 				</div>
 
 				<div className="h-auto">
@@ -253,11 +256,12 @@ const UpdateEvent = () => {
 						initialValue={content}
 					/>
 				</div>
-				<div className="mx-auto my-10 w-2/6">
+				<div className="w-full md:mx-auto my-10 md:w-2/6">
 					<Button
 						type="submit"
 						variant="text"
-						className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white capitalize text-lg py-2 w-full"
+						className="bg-gradient-to-r from-cyan-500 to-blue-700  text-white capitalize text-lg py-2 w-full"
+						disabled={isLoading}
 					>
 						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Update"}
 					</Button>

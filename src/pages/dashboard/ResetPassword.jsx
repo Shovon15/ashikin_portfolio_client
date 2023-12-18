@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { AuthContext } from "../../context/AuthProvider";
 import { put } from "../../utils/fetchApi";
-import { showErrorToast, showSuccessToast } from "../../components/shared/ToastMessage";
+import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
 
 const ResetPassword = () => {
 	const { user, fetchData } = useContext(AuthContext);

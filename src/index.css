@@ -8,6 +8,12 @@ body{
 .tox-statusbar__branding{
     display: none;
 }
+/* this is for drawer blur backdrop..  */
+.backdrop-blur-sm{
+    position:fixed !important;
+}
+
+
 
 @tailwind base;
 @tailwind components;

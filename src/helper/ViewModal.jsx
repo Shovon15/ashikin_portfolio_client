@@ -1,8 +1,22 @@
 /* eslint-disable react/prop-types */
 
 import { Button, Dialog, DialogBody, DialogFooter, IconButton, Typography } from "@material-tailwind/react";
+import { useEffect, useRef } from "react";
 
-const ViewModal = ({ isOpen, onClose, content }) => {
+const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
+	let viewRef = useRef();
+
+	useEffect(() => {
+		let handler = (e) => {
+			if (viewRef.current && !viewRef.current.contains(e.target)) {
+				setViewModalOpen(false);
+			}
+		};
+		document.addEventListener("mousedown", handler);
+		return () => {
+			document.removeEventListener("mousedown", handler);
+		};
+	});
 	return (
 		<>
 			<Dialog
@@ -13,12 +27,13 @@ const ViewModal = ({ isOpen, onClose, content }) => {
 					mount: { scale: 1, y: 0 },
 					unmount: { scale: 0.9, y: -100 },
 				}}
+				ref={viewRef}
 				className="h-[30rem] overflow-x-auto"
 			>
 				<DialogBody>
 					<div className="flex justify-between gap-10">
 						<div></div>
-						<h1 className="text-xl font-semibold text-center">{content?.title}</h1>
+						<h1 className="text-xl font-bold text-center">{content?.title}</h1>
 						<IconButton size="sm" variant="text" onClick={onClose} className="bg-gray-300">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

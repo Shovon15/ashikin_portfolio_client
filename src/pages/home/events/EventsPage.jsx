@@ -1,8 +1,8 @@
-import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import { get } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import EventCard from "../../../components/card/admin/event/EventCard";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const EventsPage = () => {
 	const { data: eventData = [], isLoading } = useQuery({
@@ -20,7 +20,7 @@ const EventsPage = () => {
 	}
 	return (
 		<div className="p-5 md:p-10">
-			<HeaderText>Events</HeaderText>
+			<HeaderText className="py-10">Events</HeaderText>
 
 			<div className="flex flex-wrap flex-grow gap-4">
 				{!isLoading &&
