@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-
-import Aos from "aos";
-
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import Aos from "aos";
 
 const EventSection = () => {
 	const [events, setEvents] = useState([]);
@@ -73,7 +71,7 @@ const EventSection = () => {
 
 	return (
 		<>
-			{eventData.length > 0 && (
+			{eventData.length > 0 ? (
 				<div className="p-5 mx-auto max-w-[1300px]">
 					<HeaderText className="py-5">Upcoming Events</HeaderText>
 					<div className="">
@@ -113,10 +111,11 @@ const EventSection = () => {
 								// data-aos="flip-left"
 							>
 								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
-									{events.length > 0 &&
-										events.map((event) => (
-											<TabPanel key={event._id} value={tabValue} className="p-0">
-												<EventCard data={event} />
+									{!isLoading &&
+										events.length > 0 &&
+										events.map((event, index) => (
+											<TabPanel key={index} value={tabValue} className="p-0">
+												<EventCard eventData={event} />
 											</TabPanel>
 										))}
 								</div>
@@ -128,6 +127,10 @@ const EventSection = () => {
 							</Link>
 						</div>
 					</div>
+				</div>
+			) : (
+				<div>
+					<p className="text center font-bold">Coming soon</p>
 				</div>
 			)}
 		</>

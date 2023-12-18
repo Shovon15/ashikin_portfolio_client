@@ -4,12 +4,25 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Aos from "aos";
 import "./eventCard.css";
+import LoadingSpinner from "../../../shared/loadingSpinner/LoadingSpinner";
 
-export function EventCard({ data }) {
-	const { _id, title, cover, dateTime, eventType } = data;
+export function EventCard({ eventData }) {
+	// console.log(eventData, "eventData");
+	const { _id, title, cover, dateTime, eventType } = eventData || {
+		_id: "",
+		title: "",
+		cover: "",
+		dateTime: "",
+		eventType: "",
+	};
+
 	useEffect(() => {
 		Aos.init({ duration: 1000 });
 	}, []);
+
+	if (!eventData) {
+		return <LoadingSpinner />;
+	}
 
 	const dateAndTime = new Date(dateTime);
 
@@ -36,11 +49,7 @@ export function EventCard({ data }) {
 			>
 				{eventType}
 			</div>
-			<CardHeader
-				floated={false}
-				color="blue-gray"
-				className="relative h-56 m-0 rounded-b-none  bg-inherit"
-			>
+			<CardHeader floated={false} color="blue-gray" className="relative h-56 m-0 rounded-b-none  bg-inherit">
 				<img
 					data-aos="flip-left"
 					src={cover}
@@ -72,15 +81,17 @@ export function EventCard({ data }) {
 				</div>
 			</CardBody>
 			<CardFooter className="pt-0 mx-auto">
-				<Link to={`/events/${_id}`}>
-					<Button
-						data-aos-anchor-placement="top-bottom"
-						className="bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-10"
-						data-aos="zoom-in"
-					>
-						Details
-					</Button>
-				</Link>
+				{_id && (
+					<Link to={`/events/${_id}`}>
+						<Button
+							data-aos-anchor-placement="top-bottom"
+							className="bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-10"
+							data-aos="zoom-in"
+						>
+							Details
+						</Button>
+					</Link>
+				)}
 			</CardFooter>
 		</Card>
 	);

@@ -64,6 +64,9 @@ const EventRegister = () => {
 	};
 	return (
 		<div className="w-full lg:w-[60rem] flex flex-col lg:flex-row-reverse mx-auto justify-start p-5 ">
+			<div className="pb-5 lg:hidden">
+				<GoBackButton />
+			</div>
 			{!isLoading && (
 				<>
 					<div
@@ -81,7 +84,9 @@ const EventRegister = () => {
 				</>
 			)}
 			<form onSubmit={handleSubmit(handleAddItems)} className="w-full lg:w-9/12 lg:p-5">
-				<GoBackButton />
+				<div className="hidden lg:block">
+					<GoBackButton />
+				</div>
 				<HeaderText className="py-5">EventRegister</HeaderText>
 				<div className="flex flex-col lg:flex-row gap-5">
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">

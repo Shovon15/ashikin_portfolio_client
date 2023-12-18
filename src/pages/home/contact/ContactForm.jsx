@@ -1,17 +1,21 @@
-import { Button, Input, Textarea } from "@material-tailwind/react";
+import { Button, Input, Spinner, Textarea } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import Aos from "aos";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { post } from "../../../utils/fetchApi";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
 const ContactForm = () => {
+	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
-
 		formState: { errors },
+		reset,
 		handleSubmit,
 	} = useForm();
-	const handleAddItems = (data) => {
-		const items = {
+
+	const handleInvitation = async (data) => {
+		const invitationData = {
 			name: data.name,
 			phone: data.phone,
 			organizationName: data.organization,
@@ -19,7 +23,18 @@ const ContactForm = () => {
 			audienceNumber: data.audienceNumber,
 			eventText: data.eventText,
 		};
-		console.log(items, "items");
+		// console.log(invitationData, "invitationData");
+
+		try {
+			setIsLoading(true);
+			const response = await post("invitation/write-invitation", invitationData);
+			reset();
+			showSuccessToast(response.data?.message);
+		} catch (error) {
+			showErrorToast(error.response?.data?.message);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -28,10 +43,11 @@ const ContactForm = () => {
 
 	return (
 		<div className="p-5 md:p-10">
-			<form onSubmit={handleSubmit(handleAddItems)}>
+			<form onSubmit={handleSubmit(handleInvitation)}>
 				<div className="flex flex-col lg:flex-row gap-5">
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
+							type="text"
 							variant="standard"
 							color="blue"
 							label="Name"
@@ -44,6 +60,7 @@ const ContactForm = () => {
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
+							type="text"
 							variant="standard"
 							color="blue"
 							label="Phone"
@@ -58,6 +75,7 @@ const ContactForm = () => {
 				<div data-aos="fade-up" className="flex flex-col gap-5 py-5">
 					<div className="flex flex-col gap-1 w-full">
 						<Input
+							type="text"
 							color="blue"
 							variant="standard"
 							label="Organization name"
@@ -70,6 +88,7 @@ const ContactForm = () => {
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
+							type="text"
 							color="blue"
 							variant="standard"
 							label="Location of the Event"
@@ -82,6 +101,7 @@ const ContactForm = () => {
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
+							type="text"
 							color="blue"
 							variant="standard"
 							label="Number of Audience"
@@ -96,6 +116,7 @@ const ContactForm = () => {
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Textarea
+							type="text"
 							color="blue"
 							variant="standard"
 							label="About the Event"
@@ -112,8 +133,9 @@ const ContactForm = () => {
 						type="submit"
 						data-aos="fade-up"
 						className=" bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-14"
+						disabled={isLoading}
 					>
-						Send
+						{isLoading ? <Spinner color="gray" className="mx-auto h-5 w-5" /> : "send"}
 					</Button>
 				</div>
 			</form>

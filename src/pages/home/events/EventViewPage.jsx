@@ -68,8 +68,8 @@ const EventViewPage = () => {
 			{!isLoading && (
 				<>
 					<div className="bg-blue-100">
-						<div className="max-w-[800px] mx-auto p-5 lg:py-10 relative">
-							<div className="absolute top-5 left-2">
+						<div className="max-w-[800px] mx-auto p-5 lg:py-10 ">
+							<div className=" my-3">
 								<GoBackButton />
 							</div>
 							<div className="flex justify-center">

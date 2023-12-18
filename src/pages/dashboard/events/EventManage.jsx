@@ -27,6 +27,7 @@ const EventManage = () => {
 	const [deletingEventData, setDeletingEventData] = useState(null);
 
 	const [sortOrder, setSortOrder] = useState(true);
+	// const [isLoading, setIsLoading] = useState(false);
 
 	const {
 		data: eventData = [],
@@ -35,15 +36,20 @@ const EventManage = () => {
 	} = useQuery({
 		queryKey: ["eventData"],
 		queryFn: async () => {
-			const res = await get("events");
-			let data = await res?.data?.payload?.data;
-			data = data.sort((a, b) => {
-				const dateA = new Date(a.createdAt);
-				const dateB = new Date(b.createdAt);
+			try {
+				// setIsLoading(true);
+				const res = await get("events");
+				let data = await res?.data?.payload?.data;
+				data = data.sort((a, b) => {
+					const dateA = new Date(a.createdAt);
+					const dateB = new Date(b.createdAt);
 
-				return sortOrder ? dateB - dateA : dateA - dateB;
-			});
-			return data;
+					return sortOrder ? dateB - dateA : dateA - dateB;
+				});
+				return data;
+			} catch (error) {
+				console.log(error);
+			} 
 		},
 	});
 	// console.log(eventData, "eventData");
@@ -60,17 +66,14 @@ const EventManage = () => {
 
 	const handleDeleteEvent = async ({ _id, title }) => {
 		try {
-			const response = await del(`events/${_id}`, _id);
-			if (response.status === 200) {
-				handleCloseDeleteModal();
-				refetch();
-				showSuccessToast(`Successfully deleted ${title}`);
-			} else {
-				console.error(`Unexpected response status: ${response.status}`);
-			}
+			const response = await del(`events/${_id}`);
+			refetch();
+			showSuccessToast(response.data.message);
 		} catch (error) {
 			console.error("Error deleting event:", error);
 			showErrorToast(`Error deleting event with Title: ${title}`);
+		} finally {
+			handleCloseDeleteModal();
 		}
 	};
 
@@ -78,15 +81,10 @@ const EventManage = () => {
 		try {
 			const updatedIsPublished = !isPublished;
 
-			const response = await put(`events/${id}`, { isPublished: updatedIsPublished, eventType });
+			await put(`events/${id}`, { isPublished: updatedIsPublished, eventType });
 
-			if (response.status === 200) {
-				refetch();
-				showSuccessToast(updatedIsPublished ? "Published" : "Unpublished");
-			} else {
-				// console.error(`Unexpected response status: ${response.message}`);
-				showErrorToast(response.message);
-			}
+			refetch();
+			showSuccessToast(updatedIsPublished ? "Published" : "Unpublished");
 		} catch (error) {
 			showErrorToast(error.response?.data?.message);
 		}
@@ -148,112 +146,111 @@ const EventManage = () => {
 								</tr>
 							</thead>
 							<tbody className="dark:bg-darkPrimary ">
-								{eventData.map(
-									({ _id, title, cover, eventType, content, isPublished, dateTime }, index) => (
-										<tr
-											key={_id}
-											className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500"
-										>
-											<td className="p-2 w-5">
-												<Typography variant="small" className="font-bold ">
-													{index + 1 + "."}
-												</Typography>
-											</td>
-											<td className="p-2 ">
-												<Typography variant="small" className="font-bold">
-													{title}
-												</Typography>
-											</td>
-											<td className="p-2 w-32">
-												<img
-													src={cover}
-													alt="card-image"
-													className=" object-contain h-full"
-													width="100"
-													height="60"
-												/>
-											</td>
-											<td className="p-2 w-32">
-												<Typography variant="small" className="font-bold">
-													{new Date(dateTime).toLocaleString("en-US", {
-														weekday: "short",
-														year: "numeric",
-														month: "short",
-														day: "numeric",
-														hour: "numeric",
-														minute: "numeric",
-													})}
-												</Typography>
-											</td>
-											<td className="p-2 w-24">
-												<Typography
-													variant="h6"
-													className={`${
-														eventType === "free" ? "text-green-500" : "text-yellow-800"
-													} font-bold`}
-												>
-													{eventType.charAt(0).toUpperCase() + eventType.slice(1)}
-												</Typography>
-											</td>
-											<td className="p-2 w-32">
-												<p>
-													<Button
-														onClick={() =>
-															handlePublished({
-																id: _id,
-																isPublished,
-																eventType,
-															})
-														}
-														className={`capitalize text-sm text-white py-1 px-2 ${
-															isPublished ? "bg-green-500" : "bg-red-300"
-														}`}
+								{!isLoading &&
+									eventData.length !== 0 &&
+									eventData.map(
+										({ _id, title, cover, eventType, content, isPublished, dateTime }, index) => (
+											<tr
+												key={_id}
+												className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500"
+											>
+												<td className="p-2 w-5">
+													<p className="font-bold ">{String(index + 1) + "."}</p>
+												</td>
+												<td className="p-2 ">
+													<p className="font-bold">{title}</p>
+												</td>
+												<td className="p-2 w-32">
+													<img
+														src={cover}
+														alt="card-image"
+														className=" object-contain h-full"
+														width="100"
+														height="60"
+													/>
+												</td>
+												<td className="p-2 w-32">
+													<p className="font-bold">
+														{new Date(dateTime).toLocaleString("en-US", {
+															weekday: "short",
+															year: "numeric",
+															month: "short",
+															day: "numeric",
+															hour: "numeric",
+															minute: "numeric",
+														})}
+													</p>
+												</td>
+												<td className="p-2 w-24">
+													<p
+														className={`${
+															eventType === "free" ? "text-green-500" : "text-yellow-800"
+														} font-bold`}
 													>
-														{isPublished ? "published" : "unpublished"}
-													</Button>
-												</p>
-											</td>
-											<td className="p-2 flex gap-3 justify-center items-center w-44">
-												<Button
-													variant="outlined"
-													// size="sm"
-													onClick={() => {
-														setViewModalOpen(true);
-														setViewEventData({
-															title,
-															dateTime,
-															eventType,
-															content,
-															cover,
-														});
-													}}
-													className="focus:ring-0 border-none rounded-full p-3 text-textPrimary"
-												>
-													<VscScreenFull className="w-5 h-5 " />
-												</Button>
-												<Link to={`update-event/${_id}`}>
+														{String(eventType)?.charAt(0).toUpperCase() +
+															String(eventType)?.slice(1)}
+													</p>
+												</td>
+												<td className="p-2 w-32">
+													<p>
+														<Button
+															onClick={() =>
+																handlePublished({
+																	id: _id,
+																	isPublished,
+																	eventType,
+																})
+															}
+															className={`capitalize text-sm text-white py-1 px-2 ${
+																isPublished ? "bg-green-500" : "bg-red-300"
+															}`}
+														>
+															{isPublished ? "published" : "unpublished"}
+														</Button>
+													</p>
+												</td>
+												<td className="p-2 flex gap-3 justify-center items-center w-44">
 													<Button
 														variant="outlined"
-														size="sm"
-														className="focus:ring-0 border-none rounded-full p-3"
+														// size="sm"
+														onClick={() => {
+															setViewModalOpen(true);
+															setViewEventData({
+																title,
+																dateTime,
+																eventType,
+																content,
+																cover,
+															});
+														}}
+														className="focus:ring-0 border-none rounded-full p-3 text-textPrimary"
 													>
-														<BiSolidEdit className="w-5 h-5 text-textPrimary dark:text-white" />
+														<VscScreenFull className="w-5 h-5 " />
 													</Button>
-												</Link>
+													<Link to={`update-event/${_id}`}>
+														<Button
+															variant="outlined"
+															size="sm"
+															className="focus:ring-0 border-none rounded-full p-3"
+														>
+															<BiSolidEdit className="w-5 h-5 text-textPrimary dark:text-white" />
+														</Button>
+													</Link>
 
-												<button
-													className="focus:ring-0  border-none rounded-full p-3"
-													onClick={() => {
-														setDeleteModalOpen(true);
-														setDeletingEventData({ _id, title });
-													}}
-												>
-													<FaTrashAlt className="w-5 h-5 text-red-500" />
-												</button>
-											</td>
-										</tr>
-									)
-								)}
+													<Button
+														variant="text"
+														className="focus:ring-0  border-none rounded-full p-3"
+														onClick={() => {
+															setDeleteModalOpen(true);
+															setDeletingEventData({ _id, title });
+														}}
+													>
+														<FaTrashAlt className="w-5 h-5 text-red-500" />
+													</Button>
+												</td>
+											</tr>
+										)
+									)}
 							</tbody>
 						</table>
 					</div>

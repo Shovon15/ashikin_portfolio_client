@@ -22,6 +22,7 @@ import CreateBlog from "../../pages/dashboard/blogs/CreateBlog";
 import ForgetPassword from "../../pages/dashboard/ForgetPassword";
 import ResetPassword from "../../pages/dashboard/ResetPassword";
 import InvitationPage from "../../pages/dashboard/invitations/InvitationPage";
+import InvitationDetails from "../../pages/dashboard/invitations/InvitationDetails";
 
 const MainRoutes = () => {
 	return (
@@ -57,6 +58,7 @@ const MainRoutes = () => {
 					<Route path="dashboard/blogs" element={<BlogManage />} />
 					<Route path="dashboard/blogs/write-blog" element={<CreateBlog />} />
 					<Route path="dashboard/invitations" element={<InvitationPage />} />
+					<Route path="dashboard/invitations/:id" element={<InvitationDetails />} />
 				</Route>
 				<Route
 					path="*"
