@@ -27,7 +27,6 @@ const EventManage = () => {
 	const [deletingEventData, setDeletingEventData] = useState(null);
 
 	const [sortOrder, setSortOrder] = useState(true);
-	// const [isLoading, setIsLoading] = useState(false);
 
 	const {
 		data: eventData = [],
@@ -36,20 +35,15 @@ const EventManage = () => {
 	} = useQuery({
 		queryKey: ["eventData"],
 		queryFn: async () => {
-			try {
-				// setIsLoading(true);
-				const res = await get("events");
-				let data = await res?.data?.payload?.data;
-				data = data.sort((a, b) => {
-					const dateA = new Date(a.createdAt);
-					const dateB = new Date(b.createdAt);
+			const res = await get("events/all");
+			let data = res.data.payload.data;
+			data = data.sort((a, b) => {
+				const dateA = new Date(a.createdAt);
+				const dateB = new Date(b.createdAt);
 
-					return sortOrder ? dateB - dateA : dateA - dateB;
-				});
-				return data;
-			} catch (error) {
-				console.log(error);
-			} 
+				return sortOrder ? dateB - dateA : dateA - dateB;
+			});
+			return data;
 		},
 	});
 	// console.log(eventData, "eventData");
@@ -90,7 +84,7 @@ const EventManage = () => {
 		}
 	};
 
-	const TABLE_HEAD = ["No.", "Title", "Cover", "Schedule", "Type", "status", "Action"];
+	const TABLE_HEAD = ["No.", "Title", "Cover", "Schedule", "Register", "Type", "status", "Action"];
 
 	if (isLoading) {
 		return <LoadingSpinner />;
@@ -149,7 +143,10 @@ const EventManage = () => {
 								{!isLoading &&
 									eventData.length !== 0 &&
 									eventData.map(
-										({ _id, title, cover, eventType, content, isPublished, dateTime }, index) => (
+										(
+											{ _id, title, cover, eventType, register, content, isPublished, dateTime },
+											index
+										) => (
 											<tr
 												key={_id}
 												className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500"
@@ -180,6 +177,19 @@ const EventManage = () => {
 															minute: "numeric",
 														})}
 													</p>
+												</td>
+												<td className="p-2 w-32">
+													<div>
+														{register === 0 ? (
+															<p>0</p>
+														) : (
+															<Link to={`/dashboard/events/${_id}`}>
+																<Button className="capitalize p-2  bg-green-500 text-white">
+																	{register} Registered
+																</Button>
+															</Link>
+														)}
+													</div>
 												</td>
 												<td className="p-2 w-24">
 													<p
@@ -262,6 +272,7 @@ const EventManage = () => {
 						setViewModalOpen={setViewModalOpen}
 					/>
 					<ConfirmationModal
+						message={`Warning: Deleting this event is permanent and cannot be undone. Also, all registered data for this event will be deleted.`}
 						isOpen={isDeleteModalOpen}
 						onClose={handleCloseDeleteModal}
 						content={deletingEventData}

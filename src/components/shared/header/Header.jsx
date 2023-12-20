@@ -114,7 +114,7 @@ export function Header() {
 					scrollPosition > 0 ? "-translate-y-6 shadow-xl pt-6" : "shadow-none"
 				}`}
 			>
-				<div className="flex items-center justify-between pt-5 px-5 md:pt-3">
+				<div className="flex items-center justify-between pt-5 px-5 md:pt-1">
 					<Link to="/" className="cursor-pointer px-0">
 						<img
 							src={logo}

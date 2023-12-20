@@ -2,7 +2,7 @@
 import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from "@material-tailwind/react";
 import { useEffect, useRef } from "react";
 
-const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteModalOpen }) => {
+const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteModalOpen, message }) => {
 	let deleteRef = useRef();
 
 	useEffect(() => {
@@ -29,9 +29,9 @@ const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteM
 				}}
 				ref={deleteRef}
 			>
-				<DialogHeader className="text-textPrimary mx-auto"> {content?.title}</DialogHeader>
-				<DialogBody divider className="text-red-500 font-semibold h-24 flex items-center">
-					Warning: Deleting this Event is Permanent and Cannot be Undone.
+				<DialogHeader className="text-textPrimary flex justify-center"> {content?.title}</DialogHeader>
+				<DialogBody divider className="text-red-500 font-semibold h-24 flex items-center text-center">
+					{message}
 				</DialogBody>
 				<DialogFooter>
 					<Button variant="text" color="red" onClick={onClose} className="mr-1">

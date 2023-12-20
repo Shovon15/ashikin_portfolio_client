@@ -8,7 +8,7 @@ const HeaderText = ({ className, children }) => {
 		Aos.init({ duration: 1000 });
 	}, []);
 	return (
-		<p data-aos="fade-up" className={`${className} text-center font-bold text-4xl text-textPrimary `}>
+		<p data-aos="fade-up" className={`${className} text-center font-bold text-2xl md:text-4xl text-textPrimary `}>
 			{children}
 		</p>
 	);

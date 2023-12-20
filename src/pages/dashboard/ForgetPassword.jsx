@@ -30,7 +30,7 @@ const ForgetPassword = () => {
 		const loginData = {
 			reqEmail: data.email,
 		};
-		console.log(loginData);
+		// console.log(loginData);
 
 		try {
 			setIsLoading(true);
@@ -38,7 +38,7 @@ const ForgetPassword = () => {
 			setIsTextShow(true);
 			showSuccessToast(response.data.message);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			showErrorToast(error?.response?.data.message);
 		} finally {
 			setIsLoading(false);

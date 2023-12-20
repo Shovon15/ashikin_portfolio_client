@@ -23,6 +23,7 @@ import ForgetPassword from "../../pages/dashboard/ForgetPassword";
 import ResetPassword from "../../pages/dashboard/ResetPassword";
 import InvitationPage from "../../pages/dashboard/invitations/InvitationPage";
 import InvitationDetails from "../../pages/dashboard/invitations/InvitationDetails";
+import RegisteredEvent from "../../pages/dashboard/events/RegisteredEvent";
 
 const MainRoutes = () => {
 	return (
@@ -53,6 +54,7 @@ const MainRoutes = () => {
 					<Route path="dashboard/profile-update" element={<UpdateProfile />} />
 					<Route path="dashboard/password-update" element={<UpdatePassword />} />
 					<Route path="dashboard/events" element={<EventManage />} />
+					<Route path="dashboard/events/:id" element={<RegisteredEvent />} />
 					<Route path="dashboard/events/write-event" element={<CreateEvent />} />
 					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
 					<Route path="dashboard/blogs" element={<BlogManage />} />

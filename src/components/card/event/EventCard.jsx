@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Aos from "aos";
 import "./eventCard.css";
-import LoadingSpinner from "../../../shared/loadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../shared/loadingSpinner/LoadingSpinner";
 
 export function EventCard({ eventData }) {
 	// console.log(eventData, "eventData");

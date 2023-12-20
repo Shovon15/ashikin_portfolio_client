@@ -1,12 +1,12 @@
 import { Button, Input, Spinner } from "@material-tailwind/react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
 import { post } from "../../../utils/fetchApi";
-import { AuthContext } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import Cookies from "js-cookie";
 
 const UpdatePassword = () => {
 	const [oldPassword, setOldPassword] = useState("");
@@ -18,7 +18,7 @@ const UpdatePassword = () => {
 	const [showNewPassword, setShowNewPassword] = useState(false);
 	const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
 
-	const { cookies } = useContext(AuthContext);
+	const cookies = Cookies.get("token");
 
 	const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const UpdatePassword = () => {
 		}
 
 		try {
-			const response = await post(`admin/update-password/${cookies.token}`, formData);
+			const response = await post(`admin/update-password/${cookies}`, formData);
 			showSuccessToast(response.data?.message);
 			navigate("/dashboard");
 		} catch (error) {

@@ -1,4 +1,5 @@
-import { Button, Input } from "@material-tailwind/react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Input, Spinner } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -7,16 +8,22 @@ import { useParams } from "react-router-dom";
 import Aos from "aos";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import { post } from "../../../utils/fetchApi";
+import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const EventRegister = () => {
-	const [isLoading, setIsLoading] = useState(true);
-	const { fetchEventById } = useContext(DataContext);
-	const { id } = useParams();
-
+	const [isLoading, setIsLoading] = useState(false);
+	const [buttonLoading, setButtonLoading] = useState(false);
 	const [eventData, setEventData] = useState({});
+
+	const { id } = useParams();
+	const { fetchEventById } = useContext(DataContext);
+
 	const {
 		register,
 		formState: { errors },
+		reset,
 		handleSubmit,
 	} = useForm();
 
@@ -50,8 +57,8 @@ const EventRegister = () => {
 		minute: "numeric",
 	});
 
-	const handleAddItems = (data) => {
-		const items = {
+	const handleAddItems = async (data) => {
+		const registerData = {
 			firstName: data.firstName,
 			lastName: data.lastName,
 			whatsapp: data.whatsapp,
@@ -59,9 +66,27 @@ const EventRegister = () => {
 			email: data.email,
 			instituteName: data.instituteName,
 			accountNumber: data.accountNumber,
+			eventId: id,
+			eventTitle: title,
 		};
-		console.log(items, "items");
+		// console.log(registerData, "items");
+
+		try {
+			setButtonLoading(true);
+			const response = await post("events/register-event", registerData);
+			reset();
+			showSuccessToast(response.data.message);
+		} catch (error) {
+			// console.log(error);
+			showErrorToast(error.response.data.message);
+		} finally {
+			setButtonLoading(false);
+		}
 	};
+
+	if (isLoading) {
+		<LoadingSpinner />;
+	}
 	return (
 		<div className="w-full lg:w-[60rem] flex flex-col lg:flex-row-reverse mx-auto justify-start p-5 ">
 			<div className="pb-5 lg:hidden">
@@ -187,8 +212,9 @@ const EventRegister = () => {
 						type="submit"
 						data-aos="fade-up"
 						className="bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-12"
+						disabled={buttonLoading}
 					>
-						Submit
+						{buttonLoading ? <Spinner color="blue" className="mx-auto" /> : "Submit"}
 					</Button>
 				</div>
 			</form>

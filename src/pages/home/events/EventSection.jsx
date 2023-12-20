@@ -1,5 +1,4 @@
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
-import EventCard from "../../../components/card/admin/event/EventCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -8,23 +7,21 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import Aos from "aos";
+import EventCard from "../../../components/card/event/EventCard";
 
 const EventSection = () => {
-	const [events, setEvents] = useState([]);
+	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [tabValue, setTabValue] = useState("all");
 	const [activeTab, setActiveTab] = useState("all");
 
 	const { data: eventData = [], isLoading } = useQuery({
 		queryKey: ["eventData"],
 		queryFn: async () => {
-			const res = await get("events");
-			let data = await res?.data?.payload?.data;
-
-			data = data.filter((item) => item.isPublished);
+			const res = await get("events/published");
+			let data = await res.data.payload?.data;
 			return data;
 		},
 	});
-	// console.log(eventData, "eventData");
 
 	const tabButtondata = [
 		{
@@ -47,17 +44,35 @@ const EventSection = () => {
 			let filteredEvents;
 
 			if (tabValue === "all") {
-				const freeEvents = eventData.filter((event) => event.eventType === "free").slice(0, 2);
-				const premiumEvent = eventData.find((event) => event.eventType === "premium");
+				const freeEvents = eventData.filter((event) => event.eventType === "free");
+				// Check if there are more than 2 free events
+				if (freeEvents.length > 3) {
+					// Slice the array to include only the first 2 elements
+					filteredEvents = [...freeEvents.slice(0, 2)];
 
-				filteredEvents = [...freeEvents, premiumEvent];
+					// Find the premium event
+					const premiumEvent = eventData.find((event) => event.eventType === "premium");
+
+					// Include the premium event in the filteredEvents array
+					if (premiumEvent) {
+						filteredEvents.push(premiumEvent);
+					}
+				} else {
+					// Include all free events and the premium event (if any)
+					filteredEvents = [...freeEvents];
+
+					const premiumEvent = eventData.find((event) => event.eventType === "premium");
+					if (premiumEvent) {
+						filteredEvents.push(premiumEvent);
+					}
+				}
 			} else if (tabValue === "free") {
 				filteredEvents = eventData.filter((event) => event.eventType === "free");
 			} else if (tabValue === "premium") {
 				filteredEvents = eventData.filter((event) => event.eventType === "premium");
 			}
 
-			setEvents(filteredEvents);
+			setFilteredEvents(filteredEvents);
 		}
 	}, [tabValue, eventData]);
 
@@ -71,7 +86,7 @@ const EventSection = () => {
 
 	return (
 		<>
-			{eventData.length > 0 ? (
+			{eventData.length > 0 && (
 				<div className="p-5 mx-auto max-w-[1300px]">
 					<HeaderText className="py-5">Upcoming Events</HeaderText>
 					<div className="">
@@ -111,13 +126,17 @@ const EventSection = () => {
 								// data-aos="flip-left"
 							>
 								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
-									{!isLoading &&
-										events.length > 0 &&
-										events.map((event, index) => (
+									{!isLoading && filteredEvents.length > 0 ? (
+										filteredEvents.map((event, index) => (
 											<TabPanel key={index} value={tabValue} className="p-0">
 												<EventCard eventData={event} />
 											</TabPanel>
-										))}
+										))
+									) : (
+										<div className="w-full h-44 max-w-[25rem]  flex justify-center items-center">
+											<p className="font-semibold text-xl text-textSecondary">Coming soon</p>
+										</div>
+									)}
 								</div>
 							</TabsBody>
 						</Tabs>
@@ -127,10 +146,6 @@ const EventSection = () => {
 							</Link>
 						</div>
 					</div>
-				</div>
-			) : (
-				<div>
-					<p className="text center font-bold">Coming soon</p>
 				</div>
 			)}
 		</>

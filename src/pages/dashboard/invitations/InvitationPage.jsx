@@ -21,17 +21,11 @@ const InvitationPage = () => {
 	} = useQuery({
 		queryKey: ["eventData"],
 		queryFn: async () => {
-			try {
-				const res = await get("invitation");
-				let data = res.data.payload?.invitations;
+			const res = await get("invitation");
+			let data = res.data.payload?.invitations;
 
-				data = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-				return data;
-			} catch (error) {
-				console.error("Error fetching invitation data:", error);
-				throw error;
-			}
+			data = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+			return data;
 		},
 	});
 	// console.log(invitationData);
@@ -46,7 +40,7 @@ const InvitationPage = () => {
 			refetch();
 			showSuccessToast(response.data.message);
 		} catch (error) {
-			console.error("Error deleting event:", error);
+			// console.error("Error deleting event:", error);
 			showErrorToast(`Error deleting ${name} Invitaiton`);
 		} finally {
 			handleCloseDeleteModal();

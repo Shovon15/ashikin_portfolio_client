@@ -65,7 +65,7 @@ const LogoutButton = () => {
 			showSuccessToast("Logout");
 			navigate("/login");
 		} catch (error) {
-			console.error("Error during logout:", error);
+			// console.error("Error during logout:", error);
 			showErrorToast(error);
 		}
 	};

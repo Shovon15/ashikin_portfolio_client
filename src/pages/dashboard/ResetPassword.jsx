@@ -38,7 +38,7 @@ const ResetPassword = () => {
 			password: data.password,
 			confirmPassword: data.confirmPassword,
 		};
-		console.log(passResetData);
+		// console.log(passResetData);
 		try {
 			setIsLoading(true);
 

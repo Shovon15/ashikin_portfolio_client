@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
 import loginIcon from "../../assets/icon/user.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 import { AuthContext } from "../../context/AuthProvider";
@@ -20,8 +20,11 @@ const Login = () => {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
-
+	
+	const location = useLocation();
 	const navigate = useNavigate();
+	const from = location.state?.from?.pathname || "/dashboard";
+
 	useEffect(() => {
 		if (user) {
 			navigate("/dashboard");
@@ -55,9 +58,9 @@ const Login = () => {
 
 			showSuccessToast(response.data.message);
 			setIsLoading(false);
-			navigate("/dashboard");
+			navigate(from, { replace: true });
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			showErrorToast(error?.response?.data.message);
 			setIsLoading(false);
 		}

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import Cookies from "js-cookie";
 
 const UpdateProfile = () => {
 	const [name, setName] = useState("");
@@ -18,8 +19,9 @@ const UpdateProfile = () => {
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
 
 	const [isLoading, setIsLoading] = useState(false);
+	const cookies = Cookies.get("token");
 
-	const { user, cookies, fetchData } = useContext(AuthContext);
+	const { user, fetchData } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ const UpdateProfile = () => {
 		setIsUpdateImage(true);
 	};
 
-	const handleEventForm = async (e) => {
+	const handleupdateProfile = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 
@@ -56,8 +58,8 @@ const UpdateProfile = () => {
 		}
 
 		try {
-			const response = await post(`admin/update-profile/${cookies.token}`, formData);
-			console.log(response.data);
+			const response = await post(`admin/update-profile/${cookies}`, formData);
+			// console.log(response.data);
 
 			showSuccessToast(response.data?.message);
 			fetchData();
@@ -77,7 +79,7 @@ const UpdateProfile = () => {
 				<GoBackButton />
 			</div>
 			<HeaderText className="py-5">Profile Update</HeaderText>
-			<form onSubmit={handleEventForm} className="mx-5 md:mx-10">
+			<form onSubmit={handleupdateProfile} className="mx-5 md:mx-10">
 				<div className="w-full md:w-1/2">
 					<Input
 						size="lg"

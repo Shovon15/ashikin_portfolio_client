@@ -67,12 +67,12 @@ const EventViewPage = () => {
 		<>
 			{!isLoading && (
 				<>
-					<div className="bg-blue-100">
+					<div className="bg-gradient-to-r from-blue-300 to-blue-800">
 						<div className="max-w-[800px] mx-auto p-5 lg:py-10 ">
 							<div className=" my-3">
 								<GoBackButton />
 							</div>
-							<div className="flex justify-center">
+							<div className="flex justify-center" data-aos="zoom-in">
 								<Typography variant="h6" className=" ">
 									{formattedDate}
 								</Typography>
@@ -81,30 +81,36 @@ const EventViewPage = () => {
 									{formattedTime}
 								</Typography>
 							</div>
-							<p data-aos="fade-up" className="text-center font-bold text-4xl py-5 ">
+							<p data-aos="zoom-in" className="text-center font-bold text-4xl py-5 ">
 								{title}
 							</p>
-							<p className="text-center p-2 text-xl  ">{eventType}</p>
+							{/* <p className="text-center p-2 text-xl  ">{eventType}</p> */}
 							<div className="flex justify-center">
 								<Link to={`/events/register/${id}`}>
 									<Button
+										variant="text"
+										className="bg-white capitalize text-lg text-blue-500 hover:bg-gray-300 active:bg-gray-400 py-3 my-5 shadow-xl"
 										data-aos="fade-up"
-										className="bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl"
 									>
-										Register Now
+										Register now
 									</Button>
 								</Link>
 							</div>
 							<div className="flex justify-center py-5 -mb-[14rem]">
-								<img src={cover} alt="card-image" className=" object-cover h-full rounded-xl" />
+								<img
+									src={cover}
+									alt="card-image"
+									className=" object-cover h-full rounded-xl"
+									data-aos="flip-left"
+								/>
 							</div>
 						</div>
 					</div>
 					<div className="max-w-[800px] mx-auto mt-[10rem] flex flex-col justify-center pt-5 pb-10 px-5 lg:px-10 ">
-						<Typography variant="h3" className="py-2 text-gray-500">
+						<Typography variant="h3" className="py-2 text-gray-500" data-aos="zoom-in">
 							Time & Location
 						</Typography>
-						<div className="flex flex-col  gap-2">
+						<div className="flex flex-col  gap-2" data-aos="zoom-in">
 							<Typography variant="h6" className="flex gap-2 items-center">
 								<BsCalendar2Check className="w-4 h-4" />
 								{formattedDate}
@@ -115,10 +121,10 @@ const EventViewPage = () => {
 							</Typography>
 							<Typography variant="h6" className="flex gap-2 items-center">
 								<IoLocationOutline className="w-5 h-5" />
-								location
+								{eventType} Event
 							</Typography>
 						</div>
-						<Typography variant="h3" className="py-2 text-gray-500">
+						<Typography variant="h3" className="py-2 text-gray-500" data-aos="zoom-in">
 							About The event
 						</Typography>
 						<div
@@ -126,6 +132,7 @@ const EventViewPage = () => {
 								__html: shouldShowButton && !showMore ? `${content.slice(0, 600)} ...` : content,
 							}}
 							className="pb-2 transition "
+							data-aos="fade-up"
 						/>
 						{shouldShowButton && !showMore && (
 							<div className="flex justify-end mx-10">
