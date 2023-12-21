@@ -2,7 +2,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./reviewSwiper.css";
@@ -58,6 +58,7 @@ const ReviewSwiper = () => {
 					grabCursor={true}
 					centeredSlides={true}
 					loop={true}
+					autoplay={{ delay: 3000, disableOnInteraction: false }} // Set the delay (in milliseconds) and disableOnInteraction
 					slidesPerView={"auto"}
 					coverflowEffect={{
 						rotate: 0,
@@ -71,7 +72,7 @@ const ReviewSwiper = () => {
 						prevEl: ".swiper-button-prev",
 						clickable: true,
 					}}
-					modules={[EffectCoverflow, Pagination, Navigation]}
+					modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
 					className="swiper_container"
 				>
 					{data.map((item) => (
