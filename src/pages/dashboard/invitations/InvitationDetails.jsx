@@ -7,6 +7,9 @@ import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpi
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { Button } from "@material-tailwind/react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import InvitationPdfMaker from "../../../helper/InvitationPdfMaker";
+import { BsFiletypePdf } from "react-icons/bs";
 
 const InvitationDetails = () => {
 	const { id } = useParams();
@@ -34,7 +37,7 @@ const InvitationDetails = () => {
 
 	// console.log(data);
 
-	const TABLE_HEAD = ["Name", "Organization Name", "Phone", "Location", "Number of Audience", "about event "];
+	const TABLE_HEAD = ["Name", "Organization Name", "Phone", "Location", "Number of Audience", "about event", "pdf"];
 	const displayProperties = ["name", "organizationName", "phone", "location", "audienceNumber", "eventText"];
 
 	if (isLoading) {
@@ -43,9 +46,7 @@ const InvitationDetails = () => {
 	return (
 		<div>
 			<GoBackButton />
-			<div className="flex justify-end pr-10">
-				<Button className="bg-gradient-to-r from-cyan-500 to-blue-700 ">Print</Button>
-			</div>
+
 			<HeaderText className="py-5">Invitation Details</HeaderText>
 			<div className="relative overflow-x-auto">
 				<table className="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-white">
@@ -77,8 +78,28 @@ const InvitationDetails = () => {
 								<td className="p-2 ">
 									<p className="font-semibold">{audienceNumber}</p>
 								</td>
-								<td className="p-2 w-96">
+								<td className="p-2 ">
 									<p className="font-semibold text-justify">{eventText}</p>
+								</td>
+								<td className="p-2 flex justify-center items-center">
+									<PDFDownloadLink
+										document={
+											<InvitationPdfMaker
+												data={{
+													name,
+													organizationName,
+													phone,
+													location,
+													audienceNumber,
+													eventText,
+												}}
+											/>
+										}
+										fileName={`${name}_invitation.pdf`}
+										className=" px-3 py-2 hover:bg-blue-gray-50 rounded-full"
+									>
+										<BsFiletypePdf className="w-5 h-5" />
+									</PDFDownloadLink>
 								</td>
 							</tr>
 						)}

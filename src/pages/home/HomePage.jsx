@@ -7,18 +7,26 @@ import ContactSection from "./contact/ContactSection";
 import ExperianceSection from "./Experience/ExperianceSection";
 import SocialSupport from "./socialSupport/SocialSupport";
 import Review from "./review/Review";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
 	return (
-		<div className="max-w-[1560px] mx-auto ">
-			<Banner />
-			<ExperianceSection />
-			<EventSection />
-			<BLogSection />
-			<ContactSection />
-			<Review />
-			<SocialSupport />
-		</div>
+		<>
+			<Helmet>
+				<title>Ashikin Alam | Home</title>
+				<meta name="description" content="Ashikin Alam personal portfolio home page" />
+				<link rel="canonical" href="/" />
+			</Helmet>
+			<div className="max-w-[1560px] mx-auto ">
+				<Banner />
+				<ExperianceSection />
+				<EventSection />
+				<BLogSection />
+				<ContactSection />
+				<Review />
+				<SocialSupport />
+			</div>
+		</>
 	);
 };
 

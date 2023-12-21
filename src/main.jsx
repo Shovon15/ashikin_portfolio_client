@@ -7,6 +7,7 @@ import { DashboardContextProvider } from "./context/DashboardContext.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
 import { DataContextProvider } from "./context/DataContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 				<ThemeContextProvider>
 					<DashboardContextProvider>
 						<DataContextProvider>
-							<App />
+							<HelmetProvider>
+								<App />
+							</HelmetProvider>
 						</DataContextProvider>
 					</DashboardContextProvider>
 				</ThemeContextProvider>

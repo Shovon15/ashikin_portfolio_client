@@ -1,12 +1,8 @@
 import Aos from "aos";
 import { useEffect } from "react";
-
 import whatsappOriginal from "../../../assets/icon/whatsapp-original.png";
-
 import facebookOriginal from "../../../assets/icon/facebook-original.png";
-
 import emailOriginal from "../../../assets/icon/gmail-original.png";
-
 import image1 from "../../../assets/image/tree-plantation.jpg";
 import image2 from "../../../assets/image/anti-tobacco.jpg";
 import image3 from "../../../assets/image/anti-harasment.jpg";
@@ -19,14 +15,17 @@ const SocialSupport = () => {
 		{
 			id: 1,
 			original: whatsappOriginal,
+			link: "https://www.whatsapp.com",
 		},
 		{
 			id: 2,
 			original: facebookOriginal,
+			link: "https://facebook.com",
 		},
 		{
 			id: 3,
 			original: emailOriginal,
+			link: "https://gmail.com",
 		},
 	];
 
@@ -59,7 +58,7 @@ const SocialSupport = () => {
 
 	return (
 		<div
-			data-aos="zoom-in-down"
+			// data-aos="zoom-in-down"
 			className=" bg-gradient-to-r from-blue-300 to-blue-800 p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col"
 		>
 			<div className="">
@@ -68,17 +67,16 @@ const SocialSupport = () => {
 				</p>
 				<div className="flex gap-5 items-center justify-center m-5">
 					{iconData.map((icon) => (
-						<div
-							key={icon.id}
-							className="relative transition-transform cursor-pointer z-10 transform hover:scale-110"
-						>
-							<img
-								src={icon.original}
-								alt="..."
-								className="w-12 h-12 rounded-full shadow-xl"
-								data-aos="zoom-in"
-							/>
-						</div>
+						<a href={icon.link} key={icon.id}>
+							<div className="relative transition-transform cursor-pointer z-10 transform hover:scale-110">
+								<img
+									src={icon.original}
+									alt="..."
+									className="w-12 h-12 rounded-full shadow-xl"
+									data-aos="zoom-in"
+								/>
+							</div>
+						</a>
 					))}
 				</div>
 			</div>

@@ -6,7 +6,8 @@ import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper/module
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./reviewSwiper.css";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 import ReviewCard from "../../../components/card/review/ReviewCard";
 
 import image1 from "../../../assets/image/review-1.jpeg";
@@ -58,7 +59,7 @@ const ReviewSwiper = () => {
 					grabCursor={true}
 					centeredSlides={true}
 					loop={true}
-					autoplay={{ delay: 3000, disableOnInteraction: false }} // Set the delay (in milliseconds) and disableOnInteraction
+					autoplay={{ delay: 3000, disableOnInteraction: false }}
 					slidesPerView={"auto"}
 					coverflowEffect={{
 						rotate: 0,
@@ -83,10 +84,10 @@ const ReviewSwiper = () => {
 
 					<div className="slider-controler pt-12">
 						<div className="swiper-button-prev slider-arrow hidden md:block !shadow-lg">
-							<IoIosArrowBack className="w-4 h-4 text-gray-500" />
+							<IoIosArrowBack className="w-4 h-4 text-gray-400" />
 						</div>
 						<div className="swiper-button-next slider-arrow hidden md:block">
-							<IoIosArrowBack className="w-5 h-5 rotate-180 text-gray-500 !shadow-lg rounded-full" />
+							<IoIosArrowForward className="w-5 h-5  text-gray-400 !shadow-lg rounded-full" />
 						</div>
 						<div className="swiper-pagination"></div>
 					</div>

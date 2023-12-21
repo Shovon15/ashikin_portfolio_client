@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import EventCard from "../../../components/card/event/EventCard";
+import { Helmet } from "react-helmet-async";
 
 const EventsPage = () => {
 	const { data: eventData = [], isLoading } = useQuery({
@@ -19,15 +20,23 @@ const EventsPage = () => {
 		return <LoadingSpinner />;
 	}
 	return (
-		<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-			<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Events</HeaderText>
+		<>
+			<Helmet>
+				<title>Ashikin Alam | Events</title>
+				<meta name="description" content="Ashikin Alam personal portfolio event page" />
+				<link rel="canonical" href="/events" />
+			</Helmet>
 
-			<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
-				{!isLoading &&
-					eventData.length !== 0 &&
-					eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
+			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
+				<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Events</HeaderText>
+
+				<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
+					{!isLoading &&
+						eventData.length !== 0 &&
+						eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
