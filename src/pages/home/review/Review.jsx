@@ -3,7 +3,7 @@ import ReviewSwiper from "./ReviewSwiper";
 const Review = () => {
 	return (
 		<div>
-			<div className=" border border-red-500">
+			<div className="">
 				<ReviewSwiper />
 			</div>
 		</div>

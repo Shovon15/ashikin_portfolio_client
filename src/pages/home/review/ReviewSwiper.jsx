@@ -6,26 +6,53 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./reviewSwiper.css";
-import { IoMdArrowBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import ReviewCard from "../../../components/card/review/ReviewCard";
 
-import image from "../../../assets/image/creative-people-working-office.jpg";
+import image1 from "../../../assets/image/review-1.jpeg";
+import image2 from "../../../assets/image/review-2.jpeg";
+import image3 from "../../../assets/image/review-3.jpeg";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const ReviewSwiper = () => {
 	const data = [
-		{ id: 1, image: image },
-		{ id: 2, image: image },
-		{ id: 3, image: image },
-		{ id: 4, image: image },
-		{ id: 5, image: image },
-		{ id: 6, image: image },
+		{
+			id: 1,
+			image: image3,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis.",
+		},
+		{
+			id: 2,
+			image: image2,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae  Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque, laudantium.",
+		},
+		{
+			id: 3,
+			image: image3,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque. ",
+		},
+		{
+			id: 4,
+			image: image1,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque.",
+		},
+		{
+			id: 5,
+			image: image2,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, ",
+		},
+		{
+			id: 6,
+			image: image1,
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim.",
+		},
 	];
 
 	// const swiperRef = useRef();
 	return (
 		<>
-			<div className="container border">
-				{/* <h1 className="heading">Flower Gallery</h1> */}
+			<div className="py-5 px-2 container">
+				<HeaderText className=" text-center ">Review</HeaderText>
 				<Swiper
 					effect={"coverflow"}
 					grabCursor={true}
@@ -49,37 +76,16 @@ const ReviewSwiper = () => {
 				>
 					{data.map((item) => (
 						<SwiperSlide key={item.id}>
-							<img src={item.image} alt="..." className="w-80 " />
+							<ReviewCard data={item} />
 						</SwiperSlide>
 					))}
-					{/* <SwiperSlide>
-						<img src={slide_image_1} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_2} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_3} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_4} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_5} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_6} alt="slide_image" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src={slide_image_7} alt="slide_image" />
-					</SwiperSlide> */}
 
-					<div className="slider-controler">
-						<div className="swiper-button-prev slider-arrow">
-							<ion-icon name="arrow-back-outline"></ion-icon>
+					<div className="slider-controler pt-12">
+						<div className="swiper-button-prev slider-arrow hidden md:block !shadow-lg">
+							<IoIosArrowBack className="w-4 h-4 text-gray-500" />
 						</div>
-						<div className="swiper-button-next slider-arrow">
-							<ion-icon name="arrow-forward-outline"></ion-icon>
+						<div className="swiper-button-next slider-arrow hidden md:block">
+							<IoIosArrowBack className="w-5 h-5 rotate-180 text-gray-500 !shadow-lg rounded-full" />
 						</div>
 						<div className="swiper-pagination"></div>
 					</div>
