@@ -1,0 +1,16 @@
+
+.header-scroll{
+    padding: 0px 5px !important;
+    transition: padding .3s;
+}
+.header{
+    padding: 15px 10px;
+    transition: padding .3s;
+}
+
+@media screen and (max-width: 580px) {
+    .header{
+        padding: 10px 10px !important;
+        transition: padding .3s;
+    }
+  }
