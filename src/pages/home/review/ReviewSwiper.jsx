@@ -20,40 +20,52 @@ const ReviewSwiper = () => {
 		{
 			id: 1,
 			image: image3,
+			name: "John Doe magni",
+			title: "Lorem ipsum dolor sit",
 			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis.",
 		},
 		{
 			id: 2,
 			image: image2,
+			name: "John Doe",
+			title: "Lorem ipsum dolor sit",
 			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae  Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque, laudantium.",
 		},
 		{
 			id: 3,
 			image: image3,
+			name: "John Doe",
+			title: "Lorem ipsum dolor sit",
 			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque. ",
 		},
 		{
 			id: 4,
 			image: image1,
-			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque.",
+			name: "John Doe",
+			title: "Lorem ipsum dolor sit",
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae.",
 		},
 		{
 			id: 5,
 			image: image2,
-			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, ",
+			name: "Lorem ipsum dolor",
+			title: "Lorem ipsum dolor sit amet",
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati  magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, ",
 		},
 		{
 			id: 6,
 			image: image1,
-			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim.",
+			name: "John Doe",
+			title: "lorem issum",
+			text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis!",
 		},
 	];
 
 	// const swiperRef = useRef();
 	return (
 		<>
-			<div className="py-5 px-2 container">
-				<HeaderText className=" text-center ">Review</HeaderText>
+			<div className="py-5 container">
+				<HeaderText className=" text-center ">Reviews</HeaderText>
 				<Swiper
 					effect={"coverflow"}
 					grabCursor={true}
@@ -83,11 +95,11 @@ const ReviewSwiper = () => {
 					))}
 
 					<div className="slider-controler pt-12">
-						<div className="swiper-button-prev slider-arrow hidden md:block !shadow-lg">
-							<IoIosArrowBack className="w-4 h-4 text-gray-400" />
+						<div className="swiper-button-prev slider-arrow hidden lg:block !shadow-lg rounded-full ">
+							<IoIosArrowBack className="w-4 h-4 text-color-text hover:text-color-header" />
 						</div>
-						<div className="swiper-button-next slider-arrow hidden md:block">
-							<IoIosArrowForward className="w-5 h-5  text-gray-400 !shadow-lg rounded-full" />
+						<div className="swiper-button-next  slider-arrow hidden lg:block !shadow-lg rounded-full">
+							<IoIosArrowForward className="w-5 h-5  text-color-text hover:text-color-header " />
 						</div>
 						<div className="swiper-pagination"></div>
 					</div>

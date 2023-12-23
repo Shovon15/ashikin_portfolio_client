@@ -17,6 +17,7 @@ const HomePage = () => {
 				<meta name="description" content="Ashikin Alam personal portfolio home page" />
 				<link rel="canonical" href="/" />
 			</Helmet>
+
 			<div className="max-w-[1560px] mx-auto ">
 				<Banner />
 				<ExperianceSection />

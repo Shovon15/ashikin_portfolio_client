@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Navbar, IconButton, Tooltip, Typography } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/logo/Logo-New.png";
+// import logo from "../../../assets/logo/Logo-New.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
@@ -95,25 +95,31 @@ export function Header() {
 		},
 	};
 
-	const activeClass = "!text-blue-500";
-	const normalClass = "text-blue-gray-800 hover:text-blue-500";
-
 	return (
 		<>
 			<Navbar
-				className={`max-w-full sticky top-0 z-30 !bg-white rounded-none
+				id="header"
+				className={`max-w-full sticky top-0 z-30 bg-color-primary border-none rounded-none
 				 ${scrollPosition > 0 ? "shadow-xl py-0 header-scroll" : " shadow-none header"}`}
 			>
 				<div className="flex justify-between items-center py-2 px-0 md:px-5 lg:px-10">
 					<div className="flex items-center ">
 						<Link to="/" className="cursor-pointer px-0">
-							<img
+							{/* <img
 								src={logo}
 								alt="..."
-								className={` transform transition w-44 md:w-56 duration-500 pl-5 ${
-									scrollPosition > 0 ? "scale-100" : "scale-125"
+								className={` transform transition w-44 md:w-56 duration-500 pl-0 py-3 ${
+									scrollPosition > 0 ? "scale-90" : "scale-110"
 								}`}
-							/>
+							/> */}
+							<Typography
+								variant="h4"
+								className={` transform transition w-44 md:w-56 duration-500 text-color-text origin-left pl-0 py-3 ${
+									scrollPosition > 0 ? "scale-90" : "scale-110"
+								}`}
+							>
+								ASHIKIN ALAM
+							</Typography>
 						</Link>
 					</div>
 					<div className=" lg:flex gap-20">
@@ -123,7 +129,7 @@ export function Header() {
 								<ul key={name} className="flex p-2 flex-row gap-2 items-center">
 									<NavLink
 										to={link}
-										className={({ isActive }) => (isActive ? `${activeClass} ` : `${normalClass}`)}
+										className={({ isActive }) => (isActive ? "active" : "inactive hover:active")}
 									>
 										<Typography variant="h6" className="font-bold capitalize">
 											{name}
@@ -137,9 +143,9 @@ export function Header() {
 							{!openNav && (
 								<IconButton
 									variant="text"
-									className="lg:hidden h-10 text-gray-700 rounded-full"
+									className="lg:hidden h-10 text-color-header rounded-full"
 									ripple={false}
-									onClick={() => setOpenNav(!openNav)}
+									onClick={() => setOpenNav(true)}
 								>
 									<FaBars className="w-5 h-5" />
 								</IconButton>
@@ -155,7 +161,7 @@ export function Header() {
 									}}
 								>
 									<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-										<FaFacebookF className="text-textSecondary hover:text-textPrimary cursor-pointer  w-5 h-5 hover:scale-110 " />
+										<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 " />
 									</a>
 								</Tooltip>
 								<Tooltip
@@ -168,7 +174,7 @@ export function Header() {
 									}}
 								>
 									<a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-										<FaYoutube className="text-textSecondary hover:text-textPrimary cursor-pointer hover:scale-110  w-5 h-5" />
+										<FaYoutube className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-5 h-5" />
 									</a>
 								</Tooltip>
 							</div>
@@ -184,22 +190,25 @@ export function Header() {
 							initial="initial"
 							animate="animate"
 							exit="exit"
-							className="fixed left-0 top-0 w-full h-[35rem] origin-top bg-white text-black p-5 shadow-xl"
+							className="fixed left-0 top-0 w-full h-[35rem] origin-top bg-color-primary text-black p-5 shadow-xl"
 						>
 							<div className="flex h-full flex-col">
 								<div className="flex justify-between items-center">
 									<Link to="/" className="cursor-pointer px-0">
-										<img
+										{/* <img
 											src={logo}
 											alt="..."
 											className={` transform transition w-44 md:w-56 duration-500 pl-5 ${
 												scrollPosition > 0 ? "scale-100" : "scale-125 "
 											}`}
-										/>
+										/> */}
+										<Typography variant="h4" className="text-color-text">
+											ASHIKIN ALAM
+										</Typography>
 									</Link>
 									<IconButton
 										variant="text"
-										className=" text-gray-700 rounded-full"
+										className=" text-color-header rounded-full"
 										ripple={false}
 										onClick={() => setOpenNav(false)}
 									>
@@ -219,7 +228,7 @@ export function Header() {
 												<NavLink
 													to={link}
 													className={({ isActive }) =>
-														isActive ? `${activeClass} ` : `${normalClass}`
+														isActive ? "active" : "text-color-text hover:active"
 													}
 													onClick={() => setOpenNav(false)}
 												>
@@ -289,12 +298,12 @@ const MobileSocialIcon = () => {
 		<motion.div variants={mobileSocialLinkVars} className="flex gap-2 mt-5">
 			<IconButton variant="text" className="">
 				<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-					<FaFacebookF className="text-textSecondary hover:text-textPrimary cursor-pointer hover:scale-110  w-7 h-7" />
+					<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
 				</a>
 			</IconButton>
 			<IconButton variant="text">
 				<a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-					<FaYoutube className="text-textSecondary hover:text-textPrimary cursor-pointer hover:scale-110  w-7 h-7" />
+					<FaYoutube className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
 				</a>
 			</IconButton>
 		</motion.div>

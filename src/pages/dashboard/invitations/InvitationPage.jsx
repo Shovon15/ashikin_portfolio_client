@@ -58,33 +58,30 @@ const InvitationPage = () => {
 			<HeaderText>Invitaitons</HeaderText>
 			{invitationData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-gray-600">
+					<p className="text-lg text-color-text">
 						You have not created any events yet.
 						<br />
 						Please add an event to get started!
 					</p>
 				</div>
 			) : (
-				<div>
+				<div className="mt-5">
 					<div className="relative overflow-x-auto">
-						<table className="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-white">
-							<thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+						<table className="w-full text-sm text-left rtl:text-right">
+							<thead className="uppercase">
 								<tr>
 									{TABLE_HEAD.map((head) => (
-										<th key={head} className="border-b  border-blue-gray-100 bg-blue-800 p-4">
-											<p className="font-bold text-white opacity-70 text-center">{head}</p>
+										<th key={head} className="border-b  border-color-border bg-color-secondary p-4">
+											<p className="font-bold text-color-header opacity-70 text-center">{head}</p>
 										</th>
 									))}
 								</tr>
 							</thead>
-							<tbody className="dark:bg-darkPrimary ">
+							<tbody className="text-color-text">
 								{!isLoading &&
 									invitationData.length > 0 &&
 									invitationData.map(({ _id, name, phone, organizationName, location }, index) => (
-										<tr
-											key={_id}
-											className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500"
-										>
+										<tr key={_id} className="even:bg-color-secondary text-center">
 											<td className="p-2 w-5">
 												<p className="font-bold ">{invitationData.length - index + "."}</p>
 											</td>
@@ -105,9 +102,9 @@ const InvitationPage = () => {
 												<Link to={`/dashboard/invitations/${_id}`}>
 													<Button
 														variant="text"
-														className="bg-gray-200 hover:bg-gray-300 shadow-xl capitalize text-md"
+														className=" hover:bg-color-secondary shadow-xl capitalize text-md px-3 rounded-full"
 													>
-														<VscScreenFull className="w-5 h-5 " />
+														<VscScreenFull className="w-5 h-5 text-color-text" />
 													</Button>
 												</Link>
 												<Button
@@ -115,7 +112,7 @@ const InvitationPage = () => {
 													className="focus:ring-0  border-none rounded-full p-3"
 													onClick={() => {
 														setDeleteModalOpen(true);
-														setDeletingEventData({ _id, name });
+														setDeletingEventData({ _id, title: name });
 													}}
 												>
 													<FaTrashAlt className="w-5 h-5 text-red-500" />
@@ -128,6 +125,7 @@ const InvitationPage = () => {
 					</div>
 
 					<ConfirmationModal
+						message={`Warning: Deleting this invitation is permanent and cannot be undone.`}
 						isOpen={isDeleteModalOpen}
 						onClose={handleCloseDeleteModal}
 						content={deletingEventData}

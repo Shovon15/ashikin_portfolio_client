@@ -1,8 +1,8 @@
 /* ---------done */
 .container {
-  max-width: 170rem;
-  padding: 0rem 1rem;
-  margin: 0 auto;
+  /* max-width: 190rem; */
+  /* padding: 0rem 1rem; */
+  margin: auto;
  
 }
 /* ---------done */
@@ -71,7 +71,7 @@
 
 @media (max-width: 990px) {
   .slider-controler .swiper-button-prev {
-    left: 30% !important;
+    left: 40% !important;
     transform: translateX(-30%) !important;
   }
 }
@@ -96,19 +96,14 @@
 }
 
 .slider-controler .slider-arrow {
-  background:rgba(200, 201, 204, 0) ;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   left: 42%;
   transform: translateX(-42%);
-  /* filter: drop-shadow(0px 8px 24px rgba(9, 71, 214, 0.863)); */
 }
 
-/* .slider-controler .slider-arrow ion-icon {
-  font-size: 1rem;
-  color: #222224;
-} */
+
 
 .slider-controler .slider-arrow::after {
   content: '';
@@ -125,7 +120,7 @@
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
-  background: rgb(54, 86, 231);
+  background: var(--text-header-color)
 }
 
  

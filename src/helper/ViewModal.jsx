@@ -28,13 +28,18 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 					unmount: { scale: 0.9, y: -100 },
 				}}
 				ref={viewRef}
-				className="h-[30rem] overflow-x-auto"
+				className="h-[30rem] overflow-x-auto bg-color-secondary"
 			>
 				<DialogBody>
 					<div className="flex justify-between gap-10">
 						<div></div>
-						<h1 className="text-xl font-bold text-center">{content?.title}</h1>
-						<IconButton size="sm" variant="text" onClick={onClose} className="bg-gray-300">
+						<h1 className="text-xl font-bold text-center text-color-header">{content?.title}</h1>
+						<IconButton
+							size="sm"
+							variant="text"
+							onClick={onClose}
+							className="bg-color-primary text-color-header"
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -56,7 +61,7 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 					>
 						{content?.eventType?.charAt(0).toUpperCase() + content?.eventType?.slice(1)}
 					</Typography>
-					<Typography variant="small" color="blue-gray" className="font-bold text-center py-2">
+					<Typography variant="small" className="font-bold text-center  text-color-text py-2">
 						{new Date(content?.dateTime).toLocaleString("en-US", {
 							weekday: "short",
 							year: "numeric",
@@ -74,7 +79,10 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 						width="400"
 						height="200"
 					/>
-					<div dangerouslySetInnerHTML={{ __html: content?.content }} className="mx-auto py-2" />
+					<div
+						dangerouslySetInnerHTML={{ __html: content?.content }}
+						className="mx-auto py-2  text-color-text"
+					/>
 				</DialogBody>
 				<DialogFooter>
 					<Button color="red" onClick={onClose}>

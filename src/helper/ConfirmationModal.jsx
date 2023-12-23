@@ -28,9 +28,10 @@ const ConfirmationModal = ({ isOpen, onClose, content, successAction, setDeleteM
 					unmount: { scale: 0.9, y: -100 },
 				}}
 				ref={deleteRef}
+				className="bg-color-secondary"
 			>
-				<DialogHeader className="text-textPrimary flex justify-center"> {content?.title}</DialogHeader>
-				<DialogBody divider className="text-red-500 font-semibold h-24 flex items-center text-center">
+				<DialogHeader className="text-color-header flex justify-center"> {content?.title}</DialogHeader>
+				<DialogBody divider className="text-red-500 text-xl font-semibold  flex items-center text-center h-44">
 					{message}
 				</DialogBody>
 				<DialogFooter>

@@ -49,19 +49,19 @@ const InvitationDetails = () => {
 
 			<HeaderText className="py-5">Invitation Details</HeaderText>
 			<div className="relative overflow-x-auto">
-				<table className="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-white">
-					<thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+				<table className="w-full text-sm text-left rtl:text-right">
+					<thead className="uppercase bg-color-secondary">
 						<tr>
 							{TABLE_HEAD.map((head) => (
-								<th key={head} className="border-b  border-blue-gray-100 bg-blue-800 p-4">
-									<p className="font-bold text-white opacity-70 text-center">{head}</p>
+								<th key={head} className="border-b  border-color-border bg-color-secondary p-4">
+									<p className="font-bold text-color-header  opacity-70 text-center">{head}</p>
 								</th>
 							))}
 						</tr>
 					</thead>
-					<tbody style={{ minHeight: "500px" }} className="dark:bg-darkPrimary border border-gray-500 ">
+					<tbody style={{ minHeight: "500px" }} className=" text-color-text">
 						{!isLoading && (
-							<tr className="even:bg-gray-200 dark:even:bg-gray-800 text-center dark:bg-gray-500">
+							<tr className="bg-color-secondary  text-center ">
 								<td className="p-2">
 									<p className="font-semibold">{name}</p>
 								</td>
@@ -96,7 +96,7 @@ const InvitationDetails = () => {
 											/>
 										}
 										fileName={`${name}_invitation.pdf`}
-										className=" px-3 py-2 hover:bg-blue-gray-50 rounded-full"
+										className=" px-3 py-3 hover:bg-color-primary rounded-full"
 									>
 										<BsFiletypePdf className="w-5 h-5" />
 									</PDFDownloadLink>

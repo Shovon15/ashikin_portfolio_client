@@ -1,4 +1,4 @@
-import { Button, Card, Input, Spinner } from "@material-tailwind/react";
+import { Card, Input, Spinner } from "@material-tailwind/react";
 import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PiEye, PiEyeClosed } from "react-icons/pi";
@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { AuthContext } from "../../context/AuthProvider";
 import { put } from "../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
+import PrimaryButton from "../../components/Button/PrimaryButton";
 
 const ResetPassword = () => {
 	const { user, fetchData } = useContext(AuthContext);
@@ -59,28 +60,33 @@ const ResetPassword = () => {
 	};
 
 	return (
-		<div className="flex justify-center items-center bg-primary dark:bg-darkPrimary h-screen">
-			<Card color="white" className="px-5 py-10">
+		<div className="flex justify-center items-center bg-primary dark:bg-darkPrimary min-h-screen">
+			<Card className="px-5 py-10 bg-color-secondary">
 				<div className="mx-auto flex flex-col items-center gap-3">
-					<p className="font-bold text-3xl text-textPrimary text-center">Admin Reset Password</p>
+					<p className="font-bold text-3xl text-color-header text-center">Admin Reset Password</p>
 					<img src={loginIcon} alt="..." className="w-20 h-20" />
 				</div>
 
-				<form onSubmit={handleSubmit(handleResetPassword)} className="my-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+				<form onSubmit={handleSubmit(handleResetPassword)} className="my-8 mb-2 w-80 max-w-screen-lg ">
 					<div className="mb-4 flex flex-col gap-6 text-start">
 						<div className="relative">
 							<Input
 								size="lg"
 								label="password"
-								color="blue"
+								color="yellow"
 								type={passwordShown ? "text" : "password"}
 								{...register("password", {
 									required: " Required",
 								})}
+								className="text-color-text"
 							/>
 							<div className="absolute inset-y-0 right-0 pr-3 flex items-center h-12">
 								<span onClick={togglePassword} className="cursor-pointer text-xl">
-									{passwordShown === true ? <PiEye /> : <PiEyeClosed />}
+									{passwordShown === true ? (
+										<PiEye className="text-color-text" />
+									) : (
+										<PiEyeClosed className="text-color-text" />
+									)}
 								</span>
 							</div>
 							{errors.password && <p className="text-red-500">{errors.password.message}</p>}
@@ -89,29 +95,29 @@ const ResetPassword = () => {
 							<Input
 								size="lg"
 								label="Confirm password"
-								color="blue"
+								color="yellow"
 								type={passwordShown ? "text" : "password"}
 								{...register("confirmPassword", {
 									required: " Required",
 								})}
+								className="text-color-text"
 							/>
 							<div className="absolute inset-y-0 right-0 pr-3 flex items-center h-12">
 								<span onClick={togglePassword} className="cursor-pointer text-xl">
-									{passwordShown === true ? <PiEye /> : <PiEyeClosed />}
+									{passwordShown === true ? (
+										<PiEye className="text-color-text" />
+									) : (
+										<PiEyeClosed className="text-color-text" />
+									)}
 								</span>
 							</div>
 							{errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
 						</div>
 					</div>
 
-					<Button
-						type="submit"
-						className="mt-6 bg-gradient-to-r from-cyan-500 to-blue-700 "
-						disabled={isLoading}
-						fullWidth
-					>
-						{isLoading ? <Spinner color="gray" className="mx-auto h-5 w-5" /> : "update"}
-					</Button>
+					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-10 w-full">
+						{isLoading ? <Spinner color="gray" className="mx-auto my-0.5 h-5 w-5" /> : "submit"}
+					</PrimaryButton>
 				</form>
 			</Card>
 		</div>

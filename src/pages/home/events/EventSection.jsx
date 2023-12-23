@@ -5,9 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
-import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import Aos from "aos";
 import EventCard from "../../../components/card/event/EventCard";
+import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
 
 const EventSection = () => {
 	const [filteredEvents, setFilteredEvents] = useState([]);
@@ -81,20 +81,20 @@ const EventSection = () => {
 	}, []);
 
 	if (isLoading) {
-		return <LoadingSpinner />;
+		return <LoadingSkeleton />;
 	}
 
 	return (
 		<>
 			{eventData.length > 0 && (
 				<div className="p-5 mx-auto max-w-[1300px]">
-					<HeaderText className="py-5">Upcoming Events</HeaderText>
+					<HeaderText className="py-5">Upcoming Programs</HeaderText>
 					<div className="">
 						<Tabs id="custom-animation" value="all">
 							<TabsHeader
 								className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
 						  bg-inherit items-center mb-5 py-3 px-5"
-								data-aos="fade-up"
+								data-aos="zoom-in"
 								indicatorProps={{
 									className: "shadow-none bg-transparent",
 								}}
@@ -109,8 +109,8 @@ const EventSection = () => {
 										}}
 										className={
 											activeTab === value
-												? "text-white bg-gradient-to-r from-cyan-500 to-blue-700 py-2.5 rounded-lg capitalize text-lg"
-												: "text-textSecondary hover:ring-1 hover:ring-blue-600 py-2 rounded-lg capitalize text-lg px-2"
+												? "text-color-text bg-color-button hover:bg-color-buttonHover py-2.5  capitalize text-lg"
+												: "text-color-text hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
 										}
 									>
 										{label}
@@ -123,7 +123,6 @@ const EventSection = () => {
 									mount: { y: 0 },
 									unmount: { y: 250 },
 								}}
-								// data-aos="flip-left"
 							>
 								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
 									{!isLoading && filteredEvents.length > 0 ? (
@@ -134,13 +133,13 @@ const EventSection = () => {
 										))
 									) : (
 										<div className="w-full h-44 max-w-[25rem]  flex justify-center items-center">
-											<p className="font-semibold text-xl text-textSecondary">Coming soon</p>
+											<p className="font-semibold text-xl text-color-text">Coming soon</p>
 										</div>
 									)}
 								</div>
 							</TabsBody>
 						</Tabs>
-						<div className="text-center my-5">
+						<div className="text-center my-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
 							<Link to="/events">
 								<PrimaryButton className="px-10 mt-5">View More</PrimaryButton>
 							</Link>

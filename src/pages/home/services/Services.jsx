@@ -7,9 +7,9 @@ import image5 from "../../../assets/image/modern-equipped-computer-lab.jpg";
 
 import { IoMdCheckmark } from "react-icons/io";
 import AOS from "aos";
-import { Button } from "@material-tailwind/react";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { Helmet } from "react-helmet-async";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const Services = () => {
 	const [hoveredItem, setHoveredItem] = useState(null);
@@ -20,45 +20,86 @@ const Services = () => {
 			image: image,
 			heading: "1-1 Coaching Seasion",
 			title: "Shine with Noor!",
+			description: [
+				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+			],
 		},
 		{
 			id: 2,
 			image: image2,
 			heading: "Group Coaching",
 			title: "Team Light!",
+			description: [
+				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+			],
 		},
 		{
 			id: 3,
 			image: image3,
 			heading: "Corporate",
 			title: "Solution!",
+			description: [
+				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"4 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+			],
 		},
 		{
 			id: 4,
 			image: image4,
 			heading: "Business/ Enterepreneur",
 			title: "Consultation Solution!",
+			description: [
+				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+			],
 		},
 		{
 			id: 5,
 			image: image5,
 			heading: "Speaking",
 			title: "Speaking Seasion!",
+			description: [
+				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+				"4 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
+			],
 		},
 	];
 
+	// const handleScroll = (id) => {
+	// 	const element = document.getElementById(id);
+
+	// 	if (element) {
+	// 		element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+	// 	}
+	// };
 	const handleScroll = (id) => {
 		const element = document.getElementById(id);
 
 		if (element) {
-			element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+			const offset = 70; // Specify your desired offset in pixels
+
+			const topPos = element.getBoundingClientRect().top + window.scrollY - offset;
+
+			window.scrollTo({
+				top: topPos,
+				behavior: "smooth",
+			});
 		}
 	};
 
 	const gradientColors = [
-		"linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(0,32,240,0.6110819327731092) 0%, rgba(5,67,135,1) 100%)",
-		"linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,119,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
-		"linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,140,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
+		"linear-gradient( rgba(6, 51, 89, .5), rgba(6, 51, 89, 0.9))",
+
+		// "linear-gradient( rgba(10, 58, 99, .7), rgba(10, 58, 99, 0.8))",
+		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(0,32,240,0.6110819327731092) 0%, rgba(5,67,135,1) 100%)",
+		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,119,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
+		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,140,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
 		// "linear-gradient(rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0.5))",
 		// "linear-gradient(rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0.5))",
 		// "linear-gradient(rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0.5))",
@@ -78,12 +119,8 @@ const Services = () => {
 				<link rel="canonical" href="/services" />
 			</Helmet>
 			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-				<p
-					className="text-start px-5 md:px-10 md:w-[30rem] font-bold text-3xl md:text-4xl lg:text-5xl text-textPrimary"
-					data-aos="zoom-in-up"
-				>
-					Services Page
-				</p>
+				<HeaderText className="text-start pl-5 md:pl-14">Services Page</HeaderText>
+
 				{/* -----------------service cards------------------ */}
 				<div className="flex flex-wrap gap-10 md:gap-5 justify-center items-center p-5 md:p-10">
 					{data.map((item, i) => (
@@ -101,20 +138,64 @@ const Services = () => {
 								filter: hoveredItem !== i ? "blur(50%)" : "none",
 								backgroundPosition: "center",
 							}}
-							className="h-96 w-[20rem] md:w-[14.5rem] bg-blue-500 p-2 flex flex-col justify-end text-white font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
+							className="h-96 w-[20rem] md:w-[14.5rem] bg-color-primary p-2 flex flex-col justify-end  font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
 							data-aos="flip-left"
 						>
-							<p className="text-xl py-2">{item.heading}</p>
-							<p>{item.title}</p>
+							<p className="text-xl py-2 text-color-header">{item.heading}</p>
+							<p className="text-color-text">{item.title}</p>
 						</div>
 					))}
 				</div>
+				{data.map(({ heading, title, image, description }, index) => (
+					<div
+						key={heading}
+						id={index + 1}
+						className={`flex ${
+							index % 2 === 0 ? "flex-col-reverse lg:flex-row" : "flex-col-reverse lg:flex-row-reverse"
+						} p-5 md:p-10 gap-10`}
+					>
+						<div className="w-full lg:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
+							<p className="text-3xl md:text-4xl font-bold text-color-header" data-aos="fade-up">
+								{heading}
+							</p>
+
+							<p className="text-2xl font-bold text-color-text" data-aos="fade-up">
+								{title}
+							</p>
+							{description.map((item, index) => (
+								<p
+									key={index}
+									className="flex gap-3 font-semibold text-color-text text-justify"
+									data-aos="fade-up"
+								>
+									<i>
+										<IoMdCheckmark className="w-5 h-5 text-color-text " />
+									</i>
+									{item}
+								</p>
+							))}
+							<div data-aos="fade-up">
+								<PrimaryButton>{heading}</PrimaryButton>
+							</div>
+						</div>
+						<div className="w-full lg:w-1/2 m-auto">
+							<div
+								className="bg-color-secondary hover:bg-color-primary h-44 md:h-96 w-full rounded-xl px-[3rem] md:px-[5rem] pt-[2rem] md:pt-[4rem]"
+								data-aos="zoom-in"
+							>
+								<img src={image} alt="..." className="overflow-hidden w-full h-full" />
+							</div>
+						</div>
+					</div>
+				))}
+
 				{/* ----------1------------ */}
-				<div id="1" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10">
+				{/* <div id="1" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10">
 					<div className="w-full md:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 						<p className="text-4xl md:text-5xl font-bold " data-aos="fade-up">
-							1-1 Coaching Sessions
+							1-1 Coaching Seasion
 						</p>
+
 						<p className="text-2xl font-bold text-textPrimary" data-aos="fade-up">
 							Shine with Noor!
 						</p>
@@ -150,9 +231,9 @@ const Services = () => {
 							<img src={image} alt="..." className="overflow-hidden w-full h-full" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 				{/* -----------Never worked with a Coach------------- */}
-				<div className="flex flex-col justify-center items-center h-[25rem] md:h-[22rem] bg-gradient-to-r from-blue-300 to-blue-800 p-5 md:p-10">
+				{/* <div className="flex flex-col justify-center items-center h-[25rem] md:h-[22rem] bg-gradient-to-r from-blue-300 to-blue-800 p-5 md:p-10">
 					<p className="text-4xl md:text-6xl font-bold text-white py-5 text-center" data-aos="fade-up">
 						Never worked with a Coach?
 					</p>
@@ -170,9 +251,9 @@ const Services = () => {
 					>
 						1-1 coaching
 					</Button>
-				</div>
+				</div> */}
 				{/* -------------2------------- */}
-				<div id="2" className="flex flex-col-reverse md:flex-row-reverse p-5 md:p-10 gap-10">
+				{/* <div id="2" className="flex flex-col-reverse md:flex-row-reverse p-5 md:p-10 gap-10">
 					<div className="w-full md:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 						<p className="text-4xl md:text-5xl font-bold " data-aos="fade-up">
 							Group Coaching Services:
@@ -213,9 +294,9 @@ const Services = () => {
 							<img src={image2} alt="..." className="overflow-hidden w-full h-full" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 				{/* ----------------number 2  interested button-----------*/}
-				<div className="flex flex-col md:flex-row justify-center items-center h-[20rem] md:h-[15rem] bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-5 md:p-10">
+				{/* <div className="flex flex-col md:flex-row justify-center items-center h-[20rem] md:h-[15rem] bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-5 md:p-10">
 					<p className="text-4xl md:text-6xl font-bold text-white py-5 text-center" data-aos="fade-up">
 						Interested?
 					</p>
@@ -232,9 +313,9 @@ const Services = () => {
 					>
 						Group Coaching
 					</Button>
-				</div>
+				</div> */}
 				{/* ------------3------------- */}
-				<div id="3" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10 ">
+				{/* <div id="3" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10 ">
 					<div className="w-full md:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 						<p className="text-4xl md:text-5xl font-bold " data-aos="fade-up">
 							Corporates
@@ -273,9 +354,9 @@ const Services = () => {
 							<img src={image3} alt="..." className="overflow-hidden w-full h-full" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 				{/* ------------------------4------------------ */}
-				<div id="4" className="flex flex-col-reverse md:flex-row-reverse p-5 md:p-10 gap-10">
+				{/* <div id="4" className="flex flex-col-reverse md:flex-row-reverse p-5 md:p-10 gap-10">
 					<div className="w-full md:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 						<p className="text-4xl md:text-5xl font-bold break-words" data-aos="fade-up">
 							Business / Entrepreneur Consultations
@@ -314,9 +395,9 @@ const Services = () => {
 							<img src={image4} alt="..." className="overflow-hidden w-full h-full" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 				{/* ------------------------5--------------------- */}
-				<div id="5" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10">
+				{/* <div id="5" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10">
 					<div className="w-full md:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 						<p className="text-4xl md:text-5xl font-bold " data-aos="fade-up">
 							Speaking
@@ -357,8 +438,8 @@ const Services = () => {
 							<img src={image5} alt="..." className="overflow-hidden w-full h-full" />
 						</div>
 					</div>
-				</div>
-				<div className="flex flex-col justify-center items-center h-[22rem] md:h-[20rem] bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-5 md:p-10">
+				</div> */}
+				{/* <div className="flex flex-col justify-center items-center h-[22rem] md:h-[20rem] bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-5 md:p-10">
 					<p className="text-4xl md:text-6xl font-bold text-white py-5 text-center" data-aos="fade-up">
 						Sounds like something for you?
 					</p>
@@ -375,7 +456,7 @@ const Services = () => {
 					>
 						Contact Us
 					</Button>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

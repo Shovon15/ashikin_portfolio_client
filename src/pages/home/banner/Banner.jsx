@@ -9,12 +9,12 @@ const Banner = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col md:flex-row">
+		<div className="flex flex-col md:flex-row bg-color-primary">
 			<div className="w-full md:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
-				<p data-aos="fade-up" className="font-bold text-3xl md:text-5xl text-textPrimary ">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				<p data-aos="fade-up" className="font-bold text-3xl md:text-5xl text-color-header ">
+					Lorem2 ipsum dolor sit amet, consectetur adipisicing elit.
 				</p>
-				<p data-aos="fade-up" className="text-textSecondary text-justify">
+				<p data-aos="fade-up" className="text-color-text text-justify">
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est rem repellendus voluptatem, labore
 					animi ex! Sint iste aliquam provident quisquam incidunt quam eius est! Esse necessitatibus inventore
 					voluptatibus dolor quasi.

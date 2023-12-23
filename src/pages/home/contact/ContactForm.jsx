@@ -1,9 +1,10 @@
-import { Button, Input, Spinner, Textarea } from "@material-tailwind/react";
+import { Input, Spinner, Textarea } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import Aos from "aos";
 import { useEffect, useState } from "react";
 import { post } from "../../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const ContactForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -49,12 +50,13 @@ const ContactForm = () => {
 						<Input
 							type="text"
 							variant="standard"
-							color="blue"
+							color="yellow"
 							label="Name"
 							{...register("name", {
 								required: "Required *",
 							})}
 							error={!!errors.name}
+							className="text-color-text"
 						/>
 						{errors.name && <p className="text-red-500 text-sm ">{errors.name.message}</p>}
 					</div>
@@ -62,12 +64,13 @@ const ContactForm = () => {
 						<Input
 							type="text"
 							variant="standard"
-							color="blue"
+							color="yellow"
 							label="Phone"
 							{...register("phone", {
 								required: "Required *",
 							})}
 							error={!!errors.phone}
+							className="text-color-text"
 						/>
 						{errors.phone && <p className="text-red-500 text-sm ">{errors.phone.message}</p>}
 					</div>
@@ -76,39 +79,42 @@ const ContactForm = () => {
 					<div className="flex flex-col gap-1 w-full">
 						<Input
 							type="text"
-							color="blue"
+							color="yellow"
 							variant="standard"
 							label="Organization name"
 							{...register("organization", {
 								required: "Required *",
 							})}
 							error={!!errors.organization}
+							className="text-color-text"
 						/>
 						{errors.organization && <p className="text-red-500 text-sm ">{errors.organization.message}</p>}
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							type="text"
-							color="blue"
+							color="yellow"
 							variant="standard"
 							label="Location of the Event"
 							{...register("location", {
 								required: "Required *",
 							})}
 							error={!!errors.location}
+							className="text-color-text"
 						/>
 						{errors.location && <p className="text-red-500 text-sm ">{errors.location.message}</p>}
 					</div>
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input
 							type="text"
-							color="blue"
 							variant="standard"
+							color="yellow"
 							label="Number of Audience"
 							{...register("audienceNumber", {
 								required: "Required *",
 							})}
 							error={!!errors.audienceNumber}
+							className="text-color-text"
 						/>
 						{errors.audienceNumber && (
 							<p className="text-red-500 text-sm ">{errors.audienceNumber.message}</p>
@@ -117,26 +123,22 @@ const ContactForm = () => {
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Textarea
 							type="text"
-							color="blue"
+							color="yellow"
 							variant="standard"
 							label="About the Event"
 							{...register("eventText", {
 								required: "Please write something about the Event *",
 							})}
 							error={!!errors.eventText}
+							className="text-color-text"
 						/>
 						{errors.eventText && <p className="text-red-500 text-sm">{errors.eventText.message}</p>}
 					</div>
 				</div>
-				<div className="flex justify-center mt-5">
-					<Button
-						type="submit"
-						data-aos="fade-up"
-						className=" bg-gradient-to-r from-cyan-500 to-blue-700  py-3 capitalize text-md shadow-xl focus:shadow-xl active:shadow-2xl px-14"
-						disabled={isLoading}
-					>
-						{isLoading ? <Spinner color="gray" className="mx-auto h-5 w-5" /> : "send"}
-					</Button>
+				<div className="flex justify-center mt-5" data-aos="zoom-in">
+					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-10">
+						{isLoading ? <Spinner color="gray" className="mx-4 my-0.5 h-5 w-5" /> : "submit"}
+					</PrimaryButton>
 				</div>
 			</form>
 		</div>

@@ -6,6 +6,7 @@ import emailOriginal from "../../../assets/icon/gmail-original.png";
 import image1 from "../../../assets/image/tree-plantation.jpg";
 import image2 from "../../../assets/image/anti-tobacco.jpg";
 import image3 from "../../../assets/image/anti-harasment.jpg";
+import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const SocialSupport = () => {
 	useEffect(() => {
@@ -57,17 +58,12 @@ const SocialSupport = () => {
 	];
 
 	return (
-		<div
-			// data-aos="zoom-in-down"
-			className=" bg-gradient-to-r from-blue-300 to-blue-800 p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col"
-		>
+		<div className=" bg-color-primary p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col">
 			<div className="">
-				<p data-aos="fade-up" className="text-white font-bold text-4xl md:text-5xl text-center">
-					Ashikin Alam Social Support
-				</p>
+				<HeaderText>Ashikin Alam Social Support</HeaderText>
 				<div className="flex gap-5 items-center justify-center m-5">
 					{iconData.map((icon) => (
-						<a href={icon.link} key={icon.id}>
+						<a href={icon.link} target="_blank" rel="noopener noreferrer" key={icon.id} data-aos="zoom-in">
 							<div className="relative transition-transform cursor-pointer z-10 transform hover:scale-110">
 								<img
 									src={icon.original}
@@ -86,11 +82,11 @@ const SocialSupport = () => {
 						data-aos="flip-left"
 						data-aos-anchor-placement="center-bottom"
 						key={id}
-						className="bg-inherit p-4 rounded-lg shadow-lg h-[23rem] "
+						className="bg-color-secondary p-4 rounded-lg shadow-lg hover:shadow-xl h-[23rem] "
 					>
 						<img src={icon} alt="..." className="w-full h-44" />
-						<h2 className="text-3xl text-white font-bold mb-2 mt-5">{title}</h2>
-						<p className="text-gray-300">{desc}</p>
+						<h2 className="text-2xl text-color-header font-bold mb-2 mt-5">{title}</h2>
+						<p className="text-color-text">{desc}</p>
 					</div>
 				))}
 			</div>

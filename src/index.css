@@ -1,23 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    :root {
+        --background-color: #0A3A63;
+        --background-color-secondary: #063359;
+        /* --background-color-secondary: #144d7a; */
+        --text-header-color: #CCA531;
+        --border-color: #CCA531;
+        --text-color: #FFFFFF;
+        --button-color: #CCA531;
+        --button-hover-color: #AD8C2A;
+        --button-hover-ring: #AD8C2A;
+    }
+}
+
+@layer components{
+    .active{
+        @apply text-color-header
+    }
+    .inactive{
+        @apply text-color-text
+    }
+}
+
 body{
     margin: 0;
     padding:0;
-    font-family: "Open Sans", sans-serif;
+    /* font-family: "Open Sans", sans-serif; */
+   
+    box-sizing: border-box;
 }
-html{
-    /* transform: scale(0.888); */
-}
+
+
+/* tinymce brand name hide */
 .tox-statusbar__branding{
     display: none;
 }
+
 /* this is for drawer blur backdrop..  */
 .backdrop-blur-sm{
     position:fixed !important;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2d71ac; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--button-color); 
+  }
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+

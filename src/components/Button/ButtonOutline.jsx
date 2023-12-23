@@ -1,7 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 
-const PrimaryButton = ({
+const ButtonOutline = ({
 	className = "",
 	onClick,
 	onChange,
@@ -12,8 +12,9 @@ const PrimaryButton = ({
 }) => {
 	return (
 		<Button
+			variant="text"
 			type={buttonType}
-			className={`px-6 py-3 bg-color-button text-color-text hover:bg-color-buttonHover rounded-none  active:bg-color-button capitalize text-md ${className}  ${
+			className={`px-6 py-2 bg-inherit text-color-text hover:bg-color-buttonHover rounded-none ring-1 ring-color-buttonRing active:bg-color-button capitalize text-md ${className}  ${
 				disabled && "cursor-not-allowed"
 			}`}
 			onClick={onClick}
@@ -26,7 +27,7 @@ const PrimaryButton = ({
 	);
 };
 
-PrimaryButton.propTypes = {
+ButtonOutline.propTypes = {
 	className: PropTypes.string,
 	onClick: PropTypes.func,
 	onChange: PropTypes.func,
@@ -36,4 +37,4 @@ PrimaryButton.propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-export default PrimaryButton;
+export default ButtonOutline;

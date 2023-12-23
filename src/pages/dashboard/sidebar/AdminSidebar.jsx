@@ -1,21 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
-import { Button, List } from "@material-tailwind/react";
+import { List } from "@material-tailwind/react";
 import LogoutButton from "../../../components/Button/LogoutButton";
 
 import { RxDashboard } from "react-icons/rx";
 import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 import { SlEnvolopeLetter } from "react-icons/sl";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 export function AdminSidebar() {
 	const { isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
 
-	const activeClass =
-		"!bg-gradient-to-r from-cyan-500 to-blue-700  hover:!bg-buttonHover activee:!bg-buttonActive text-white dark:text-gray-300 font-bold";
+	const activeClass = "!bg-color-button  text-color-header font-bold";
 	const SidebarClass =
-		"flex gap-3 items-center dark:text-white bg-gray-100 dark:bg-[#13254f] py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400";
+		"flex gap-3 items-center bg-color-secondary text-color-text py-3 px-5 active:!bg-color-button hover:!bg-color-buttonHover";
 
 	const links = [
 		{
@@ -45,9 +45,9 @@ export function AdminSidebar() {
 		<div
 			className={`${
 				isSidebarOpen ? "w-0 lg:w-72 z-30 min-h-screen hidden lg:block lg:fixed left-0 top-16" : "w-0 hidden"
-			} p-4 shadow-xl dark:shadow-[#081126] bg-white dark:bg-bgSecondary transition-all duration-300 ease-in-out `}
+			} p-4 shadow-xl  bg-color-primary transition-all duration-300 ease-in-out `}
 		>
-			<div className="mb-2 flex justify-end items-center text-gray-500 dark:text-white">
+			<div className="mb-2 flex justify-end items-center text-color-header ">
 				<div onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -77,9 +77,7 @@ export function AdminSidebar() {
 			</List>
 			<div className="flex gap-3 py-5 w-full">
 				<Link to="/" className="w-1/2">
-					<Button className="bg-gradient-to-r from-cyan-500 to-blue-700 capitalize text-lg py-2 px-9">
-						Home
-					</Button>
+					<PrimaryButton className="px-10 py-2.5">Home</PrimaryButton>
 				</Link>
 				<div className="w-1/2">
 					<LogoutButton />

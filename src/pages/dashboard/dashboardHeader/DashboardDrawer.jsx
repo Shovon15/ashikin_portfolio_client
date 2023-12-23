@@ -8,7 +8,7 @@ import { RxDashboard } from "react-icons/rx";
 import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 import { SlEnvolopeLetter } from "react-icons/sl";
-
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const DashboardDrawer = () => {
 	const { isDrawerOpen, toggleDrawer } = useContext(DashboardContext);
@@ -37,19 +37,18 @@ const DashboardDrawer = () => {
 		},
 	];
 
-	const activeClass =
-		"!bg-gradient-to-r from-cyan-500 to-blue-700  hover:!bg-buttonHover activee:!bg-buttonActive text-white dark:text-gray-300 font-bold";
+	const activeClass = "!bg-color-button  text-color-header font-bold";
 	const SidebarClass =
-		"flex gap-3 items-center dark:text-white bg-gray-100 dark:bg-[#13254f] py-3 px-5 hover:bg-gray-300 rounded-md active:bg-gray-400";
+		"flex gap-3 items-center bg-color-secondary text-color-text py-3 px-5 active:!bg-color-button hover:!bg-color-buttonHover";
 
 	return (
 		<>
-			<Drawer open={isDrawerOpen} onClose={toggleDrawer} className="p-4 min-h-screen dark:bg-bgSecondary">
+			<Drawer open={isDrawerOpen} onClose={toggleDrawer} className="p-4 min-h-screen bg-color-primary">
 				<div className="mb-6 flex items-center justify-between">
-					<Typography variant="h5" color="blue-gray">
+					<Typography variant="h5" className="text-color-header">
 						Dashboard
 					</Typography>
-					<IconButton variant="text" color="blue-gray" onClick={toggleDrawer}>
+					<IconButton variant="text" onClick={toggleDrawer} className="text-color-header">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -84,12 +83,7 @@ const DashboardDrawer = () => {
 				</div>
 				<div className="flex gap-3 py-5 w-full">
 					<Link to="/" className="w-1/2">
-						<Button
-							onClick={toggleDrawer}
-							className="bg-gradient-to-r from-cyan-500 to-blue-700 capitalize text-lg py-2 px-9"
-						>
-							Home
-						</Button>
+						<PrimaryButton onClick={toggleDrawer} className="px-10 py-2.5">Home</PrimaryButton>
 					</Link>
 					<div className="w-1/2">
 						<LogoutButton />

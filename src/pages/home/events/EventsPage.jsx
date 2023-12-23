@@ -1,9 +1,9 @@
 import { get } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import EventCard from "../../../components/card/event/EventCard";
 import { Helmet } from "react-helmet-async";
+import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
 
 const EventsPage = () => {
 	const { data: eventData = [], isLoading } = useQuery({
@@ -17,18 +17,18 @@ const EventsPage = () => {
 	});
 
 	if (isLoading) {
-		return <LoadingSpinner />;
+		return <LoadingSkeleton />;
 	}
 	return (
 		<>
 			<Helmet>
-				<title>Ashikin Alam | Events</title>
+				<title>Ashikin Alam | Programs</title>
 				<meta name="description" content="Ashikin Alam personal portfolio event page" />
 				<link rel="canonical" href="/events" />
 			</Helmet>
 
 			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-				<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Events</HeaderText>
+				<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Programs</HeaderText>
 
 				<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
 					{!isLoading &&

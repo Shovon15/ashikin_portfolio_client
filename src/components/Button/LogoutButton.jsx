@@ -31,9 +31,10 @@ const ConfirmationModal = ({ isOpen, onClose, content, successAction, setIsLogOu
 				unmount: { scale: 0.9, y: -100 },
 			}}
 			ref={logoutRef}
+			className="bg-color-primary"
 		>
-			<DialogHeader className="text-textPrimary flex justify-center">Logout</DialogHeader>
-			<DialogBody divider className="text-red-500 font-bold h-24 flex justify-center items-center">
+			<DialogHeader className="text-color-header flex justify-center">Logout</DialogHeader>
+			<DialogBody divider className="text-red-500 text-xl font-bold h-24 flex justify-center items-center">
 				Do you really want to logout!
 			</DialogBody>
 			<DialogFooter>
@@ -75,7 +76,7 @@ const LogoutButton = () => {
 			<Button
 				onClick={() => setIsLogOutModalOpen(true)}
 				variant="text"
-				className="py-2 px-8 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white"
+				className="py-2 px-8 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white rounded-none"
 			>
 				Logout
 			</Button>
