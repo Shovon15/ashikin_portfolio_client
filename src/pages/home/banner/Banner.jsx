@@ -30,11 +30,12 @@ const Banner = () => {
 			</div>
 
 			<div className="w-full lg:w-7/12 md:pl-[18rem] lg:pl-0 relative">
-				<div className="pl-[100px] lg:pl-[170px] h-[250px] md:h-[300px] lg:h-[500px]">
+				<div className="pl-[100px] lg:pl-[170px] h-[200px] md:h-[300px] lg:h-[500px]">
 					<div
 						style={{
 							backgroundImage: `url(${Data[0]?.bgImage})`,
 							backgroundSize: "cover",
+
 							backgroundRepeat: "no-repeat",
 							width: "100%",
 							height: "100%",

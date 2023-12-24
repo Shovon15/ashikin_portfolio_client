@@ -37,7 +37,7 @@ const ExperianceSection = () => {
 			<div
 				data-aos="zoom-in"
 				data-aos-anchor-placement="top-bottom"
-				className="absolute -mt-16 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl"
+				className="absolute -mt-5 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl"
 			>
 				<Typography className="text-color-text text-sm md:text-md lg:text-lg text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold">
 					Celebrated Leadership Icon and Trusted Advisor to Fortune 100 Companies, Sport Legends, Elite
