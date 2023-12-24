@@ -122,10 +122,10 @@ const EventRegister = () => {
 						className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 "
 					>
 						<p className="text-2xl font-semibold text-center text-color-header">{title}</p>
-						<p className="text-color-text">{eventType} event</p>
+						<p className="text-color-text capitalize pt-3">{eventType} program</p>
 						<p className="text-color-text">
 							{formattedDate}
-							<span>|</span>
+							<span className="text-gray-500"> | </span>
 							{formattedTime}
 						</p>
 					</div>
@@ -135,7 +135,7 @@ const EventRegister = () => {
 				<div className="hidden lg:block">
 					<GoBackButton />
 				</div>
-				<HeaderText className="py-5">EventRegister</HeaderText>
+				<HeaderText className="py-5 ">Program Register</HeaderText>
 				<div className="flex flex-col lg:flex-row gap-5">
 					<div data-aos="fade-up" className="flex flex-col gap-1 w-full">
 						<Input

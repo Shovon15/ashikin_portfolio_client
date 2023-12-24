@@ -25,16 +25,16 @@ const EventSection = () => {
 
 	const tabButtondata = [
 		{
-			label: "All Events",
+			label: "All Programs",
 			value: "all",
 		},
 		{
-			label: "Free Events",
+			label: "Free Programs",
 			value: "free",
 		},
 
 		{
-			label: "Premium Events",
+			label: "Premium Programs",
 			value: "premium",
 		},
 	];

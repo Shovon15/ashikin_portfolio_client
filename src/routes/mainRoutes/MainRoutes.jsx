@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 import Main from "../../layouts/Main";
 import HomePage from "../../pages/home/HomePage";
 import DashboardLayout from "../../layouts/DashboardLayout";
@@ -24,8 +24,20 @@ import ResetPassword from "../../pages/dashboard/ResetPassword";
 import InvitationPage from "../../pages/dashboard/invitations/InvitationPage";
 import InvitationDetails from "../../pages/dashboard/invitations/InvitationDetails";
 import RegisteredEvent from "../../pages/dashboard/events/RegisteredEvent";
+import ServicesManage from "../../pages/dashboard/services/ServicesManage";
+import CreateService from "../../pages/dashboard/services/CreateService";
+import UpdateService from "../../pages/dashboard/services/UpdateService";
+import BannerManage from "../../pages/dashboard/banner/BannerManage";
+import UpdateBanner from "../../pages/dashboard/banner/UpdateBanner";
+import ReviewManage from "../../pages/dashboard/review/ReviewManage";
+import WriteReview from "../../pages/dashboard/review/WriteReview";
+import UpdateReview from "../../pages/dashboard/review/UpdateReview";
 
 const MainRoutes = () => {
+	// const Dashboard = () => {
+	// 	// Redirect to /dashboard/admin by default
+	// 	return <Navigate to="admin" />;
+	// };
 	return (
 		<BrowserRouter>
 			<ScrollToTop />
@@ -50,17 +62,43 @@ const MainRoutes = () => {
 						</PrivateRoute>
 					}
 				>
-					<Route path="dashboard" element={<DashboardOverview />} />
+					<Route path="dashboard" element={<Navigate replace to="/dashboard/admin" />} />
+					
+					<Route path="dashboard/admin" element={<DashboardOverview />} />
+
 					<Route path="dashboard/profile-update" element={<UpdateProfile />} />
 					<Route path="dashboard/password-update" element={<UpdatePassword />} />
-					<Route path="dashboard/events" element={<EventManage />} />
-					<Route path="dashboard/events/:id" element={<RegisteredEvent />} />
-					<Route path="dashboard/events/write-event" element={<CreateEvent />} />
-					<Route path="dashboard/events/update-event/:id" element={<UpdateEvent />} />
+
 					<Route path="dashboard/blogs" element={<BlogManage />} />
 					<Route path="dashboard/blogs/write-blog" element={<CreateBlog />} />
+
 					<Route path="dashboard/invitations" element={<InvitationPage />} />
 					<Route path="dashboard/invitations/:id" element={<InvitationDetails />} />
+
+					<Route path="dashboard/banner">
+						<Route path="" element={<BannerManage />} />
+						<Route path="update-banner" element={<UpdateBanner />} />
+					</Route>
+
+					<Route path="dashboard/services">
+						<Route path="" element={<ServicesManage />} />
+						<Route path="write-service" element={<CreateService />} />
+						<Route path="update-service/:id" element={<UpdateService />} />
+					</Route>
+
+					<Route path="dashboard/events">
+						<Route path="" element={<EventManage />} />
+						<Route path=":id" element={<RegisteredEvent />} />
+						<Route path="write-event" element={<CreateEvent />} />
+						<Route path="update-event/:id" element={<UpdateEvent />} />
+					</Route>
+
+					<Route path="dashboard/reviews">
+						<Route path="" element={<ReviewManage />} />
+						<Route path="write-review" element={<WriteReview />} />
+						<Route path="update-review/:id" element={<UpdateReview />} />
+					</Route>
+					
 				</Route>
 				<Route
 					path="*"

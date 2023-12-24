@@ -1,17 +1,30 @@
 
-/* ----------------------------------- */
+/* ---------------date time picker-------------------- */
 .react-datetime-picker__inputGroup__input{
     /* min-width: 1.0em; */
-    color: #2273dc;
+    color: var(--text-color);
     outline: none;
 }
 .react-calendar{
     border-radius: 5px;
+    background-color: var(--background-color-secondary)!important;
+    border-color: var(--border-color)!important;
 }
+.react-datetime-picker__clock{
+    border-radius: 5px;
+    background-color: var(--background-color-secondary)!important;
+    border-color: var(--border-color)!important;
+}
+.react-datetime-picker__inputGroup__input{
+    background-color:  var(--background-color-secondary)!important;
+    border-color: var(--border-color)!important;
+}
+
 
 .react-datetime-picker__wrapper{
     /* max-width: 50%; */
 padding: 5px;
+border-color: var(--border-color)!important;
 border-radius: 5px;
 }
 
@@ -28,41 +41,32 @@ border-radius: 5px;
 }
 
 .react-datetime-picker__inputGroup__divider{
-    color: #2273dc;
-    padding: 5px;
+    color: var(--text-color);
+    padding: 0px;
 }
 
 
 .react-calendar__tile--active{
-    background: rgb(49, 49, 243) !important ;
+    background: #144d7a !important ;
+    font-weight:300;
+}
+.react-calendar__tile:hover{
+    background: #1384da !important ;
     font-weight:300;
 }
 .react-calendar__tile--now {
-    background: #d6d6d5 !important;
+    background: var(--background-color) !important;
 }
-
-/* ------------------jodit */
-
-.jodit-container{
-    width: 100% !important;
-    height: 500px !important;
-    margin: auto;
-    /* margin-top: 30px; */
-    /* padding-bottom: 50px; */
-}
-.Jodit-wysiwyg{
-    width: 100% !important;
-    /* height: 700px!important; */
-    /* margin: auto; */
-}
-
-.jodit-container:not(.jodit_inline) .jodit-wysiwyg {
-    width: 100% !important;
-    height: 400px!important;
+/* -------------------------------- */
+/* select background */
+.bg-white{
+background-color: var(--background-color-secondary) !important;
+border:none !important;
 
 }
 
-.jodit-status-bar a.jodit-status-bar-link {
-    display: none;
-}
+/* -------------------------text editor--------------- */
+
+
+
 

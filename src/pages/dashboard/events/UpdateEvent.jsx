@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { Button, IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -13,6 +14,7 @@ import GoBackButton from "../../../components/Button/GoBackButton";
 import { Editor } from "@tinymce/tinymce-react";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const UpdateEvent = () => {
 	const { fetchEventById } = useContext(DataContext);
@@ -116,33 +118,33 @@ const UpdateEvent = () => {
 	return (
 		<div>
 			<GoBackButton />
-			<HeaderText className="py-5">Update Event</HeaderText>
+			<HeaderText className="py-5">Update Program</HeaderText>
 			<form onSubmit={handleEventForm}>
 				<div className="w-full md:w-1/2 flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
-							Event Title <span className="text-red-500">*</span>
+						<p className="font-bold text-color-text  py-2">
+							Program Title <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="blue"
+							color="yellow"
 							value={title}
-							label="Event Title"
-							className="text-gray-800 dark:text-white"
+							label="Program Title"
+							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
-							Event Type <span className="text-red-500">*</span>
+						<p className="font-bold text-color-text py-2">
+							Program Type <span className="text-red-500">*</span>
 						</p>
 						<Select
 							value={eventType}
 							onChange={(value) => setEventType(value)}
 							label="Select Event Type"
-							color="blue"
-							className="!p-0"
+							color="yellow"
+							className="!p-0 "
 						>
 							{selectData.map((item) => (
 								<Option
@@ -151,8 +153,10 @@ const UpdateEvent = () => {
 									style={{
 										fontSize: "18px",
 										fontWeight: "normal",
-										color: eventType === item.value ? "#2196F3" : "black",
+										color: eventType === item.value ? "#CCA531 " : "white",
+										backgroundColor: "inherit",
 									}}
+									className="!bg-color-primary mt-2 "
 								>
 									{item.name}
 								</Option>
@@ -160,26 +164,23 @@ const UpdateEvent = () => {
 						</Select>
 					</div>
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
+						<p className="font-bold text-color-text py-2">
 							Cover Image <span className="text-red-500">*</span>
 						</p>
 						{!isUpdateImage ? (
 							<div>
 								<img src={oldImage} alt="..." />
 								<div className="flex justify-center mt-2">
-									<Button
-										className="py-3 bg-gradient-to-r from-cyan-500 to-blue-700 "
-										onClick={handleUploadImage}
-									>
+									<PrimaryButton className=" " onClick={handleUploadImage}>
 										Upload new Image
-									</Button>
+									</PrimaryButton>
 								</div>
 							</div>
 						) : (
 							<>
 								<div
 									className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
-										image ? "border-blue-500" : "border-gray-500"
+										image ? "border-color-border" : "border-gray-500"
 									}`}
 									onClick={() => document.querySelector(".input-field").click()}
 								>
@@ -202,13 +203,13 @@ const UpdateEvent = () => {
 											alt={fileName}
 										/>
 									) : (
-										<div className="flex flex-col items-center gap-2">
+										<div className="flex flex-col items-center gap-2 text-color-text">
 											<LuUploadCloud className="w-12 h-12" />
 											<p>Browse file to upload</p>
 										</div>
 									)}
 								</div>
-								<section className="flex justify-end gap-3 items-center bg-gray-300 rounded-md mt-1 p-2">
+								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
 									{fileName}
 									{image !== null && (
 										<IconButton variant="text" className="rounded-full">
@@ -222,7 +223,7 @@ const UpdateEvent = () => {
 										</IconButton>
 									)}
 								</section>
-								<p className="text-red-500 text-sm py-2">
+								<p className="text-red-500 text-md py-2">
 									Note: If you don&apos;t want to upload a new cover image, please refresh the page
 									before clicking the update button.
 								</p>
@@ -231,14 +232,14 @@ const UpdateEvent = () => {
 					</div>
 				</div>
 				<div className="my-5 flex flex-col ">
-					<label className="font-bold text-textPrimary dark:text-white py-2">
+					<label className="font-bold text-color-text py-2">
 						Select date and time of event <span className="text-red-500">*</span>
 					</label>
 					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
 				</div>
 
 				<div className="h-auto">
-					<p className="font-bold text-textPrimary dark:text-white py-2">
+					<p className="font-bold text-color-text dark:text-white py-2">
 						Event Text <span className="text-red-500">*</span>
 					</p>
 					<Editor
@@ -256,15 +257,10 @@ const UpdateEvent = () => {
 						initialValue={content}
 					/>
 				</div>
-				<div className="w-full md:mx-auto my-10 md:w-2/6">
-					<Button
-						type="submit"
-						variant="text"
-						className="bg-gradient-to-r from-cyan-500 to-blue-700  text-white capitalize text-lg py-2 w-full"
-						disabled={isLoading}
-					>
-						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Update"}
-					</Button>
+				<div className="w-full flex justify-center items-center my-10 ">
+					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-16">
+						{isLoading ? <Spinner color="gray" className="mx-auto" /> : "Update"}
+					</PrimaryButton>
 				</div>
 			</form>
 		</div>

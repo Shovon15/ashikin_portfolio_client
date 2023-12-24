@@ -1,14 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import { List } from "@material-tailwind/react";
-import LogoutButton from "../../../components/Button/LogoutButton";
 
 import { RxDashboard } from "react-icons/rx";
 import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlineMessage } from "react-icons/md";
 import { SlEnvolopeLetter } from "react-icons/sl";
-import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 export function AdminSidebar() {
 	const { isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
@@ -20,17 +18,32 @@ export function AdminSidebar() {
 	const links = [
 		{
 			name: "dashboard",
-			link: "/dashboard",
+			link: "/dashboard/admin",
 			icon: <RxDashboard className="w-5 h-5" />,
 		},
 		{
-			name: "events",
+			name: "banner",
+			link: "/dashboard/banner",
+			icon: <BsCalendar2Event className="w-5 h-5" />,
+		},
+		{
+			name: "services",
+			link: "/dashboard/services",
+			icon: <BsCalendar2Event className="w-5 h-5" />,
+		},
+		{
+			name: "programs",
 			link: "/dashboard/events",
 			icon: <BsCalendar2Event className="w-5 h-5" />,
 		},
 		{
 			name: "blogs",
 			link: "/dashboard/blogs",
+			icon: <MdOutlineMessage className="w-5 h-5" />,
+		},
+		{
+			name: "reviews",
+			link: "/dashboard/reviews",
 			icon: <MdOutlineMessage className="w-5 h-5" />,
 		},
 
@@ -45,7 +58,7 @@ export function AdminSidebar() {
 		<div
 			className={`${
 				isSidebarOpen ? "w-0 lg:w-72 z-30 min-h-screen hidden lg:block lg:fixed left-0 top-16" : "w-0 hidden"
-			} p-4 shadow-xl  bg-color-primary transition-all duration-300 ease-in-out `}
+			} p-4 shadow-xl  bg-color-primary transition-all duration-300 ease-in-out`}
 		>
 			<div className="mb-2 flex justify-end items-center text-color-header ">
 				<div onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
@@ -61,12 +74,12 @@ export function AdminSidebar() {
 					</svg>
 				</div>
 			</div>
-			<List className="p-0">
+			<List className="p-0 overflow-y-auto h-[75vh]">
 				{links.map(({ name, link, icon }) => (
 					<NavLink
 						key={name}
 						to={link}
-						end
+						// end
 						className={({ isActive }) => (isActive ? `${activeClass} ${SidebarClass}` : `${SidebarClass}`)}
 					>
 						{icon}
@@ -75,14 +88,6 @@ export function AdminSidebar() {
 					</NavLink>
 				))}
 			</List>
-			<div className="flex gap-3 py-5 w-full">
-				<Link to="/" className="w-1/2">
-					<PrimaryButton className="px-10 py-2.5">Home</PrimaryButton>
-				</Link>
-				<div className="w-1/2">
-					<LogoutButton />
-				</div>
-			</div>
 		</div>
 	);
 }

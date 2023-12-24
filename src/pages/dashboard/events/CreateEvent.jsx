@@ -12,6 +12,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 
 import "./CreateEvent.css";
+
 import { DataContext } from "../../../context/DataContext";
 import handleFileUpload from "../../../helper/ImageUploader";
 
@@ -20,6 +21,7 @@ import { BsTrashFill } from "react-icons/bs";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { Editor } from "@tinymce/tinymce-react";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const CreateEvent = () => {
 	const [title, setTitle] = useState("");
@@ -84,34 +86,34 @@ const CreateEvent = () => {
 	];
 
 	return (
-		<div className="">
+		<div className="lg:pb-10">
 			<GoBackButton />
-			<HeaderText className="py-5">Create Event</HeaderText>
+			<HeaderText className="py-5">Create Programs</HeaderText>
 			<form onSubmit={handleEventForm}>
 				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
-							Event Title <span className="text-red-500">*</span>
+						<p className="font-bold text-color-text  py-2">
+							Program Title <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="blue"
-							label="Event Title"
-							className="text-gray-500 dark:text-white"
+							color="yellow"
+							label="Program Title"
+							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
-							Event Type <span className="text-red-500">*</span>
+						<p className="font-bold text-color-text py-2">
+							Program Type <span className="text-red-500">*</span>
 						</p>
 						<Select
 							value={eventType}
 							onChange={(value) => setEventType(value)}
 							label="Select Event Type"
-							color="blue"
-							className="!p-0"
+							color="yellow"
+							className="!p-0 "
 						>
 							{selectData.map((item) => (
 								<Option
@@ -120,8 +122,10 @@ const CreateEvent = () => {
 									style={{
 										fontSize: "18px",
 										fontWeight: "normal",
-										color: eventType === item.value ? "#2196F3" : "black",
+										color: eventType === item.value ? "#CCA531 " : "white",
+										backgroundColor: "inherit",
 									}}
+									className="!bg-color-primary mt-2 "
 								>
 									{item.name}
 								</Option>
@@ -129,12 +133,12 @@ const CreateEvent = () => {
 						</Select>
 					</div>
 					<div>
-						<p className="font-bold text-textPrimary dark:text-white py-2">
+						<p className="font-bold text-color-text py-2">
 							Cover Image <span className="text-red-500">*</span>
 						</p>
 						<div
 							className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
-								image ? "border-blue-500" : "border-gray-500"
+								image ? "border-color-border" : "border-gray-500"
 							}`}
 							onClick={() => document.querySelector(".input-field").click()}
 						>
@@ -153,13 +157,13 @@ const CreateEvent = () => {
 							{image ? (
 								<img src={URL.createObjectURL(image)} className="w-full h-full p-5" alt={fileName} />
 							) : (
-								<div className="flex flex-col items-center gap-2 dark:text-white">
-									<LuUploadCloud className="w-12 h-12" />
-									<p>Browse file to upload</p>
+								<div className="flex flex-col items-center gap-2 text-color-text">
+									<LuUploadCloud className="w-12 h-12 " />
+									<p className="">Browse file to upload</p>
 								</div>
 							)}
 						</div>
-						<section className="flex justify-end gap-3 items-center bg-gray-300 rounded-md mt-1 p-2">
+						<section className="flex justify-end gap-3 items-center bg-color-secondary rounded-md mt-1 p-2 text-color-text">
 							{fileName}
 							{image !== null && (
 								<IconButton variant="text" className="rounded-full">
@@ -176,15 +180,15 @@ const CreateEvent = () => {
 					</div>
 				</div>
 				<div className="my-5 flex flex-col ">
-					<label className="font-bold text-textPrimary dark:text-white py-2">
-						Select date and time of event <span className="text-red-500">*</span>
+					<label className="font-bold text-color-text py-2">
+						Select date and time of Program <span className="text-red-500">*</span>
 					</label>
 					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
 				</div>
 				{/* text-editor */}
 				<div className="h-auto">
-					<p className="font-bold text-textPrimary dark:text-white py-2">
-						Event Text <span className="text-red-500">*</span>
+					<p className="font-bold text-color-text py-2">
+						Program Text <span className="text-red-500">*</span>
 					</p>
 					<Editor
 						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
@@ -200,15 +204,10 @@ const CreateEvent = () => {
 						}}
 					/>
 				</div>
-				<div className="w-full md:w-2/6 md:mx-auto my-10 ">
-					<Button
-						type="submit"
-						variant="text"
-						className="bg-gradient-to-r from-cyan-500 to-blue-700  text-white capitalize text-lg py-2 w-full"
-						disabled={isLoading}
-					>
-						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Submit"}
-					</Button>
+				<div className="w-full flex justify-center items-center my-10 ">
+					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-16">
+						{isLoading ? <Spinner color="gray" className="mx-auto" /> : "Submit"}
+					</PrimaryButton>
 				</div>
 			</form>
 		</div>

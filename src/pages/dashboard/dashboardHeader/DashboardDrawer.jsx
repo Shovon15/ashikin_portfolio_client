@@ -1,4 +1,4 @@
-import { Button, Drawer, IconButton, List, Typography } from "@material-tailwind/react";
+import { Drawer, IconButton, List, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import LogoutButton from "../../../components/Button/LogoutButton";
@@ -16,17 +16,32 @@ const DashboardDrawer = () => {
 	const links = [
 		{
 			name: "dashboard",
-			link: "/dashboard",
+			link: "/dashboard/admin",
 			icon: <RxDashboard className="w-5 h-5" />,
 		},
 		{
-			name: "events",
+			name: "banner",
+			link: "/dashboard/banner",
+			icon: <BsCalendar2Event className="w-5 h-5" />,
+		},
+		{
+			name: "services",
+			link: "/dashboard/services",
+			icon: <BsCalendar2Event className="w-5 h-5" />,
+		},
+		{
+			name: "programs",
 			link: "/dashboard/events",
 			icon: <BsCalendar2Event className="w-5 h-5" />,
 		},
 		{
 			name: "blogs",
 			link: "/dashboard/blogs",
+			icon: <MdOutlineMessage className="w-5 h-5" />,
+		},
+		{
+			name: "reviews",
+			link: "/dashboard/reviews",
 			icon: <MdOutlineMessage className="w-5 h-5" />,
 		},
 
@@ -68,7 +83,7 @@ const DashboardDrawer = () => {
 							<NavLink
 								key={name}
 								to={link}
-								end
+								// end
 								className={({ isActive }) =>
 									isActive ? `${activeClass} ${SidebarClass}` : `${SidebarClass}`
 								}
@@ -83,7 +98,9 @@ const DashboardDrawer = () => {
 				</div>
 				<div className="flex gap-3 py-5 w-full">
 					<Link to="/" className="w-1/2">
-						<PrimaryButton onClick={toggleDrawer} className="px-10 py-2.5">Home</PrimaryButton>
+						<PrimaryButton onClick={toggleDrawer} className="px-10 py-2.5">
+							Home
+						</PrimaryButton>
 					</Link>
 					<div className="w-1/2">
 						<LogoutButton />

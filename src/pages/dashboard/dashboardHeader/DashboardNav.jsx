@@ -2,6 +2,9 @@ import { IconButton, Typography } from "@material-tailwind/react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
+import { Link } from "react-router-dom";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
+import LogoutButton from "../../../components/Button/LogoutButton";
 // import ThemeButton from "../../../components/Button/ThemeButton";
 const DashboardNav = () => {
 	const { toggleDrawer, isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
@@ -54,7 +57,14 @@ const DashboardNav = () => {
 				)}
 			</div>
 			<div className="ml-auto flex items-center gap-3">
-				{/* <ThemeButton /> */}
+				<div className="lg:flex gap-3 w-full hidden ">
+					<Link to="/" className="">
+						<PrimaryButton className="px-10 py-2.5">Home</PrimaryButton>
+					</Link>
+					<div className="">
+						<LogoutButton />
+					</div>
+				</div>
 				{/* ---------------------drawer button------------------- */}
 				<IconButton
 					onClick={toggleDrawer}

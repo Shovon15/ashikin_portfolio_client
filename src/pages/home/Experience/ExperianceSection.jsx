@@ -33,13 +33,13 @@ const ExperianceSection = () => {
 	];
 
 	return (
-		<div className="mt-[5rem] relative p-0 md:p-10 bg-color-secondary">
+		<div className=" relative p-0 md:p-10 bg-color-secondary">
 			<div
 				data-aos="zoom-in"
 				data-aos-anchor-placement="top-bottom"
 				className="absolute -mt-16 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl"
 			>
-				<Typography className="text-color-text text-md lg:text-lg text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem]">
+				<Typography className="text-color-text text-sm md:text-md lg:text-lg text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold">
 					Celebrated Leadership Icon and Trusted Advisor to Fortune 100 Companies, Sport Legends, Elite
 					Performers and Titans of Industryo
 				</Typography>
