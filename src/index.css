@@ -35,6 +35,19 @@ body{
     box-sizing: border-box;
 }
 
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
 
 /* tinymce brand name hide */
 .tox-statusbar__branding{

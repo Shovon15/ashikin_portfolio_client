@@ -50,7 +50,7 @@ export function Header() {
 		{
 			id: 3,
 			name: "Programs",
-			link: "events",
+			link: "programs",
 		},
 		{
 			id: 4,
@@ -154,7 +154,7 @@ export function Header() {
 								<Tooltip
 									content="facebook"
 									placement="top"
-									className="border border-blue-gray-50 bg-white px-4 py-1 shadow-xl shadow-black/10 text-gray-700"
+									className="bg-color-secondary px-4 py-1 shadow-xl text-color-text"
 									animate={{
 										mount: { scale: 1, y: 0 },
 										unmount: { scale: 0, y: 25 },
@@ -167,7 +167,7 @@ export function Header() {
 								<Tooltip
 									content="youtube"
 									placement="top"
-									className="border border-blue-gray-50 bg-white px-4 py-1 shadow-xl shadow-black/10 text-gray-700"
+									className="bg-color-secondary px-4 py-1 shadow-xltext-color-text"
 									animate={{
 										mount: { scale: 1, y: 0 },
 										unmount: { scale: 0, y: 25 },

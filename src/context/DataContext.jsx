@@ -24,10 +24,19 @@ export const DataContextProvider = ({ children }) => {
 			showErrorToast(error.message);
 		}
 	};
+	const fetchServiceById = async (id) => {
+		try {
+			const response = await get("services/" + id, id);
+			return response.data?.payload?.data;
+		} catch (error) {
+			showErrorToast(error.message);
+		}
+	};
 
 	const dataInfo = {
 		fetchEventData,
 		fetchEventById,
+		fetchServiceById,
 	};
 	return <DataContext.Provider value={dataInfo}>{children}</DataContext.Provider>;
 };

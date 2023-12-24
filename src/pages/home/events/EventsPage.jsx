@@ -24,7 +24,7 @@ const EventsPage = () => {
 			<Helmet>
 				<title>Ashikin Alam | Programs</title>
 				<meta name="description" content="Ashikin Alam personal portfolio event page" />
-				<link rel="canonical" href="/events" />
+				<link rel="canonical" href="/programs" />
 			</Helmet>
 
 			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">

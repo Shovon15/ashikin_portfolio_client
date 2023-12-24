@@ -90,7 +90,7 @@ const EventViewPage = () => {
 					</p>
 
 					<div className="flex justify-center" data-aos="zoom-in">
-						<Link to={`/events/register/${id}`}>
+						<Link to={`/program/register/${id}`}>
 							<ButtonOutline>Register now</ButtonOutline>
 						</Link>
 					</div>
@@ -153,7 +153,7 @@ const EventViewPage = () => {
 					</div>
 				)}
 				<div className="py-5 flex justify-center" data-aos="zoom-in">
-					<Link to={`/events/register/${id}`}>
+					<Link to={`/program/register/${id}`}>
 						<PrimaryButton>Register Now</PrimaryButton>
 					</Link>
 				</div>

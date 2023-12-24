@@ -6,7 +6,7 @@ const Footer = () => {
 	const Data = [
 		{
 			name: "About",
-			link: "/",
+			link: "",
 		},
 		{
 			name: "License",
@@ -30,19 +30,17 @@ const Footer = () => {
 					ASHIKIN ALAM
 				</Typography>
 				{/* <img src={logo} alt="logo" className="w-44" /> */}
-				<ul className="flex flex-wrap items-center gap-y-2 gap-x-8 cursor-pointer">
+				<div className="flex gap-6">
 					{Data.map(({ name, link }) => (
-						<li key={name}>
-							<Link to={link}>
-								<Typography className="font-normal text-color-text hover:text-color-header">
-									{name}
-								</Typography>
-							</Link>
-						</li>
+						<Link to={link} key={name}>
+							<Typography className="font-normal text-color-text hover:text-color-header">
+								{name}
+							</Typography>
+						</Link>
 					))}
-				</ul>
+				</div>
 			</div>
-			<hr className="my-8 border-blue-gray-50" />
+			<hr className="my-8 border-color-border" />
 			<Typography className="text-center font-normal text-color-text">
 				{currentYear} &copy; Copyright Ashikin alam
 			</Typography>

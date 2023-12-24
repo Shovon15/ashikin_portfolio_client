@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { Button, IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
-import { useContext, useRef, useState } from "react";
+import { IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
+import { useRef, useState } from "react";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
@@ -13,7 +12,6 @@ import "react-clock/dist/Clock.css";
 
 import "./CreateEvent.css";
 
-import { DataContext } from "../../../context/DataContext";
 import handleFileUpload from "../../../helper/ImageUploader";
 
 import { LuUploadCloud } from "react-icons/lu";
@@ -29,17 +27,18 @@ const CreateEvent = () => {
 	const [image, setImage] = useState(null);
 	const [dateTime, setDateTime] = useState(new Date());
 	const [content, setContent] = useState("");
-	const [showErrorState, setShowErrorState] = useState(false);
 	const [fileName, setFileName] = useState("No file selected");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const editorRef = useRef(null);
+	const inputImageRef = useRef(null);
 
 	const navigate = useNavigate();
 
 	const handleEventForm = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
+
 		let imgData = {};
 		if (image) {
 			imgData = await handleFileUpload(image);
@@ -55,19 +54,16 @@ const CreateEvent = () => {
 
 		if (Object.values(formData).some((field) => !field)) {
 			// Handle the case where data is missing
-			setShowErrorState(true);
 			setIsLoading(false);
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
-		setShowErrorState(false);
 
 		try {
 			const res = await post("events/write-event", formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/events");
 		} catch (err) {
-			setShowErrorState(false);
 			showErrorToast(err?.response?.data.message || "An error occurred");
 		} finally {
 			setIsLoading(false);
@@ -134,25 +130,27 @@ const CreateEvent = () => {
 					</div>
 					<div>
 						<p className="font-bold text-color-text py-2">
-							Cover Image <span className="text-red-500">*</span>
+							Service Image <span className="text-red-500">*</span>
 						</p>
 						<div
-							className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
-								image ? "border-color-border" : "border-gray-500"
-							}`}
-							onClick={() => document.querySelector(".input-field").click()}
+							className={`center border-2 border-dashed w-full h-80 cursor-pointer
+                            ${image ? "border-color-border" : "border-gray-500"}`}
+							onClick={() => inputImageRef.current.click()}
 						>
 							<input
 								type="file"
 								accept="image/*"
 								className="input-field"
 								hidden
-								onChange={({ target: { files } }) => {
-									files[0] && setFileName(files[0].name);
-									if (files) {
+								onChange={(event) => {
+									const files = event.target.files;
+									if (files[0]) {
+										setFileName(files[0].name);
 										setImage(files[0]);
 									}
 								}}
+								ref={inputImageRef}
+								key={fileName}
 							/>
 							{image ? (
 								<img src={URL.createObjectURL(image)} className="w-full h-full p-5" alt={fileName} />
@@ -163,7 +161,10 @@ const CreateEvent = () => {
 								</div>
 							)}
 						</div>
-						<section className="flex justify-end gap-3 items-center bg-color-secondary rounded-md mt-1 p-2 text-color-text">
+						<section
+							className="flex-end gap-3 bg-color-secondary
+                           rounded-md mt-1 p-2 pr-2 text-color-text"
+						>
 							{fileName}
 							{image !== null && (
 								<IconButton variant="text" className="rounded-full">
@@ -171,6 +172,7 @@ const CreateEvent = () => {
 										onClick={() => {
 											setFileName("No file selected");
 											setImage(null);
+											inputImageRef.current.value = null;
 										}}
 										className="w-5 h-5 text-red-500 cursor-pointer"
 									/>
@@ -194,7 +196,7 @@ const CreateEvent = () => {
 						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
 						onInit={(evt, editor) => {
 							editorRef.current = editor;
-							editor.on("change", (changeEvent) => setContent(editor.getContent()));
+							editor.on("change", () => setContent(editor.getContent()));
 						}}
 						init={{
 							plugins:

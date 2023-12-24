@@ -1,8 +1,8 @@
 import img from "../../../assets/image/banner-demo-img.jpg";
 import imgBg from "../../../assets/image/bg.jpg";
-import imgBg2 from "../../../assets/image/creative-people-working-office.jpg";
 import { useEffect } from "react";
 import Aos from "aos";
+import { Typography } from "@material-tailwind/react";
 
 const Banner = () => {
 	useEffect(() => {
@@ -24,9 +24,9 @@ const Banner = () => {
 				<p data-aos="fade-up" className="font-bold text-3xl md:text-4xl lg:text-5xl text-color-header ">
 					{Data[0]?.header}
 				</p>
-				<p data-aos="fade-up" className="text-color-text text-justify text-md lg:text-xl">
+				<Typography variant="paragraph" data-aos="fade-up" className="text-color-text text-justify ">
 					{Data[0]?.text}
-				</p>
+				</Typography>
 			</div>
 
 			<div className="w-full lg:w-7/12 md:pl-[18rem] lg:pl-0 relative">

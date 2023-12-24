@@ -39,12 +39,15 @@ const ExperianceSection = () => {
 				data-aos-anchor-placement="top-bottom"
 				className="absolute -mt-5 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl"
 			>
-				<Typography className="text-color-text text-sm md:text-md lg:text-lg text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold">
+				<Typography
+					variant="paragraph"
+					className="text-color-text text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold"
+				>
 					Celebrated Leadership Icon and Trusted Advisor to Fortune 100 Companies, Sport Legends, Elite
 					Performers and Titans of Industryo
 				</Typography>
 			</div>
-			<div className="pt-[7rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
+			<div className="pt-[8rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
 				{Data.map(({ icon, title, desc, link }) => (
 					<a key={title} href={link} target="_blank" rel="noopener noreferrer" data-aos="zoom-in">
 						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3">

@@ -1,88 +1,34 @@
 import { useEffect, useState } from "react";
-import image from "../../../assets/image/services_image.jpg";
-import image2 from "../../../assets/image/banner-img-bg.jpg";
-import image3 from "../../../assets/image/creative-people-working-office.jpg";
-import image4 from "../../../assets/image/executives-joking-laughing-office.jpg";
-import image5 from "../../../assets/image/modern-equipped-computer-lab.jpg";
-
 import { IoMdCheckmark } from "react-icons/io";
 import AOS from "aos";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { Helmet } from "react-helmet-async";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
+import { useQuery } from "@tanstack/react-query";
+import { get } from "../../../utils/fetchApi";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const Services = () => {
 	const [hoveredItem, setHoveredItem] = useState(null);
 
-	const data = [
-		{
-			id: 1,
-			image: image,
-			heading: "1-1 Coaching Seasion",
-			title: "Shine with Noor!",
-			description: [
-				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-			],
+	const { data: serviceData = [], isLoading } = useQuery({
+		queryKey: ["serviceData"],
+		queryFn: async () => {
+			const res = await get("services/published");
+			let data = await res.data.payload?.data;
+			return data;
 		},
-		{
-			id: 2,
-			image: image2,
-			heading: "Group Coaching",
-			title: "Team Light!",
-			description: [
-				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-			],
-		},
-		{
-			id: 3,
-			image: image3,
-			heading: "Corporate",
-			title: "Solution!",
-			description: [
-				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"4 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-			],
-		},
-		{
-			id: 4,
-			image: image4,
-			heading: "Business/ Enterepreneur",
-			title: "Consultation Solution!",
-			description: [
-				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-			],
-		},
-		{
-			id: 5,
-			image: image5,
-			heading: "Speaking",
-			title: "Speaking Seasion!",
-			description: [
-				"1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-				"4 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aperiam quisquam eaque nesciunt, autporro",
-			],
-		},
-	];
+	});
 
-	// const handleScroll = (id) => {
-	// 	const element = document.getElementById(id);
-
-	// 	if (element) {
-	// 		element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-	// 	}
-	// };
+	if (isLoading) {
+		<LoadingSpinner />;
+	}
 	const handleScroll = (id) => {
+		console.log(id, "id");
 		const element = document.getElementById(id);
 
 		if (element) {
-			const offset = 70; // Specify your desired offset in pixels
+			const offset = 70;
 
 			const topPos = element.getBoundingClientRect().top + window.scrollY - offset;
 
@@ -93,20 +39,7 @@ const Services = () => {
 		}
 	};
 
-	const gradientColors = [
-		"linear-gradient( rgba(6, 51, 89, .5), rgba(6, 51, 89, 0.9))",
-
-		// "linear-gradient( rgba(10, 58, 99, .7), rgba(10, 58, 99, 0.8))",
-		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(0,32,240,0.6110819327731092) 0%, rgba(5,67,135,1) 100%)",
-		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,119,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
-		// "linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(8,140,164,0.6558998599439776) 0%, rgba(5,67,135,1) 100%)",
-		// "linear-gradient(rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0.5))",
-		// "linear-gradient(rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0.5))",
-		// "linear-gradient(rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0.5))",
-		// "linear-gradient(rgba(0, 0, 255, 0.6), rgba(0, 0, 255, 0.5))",
-
-		// Add more colors as needed
-	];
+	const gradientColors = ["linear-gradient( rgba(6, 51, 89, .5), rgba(6, 51, 89, 0.9))"];
 	useEffect(() => {
 		AOS.init({ duration: 1000 });
 	}, []);
@@ -123,71 +56,78 @@ const Services = () => {
 
 				{/* -----------------service cards------------------ */}
 				<div className="flex flex-wrap gap-10 md:gap-5 justify-center items-center p-5 md:p-10">
-					{data.map((item, i) => (
+					{serviceData.length === 0 ? (
+						<div className="min-h-screen center text-color-text text-2xl">Coming Soon</div>
+					) : (
+						serviceData.map((item, i) => (
+							<div
+								key={i}
+								onClick={() => handleScroll(i + 1)}
+								onMouseEnter={() => setHoveredItem(i)}
+								onMouseLeave={() => setHoveredItem(null)}
+								style={{
+									backgroundImage:
+										hoveredItem === i
+											? `url(${item.cover})`
+											: `${gradientColors[i % gradientColors.length]}, url(${item.cover})`,
+									backgroundSize: "cover",
+									filter: hoveredItem !== i ? "blur(50%)" : "none",
+									backgroundPosition: "center",
+								}}
+								className="h-96 w-[20rem] md:w-[14.5rem] bg-color-primary p-2 flex flex-col justify-end  font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
+								data-aos="flip-left"
+							>
+								<p className="text-xl py-2 text-color-header">{item.heading}</p>
+								<p className="text-color-text">{item.title}</p>
+							</div>
+						))
+					)}
+				</div>
+				{serviceData.length > 0 &&
+					serviceData.map(({ heading, title, cover, description }, index) => (
 						<div
-							key={i}
-							onClick={() => handleScroll(item.id)}
-							onMouseEnter={() => setHoveredItem(i)}
-							onMouseLeave={() => setHoveredItem(null)}
-							style={{
-								backgroundImage:
-									hoveredItem === i
-										? `url(${item.image})`
-										: `${gradientColors[i % gradientColors.length]}, url(${item.image})`,
-								backgroundSize: "cover",
-								filter: hoveredItem !== i ? "blur(50%)" : "none",
-								backgroundPosition: "center",
-							}}
-							className="h-96 w-[20rem] md:w-[14.5rem] bg-color-primary p-2 flex flex-col justify-end  font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
-							data-aos="flip-left"
+							key={heading}
+							id={index + 1}
+							className={`flex ${
+								index % 2 === 0
+									? "flex-col-reverse lg:flex-row"
+									: "flex-col-reverse lg:flex-row-reverse"
+							} p-5 md:p-10 gap-10`}
 						>
-							<p className="text-xl py-2 text-color-header">{item.heading}</p>
-							<p className="text-color-text">{item.title}</p>
+							<div className="w-full lg:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
+								<p className="text-3xl md:text-4xl font-bold text-color-header" data-aos="fade-up">
+									{heading}
+								</p>
+
+								<p className="text-2xl font-bold text-color-text" data-aos="fade-up">
+									{title}
+								</p>
+								{description.map((item, index) => (
+									<p
+										key={index}
+										className="flex gap-3 font-semibold text-color-text text-justify"
+										data-aos="fade-up"
+									>
+										<i>
+											<IoMdCheckmark className="w-5 h-5 text-color-text " />
+										</i>
+										{item}
+									</p>
+								))}
+								<div data-aos="fade-up">
+									<PrimaryButton>{heading}</PrimaryButton>
+								</div>
+							</div>
+							<div className="w-full lg:w-1/2 m-auto">
+								<div
+									className="bg-color-secondary hover:bg-color-primary h-44 md:h-96 w-full rounded-xl px-[3rem] md:px-[5rem] pt-[2rem] md:pt-[4rem]"
+									data-aos="zoom-in"
+								>
+									<img src={cover} alt="..." className="overflow-hidden w-full h-full" />
+								</div>
+							</div>
 						</div>
 					))}
-				</div>
-				{data.map(({ heading, title, image, description }, index) => (
-					<div
-						key={heading}
-						id={index + 1}
-						className={`flex ${
-							index % 2 === 0 ? "flex-col-reverse lg:flex-row" : "flex-col-reverse lg:flex-row-reverse"
-						} p-5 md:p-10 gap-10`}
-					>
-						<div className="w-full lg:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
-							<p className="text-3xl md:text-4xl font-bold text-color-header" data-aos="fade-up">
-								{heading}
-							</p>
-
-							<p className="text-2xl font-bold text-color-text" data-aos="fade-up">
-								{title}
-							</p>
-							{description.map((item, index) => (
-								<p
-									key={index}
-									className="flex gap-3 font-semibold text-color-text text-justify"
-									data-aos="fade-up"
-								>
-									<i>
-										<IoMdCheckmark className="w-5 h-5 text-color-text " />
-									</i>
-									{item}
-								</p>
-							))}
-							<div data-aos="fade-up">
-								<PrimaryButton>{heading}</PrimaryButton>
-							</div>
-						</div>
-						<div className="w-full lg:w-1/2 m-auto">
-							<div
-								className="bg-color-secondary hover:bg-color-primary h-44 md:h-96 w-full rounded-xl px-[3rem] md:px-[5rem] pt-[2rem] md:pt-[4rem]"
-								data-aos="zoom-in"
-							>
-								<img src={image} alt="..." className="overflow-hidden w-full h-full" />
-							</div>
-						</div>
-					</div>
-				))}
 
 				{/* ----------1------------ */}
 				{/* <div id="1" className="flex flex-col-reverse md:flex-row p-5 md:p-10 gap-10">

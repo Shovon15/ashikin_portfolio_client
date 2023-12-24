@@ -34,6 +34,7 @@ const UpdateEvent = () => {
 	const [eventData, setEventData] = useState(false);
 
 	const editorRef = useRef(null);
+	const inputImageRef = useRef(null);
 
 	const navigate = useNavigate();
 
@@ -182,19 +183,22 @@ const UpdateEvent = () => {
 									className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer ${
 										image ? "border-color-border" : "border-gray-500"
 									}`}
-									onClick={() => document.querySelector(".input-field").click()}
+									onClick={() => inputImageRef.current.click()}
 								>
 									<input
 										type="file"
 										accept="image/*"
 										className="input-field"
 										hidden
-										onChange={({ target: { files } }) => {
-											files[0] && setFileName(files[0].name);
-											if (files) {
+										onChange={(event) => {
+											const files = event.target.files;
+											if (files[0]) {
+												setFileName(files[0].name);
 												setImage(files[0]);
 											}
 										}}
+										ref={inputImageRef}
+										key={fileName}
 									/>
 									{image ? (
 										<img
@@ -217,6 +221,7 @@ const UpdateEvent = () => {
 												onClick={() => {
 													setFileName("No file selected");
 													setImage(null);
+													inputImageRef.current.value = null;
 												}}
 												className="w-5 h-5 text-red-500 cursor-pointer"
 											/>

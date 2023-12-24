@@ -34,10 +34,6 @@ import WriteReview from "../../pages/dashboard/review/WriteReview";
 import UpdateReview from "../../pages/dashboard/review/UpdateReview";
 
 const MainRoutes = () => {
-	// const Dashboard = () => {
-	// 	// Redirect to /dashboard/admin by default
-	// 	return <Navigate to="admin" />;
-	// };
 	return (
 		<BrowserRouter>
 			<ScrollToTop />
@@ -45,11 +41,11 @@ const MainRoutes = () => {
 				{/* ---------------------------public route--------------------- */}
 				<Route element={<Main />}>
 					<Route path="/" element={<HomePage />} />
-					<Route path="events" element={<EventsPage />} />
+					<Route path="programs" element={<EventsPage />} />
 					<Route path="services" element={<Services />} />
 					<Route path="blogs" element={<BlogPage />} />
-					<Route path="events/:id" element={<EventViewPage />} />
-					<Route path="events/register/:id" element={<EventRegister />} />
+					<Route path="program/:id" element={<EventViewPage />} />
+					<Route path="program/register/:id" element={<EventRegister />} />
 				</Route>
 				{/* ---------------------------admin route--------------------- */}
 				<Route path="/login" element={<Login />} />
@@ -62,43 +58,43 @@ const MainRoutes = () => {
 						</PrivateRoute>
 					}
 				>
-					<Route path="dashboard" element={<Navigate replace to="/dashboard/admin" />} />
-					
-					<Route path="dashboard/admin" element={<DashboardOverview />} />
+					<Route path="dashboard">
+						<Route path="" element={<Navigate replace to="/dashboard/admin" />} />
+						<Route path="admin" element={<DashboardOverview />} />
 
-					<Route path="dashboard/profile-update" element={<UpdateProfile />} />
-					<Route path="dashboard/password-update" element={<UpdatePassword />} />
+						<Route path="profile-update" element={<UpdateProfile />} />
+						<Route path="password-update" element={<UpdatePassword />} />
 
-					<Route path="dashboard/blogs" element={<BlogManage />} />
-					<Route path="dashboard/blogs/write-blog" element={<CreateBlog />} />
+						<Route path="blogs" element={<BlogManage />} />
+						<Route path="blogs/write-blog" element={<CreateBlog />} />
 
-					<Route path="dashboard/invitations" element={<InvitationPage />} />
-					<Route path="dashboard/invitations/:id" element={<InvitationDetails />} />
+						<Route path="invitations" element={<InvitationPage />} />
+						<Route path="invitations/:id" element={<InvitationDetails />} />
 
-					<Route path="dashboard/banner">
-						<Route path="" element={<BannerManage />} />
-						<Route path="update-banner" element={<UpdateBanner />} />
+						<Route path="banner">
+							<Route path="" element={<BannerManage />} />
+							<Route path="update-banner" element={<UpdateBanner />} />
+						</Route>
+
+						<Route path="services">
+							<Route path="" element={<ServicesManage />} />
+							<Route path="write-service" element={<CreateService />} />
+							<Route path="update-service/:id" element={<UpdateService />} />
+						</Route>
+
+						<Route path="programs">
+							<Route path="" element={<EventManage />} />
+							<Route path=":id" element={<RegisteredEvent />} />
+							<Route path="write-program" element={<CreateEvent />} />
+							<Route path="update-program/:id" element={<UpdateEvent />} />
+						</Route>
+
+						<Route path="reviews">
+							<Route path="" element={<ReviewManage />} />
+							<Route path="write-review" element={<WriteReview />} />
+							<Route path="update-review/:id" element={<UpdateReview />} />
+						</Route>
 					</Route>
-
-					<Route path="dashboard/services">
-						<Route path="" element={<ServicesManage />} />
-						<Route path="write-service" element={<CreateService />} />
-						<Route path="update-service/:id" element={<UpdateService />} />
-					</Route>
-
-					<Route path="dashboard/events">
-						<Route path="" element={<EventManage />} />
-						<Route path=":id" element={<RegisteredEvent />} />
-						<Route path="write-event" element={<CreateEvent />} />
-						<Route path="update-event/:id" element={<UpdateEvent />} />
-					</Route>
-
-					<Route path="dashboard/reviews">
-						<Route path="" element={<ReviewManage />} />
-						<Route path="write-review" element={<WriteReview />} />
-						<Route path="update-review/:id" element={<UpdateReview />} />
-					</Route>
-					
 				</Route>
 				<Route
 					path="*"

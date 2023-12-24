@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import LoadingSpinner from "./components/shared/loadingSpinner/LoadingSpinner";
+import ScrollButton from "./components/Button/ScrollButton";
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -25,13 +26,12 @@ function App() {
 	return (
 		<div className="bg-color-primary !scroll-smooth">
 			{loading ? (
-				// Loader component or loading indicator
 				<LoadingSpinner />
 			) : (
-				// Main content
 				<>
 					<MainRoutes />
 					<ToastContainer />
+					<ScrollButton />
 				</>
 			)}
 		</div>

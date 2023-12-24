@@ -33,7 +33,7 @@ export function AdminSidebar() {
 		},
 		{
 			name: "programs",
-			link: "/dashboard/events",
+			link: "/dashboard/programs",
 			icon: <BsCalendar2Event className="w-5 h-5" />,
 		},
 		{

@@ -8,7 +8,6 @@ import ConfirmationModal from "../../../helper/ConfirmationModal";
 import { del, get, put } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 
-import { FiPlus } from "react-icons/fi";
 import { FaTrashAlt } from "react-icons/fa";
 import { VscScreenFull } from "react-icons/vsc";
 import { BiSolidEdit } from "react-icons/bi";
@@ -16,6 +15,8 @@ import { TbSortAscendingNumbers } from "react-icons/tb";
 import { TbSortDescendingNumbers } from "react-icons/tb";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import IconButton from "../../../components/Button/IconButton";
+import GoBackButton from "../../../components/Button/GoBackButton";
 
 const EventManage = () => {
 	// -------view Modal------------------
@@ -92,6 +93,9 @@ const EventManage = () => {
 
 	return (
 		<div className="min-h-screen pb-10">
+			<div>
+				<GoBackButton />
+			</div>
 			<HeaderText className="pb-5">Manage Events</HeaderText>
 			<div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 justify-between items-center pb-5 ">
 				<div className="flex gap-2 items-center">
@@ -107,10 +111,8 @@ const EventManage = () => {
 						)}
 					</Button>
 				</div>
-				<Link to="/dashboard/events/write-event">
-					<Button className="bg-color-button  capitalize text-md flex items-center gap-2">
-						<FiPlus className="w-6 h-6" /> new event
-					</Button>
+				<Link to="write-program">
+					<IconButton>New Program</IconButton>
 				</Link>
 			</div>
 			{eventData.length === 0 ? (
@@ -180,7 +182,7 @@ const EventManage = () => {
 														{register === 0 ? (
 															<p>0</p>
 														) : (
-															<Link to={`/dashboard/events/${_id}`}>
+															<Link to={`/dashboard/programs/${_id}`}>
 																<Button className="capitalize p-2  bg-color-button hover:bg-color-buttonHover text-color-text">
 																	{register} Registered
 																</Button>
@@ -234,7 +236,7 @@ const EventManage = () => {
 													>
 														<VscScreenFull className="w-5 h-5 " />
 													</Button>
-													<Link to={`update-event/${_id}`}>
+													<Link to={`update-program/${_id}`}>
 														<Button
 															variant="outlined"
 															size="sm"

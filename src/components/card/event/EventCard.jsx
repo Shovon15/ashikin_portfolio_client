@@ -81,7 +81,7 @@ export function EventCard({ eventData }) {
 			</CardBody>
 			<CardFooter className="pt-0 mx-auto" data-aos="zoom-in" data-aos-anchor-placement="top-bottom">
 				{_id && (
-					<Link to={`/events/${_id}`}>
+					<Link to={`/program/${_id}`}>
 						<ButtonOutline className="px-8">Details</ButtonOutline>
 					</Link>
 				)}

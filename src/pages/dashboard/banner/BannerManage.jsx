@@ -4,6 +4,7 @@ import IconButton from "../../../components/Button/IconButton";
 
 import img from "../../../assets/image/banner-demo-img.jpg";
 import imgBg from "../../../assets/image/bg.jpg";
+import { Typography } from "@material-tailwind/react";
 
 const BannerManage = () => {
 	const Data = [
@@ -22,35 +23,46 @@ const BannerManage = () => {
 			</Link>
 			<div></div>
 			<div className="border border-color-border ">
-				<div className="flex flex-col md:flex-row bg-color-primary ">
-					<div className="w-full md:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
+				<div className="flex flex-col lg:flex-row bg-color-primary">
+					<div className="w-full lg:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
 						<p data-aos="fade-up" className="font-bold text-3xl md:text-4xl lg:text-5xl text-color-header ">
 							{Data[0]?.header}
 						</p>
-						<p data-aos="fade-up" className="text-color-text text-justify">
+						<Typography variant="paragraph" data-aos="fade-up" className="text-color-text text-justify ">
 							{Data[0]?.text}
-						</p>
+						</Typography>
 					</div>
 
-					<div className="w-full md:w-7/12 relative">
-						<div className="pl-[100px] md:pl-[120px] h-[350px] md:h-[520px]">
+					<div className="w-full lg:w-7/12 md:pl-[18rem] lg:pl-0 relative">
+						<div className="pl-[100px] lg:pl-[170px] h-[200px] md:h-[300px] lg:h-[500px]">
 							<div
 								style={{
 									backgroundImage: `url(${Data[0]?.bgImage})`,
-									backgroundSize: "cover",
+									backgroundSize: "contain",
+
 									backgroundRepeat: "no-repeat",
 									width: "100%",
-									height: "520px",
+									height: "100%",
 									opacity: ".4",
 								}}
 							></div>
 						</div>
-						<img
-							src={Data[0]?.secondaryImage}
-							className="absolute top-[40px] md:top-[70px] left-10 md:left-0 w-40 h-56 md:w-[18rem] md:h-96"
+						<div
+							className="absolute top-[20px] md:top-[40px] lg:top-[70px] left-[4rem] md:left-[20rem] lg:left-0 w-[7rem] h-[10rem] md:w-[12rem] md:h-[16rem] lg:w-[19rem] lg:h-[25rem]"
 							data-aos="fade-up"
 							data-aos-anchor-placement="center-bottom"
-						/>
+						>
+							<div
+								style={{
+									backgroundImage: `url(${Data[0]?.secondaryImage})`,
+									backgroundSize: "cover",
+
+									backgroundRepeat: "no-repeat",
+									width: "100%",
+									height: "100%",
+								}}
+							></div>
+						</div>
 					</div>
 				</div>
 			</div>

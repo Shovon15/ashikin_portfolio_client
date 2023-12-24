@@ -7,16 +7,21 @@ export const DashboardContextProvider = ({ children }) => {
 	const [screenSize, setScreenSize] = useState(undefined);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+	const [scrollPosition, setScrollPosition] = useState(0);
+
 	// --------drawer--------------
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
 	useEffect(() => {
-		const handleResize = () => setScreenSize(window.innerWidth);
-		window.addEventListener("resize", handleResize);
+		window.addEventListener("resize", () => setScreenSize(window.innerWidth));
 
-		handleResize();
-		return () => window.removeEventListener("resize", handleResize);
+		window.addEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
+
+		return () => {
+			window.removeEventListener("resize", () => setScreenSize(window.innerWidth));
+			window.removeEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
+		};
 	}, []);
 
 	useEffect(() => {
@@ -32,6 +37,7 @@ export const DashboardContextProvider = ({ children }) => {
 		setIsSidebarOpen,
 		isDrawerOpen,
 		toggleDrawer,
+		scrollPosition,
 	};
 	return <DashboardContext.Provider value={dashboardInfo}>{children}</DashboardContext.Provider>;
 };
