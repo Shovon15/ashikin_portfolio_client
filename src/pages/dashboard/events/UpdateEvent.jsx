@@ -92,7 +92,7 @@ const UpdateEvent = () => {
 		try {
 			const res = await put(`events/${id}`, formData);
 			showSuccessToast(res.data?.message);
-			navigate("/dashboard/events");
+			navigate("/dashboard/programs");
 		} catch (err) {
 			setShowErrorState(false);
 			showErrorToast(err?.response?.data.message || "An error occurred");
@@ -121,7 +121,7 @@ const UpdateEvent = () => {
 			<GoBackButton />
 			<HeaderText className="py-5">Update Program</HeaderText>
 			<form onSubmit={handleEventForm}>
-				<div className="w-full md:w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-full md:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-text  py-2">
 							Program Title <span className="text-red-500">*</span>
@@ -235,12 +235,12 @@ const UpdateEvent = () => {
 							</>
 						)}
 					</div>
-				</div>
-				<div className="my-5 flex flex-col ">
-					<label className="font-bold text-color-text py-2">
-						Select date and time of event <span className="text-red-500">*</span>
-					</label>
-					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
+					<div className="my-5 flex flex-col ">
+						<label className="font-bold text-color-text py-2">
+							Select date and time of event <span className="text-red-500">*</span>
+						</label>
+						<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
+					</div>
 				</div>
 
 				<div className="h-auto">

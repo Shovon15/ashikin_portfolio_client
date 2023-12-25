@@ -12,7 +12,7 @@ import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { DataContext } from "../../../context/DataContext";
 
 const UpdateService = () => {
-	const [serviceData, setServiceData] = useState("");
+	const [serviceData, setServiceData] = useState([]);
 
 	const [heading, setHeading] = useState("");
 	const [title, setTitle] = useState("");
@@ -37,9 +37,9 @@ const UpdateService = () => {
 			setIsLoading(false);
 		};
 		fetchEvent();
-	});
+	}, []);
 
-	console.log(serviceData, "serviceData");
+	// console.log(serviceData, "serviceData");
 
 	useEffect(() => {
 		if (Object.keys(serviceData).length !== 0) {
@@ -107,7 +107,7 @@ const UpdateService = () => {
 			</div>
 			<HeaderText>Create Service</HeaderText>
 			<form onSubmit={handleSubmit}>
-				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-text  py-2">
 							Service Heading <span className="text-red-500">*</span>

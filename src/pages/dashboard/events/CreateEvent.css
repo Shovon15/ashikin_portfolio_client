@@ -20,19 +20,21 @@
     border-color: var(--border-color)!important;
 }
 
-
+.react-datetime-picker{
+    width: 100% !important;
+}
 .react-datetime-picker__wrapper{
-    /* max-width: 50%; */
+width: 100%;
 padding: 5px;
 border-color: var(--border-color)!important;
 border-radius: 5px;
 }
 
-@media screen and (min-width: 720px) {
+/* @media screen and (min-width: 720px) {
     .react-datetime-picker__wrapper {
         max-width: 50%;
     }
-}
+} */
 
 @media screen and (max-width: 719px) {
     .react-datetime-picker__wrapper {

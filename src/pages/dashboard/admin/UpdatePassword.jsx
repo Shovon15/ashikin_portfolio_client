@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import Cookies from "js-cookie";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const UpdatePassword = () => {
 	const [oldPassword, setOldPassword] = useState("");
@@ -16,7 +17,6 @@ const UpdatePassword = () => {
 
 	const [showOldPassword, setShowOldPassword] = useState(false);
 	const [showNewPassword, setShowNewPassword] = useState(false);
-	const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
 
 	const cookies = Cookies.get("token");
 
@@ -57,26 +57,28 @@ const UpdatePassword = () => {
 
 	const handleToggleOldPassword = () => setShowOldPassword(!showOldPassword);
 	const handleToggleNewPassword = () => setShowNewPassword(!showNewPassword);
-	const handleToggleConfirmNewPassword = () => setShowConfirmNewPassword(!showConfirmNewPassword);
 
 	return (
 		<div>
 			<GoBackButton />
-			<HeaderText className="py-5">Password Update</HeaderText>
+			<HeaderText className="py-5 md:py-10">Password Update</HeaderText>
 			<form onSubmit={handleEventForm} className="mx-5 md:mx-10">
-				<div className="w-full md:w-1/2 lg:max-w-[20rem] mx-auto flex flex-col  gap-5">
+				<div className="w-full md:w-1/2  lg:max-w-[20rem] mx-auto flex flex-col  gap-5">
 					<div className="relative">
 						<Input
 							type={showOldPassword ? "text" : "password"}
 							size="lg"
-							color="blue"
+							color="yellow"
 							value={oldPassword}
 							label="Old Password"
-							className="text-gray-800 dark:text-white  "
+							className="text-color-text"
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setOldPassword(ev.target.value)}
 						/>
-						<div className="cursor-pointer absolute top-3 right-4 z-30" onClick={handleToggleOldPassword}>
+						<div
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							onClick={handleToggleOldPassword}
+						>
 							{showOldPassword ? <PiEyeClosed /> : <PiEye />}
 						</div>
 					</div>
@@ -84,33 +86,36 @@ const UpdatePassword = () => {
 						<Input
 							type={showNewPassword ? "text" : "password"}
 							size="lg"
-							color="blue"
+							color="yellow"
 							value={newPassword}
 							label="New Password"
-							className="text-gray-800 dark:text-white"
+							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setNewPassword(ev.target.value)}
 						/>
-						<div className="cursor-pointer absolute top-3 right-4 z-30" onClick={handleToggleNewPassword}>
+						<div
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							onClick={handleToggleNewPassword}
+						>
 							{showNewPassword ? <PiEyeClosed /> : <PiEye />}
 						</div>
 					</div>
 					<div className="relative">
 						<Input
-							type={showConfirmNewPassword ? "text" : "password"}
+							type={showNewPassword ? "text" : "password"}
 							size="lg"
-							color="blue"
+							color="yellow"
 							value={confirmNewPassword}
 							label="Confirm New Password"
-							className="text-gray-800 dark:text-white"
+							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setConfirmNewPassword(ev.target.value)}
 						/>
 						<div
-							className="cursor-pointer absolute top-3 right-4 z-30"
-							onClick={handleToggleConfirmNewPassword}
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							onClick={handleToggleNewPassword}
 						>
-							{showConfirmNewPassword ? <PiEyeClosed /> : <PiEye />}
+							{showNewPassword ? <PiEyeClosed /> : <PiEye />}
 						</div>
 					</div>
 					<Button
@@ -118,9 +123,12 @@ const UpdatePassword = () => {
 						variant="text"
 						className="bg-buttonPrimary hover:bg-buttonHover active:bg-buttonActive text-white capitalize text-lg py-2 w-full"
 						disabled={isLoading}
-					>
-						{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Update"}
-					</Button>
+					></Button>
+					<div className="mx-auto">
+						<PrimaryButton buttonType={"submit"} className="px-12">
+							{isLoading ? <Spinner color="yellow" className="mx-auto" /> : "Update"}
+						</PrimaryButton>
+					</div>
 				</div>
 			</form>
 		</div>

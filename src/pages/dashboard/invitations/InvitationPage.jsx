@@ -9,6 +9,7 @@ import { VscScreenFull } from "react-icons/vsc";
 import { useState } from "react";
 import ConfirmationModal from "../../../helper/ConfirmationModal";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
+import GoBackButton from "../../../components/Button/GoBackButton";
 
 const InvitationPage = () => {
 	const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -55,6 +56,9 @@ const InvitationPage = () => {
 	// console.log(isLoading);
 	return (
 		<div>
+			<div>
+				<GoBackButton />
+			</div>
 			<HeaderText>Invitaitons</HeaderText>
 			{invitationData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">

@@ -47,7 +47,7 @@ const ExperianceSection = () => {
 					Performers and Titans of Industryo
 				</Typography>
 			</div>
-			<div className="pt-[8rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
+			<div className="pt-[9rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
 				{Data.map(({ icon, title, desc, link }) => (
 					<a key={title} href={link} target="_blank" rel="noopener noreferrer" data-aos="zoom-in">
 						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3">

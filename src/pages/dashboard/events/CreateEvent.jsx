@@ -62,7 +62,7 @@ const CreateEvent = () => {
 		try {
 			const res = await post("events/write-event", formData);
 			showSuccessToast(res.data?.message);
-			navigate("/dashboard/events");
+			navigate("/dashboard/programs");
 		} catch (err) {
 			showErrorToast(err?.response?.data.message || "An error occurred");
 		} finally {
@@ -86,7 +86,7 @@ const CreateEvent = () => {
 			<GoBackButton />
 			<HeaderText className="py-5">Create Programs</HeaderText>
 			<form onSubmit={handleEventForm}>
-				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-text  py-2">
 							Program Title <span className="text-red-500">*</span>
@@ -180,12 +180,12 @@ const CreateEvent = () => {
 							)}
 						</section>
 					</div>
-				</div>
-				<div className="my-5 flex flex-col ">
-					<label className="font-bold text-color-text py-2">
-						Select date and time of Program <span className="text-red-500">*</span>
-					</label>
-					<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
+					<div className="my-5 flex flex-col">
+						<label className="font-bold text-color-text py-2">
+							Select date and time of Program <span className="text-red-500">*</span>
+						</label>
+						<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
+					</div>
 				</div>
 				{/* text-editor */}
 				<div className="h-auto">

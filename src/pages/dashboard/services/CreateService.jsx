@@ -76,7 +76,7 @@ const CreateService = () => {
 			</div>
 			<HeaderText>Create Service</HeaderText>
 			<form onSubmit={handleSubmit}>
-				<div className="w-full lg:w-1/2 flex flex-col gap-2 pb-2">
+				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-text  py-2">
 							Service Heading <span className="text-red-500">*</span>
