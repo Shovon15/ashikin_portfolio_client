@@ -117,11 +117,11 @@ const ReviewManage = () => {
 													height="60"
 												/>
 											</td>
-											<td className="p-2 ">
+											<td style={{ minWidth: "300px" }} className="p-2 ">
 												<p className="font-bold">{reviewText}</p>
 											</td>
 
-											<td className="p-2 flex gap-3 justify-center items-center ">
+											<td className="p-2 flex gap-3 my-auto ">
 												<Link to={`update-review/${_id}`}>
 													<Button
 														variant="outlined"

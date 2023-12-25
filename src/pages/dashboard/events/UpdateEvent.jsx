@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-import { Button, IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
+import { IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import DateTimePicker from "react-datetime-picker";
@@ -25,7 +24,6 @@ const UpdateEvent = () => {
 	const [image, setImage] = useState(null);
 	const [dateTime, setDateTime] = useState("");
 	const [content, setContent] = useState("");
-	const [showErrorState, setShowErrorState] = useState(false);
 	const [fileName, setFileName] = useState("No file selected");
 	const [isLoading, setIsLoading] = useState(false);
 	const [isDataLoading, setIsDataLoading] = useState(false);
@@ -82,19 +80,16 @@ const UpdateEvent = () => {
 
 		if (Object.values(formData).some((field) => !field)) {
 			// Handle the case where data is missing
-			setShowErrorState(true);
 			setIsLoading(false);
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
-		setShowErrorState(false);
 
 		try {
 			const res = await put(`events/${id}`, formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/programs");
 		} catch (err) {
-			setShowErrorState(false);
 			showErrorToast(err?.response?.data.message || "An error occurred");
 		} finally {
 			setIsLoading(false);
@@ -245,13 +240,13 @@ const UpdateEvent = () => {
 
 				<div className="h-auto">
 					<p className="font-bold text-color-text dark:text-white py-2">
-						Event Text <span className="text-red-500">*</span>
+						Event Content <span className="text-red-500">*</span>
 					</p>
 					<Editor
 						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
 						onInit={(evt, editor) => {
 							editorRef.current = editor;
-							editor.on("change", (changeEvent) => setContent(editor.getContent()));
+							editor.on("change", () => setContent(editor.getContent()));
 						}}
 						init={{
 							plugins:

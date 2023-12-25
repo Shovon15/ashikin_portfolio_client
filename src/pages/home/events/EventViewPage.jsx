@@ -30,9 +30,9 @@ const EventViewPage = () => {
 		fetchData();
 	}, []);
 
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 
 	const { cover, content, dateTime, title, eventType } = eventsData || {
 		cover: "",
@@ -71,7 +71,10 @@ const EventViewPage = () => {
 					<GoBackButton />
 				</div>
 				<div className="max-w-[800px] mx-auto p-5 lg:py-10 pt-16 md:pt-0">
-					<div className="flex justify-center text-color-text" data-aos="zoom-in">
+					<div
+						className="flex justify-center text-color-text"
+						//  data-aos="zoom-in"
+					>
 						<Typography variant="h6" className=" ">
 							{formattedDate}
 						</Typography>
@@ -85,11 +88,17 @@ const EventViewPage = () => {
 							{eventType} Program
 						</Typography>
 					</div>
-					<p data-aos="zoom-in" className="text-center text-color-header font-bold text-4xl py-5 ">
+					<p
+						// data-aos="zoom-in"
+						className="text-center text-color-header font-bold text-4xl py-5 "
+					>
 						{title}
 					</p>
 
-					<div className="flex justify-center" data-aos="zoom-in">
+					<div
+						className="flex justify-center"
+						// data-aos="zoom-in"
+					>
 						<Link to={`/program/register/${id}`}>
 							<ButtonOutline>Register now</ButtonOutline>
 						</Link>
@@ -99,16 +108,23 @@ const EventViewPage = () => {
 							src={cover}
 							alt="card-image"
 							className=" object-cover h-full rounded-xl"
-							data-aos="flip-left"
+							// data-aos="flip-left"
 						/>
 					</div>
 				</div>
 			</div>
 			<div className="max-w-[800px] mx-auto mt-[10rem] flex flex-col justify-center pt-5 pb-10 px-5 lg:px-10 ">
-				<Typography variant="h3" className="py-2 text-color-header" data-aos="zoom-in">
+				<Typography
+					variant="h3"
+					className="py-2 text-color-header"
+					//  data-aos="zoom-in"
+				>
 					Time Schedule
 				</Typography>
-				<div className="flex flex-col  gap-2 text-color-text" data-aos="zoom-in">
+				<div
+					className="flex flex-col  gap-2 text-color-text"
+					// data-aos="zoom-in"
+				>
 					<Typography variant="h6" className="flex gap-2 items-center">
 						<BsCalendar2Check className="w-4 h-4" />
 						{formattedDate}
@@ -118,7 +134,11 @@ const EventViewPage = () => {
 						{formattedTime}
 					</Typography>
 				</div>
-				<Typography variant="h3" className="pt-5 text-color-header" data-aos="zoom-in">
+				<Typography
+					variant="h3"
+					className="pt-5 text-color-header"
+					//  data-aos="zoom-in"
+				>
 					About The Programm
 				</Typography>
 				<div
@@ -126,7 +146,7 @@ const EventViewPage = () => {
 						__html: shouldShowButton && !showMore ? `${content.slice(0, 600)} ...` : content,
 					}}
 					className="pb-2 transition text-color-text "
-					data-aos="fade-up"
+					// data-aos="fade-up"
 				/>
 				{shouldShowButton && !showMore && (
 					<div className="flex justify-end mx-10">
@@ -152,7 +172,10 @@ const EventViewPage = () => {
 						</Button>
 					</div>
 				)}
-				<div className="py-5 flex justify-center" data-aos="zoom-in">
+				<div
+					className="py-5 flex justify-center"
+					// data-aos="zoom-in"
+				>
 					<Link to={`/program/register/${id}`}>
 						<PrimaryButton>Register Now</PrimaryButton>
 					</Link>

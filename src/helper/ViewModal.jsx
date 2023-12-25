@@ -33,7 +33,9 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 				<DialogBody>
 					<div className="flex justify-between gap-10">
 						<div></div>
-						<h1 className="text-xl font-bold text-center text-color-header">{content?.title}</h1>
+						<h1 className="text-2xl md:text-3xl font-bold text-center text-color-header py-5 capitalize">
+							{content?.title}
+						</h1>
 						<IconButton
 							size="sm"
 							variant="text"
@@ -53,24 +55,28 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 						</IconButton>
 					</div>
 
-					<Typography
-						variant="h6"
-						className={`${
-							content?.eventType === "free" ? "text-green-500" : "text-yellow-800"
-						} font-bold text-center`}
-					>
-						{content?.eventType?.charAt(0).toUpperCase() + content?.eventType?.slice(1)}
-					</Typography>
-					<Typography variant="small" className="font-bold text-center  text-color-text py-2">
-						{new Date(content?.dateTime).toLocaleString("en-US", {
-							weekday: "short",
-							year: "numeric",
-							month: "short",
-							day: "numeric",
-							hour: "numeric",
-							minute: "numeric",
-						})}
-					</Typography>
+					{content?.eventType && (
+						<Typography
+							variant="h6"
+							className={`${
+								content?.eventType === "free" ? "text-green-500" : "text-yellow-800"
+							} font-bold text-center`}
+						>
+							{content?.eventType?.charAt(0).toUpperCase() + content?.eventType?.slice(1)}
+						</Typography>
+					)}
+					{content?.dateTime && (
+						<Typography variant="small" className="font-bold text-center  text-color-text py-2">
+							{new Date(content?.dateTime).toLocaleString("en-US", {
+								weekday: "short",
+								year: "numeric",
+								month: "short",
+								day: "numeric",
+								hour: "numeric",
+								minute: "numeric",
+							})}
+						</Typography>
+					)}
 					{/* <img  alt="..."/> */}
 					<img
 						src={content?.cover}

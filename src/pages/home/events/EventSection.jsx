@@ -76,9 +76,9 @@ const EventSection = () => {
 		}
 	}, [tabValue, eventData]);
 
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 
 	if (isLoading) {
 		return <LoadingSkeleton />;
@@ -94,7 +94,7 @@ const EventSection = () => {
 							<TabsHeader
 								className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
 						  bg-inherit items-center mb-5 py-3 px-5"
-								data-aos="zoom-in"
+								// data-aos="zoom-in"
 								indicatorProps={{
 									className: "shadow-none bg-transparent",
 								}}
@@ -139,8 +139,11 @@ const EventSection = () => {
 								</div>
 							</TabsBody>
 						</Tabs>
-						<div className="text-center my-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-							<Link to="/events">
+						<div
+							className="text-center my-5"
+							//  data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+						>
+							<Link to="/programs">
 								<PrimaryButton className="px-10 mt-5">View More</PrimaryButton>
 							</Link>
 						</div>

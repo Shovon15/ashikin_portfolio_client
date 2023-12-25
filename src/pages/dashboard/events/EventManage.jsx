@@ -150,13 +150,13 @@ const EventManage = () => {
 											index
 										) => (
 											<tr key={_id} className="even:bg-color-secondary text-center">
-												<td className="p-2 w-5">
+												<td className="p-2">
 													<p className="font-bold">{String(index + 1) + "."}</p>
 												</td>
 												<td className="p-2 ">
 													<p className="font-bold">{title}</p>
 												</td>
-												<td className="p-2 w-32">
+												<td className="p-2">
 													<img
 														src={cover}
 														alt="card-image"
@@ -165,7 +165,7 @@ const EventManage = () => {
 														height="60"
 													/>
 												</td>
-												<td className="p-2 w-32">
+												<td className="p-2 ">
 													<p className="font-bold">
 														{new Date(dateTime).toLocaleString("en-US", {
 															weekday: "short",
@@ -177,7 +177,7 @@ const EventManage = () => {
 														})}
 													</p>
 												</td>
-												<td className="p-2 w-32">
+												<td className="p-2 ">
 													<div>
 														{register === 0 ? (
 															<p>0</p>
@@ -190,7 +190,7 @@ const EventManage = () => {
 														)}
 													</div>
 												</td>
-												<td className="p-2 w-24">
+												<td className="p-2 ">
 													<p
 														className={`${
 															eventType === "free" ? "text-green-500" : "text-yellow-800"
@@ -200,7 +200,7 @@ const EventManage = () => {
 															String(eventType)?.slice(1)}
 													</p>
 												</td>
-												<td className="p-2 w-32">
+												<td className="p-2 ">
 													<p>
 														<Button
 															onClick={() =>
@@ -218,7 +218,7 @@ const EventManage = () => {
 														</Button>
 													</p>
 												</td>
-												<td className="p-2 flex gap-3 justify-center items-center w-44">
+												<td className="p-2 flex gap-3 justify-center items-center ">
 													<Button
 														variant="outlined"
 														// size="sm"

@@ -33,10 +33,20 @@ export const DataContextProvider = ({ children }) => {
 		}
 	};
 
+	const fetchBlogById = async (id) => {
+		try {
+			const response = await get("blogs/" + id, id);
+			return response.data?.payload?.data;
+		} catch (error) {
+			showErrorToast(error.message);
+		}
+	};
+
 	const dataInfo = {
 		fetchEventData,
 		fetchEventById,
 		fetchServiceById,
+		fetchBlogById,
 	};
 	return <DataContext.Provider value={dataInfo}>{children}</DataContext.Provider>;
 };

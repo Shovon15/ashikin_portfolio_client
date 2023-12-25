@@ -5,9 +5,9 @@ import Aos from "aos";
 import { Typography } from "@material-tailwind/react";
 
 const Banner = () => {
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 
 	const Data = [
 		{
@@ -21,10 +21,17 @@ const Banner = () => {
 	return (
 		<div className="flex flex-col lg:flex-row bg-color-primary">
 			<div className="w-full lg:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
-				<p data-aos="fade-up" className="font-bold text-3xl md:text-4xl lg:text-5xl text-color-header ">
+				<p
+					//  data-aos="fade-up"
+					className="font-bold text-3xl md:text-4xl lg:text-5xl text-color-header "
+				>
 					{Data[0]?.header}
 				</p>
-				<Typography variant="paragraph" data-aos="fade-up" className="text-color-text text-justify ">
+				<Typography
+					variant="paragraph"
+					// data-aos="fade-up"
+					className="text-color-text text-justify "
+				>
 					{Data[0]?.text}
 				</Typography>
 			</div>
@@ -45,8 +52,8 @@ const Banner = () => {
 				</div>
 				<div
 					className="absolute top-[20px] md:top-[40px] lg:top-[70px] left-[4rem] md:left-[20rem] lg:left-0 w-[7rem] h-[10rem] md:w-[12rem] md:h-[16rem] lg:w-[19rem] lg:h-[25rem]"
-					data-aos="fade-up"
-					data-aos-anchor-placement="center-bottom"
+					// data-aos="fade-up"
+					// data-aos-anchor-placement="center-bottom"
 				>
 					<div
 						style={{

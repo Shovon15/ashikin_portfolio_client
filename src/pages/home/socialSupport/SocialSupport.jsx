@@ -9,9 +9,9 @@ import image3 from "../../../assets/image/anti-harasment.jpg";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const SocialSupport = () => {
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 	const iconData = [
 		{
 			id: 1,
@@ -63,13 +63,19 @@ const SocialSupport = () => {
 				<HeaderText>Ashikin Alam Social Support</HeaderText>
 				<div className="flex gap-5 items-center justify-center m-5">
 					{iconData.map((icon) => (
-						<a href={icon.link} target="_blank" rel="noopener noreferrer" key={icon.id} data-aos="zoom-in">
+						<a
+							href={icon.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							key={icon.id}
+							// data-aos="zoom-in"
+						>
 							<div className="relative transition-transform cursor-pointer z-10 transform hover:scale-110">
 								<img
 									src={icon.original}
 									alt="..."
 									className="w-12 h-12 rounded-full shadow-xl"
-									data-aos="zoom-in"
+									// data-aos="zoom-in"
 								/>
 							</div>
 						</a>
@@ -79,8 +85,8 @@ const SocialSupport = () => {
 			<div className="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
 				{supportData.map(({ id, icon, title, desc }) => (
 					<div
-						data-aos="flip-left"
-						data-aos-anchor-placement="center-bottom"
+						// data-aos="flip-left"
+						// data-aos-anchor-placement="center-bottom"
 						key={id}
 						className="bg-color-secondary p-4 rounded-lg shadow-lg hover:shadow-xl h-[23rem] "
 					>

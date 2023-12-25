@@ -9,9 +9,9 @@ const GoBackButton = () => {
 	const goBack = () => {
 		navigate(-1);
 	};
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 
 	return (
 		<Button

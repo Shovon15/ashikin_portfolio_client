@@ -7,7 +7,6 @@ import EventManage from "../../pages/dashboard/events/EventManage";
 import BlogManage from "../../pages/dashboard/blogs/BlogManage";
 import CreateEvent from "../../pages/dashboard/events/CreateEvent";
 import PrivateRoute from "../privateRoute/PrivateRoute";
-import { Button } from "@material-tailwind/react";
 import EventViewPage from "../../pages/home/events/EventViewPage";
 import EventRegister from "../../pages/home/events/EventRegister";
 import EventsPage from "../../pages/home/events/EventsPage";
@@ -32,6 +31,9 @@ import UpdateBanner from "../../pages/dashboard/banner/UpdateBanner";
 import ReviewManage from "../../pages/dashboard/review/ReviewManage";
 import WriteReview from "../../pages/dashboard/review/WriteReview";
 import UpdateReview from "../../pages/dashboard/review/UpdateReview";
+import UpdateBlog from "../../pages/dashboard/blogs/UpdateBlog";
+import PrimaryButton from "../../components/Button/PrimaryButton";
+import { PiSmileySadThin } from "react-icons/pi";
 
 const MainRoutes = () => {
 	return (
@@ -47,10 +49,12 @@ const MainRoutes = () => {
 					<Route path="program/:id" element={<EventViewPage />} />
 					<Route path="program/register/:id" element={<EventRegister />} />
 				</Route>
-				{/* ---------------------------admin route--------------------- */}
+
 				<Route path="/login" element={<Login />} />
 				<Route path="/forget-password" element={<ForgetPassword />} />
 				<Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
+				{/* ---------------------------admin route--------------------- */}
 				<Route
 					element={
 						<PrivateRoute>
@@ -65,11 +69,14 @@ const MainRoutes = () => {
 						<Route path="profile-update" element={<UpdateProfile />} />
 						<Route path="password-update" element={<UpdatePassword />} />
 
-						<Route path="blogs" element={<BlogManage />} />
-						<Route path="blogs/write-blog" element={<CreateBlog />} />
-
 						<Route path="invitations" element={<InvitationPage />} />
 						<Route path="invitations/:id" element={<InvitationDetails />} />
+
+						<Route path="blogs">
+							<Route path="" element={<BlogManage />} />
+							<Route path="write-blog" element={<CreateBlog />} />
+							<Route path="update-blog/:id" element={<UpdateBlog />} />
+						</Route>
 
 						<Route path="banner">
 							<Route path="" element={<BannerManage />} />
@@ -99,12 +106,11 @@ const MainRoutes = () => {
 				<Route
 					path="*"
 					element={
-						<div className="flex flex-col gap-5 justify-center items-center min-h-screen">
-							<p className="text-center text-textPrimary font-bold text-3xl">Page not found</p>
+						<div className="flex flex-col gap-3 justify-center items-center min-h-screen">
+							<p className="text-center text-color-text font-bold text-3xl">Page not found</p>
+							<PiSmileySadThin className="text-color-text w-12 h-12" />
 							<Link to="/">
-								<Button className="bg-gradient-to-r from-cyan-500 to-blue-700 px-8 dark:text-white text-black">
-									home
-								</Button>
+								<PrimaryButton>Home</PrimaryButton>
 							</Link>
 						</div>
 					}

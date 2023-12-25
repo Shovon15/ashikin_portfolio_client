@@ -16,9 +16,9 @@ export function EventCard({ eventData }) {
 		eventType: "",
 	};
 
-	useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+	// useEffect(() => {
+	// 	Aos.init({ duration: 1000 });
+	// }, []);
 
 	const dateAndTime = new Date(dateTime);
 
@@ -51,7 +51,7 @@ export function EventCard({ eventData }) {
 			</div>
 			<CardHeader floated={false} className="relative h-56 m-0 rounded-b-none shadow-none  bg-inherit">
 				<img
-					data-aos="flip-left"
+					// data-aos="flip-left"
 					src={cover}
 					alt="card-image"
 					className="object-fill h-full rounded-2xl duration-300 hover:scale-110 rounded-b-none"
@@ -61,15 +61,18 @@ export function EventCard({ eventData }) {
 			</CardHeader>
 			<CardBody className="flex flex-col items-center">
 				<Typography
-					data-aos="zoom-in"
-					data-aos-anchor-placement="top-bottom"
+					// data-aos="zoom-in"
+					// data-aos-anchor-placement="top-bottom"
 					variant="h5"
 					className="mb-2 font-bold text-color-header h-14 overflow-y-auto my-auto text-center"
 				>
 					{title}
 				</Typography>
 
-				<div data-aos="zoom-in" data-aos-anchor-placement="top-bottom" className="flex justify-center">
+				<div
+					// data-aos="zoom-in" data-aos-anchor-placement="top-bottom"
+					className="flex justify-center"
+				>
 					<Typography variant="h6" className="text-color-text">
 						{formattedDate}
 					</Typography>
@@ -79,7 +82,10 @@ export function EventCard({ eventData }) {
 					</Typography>
 				</div>
 			</CardBody>
-			<CardFooter className="pt-0 mx-auto" data-aos="zoom-in" data-aos-anchor-placement="top-bottom">
+			<CardFooter
+				className="pt-0 mx-auto"
+				// data-aos="zoom-in" data-aos-anchor-placement="top-bottom"
+			>
 				{_id && (
 					<Link to={`/program/${_id}`}>
 						<ButtonOutline className="px-8">Details</ButtonOutline>
