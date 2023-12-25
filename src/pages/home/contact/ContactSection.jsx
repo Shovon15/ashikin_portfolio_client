@@ -22,6 +22,7 @@ const ContactSection = () => {
 					// data-aos="flip-down"
 					src={speakerImg}
 					alt="..."
+					className="animation-image"
 				/>
 			</div>
 		</div>

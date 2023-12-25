@@ -93,7 +93,7 @@ const EventSection = () => {
 						<Tabs id="custom-animation" value="all">
 							<TabsHeader
 								className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
-						  bg-inherit items-center mb-5 py-3 px-5"
+						  bg-inherit items-center mb-5 py-3 px-5 animation-body"
 								// data-aos="zoom-in"
 								indicatorProps={{
 									className: "shadow-none bg-transparent",

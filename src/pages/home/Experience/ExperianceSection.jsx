@@ -37,7 +37,7 @@ const ExperianceSection = () => {
 			<div
 				// data-aos="zoom-in"
 				// data-aos-anchor-placement="top-bottom"
-				className="absolute -mt-5 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl"
+				className="absolute -mt-5 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl "
 			>
 				<Typography
 					variant="paragraph"
@@ -56,7 +56,7 @@ const ExperianceSection = () => {
 						rel="noopener noreferrer"
 						// data-aos="zoom-in"
 					>
-						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3">
+						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-body">
 							<img src={icon} alt="icon" className="w-12 h-12" />
 							<div>
 								<Typography variant="h5" className="font-bold text-color-header">

@@ -13,7 +13,7 @@ const PrimaryButton = ({
 	return (
 		<Button
 			type={buttonType}
-			className={`px-6 py-3 bg-color-button text-color-text hover:bg-color-buttonHover rounded-none  active:bg-color-button capitalize text-md ${className}  ${
+			className={`px-6 py-3 bg-color-button text-color-text hover:bg-color-buttonHover rounded-none  active:bg-color-button capitalize text-md animation-button ${className}  ${
 				disabled && "cursor-not-allowed"
 			}`}
 			onClick={onClick}

@@ -8,7 +8,6 @@
     :root {
         --background-color: #0A3A63;
         --background-color-secondary: #063359;
-        /* --background-color-secondary: #144d7a; */
         --text-header-color: #CCA531;
         --border-color: #CCA531;
         --text-color: #FFFFFF;
@@ -26,6 +25,9 @@
         @apply text-color-text
     }
 }
+html {
+    scroll-behavior: smooth;
+  }
 
 body{
     margin: 0;
@@ -45,6 +47,11 @@ body{
     display: flex;
     justify-content:flex-end;
     align-items: center;
+}
+
+/* this is for drawer blur backdrop..  */
+.backdrop-blur-sm{
+    position:fixed !important;
 }
 
 
@@ -80,11 +87,6 @@ border-color: var(--border-color)!important;
 border-radius: 5px;
 }
 
-/* @media screen and (min-width: 720px) {
-    .react-datetime-picker__wrapper {
-        max-width: 50%;
-    }
-} */
 
 @media screen and (max-width: 719px) {
     .react-datetime-picker__wrapper {
@@ -110,6 +112,7 @@ border-radius: 5px;
     background: var(--background-color) !important;
 }
 /* -------------------------------- */
+
 /* select background */
 .bg-white{
 background-color: var(--background-color-secondary) !important;
@@ -117,21 +120,14 @@ border:none !important;
 
 }
 
+
 /* -------------------------text editor--------------- */
-
-
-
-
 /* tinymce brand name hide */
 .tox-statusbar__branding{
     display: none;
 }
 
-/* this is for drawer blur backdrop..  */
-.backdrop-blur-sm{
-    position:fixed !important;
-}
-
+/* ------------------scroll bar--------------- */
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -152,6 +148,47 @@ border:none !important;
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: var(--button-color); 
+  }
+
+  /* ----------------animations----------- */
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animation-image{
+        
+        animation:fade-in linear;
+        animation-timeline: view();
+        /* animation-range-start:0px ;
+        animation-range-end:400px ; */
+        animation-range:entry;
+      }
+    
+      .animation-header{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 2ms;
+        animation-range-start:0px ;
+        animation-range-end:250px ;
+      }
+      .animation-button{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 8ms;
+        animation-range-start:0px ;
+        animation-range-end:150px ;
+      }
+      .animation-body{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 8ms;
+        animation-range-start:10px ;
+        animation-range-end:200px ;
+      }
+    
+     
+      @keyframes fade-in {
+        from {scale: .4; opacity: 0;};
+        to {scale: 1; opacity: 1;}
+      }
   }
 
 

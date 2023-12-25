@@ -4,7 +4,7 @@ import AOS from "aos";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { Helmet } from "react-helmet-async";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { useQuery } from "@tanstack/react-query";
+
 import { get } from "../../../utils/fetchApi";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
@@ -12,15 +12,6 @@ const Services = () => {
 	const [hoveredItem, setHoveredItem] = useState(null);
 	const [serviceData, setServiceData] = useState([]);
 	const [isLaoding, setIsLoading] = useState(false);
-
-	// const { data: serviceData = [], isLoading } = useQuery({
-	// 	queryKey: ["serviceData"],
-	// 	queryFn: async () => {
-	// 		const res = await get("services/published");
-	// 		let data = await res.data.payload?.data;
-	// 		return data;
-	// 	},
-	// });
 
 	useEffect(() => {
 		const fetchData = async () => {

@@ -45,10 +45,10 @@ const ContactForm = () => {
 	return (
 		<div className="p-5 md:p-10">
 			<form onSubmit={handleSubmit(handleInvitation)}>
-				<div className="flex flex-col lg:flex-row gap-5">
+				<div className="flex flex-col lg:flex-row gap-5 ">
 					<div
 						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full"
+						className="flex flex-col gap-1 w-full  animation-header"
 					>
 						<Input
 							type="text"
@@ -65,7 +65,7 @@ const ContactForm = () => {
 					</div>
 					<div
 						// data-aos="fade-up"
-						className="flex flex-col gap-1 w-full"
+						className="flex flex-col gap-1 w-full  animation-header"
 					>
 						<Input
 							type="text"
@@ -85,7 +85,7 @@ const ContactForm = () => {
 					// data-aos="fade-up"
 					className="flex flex-col gap-5 py-5"
 				>
-					<div className="flex flex-col gap-1 w-full">
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
 							color="yellow"
@@ -101,7 +101,7 @@ const ContactForm = () => {
 					</div>
 					<div
 						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full"
+						className="flex flex-col gap-1 w-full  animation-header"
 					>
 						<Input
 							type="text"
@@ -118,7 +118,7 @@ const ContactForm = () => {
 					</div>
 					<div
 						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full"
+						className="flex flex-col gap-1 w-full  animation-header"
 					>
 						<Input
 							type="text"
@@ -137,7 +137,7 @@ const ContactForm = () => {
 					</div>
 					<div
 						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full"
+						className="flex flex-col gap-1 w-full  animation-header"
 					>
 						<Textarea
 							type="text"

@@ -10,7 +10,7 @@ const HeaderText = ({ className, children }) => {
 	return (
 		<p
 			// data-aos="zoom-in"
-			className={`${className} text-center font-bold text-3xl md:text-4xl text-color-header capitalize`}
+			className={`${className} text-center font-bold text-3xl md:text-4xl text-color-header capitalize animation-header`}
 		>
 			{children}
 		</p>

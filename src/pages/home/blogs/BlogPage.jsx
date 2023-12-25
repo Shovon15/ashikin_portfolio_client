@@ -58,31 +58,20 @@ const BlogPage = () => {
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet.</p>
+
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
 				</motion.div>
 
-				<motion.div initial={{ opacity: 0, scale: 0.5 }} animate={controls}>
+				<motion.div initial={{ opacity: 0, scale: 0.5 }} animate={controls} className="py-[100px]">
 					<h1>Your Animated Heading</h1>
 				</motion.div>
+				<p className="text-color-header font-bold text-4xl capitalize text-center animation-header">This is a geader</p>
+
+				{/* <div className="w-[800px] mx-auto animation">
+					<img src="https://picsum.photos/1000/500" alt="..." />
+				</div> */}
+				<div className="h-[3400px]"></div>
 			</div>
 		</>
 	);

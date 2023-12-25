@@ -24,7 +24,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="bg-color-primary !scroll-smooth">
+		<div className="bg-color-primary ">
 			{loading ? (
 				<LoadingSpinner />
 			) : (
