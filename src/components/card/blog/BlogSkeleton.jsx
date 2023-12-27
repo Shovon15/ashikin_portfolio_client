@@ -1,8 +1,8 @@
-const LoadingSkeleton = () => {
+const BlogSkeleton = () => {
 	return (
 		<div
 			role="status"
-			className="max-w-sm p-4 border border-[#063359] rounded shadow animate-pulse md:p-6  w-72 md:w-80 mx-auto mb-5 md:mb-0"
+			className="max-w-sm p-4 border border-[#063359] rounded shadow animate-pulse md:p-6  w-80 md:w-72 mx-auto mb-5 md:mb-0"
 		>
 			<div className="flex items-center justify-center h-40 mb-4 bg-color-secondary rounded ">
 				<svg
@@ -30,4 +30,4 @@ const LoadingSkeleton = () => {
 	);
 };
 
-export default LoadingSkeleton;
+export default BlogSkeleton;

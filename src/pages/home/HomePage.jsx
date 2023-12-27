@@ -20,7 +20,7 @@ const HomePage = () => {
 
 			<div className="max-w-[1560px] mx-auto ">
 				<Banner />
-				<ExperianceSection />
+				<ExperianceSection style={{ marginTop: "700px" }} />
 				<EventSection />
 				<BLogSection />
 				<ContactSection />

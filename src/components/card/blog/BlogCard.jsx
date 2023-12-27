@@ -1,25 +1,39 @@
 /* eslint-disable react/prop-types */
-import { Card, CardHeader, CardBody, Typography } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Typography, CardFooter } from "@material-tailwind/react";
 import ButtonOutline from "../../Button/ButtonOutline";
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
-	const { cover, title } = item;
+	const { _id, cover, title } = item;
 
 	return (
-		<Card className=" w-full h-full cursor-pointer shadow-none border hover:border-color-border ">
-			<CardHeader floated={false} color="blue-gray" className="relative h-56 rounded-b-none m-0">
-				<img className="duration-300 hover:scale-110 object-fit " src={cover} alt="card-image" />
+		<Card className="bg-color-secondary w-full h-auto max-w-[19rem] hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-blog-card">
+			<CardHeader floated={false} className="h-56 m-0 rounded-b-none shadow-none bg-inherit">
+				<img
+					// data-aos="flip-left"
+					src={cover}
+					alt="card-image"
+					className="object-fill h-full rounded-xl duration-300 hover:scale-110 rounded-b-none"
+					width="400"
+					height="200"
+				/>
 			</CardHeader>
-			<CardBody className="w-full  px-2 py-3 flex ">
-				<div className="w-4/6 px-2">
-					<Typography variant="h5" className="text-color-text">
-						{title}
-					</Typography>
-				</div>
-				<div>
-					<ButtonOutline>Details</ButtonOutline>
-				</div>
+			<CardBody className="mx-auto p-4">
+				<Typography
+					// data-aos="zoom-in"
+					// data-aos-anchor-placement="top-bottom"
+					className="mb-2 font-bold text-color-header h-16 overflow-y-auto my-auto text-center text-xl  normal-case"
+				>
+					{title}
+				</Typography>
 			</CardBody>
+			<CardFooter className="pt-0 mx-auto">
+				{_id && (
+					<Link to={`/blog/${_id}`}>
+						<ButtonOutline className="px-8">Details</ButtonOutline>
+					</Link>
+				)}
+			</CardFooter>
 		</Card>
 	);
 };

@@ -87,7 +87,7 @@ const EventSection = () => {
 	return (
 		<>
 			{eventData.length > 0 && (
-				<div className="p-5 mx-auto max-w-[1300px]">
+				<div className="p-5 ">
 					<HeaderText className="py-5">Upcoming Programs</HeaderText>
 					<div className="">
 						<Tabs id="custom-animation" value="all">

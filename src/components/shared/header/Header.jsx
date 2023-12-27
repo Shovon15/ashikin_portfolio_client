@@ -99,8 +99,8 @@ export function Header() {
 		<>
 			<Navbar
 				id="header"
-				className={`max-w-full sticky top-0 z-30 bg-color-primary border-none  rounded-none
-				 ${scrollPosition > 0 ? "shadow-xl py-0 header-scroll" : " bg-none shadow-none header"}`}
+				className={`max-w-full sticky top-0 z-30  border-none bg-color-secondary rounded-none
+				 ${scrollPosition > 0 ? "shadow-xl py-0 header-scroll" : "shadow-none header "}`}
 			>
 				<div className="flex justify-between items-center py-2 px-0 md:px-5 lg:px-10">
 					<div className="flex items-center ">

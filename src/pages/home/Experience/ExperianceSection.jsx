@@ -33,7 +33,7 @@ const ExperianceSection = () => {
 	];
 
 	return (
-		<div className=" relative p-0 md:p-10 bg-color-secondary">
+		<div className="relative p-0 md:p-10 bg-color-secondary z-20">
 			<div
 				// data-aos="zoom-in"
 				// data-aos-anchor-placement="top-bottom"

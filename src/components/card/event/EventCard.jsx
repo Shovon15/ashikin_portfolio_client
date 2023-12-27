@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import Aos from "aos";
 import ButtonOutline from "../../Button/ButtonOutline";
 import LoadingSkeleton from "../LoadingSkeleton";
 
@@ -41,7 +39,7 @@ export function EventCard({ eventData }) {
 	}
 
 	return (
-		<Card className="relative bg-color-secondary w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none ">
+		<Card className="relative bg-color-secondary w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-event-card">
 			<div
 				className={`absolute top-3 right-5 z-10 px-2 text-color-text text-lg rounded-md ${
 					eventType === "free" ? "bg-green-900" : "bg-orange-700"
@@ -54,7 +52,7 @@ export function EventCard({ eventData }) {
 					// data-aos="flip-left"
 					src={cover}
 					alt="card-image"
-					className="object-fill h-full rounded-2xl duration-300 hover:scale-110 rounded-b-none"
+					className="object-fill h-full rounded-xl duration-300 hover:scale-110 rounded-b-none"
 					width="400"
 					height="200"
 				/>

@@ -34,6 +34,7 @@ import UpdateReview from "../../pages/dashboard/review/UpdateReview";
 import UpdateBlog from "../../pages/dashboard/blogs/UpdateBlog";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import { PiSmileySadThin } from "react-icons/pi";
+import BlogViewPage from "../../pages/home/blogs/BlogViewPage";
 
 const MainRoutes = () => {
 	return (
@@ -43,11 +44,15 @@ const MainRoutes = () => {
 				{/* ---------------------------public route--------------------- */}
 				<Route element={<Main />}>
 					<Route path="/" element={<HomePage />} />
+
 					<Route path="programs" element={<EventsPage />} />
-					<Route path="services" element={<Services />} />
-					<Route path="blogs" element={<BlogPage />} />
 					<Route path="program/:id" element={<EventViewPage />} />
 					<Route path="program/register/:id" element={<EventRegister />} />
+
+					<Route path="services" element={<Services />} />
+
+					<Route path="blogs" element={<BlogPage />} />
+					<Route path="blog/:id" element={<BlogViewPage />} />
 				</Route>
 
 				<Route path="/login" element={<Login />} />

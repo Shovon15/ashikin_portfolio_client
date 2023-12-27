@@ -183,6 +183,27 @@ border:none !important;
         animation-range-start:10px ;
         animation-range-end:200px ;
       }
+      .animation-banner{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 8ms;
+        animation-range-start:1000px ;
+        animation-range-end:350px ;
+      }
+      .animation-event-card{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 8ms;
+        animation-range-start:0px ;
+        animation-range-end:350px ;
+      }
+      .animation-blog-card{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 8ms;
+        animation-range-start:0px ;
+        animation-range-end:350px ;
+      }
     
      
       @keyframes fade-in {

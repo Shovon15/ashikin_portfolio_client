@@ -3,7 +3,6 @@ import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Typography } from "@material-tailwind/react";
 import { DataContext } from "../../../context/DataContext";
-import Aos from "aos";
 
 import { RxDoubleArrowUp } from "react-icons/rx";
 import { BsClock } from "react-icons/bs";
@@ -30,10 +29,6 @@ const EventViewPage = () => {
 		fetchData();
 	}, []);
 
-	// useEffect(() => {
-	// 	Aos.init({ duration: 1000 });
-	// }, []);
-
 	const { cover, content, dateTime, title, eventType } = eventsData || {
 		cover: "",
 		content: "",
@@ -41,10 +36,6 @@ const EventViewPage = () => {
 		title: "",
 		eventType: "",
 	};
-
-	if (isLoading) {
-		return <LoadingSpinner />;
-	}
 
 	const dateAndTime = new Date(dateTime);
 	// -------------date-----------------------
@@ -61,8 +52,12 @@ const EventViewPage = () => {
 		minute: "numeric",
 	});
 	// ----------content---------------
-	const words = content.length;
+	const words = content?.length;
 	const shouldShowButton = words > 600;
+
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<>
@@ -107,8 +102,7 @@ const EventViewPage = () => {
 						<img
 							src={cover}
 							alt="card-image"
-							className=" object-cover h-full rounded-xl"
-							// data-aos="flip-left"
+							className=" object-cover h-full rounded-xl md:max-w-[500px]"
 						/>
 					</div>
 				</div>

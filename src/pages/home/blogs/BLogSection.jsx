@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get } from "../../../utils/fetchApi";
 import BlogCard from "../../../components/card/blog/BlogCard";
-import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
+import BlogSkeleton from "../../../components/card/blog/blogSkeleton";
 
 const BLogSection = () => {
 	const [blogData, setBlogData] = useState([]);
@@ -18,26 +18,36 @@ const BLogSection = () => {
 		};
 		fetchData();
 	}, []);
+
 	if (isLoading) {
-		<LoadingSkeleton />;
+		return (
+			<div className="flex flex-wrap gap-4 py-5">
+				<BlogSkeleton />
+				<BlogSkeleton />
+				<BlogSkeleton />
+				<BlogSkeleton />
+			</div>
+		);
 	}
 	return (
-		<div className=" px-5 md:px-10">
-			<HeaderText>Blog</HeaderText>
-			<div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-5 md:py-10">
-				{blogData &&
-					!isLoading &&
-					blogData.map((item) => (
-						<div key={item._id}>
-							<BlogCard item={item} />
-						</div>
-					))}
-			</div>
-			<div className="text-center py-5">
-				<Link to="/blogs">
-					<PrimaryButton className="px-10">View More</PrimaryButton>
-				</Link>
-			</div>
+		<div className="p-5">
+			{blogData.length > 0 && (
+				<>
+					<HeaderText className="py-5">Blog</HeaderText>
+					<div className="flex flex-wrap gap-4 justify-center py-5">
+						{blogData.map((item) => (
+							<div key={item._id}>
+								<BlogCard item={item} />
+							</div>
+						))}
+					</div>
+					<div className="text-center py-5">
+						<Link to="blogs">
+							<PrimaryButton className="px-10">View More</PrimaryButton>
+						</Link>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
