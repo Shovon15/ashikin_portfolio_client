@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get } from "../../../utils/fetchApi";
 import BlogCard from "../../../components/card/blog/BlogCard";
-import BlogSkeleton from "../../../components/card/blog/blogSkeleton";
+import BlogCardSkeletion from "../../../components/card/blog/BlogCardSkeletion";
 
 const BLogSection = () => {
 	const [blogData, setBlogData] = useState([]);
@@ -22,10 +22,10 @@ const BLogSection = () => {
 	if (isLoading) {
 		return (
 			<div className="flex flex-wrap gap-4 py-5">
-				<BlogSkeleton />
-				<BlogSkeleton />
-				<BlogSkeleton />
-				<BlogSkeleton />
+				<BlogCardSkeletion />
+				<BlogCardSkeletion />
+				<BlogCardSkeletion />
+				<BlogCardSkeletion />
 			</div>
 		);
 	}

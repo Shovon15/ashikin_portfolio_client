@@ -1,4 +1,4 @@
-const BlogSkeleton = () => {
+const BlogCardSkeletion = () => {
 	return (
 		<div
 			role="status"
@@ -30,4 +30,4 @@ const BlogSkeleton = () => {
 	);
 };
 
-export default BlogSkeleton;
+export default BlogCardSkeletion;
