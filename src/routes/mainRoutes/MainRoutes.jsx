@@ -35,6 +35,7 @@ import UpdateBlog from "../../pages/dashboard/blogs/UpdateBlog";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import { PiSmileySadThin } from "react-icons/pi";
 import BlogViewPage from "../../pages/home/blogs/BlogViewPage";
+import CreateBanner from "../../pages/dashboard/banner/CreateBanner";
 
 const MainRoutes = () => {
 	return (
@@ -85,6 +86,7 @@ const MainRoutes = () => {
 
 						<Route path="banner">
 							<Route path="" element={<BannerManage />} />
+							<Route path="create-banner" element={<CreateBanner />} />
 							<Route path="update-banner" element={<UpdateBanner />} />
 						</Route>
 

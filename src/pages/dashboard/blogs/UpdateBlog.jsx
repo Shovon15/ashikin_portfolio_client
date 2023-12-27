@@ -40,7 +40,7 @@ const UpdateBlog = () => {
 			setIsLoading(false);
 		};
 		fetchEvent();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// console.log(blogData);

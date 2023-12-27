@@ -1,65 +1,87 @@
 import { Typography } from "@material-tailwind/react";
-import Aos from "aos";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { DashboardContext } from "../../../context/DashboardContext";
+import { get } from "../../../utils/fetchApi";
 
 const Banner = () => {
-	// useEffect(() => {
-	// 	Aos.init({ duration: 1000 });
-	// }, []);
-
-	const Data = [
-		{
-			header: "Lorem ipsum dolor sit amet, consectur adipisicing elit",
-			text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est rem repellendus voluptatem, labore animi ex! Sint iste aliquam provident quisquam incidunt quam eius est! Esse necessitatibus inventore voluptatibus dolor quasi",
-			bgImage: "https://i.ibb.co/8b8SC3S/banner-img.jpg",
-			secondaryImage: "https://i.ibb.co/JrtBPQK/banner-demo-img.jpg",
-		},
-		// https://i.ibb.co/nM9kKjn/banner-img-bg.jpg
-		//https://i.ibb.co/41kYcMH/review-3.jpg
-		// https://i.ibb.co/JrtBPQK/banner-demo-img.jpg
-	];
-	const [scrollPosition, setScrollPosition] = useState(0);
-
-	const handleScroll = () => {
-		setScrollPosition(window.scrollY);
-	};
+	const { scrollPosition } = useContext(DashboardContext);
+	const [isLoading, setIsLoading] = useState(false);
+	const [bannerData, setBannerData] = useState({});
 
 	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
+		const fetchData = async () => {
+			setIsLoading(true);
+			const response = await get("banner");
+			setBannerData(response.data.payload.data);
+			setIsLoading(false);
 		};
+		fetchData();
 	}, []);
 
-	const backgroundImageStyle = {
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "100%",
-		backgroundImage: `url('https://i.ibb.co/8b8SC3S/banner-img.jpg')`,
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		opacity: 0.4 - Math.min(scrollPosition / 700, 1), // Adjust the divisor as needed
-	};
-
-	return (
-		<>
-			<div className="relative h-[45rem] md:h-[30rem] flex justify-center items-start md:items-center">
-				<div style={backgroundImageStyle}></div>
-				<div className="flex flex-col md:flex-row gap-0 md:gap-5 z-10 items-start md:items-center border-border-red-500">
-					<div className="p-5 md:p-10 w-full md:w-1/2">
-						<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
-							{Data[0].header}
-						</Typography>
-						<Typography className="text-md text-color-text pt-5">{Data[0].text}</Typography>
-					</div>
-					<div className="w-full md:w-1/2 p-5 md:p-10 max-h-[40rem] max-w-[20rem] mx-auto ">
-						<img src={Data[0].secondaryImage} className="object-cover  rounded-lg" alt="secondary-image" />
-					</div>
+	if (isLoading) {
+		return (
+			<div
+				role="status"
+				className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center h-[35rem] p-10"
+			>
+				<div className="w-full md:w-7/12">
+					<div className="h-4 bg-color-secondary rounded-full mb-2.5  max-w-[580px]"></div>
+					<div className="h-4 bg-color-secondary rounded-full w-48 mb-8"></div>
+					<div className="h-2 bg-color-secondary rounded-full  max-w-[480px] mb-2.5"></div>
+					<div className="h-2 bg-color-secondary rounded-full max-w-[440px] mb-2.5"></div>
+					<div className="h-2 bg-color-secondary rounded-full max-w-[460px] mb-2.5"></div>
+					<div className="h-2 bg-color-secondary rounded-full  max-w-[360px]"></div>
+				</div>
+				<div className="flex items-center justify-center w-72 md:w-80 h-80 md:h-96 bg-color-secondary rounded  ">
+					<svg
+						className="w-10 h-10 text-[#264763] "
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="currentColor"
+						viewBox="0 0 20 18"
+					>
+						<path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+					</svg>
 				</div>
 			</div>
-		</>
+		);
+	}
+
+	return (
+		<div className="min-h-screen">
+			{bannerData && (
+				<div className="relative h-[45rem] md:h-[35rem] flex">
+					<div
+						style={{
+							position: "absolute",
+							top: 0,
+							left: 0,
+							width: "100%",
+							height: "100%",
+							backgroundImage: `url(${bannerData?.backgroundImage})`,
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+							opacity: 0.4 - Math.min(scrollPosition / 700, 1),
+						}}
+					></div>
+					<div className="flex flex-col md:flex-row gap-0 md:gap-5 z-10">
+						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justifystart md:justify-center">
+							<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
+								{bannerData?.bannerHeader}
+							</Typography>
+							<Typography className="text-md text-color-text pt-5">{bannerData?.bannerText}</Typography>
+						</div>
+						<div className="w-full md:w-5/12 p-5 md:p-10 max-h-[40rem] max-w-[20rem] flex flex-col justify-start md:justify-center mx-auto">
+							<img
+								src={bannerData?.portfolioImage}
+								className="object-cover  rounded-lg"
+								alt="secondary-image"
+							/>
+						</div>
+					</div>
+				</div>
+			)}
+		</div>
 		// <div className="flex flex-col lg:flex-row bg-color-primary">
 		// 	<div className="w-full lg:w-5/12 p-5 md:p-10  flex flex-col gap-5 justify-center items-center">
 		// 		<p
