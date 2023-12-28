@@ -17,7 +17,14 @@ const EventsPage = () => {
 	});
 
 	if (isLoading) {
-		return <LoadingSkeleton />;
+		return (
+			<div className="flex flex-wrap gap-5 p-5 md:p-10">
+				<LoadingSkeleton />
+				<LoadingSkeleton />
+				<LoadingSkeleton />
+				<LoadingSkeleton />
+			</div>
+		);
 	}
 	return (
 		<>
@@ -31,8 +38,7 @@ const EventsPage = () => {
 				<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Programs</HeaderText>
 
 				<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
-					{!isLoading &&
-						eventData.length !== 0 &&
+					{eventData.length !== 0 &&
 						eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
 				</div>
 			</div>

@@ -3,6 +3,8 @@ import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-ta
 import { Link } from "react-router-dom";
 import ButtonOutline from "../../Button/ButtonOutline";
 import LoadingSkeleton from "../LoadingSkeleton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import ImageComponent from "../../ImageComponent";
 
 export function EventCard({ eventData }) {
 	// console.log(eventData, "eventData");
@@ -34,9 +36,9 @@ export function EventCard({ eventData }) {
 		minute: "numeric",
 	});
 
-	if (!eventData) {
-		return <LoadingSkeleton />;
-	}
+	// if (!eventData) {
+	// 	return <LoadingSkeleton />;
+	// }
 
 	return (
 		<Card className="relative bg-color-secondary w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-event-card">
@@ -48,14 +50,9 @@ export function EventCard({ eventData }) {
 				{eventType}
 			</div>
 			<CardHeader floated={false} className="relative h-56 m-0 rounded-b-none shadow-none  bg-inherit">
-				<img
-					// data-aos="flip-left"
-					src={cover}
-					alt="card-image"
-					className="object-fill h-full rounded-xl duration-300 hover:scale-110 rounded-b-none"
-					width="400"
-					height="200"
-				/>
+				<div className="duration-300 hover:scale-110 rounded-b-none transition ease-in-out object-fill h-full">
+					<ImageComponent src={cover} />
+				</div>
 			</CardHeader>
 			<CardBody className="flex flex-col items-center">
 				<Typography

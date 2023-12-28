@@ -1,6 +1,7 @@
 import { Typography } from "@material-tailwind/react";
 import { LuQuote } from "react-icons/lu";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ReviewCard = ({ data }) => {
 	const { name, cover, designation, reviewText } = data;
@@ -13,7 +14,13 @@ const ReviewCard = ({ data }) => {
 			<LuQuote className="w-7 md:w-10 h-7 md:h-10 ml-auto  text-gray-700" />
 
 			<div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center ">
-				<img src={cover} alt="..." className="rounded-full w-12 h-12 md:w-16 md:h-16" />
+				<LazyLoadImage
+					effect="blur"
+					src={cover}
+					alt="card-image"
+					className="rounded-full w-12 h-12 md:w-16 md:h-16"
+				/>
+
 				<div className="w-60 flex flex-col items-center md:items-start">
 					<Typography variant="h6" className="font-bold text-color-header capitalize">
 						{name}
