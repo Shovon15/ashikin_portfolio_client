@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import AOS from "aos";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { Helmet } from "react-helmet-async";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
@@ -43,9 +42,6 @@ const Services = () => {
 	};
 
 	const gradientColors = ["linear-gradient( rgba(6, 51, 89, .5), rgba(6, 51, 89, 0.9))"];
-	// useEffect(() => {
-	// 	AOS.init({ duration: 1000 });
-	// }, []);
 
 	return (
 		<>
@@ -55,7 +51,7 @@ const Services = () => {
 				<link rel="canonical" href="/services" />
 			</Helmet>
 			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-				<HeaderText className="text-start pl-5 md:pl-14">Services Page</HeaderText>
+				<HeaderText className="text-start pl-5 md:pl-14">Services</HeaderText>
 
 				{/* -----------------service cards------------------ */}
 				<div className="flex flex-wrap gap-10 md:gap-5 justify-center items-center p-5 md:p-10">
@@ -98,19 +94,9 @@ const Services = () => {
 							} p-5 md:p-10 gap-10`}
 						>
 							<div className="w-full lg:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
-								<p
-									className="text-3xl md:text-4xl font-bold text-color-header"
-									// data-aos="fade-up"
-								>
-									{heading}
-								</p>
+								<p className="text-3xl md:text-4xl font-bold text-color-header">{heading}</p>
 
-								<p
-									className="text-2xl font-bold text-color-text"
-									// data-aos="fade-up"
-								>
-									{title}
-								</p>
+								<p className="text-2xl font-bold text-color-text">{title}</p>
 								{description.map((item, index) => (
 									<p
 										key={index}

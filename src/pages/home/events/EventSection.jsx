@@ -1,11 +1,10 @@
-import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
+// import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import PrimaryButton from "../../../components/Button/PrimaryButton";
-import Aos from "aos";
+
 import EventCard from "../../../components/card/event/EventCard";
 import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
 
@@ -76,15 +75,9 @@ const EventSection = () => {
 		}
 	}, [tabValue, eventData]);
 
-	// useEffect(() => {
-	// 	Aos.init({ duration: 1000 });
-	// }, []);
-
 	if (isLoading) {
 		return <LoadingSkeleton />;
 	}
-
-	console.log(activeTab, tabValue);
 
 	return (
 		<>
@@ -92,7 +85,7 @@ const EventSection = () => {
 			{eventData.length > 0 && (
 				<div className="px-5 md:px-10">
 					<div>
-						<div className="flex flex-col md:flex-row gap-5 justify-center">
+						<div className="flex flex-col md:flex-row gap-3 md:gap-5 justify-center items-center">
 							{/* Render tab headers dynamically */}
 							{tabButtondata.map(({ label, value }) => (
 								<div
@@ -101,15 +94,17 @@ const EventSection = () => {
 										setTabValue(value);
 										setActiveTab(value);
 									}}
-									className={`tab-header border border-color-border px-3 py-2 cursor-pointer animation-button ${
-										activeTab === value ? "active" : "inactive"
+									className={` border border-color-border w-56 center px-3 py-2 cursor-pointer animation-button ${
+										activeTab === value
+											? "text-color-text bg-color-button hover:bg-color-buttonHover py-2  capitalize text-lg"
+											: "text-color-text hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
 									}`}
 								>
 									{label}
 								</div>
 							))}
 						</div>
-						<div className="py-10">
+						<div className="py-5">
 							{/* Render tab content based on the active tab */}
 							{activeTab && (
 								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
@@ -126,16 +121,6 @@ const EventSection = () => {
 									)}
 								</div>
 							)}
-
-							{/* {activeTab === "All" && (
-								<div className="flex gap-4 ">
-									<div className="w-96 h-96 bg-red-500 rounded-md animation-event-card "></div>
-									<LoadingSkeleton />
-									<LoadingSkeleton />
-								</div>
-							)}
-							{activeTab === "Free" && <div>Content for Free</div>}
-							{activeTab === "Premium" && <div>Content for Premium</div>} */}
 						</div>
 					</div>
 				</div>
