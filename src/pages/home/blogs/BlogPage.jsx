@@ -117,8 +117,6 @@ const BlogPage = () => {
 						</div>
 					</div>
 				</div>
-
-				<div className="h-[3400px]"></div>
 			</div>
 		</>
 	);

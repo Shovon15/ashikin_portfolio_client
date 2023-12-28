@@ -84,52 +84,40 @@ const EventSection = () => {
 		return <LoadingSkeleton />;
 	}
 
+	console.log(activeTab, tabValue);
+
 	return (
 		<>
+			<HeaderText className="py-5">Upcoming Programs</HeaderText>
 			{eventData.length > 0 && (
-				<div className="p-5 ">
-					<HeaderText className="py-5">Upcoming Programs</HeaderText>
-					<div className="">
-						<Tabs id="custom-animation" value="all">
-							<TabsHeader
-								className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
-						  bg-inherit items-center mb-5 py-3 px-5 animation-body"
-								// data-aos="zoom-in"
-								indicatorProps={{
-									className: "shadow-none bg-transparent",
-								}}
-							>
-								{tabButtondata.map(({ label, value }) => (
-									<Tab
-										key={value}
-										value={value}
-										onClick={() => {
-											setTabValue(value);
-											setActiveTab(value);
-										}}
-										className={
-											activeTab === value
-												? "text-color-text bg-color-button hover:bg-color-buttonHover py-2.5  capitalize text-lg"
-												: "text-color-text hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
-										}
-									>
-										{label}
-									</Tab>
-								))}
-							</TabsHeader>
-							<TabsBody
-								animate={{
-									initial: { y: 250 },
-									mount: { y: 0 },
-									unmount: { y: 250 },
-								}}
-							>
+				<div className="px-5 md:px-10">
+					<div>
+						<div className="flex flex-col md:flex-row gap-5 justify-center">
+							{/* Render tab headers dynamically */}
+							{tabButtondata.map(({ label, value }) => (
+								<div
+									key={value}
+									onClick={() => {
+										setTabValue(value);
+										setActiveTab(value);
+									}}
+									className={`tab-header border border-color-border px-3 py-2 cursor-pointer animation-button ${
+										activeTab === value ? "active" : "inactive"
+									}`}
+								>
+									{label}
+								</div>
+							))}
+						</div>
+						<div className="py-10">
+							{/* Render tab content based on the active tab */}
+							{activeTab && (
 								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
 									{!isLoading && filteredEvents.length > 0 ? (
 										filteredEvents.map((event, index) => (
-											<TabPanel key={index} value={tabValue} className="p-0">
+											<div key={index} value={tabValue} className="p-0">
 												<EventCard eventData={event} />
-											</TabPanel>
+											</div>
 										))
 									) : (
 										<div className="w-full h-44 max-w-[25rem]  flex justify-center items-center">
@@ -137,18 +125,82 @@ const EventSection = () => {
 										</div>
 									)}
 								</div>
-							</TabsBody>
-						</Tabs>
-						<div
-							className="text-center my-5"
-							//  data-aos="fade-up" data-aos-anchor-placement="top-bottom"
-						>
-							<Link to="/programs">
-								<PrimaryButton className="px-10 mt-5">View More</PrimaryButton>
-							</Link>
+							)}
+
+							{/* {activeTab === "All" && (
+								<div className="flex gap-4 ">
+									<div className="w-96 h-96 bg-red-500 rounded-md animation-event-card "></div>
+									<LoadingSkeleton />
+									<LoadingSkeleton />
+								</div>
+							)}
+							{activeTab === "Free" && <div>Content for Free</div>}
+							{activeTab === "Premium" && <div>Content for Premium</div>} */}
 						</div>
 					</div>
 				</div>
+				// <div className="p-5 ">
+				// 	<HeaderText className="py-5">Upcoming Programs</HeaderText>
+				// 	<div className="">
+				// 		<Tabs id="custom-animation" value="all">
+				// 			<TabsHeader
+				// 				className="w-full md:w-[40rem]  mx-auto flex gap-2 flex-col md:flex-row
+				// 		  bg-inherit items-center mb-5 py-3 px-5 animation-body"
+				// 				// data-aos="zoom-in"
+				// 				indicatorProps={{
+				// 					className: "shadow-none bg-transparent",
+				// 				}}
+				// 			>
+				// 				{tabButtondata.map(({ label, value }) => (
+				// 					<Tab
+				// 						key={value}
+				// 						value={value}
+				// 						onClick={() => {
+				// 							setTabValue(value);
+				// 							setActiveTab(value);
+				// 						}}
+				// 						className={
+				// 							activeTab === value
+				// 								? "text-color-text bg-color-button hover:bg-color-buttonHover py-2.5  capitalize text-lg"
+				// 								: "text-color-text hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
+				// 						}
+				// 					>
+				// 						{label}
+				// 					</Tab>
+				// 				))}
+				// 			</TabsHeader>
+				// 			<TabsBody
+				// 				animate={{
+				// 					initial: { y: 250 },
+				// 					mount: { y: 0 },
+				// 					unmount: { y: 250 },
+				// 				}}
+				// 			>
+				// 				<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
+				// 					{!isLoading && filteredEvents.length > 0 ? (
+				// 						filteredEvents.map((event, index) => (
+				// 							<TabPanel key={index} value={tabValue} className="p-0">
+				// 								<EventCard eventData={event} />
+				// 							</TabPanel>
+				// 						))
+				// 					) : (
+				// 						<div className="w-full h-44 max-w-[25rem]  flex justify-center items-center">
+				// 							<p className="font-semibold text-xl text-color-text">Coming soon</p>
+				// 						</div>
+				// 					)}
+				// 				</div>
+				// 			</TabsBody>
+				// 		</Tabs>
+				// 		<div
+				// 			className="text-center my-5"
+				// 			//  data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+				// 		>
+				// 			<Link to="/programs">
+				// 				<PrimaryButton className="px-10 mt-5">View More</PrimaryButton>
+				// 			</Link>
+				// 		</div>
+				// 	</div>
+				// </div>
 			)}
 		</>
 	);
