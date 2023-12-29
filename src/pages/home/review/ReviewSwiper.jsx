@@ -13,59 +13,29 @@ import ReviewCard from "../../../components/card/review/ReviewCard";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import { useEffect, useState } from "react";
 import { get } from "../../../utils/fetchApi";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const ReviewSwiper = () => {
-	// const [review, setReview] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [review, setReview] = useState([]);
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const res = await get("reviews/all");
-	// 		setReview(res.data.payload.data);
-	// 	};
-	// 	fetchData();
-	// }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			setIsLoading(true);
+			const res = await get("reviews/all");
+			setReview(res.data.payload.data);
+			setIsLoading(false);
+		};
+		fetchData();
+	}, []);
 	// const swiperRef = useRef();
 
-	const review = [
-		{
-			_id:"kfj323238fkj",
-			name: "name",
-			cover: "image",
-			designation: "lorem ipsum",
-			reviewText: "this is some text",
-		},
-		{
-			_id:"kfj4454kj",
-			name: "name",
-			cover: "image",
-			designation: "lorem ipsum",
-			reviewText: "this is some text",
-		},
-		{
-			_id:"kf3434jfkj",
-			name: "name",
-			cover: "image",
-			designation: "lorem ipsum",
-			reviewText: "this is some text",
-		},
-		{
-			_id:"kfjf454545kj",
-			name: "name",
-			cover: "image",
-			designation: "lorem ipsum",
-			reviewText: "this is some text",
-		},
-		{
-			_id:"kfjf54545kj",
-			name: "name",
-			cover: "image",
-			designation: "lorem ipsum",
-			reviewText: "this is some text",
-		},
-	];
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	return (
 		<>
-			{review && (
+			{review.length > 0 && (
 				<div className="py-5 container">
 					<HeaderText className=" text-center ">Reviews</HeaderText>
 					<Swiper
@@ -91,12 +61,11 @@ const ReviewSwiper = () => {
 						modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
 						className="swiper_container"
 					>
-						{review.length > 0 &&
-							review.map((item) => (
-								<SwiperSlide key={item._id}>
-									<ReviewCard data={item} />
-								</SwiperSlide>
-							))}
+						{review.map((item) => (
+							<SwiperSlide key={item._id}>
+								<ReviewCard data={item} />
+							</SwiperSlide>
+						))}
 
 						<div className="slider-controler pt-12">
 							<div className="swiper-button-prev slider-arrow hidden lg:block !shadow-lg rounded-full ">
