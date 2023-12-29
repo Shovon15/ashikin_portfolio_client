@@ -1,10 +1,7 @@
+/* eslint-disable react/prop-types */
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ImageComponent = ({ src }) => {
-	if (!src) {
-		return <p>loading...</p>;
-	}
-	
 	return (
 		<>
 			<LazyLoadImage

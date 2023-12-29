@@ -2,6 +2,7 @@ import whatsappOriginal from "../../../assets/icon/whatsapp-original.png";
 import facebookOriginal from "../../../assets/icon/facebook-original.png";
 import youtubeOriginal from "../../../assets/icon/youtube.png";
 import { Typography } from "@material-tailwind/react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ExperianceSection = () => {
 	const Data = [
@@ -41,7 +42,15 @@ const ExperianceSection = () => {
 				{Data.map(({ icon, title, desc, link }) => (
 					<a key={title} href={link} target="_blank" rel="noopener noreferrer">
 						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-body">
-							<img src={icon} alt="icon" className="w-12 h-12" />
+							<LazyLoadImage
+								effect="blur"
+								src={icon}
+								alt="card-image"
+								className="object-fill"
+								width="50"
+								height="50"
+							/>
+							
 							<div>
 								<Typography variant="h5" className="font-bold text-color-header">
 									{title}

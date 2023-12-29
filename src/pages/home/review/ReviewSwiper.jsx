@@ -80,7 +80,7 @@ const ReviewSwiper = () => {
 						grabCursor={true}
 						centeredSlides={true}
 						loop={true}
-						speed={1500}
+						// speed={1500}
 						autoplay={{ delay: 3000, disableOnInteraction: false }}
 						slidesPerView={"auto"}
 						coverflowEffect={{

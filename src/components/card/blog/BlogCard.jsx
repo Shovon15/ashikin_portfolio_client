@@ -2,6 +2,7 @@
 import { Card, CardHeader, CardBody, Typography, CardFooter } from "@material-tailwind/react";
 import ButtonOutline from "../../Button/ButtonOutline";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const BlogCard = ({ item }) => {
 	const { _id, cover, title } = item;
@@ -9,8 +10,8 @@ const BlogCard = ({ item }) => {
 	return (
 		<Card className="bg-color-secondary w-full h-auto max-w-[19rem] hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-blog-card">
 			<CardHeader floated={false} className="h-56 m-0 rounded-b-none shadow-none bg-inherit">
-				<img
-					// data-aos="flip-left"
+				<LazyLoadImage
+					effect="blur"
 					src={cover}
 					alt="card-image"
 					className="object-fill h-full rounded-xl duration-300 hover:scale-110 rounded-b-none"

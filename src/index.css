@@ -174,7 +174,7 @@ border:none !important;
         animation-timeline: view();
         animation-delay: 8ms;
         animation-range-start:0px ;
-        animation-range-end:150px ;
+        animation-range-end:100px ;
       }
       .animation-body{
         animation:fade-in linear;
