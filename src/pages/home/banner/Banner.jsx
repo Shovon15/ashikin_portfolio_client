@@ -7,7 +7,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const Banner = () => {
 	const { scrollPosition } = useContext(DashboardContext);
 	const [isLoading, setIsLoading] = useState(false);
-	const [bannerData, setBannerData] = useState({});
+	const [bannerData, setBannerData] = useState({
+		bannerHeader: "",
+		bannerText: "",
+		backgroundImage: "",
+		portfolioImage: "",
+	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -18,7 +23,6 @@ const Banner = () => {
 		};
 		fetchData();
 	}, []);
-	console.log(bannerData);
 
 	if (isLoading) {
 		return (

@@ -15,18 +15,54 @@ import { useEffect, useState } from "react";
 import { get } from "../../../utils/fetchApi";
 
 const ReviewSwiper = () => {
-	const [review, setReview] = useState([]);
+	// const [review, setReview] = useState([]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const res = await get("reviews/all");
-			setReview(res.data.payload.data);
-		};
-		fetchData();
-	}, []);
-	// console.log(review, "review");
-
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const res = await get("reviews/all");
+	// 		setReview(res.data.payload.data);
+	// 	};
+	// 	fetchData();
+	// }, []);
 	// const swiperRef = useRef();
+
+	const review = [
+		{
+			_id:"kfj323238fkj",
+			name: "name",
+			cover: "image",
+			designation: "lorem ipsum",
+			reviewText: "this is some text",
+		},
+		{
+			_id:"kfj4454kj",
+			name: "name",
+			cover: "image",
+			designation: "lorem ipsum",
+			reviewText: "this is some text",
+		},
+		{
+			_id:"kf3434jfkj",
+			name: "name",
+			cover: "image",
+			designation: "lorem ipsum",
+			reviewText: "this is some text",
+		},
+		{
+			_id:"kfjf454545kj",
+			name: "name",
+			cover: "image",
+			designation: "lorem ipsum",
+			reviewText: "this is some text",
+		},
+		{
+			_id:"kfjf54545kj",
+			name: "name",
+			cover: "image",
+			designation: "lorem ipsum",
+			reviewText: "this is some text",
+		},
+	];
 	return (
 		<>
 			{review && (
@@ -36,7 +72,7 @@ const ReviewSwiper = () => {
 						effect={"coverflow"}
 						grabCursor={true}
 						centeredSlides={true}
-						loop={true}
+						loop={review.length > 2}
 						speed={1500}
 						autoplay={{ delay: 3000, disableOnInteraction: false }}
 						slidesPerView={"auto"}

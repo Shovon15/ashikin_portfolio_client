@@ -13,7 +13,7 @@ const DashboardNav = () => {
 
 	return (
 		<div
-			className="w-full flex items-center sticky inset-0 z-10 px-5 py-2 lg:px-10  bg-color-primary dark:bg-bgSecondary"
+			className="w-full flex items-center sticky inset-0 z-50 px-5 py-2 lg:px-10  bg-color-primary dark:bg-bgSecondary"
 			style={{ boxShadow: "0 5px 2px -2px rgba(0, 0, 0, 0.1)" }}
 		>
 			<div className="flex justify-between lg:justify-start lg:gap-5 items-center">
