@@ -1,64 +1,44 @@
-/* ---------done */
 .container {
-  /* max-width: 190rem; */
-  /* padding: 0rem 1rem; */
   margin: auto;
- 
-}
-/* ---------done */
-.heading {
-  padding: 1rem 0;
-  font-size: 3.5rem;
-  text-align: center;
 }
 
-/* ---------done */
 .swiper_container {
   height: 33rem;
   padding: 3rem 0;
   position: relative;
 }
-/* ---------done */
+
 .swiper-slide {
   width: 37rem;
   height: 23rem;
   position: relative;
 }
-/* ---------done */
-/* .swiper-slide div {
-  width: 37rem;
-  height: 23rem;
-  border-radius: 2rem;
-  object-fit: cover;
-} */
 
 .swiper-slide-shadow-left,
 .swiper-slide-shadow-right {
   display: none;
 }
 
-
 @media (max-width: 720px) {
-  /* ---------done */
   .swiper_container {
     height: 43rem;
   }
-   /* ---------done */
+
   .swiper-slide {
     width: 19rem !important;
-    height: 40rem !important;
+    height: 35rem !important;
   }
-   /* ---------done */
-  /* .swiper-slide div {
-    width: 24rem !important;
-    height: 36rem !important;
-  } */
 }
-/* -------------------------------------- */
+
 @media (max-width: 990px) {
   .slider-controler .swiper-button-next {
     left: 70% !important;
     transform: translateX(-70%) !important;
+  }
+
+  .slider-controler .swiper-button-prev {
+    left: 40% !important;
+    transform: translateX(-30%) !important;
   }
 }
 
@@ -67,21 +47,13 @@
     left: 80% !important;
     transform: translateX(-80%) !important;
   }
-}
 
-@media (max-width: 990px) {
-  .slider-controler .swiper-button-prev {
-    left: 40% !important;
-    transform: translateX(-30%) !important;
-  }
-}
-
-@media (max-width: 450px) {
   .slider-controler .swiper-button-prev {
     left: 20% !important;
     transform: translateX(-20%) !important;
   }
 }
+
 .slider-controler {
   position: relative;
   bottom: 2rem;
@@ -103,8 +75,6 @@
   transform: translateX(-42%);
 }
 
-
-
 .slider-controler .slider-arrow::after {
   content: '';
 }
@@ -120,7 +90,5 @@
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
-  background: var(--text-header-color)
+  background: var(--text-header-color);
 }
-
- 

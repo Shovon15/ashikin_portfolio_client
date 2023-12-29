@@ -1,6 +1,7 @@
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,50 +16,6 @@ import { get } from "../../../utils/fetchApi";
 
 const ReviewSwiper = () => {
 	const [review, setReview] = useState([]);
-	// const data = [
-	// 	{
-	// 		id: 1,
-	// 		image: image3,
-	// 		name: "John Doe magni",
-	// 		title: "Lorem ipsum dolor sit",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis.",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		image: image2,
-	// 		name: "John Doe",
-	// 		title: "Lorem ipsum dolor sit",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae  Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque, laudantium.",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		image: image3,
-	// 		name: "John Doe",
-	// 		title: "Lorem ipsum dolor sit",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, modisimilique illum perferendis, itaque. ",
-	// 	},
-	// 	{
-	// 		id: 4,
-	// 		image: image1,
-	// 		name: "John Doe",
-	// 		title: "Lorem ipsum dolor sit",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae.",
-	// 	},
-	// 	{
-	// 		id: 5,
-	// 		image: image2,
-	// 		name: "Lorem ipsum dolor",
-	// 		title: "Lorem ipsum dolor sit amet",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis! Reprehenderit ut similique neque, magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati  magni consequatur maiores.Doloremque sint magni veniam! Incidunt officia alias enim explicabo pariatur et obcaecati, ",
-	// 	},
-	// 	{
-	// 		id: 6,
-	// 		image: image1,
-	// 		name: "John Doe",
-	// 		title: "lorem issum",
-	// 		text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore eaque aut vel quaerat nisi numquam soluta vitae porro veritatis!",
-	// 	},
-	// ];
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -80,7 +37,7 @@ const ReviewSwiper = () => {
 						grabCursor={true}
 						centeredSlides={true}
 						loop={true}
-						// speed={1500}
+						speed={1500}
 						autoplay={{ delay: 3000, disableOnInteraction: false }}
 						slidesPerView={"auto"}
 						coverflowEffect={{

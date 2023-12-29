@@ -81,7 +81,14 @@ const SocialSupport = () => {
 						className="bg-color-secondary p-4 rounded-lg shadow-lg hover:shadow-xl h-[23rem] animation-blog-card"
 					>
 						<div className="w-full h-44 flex justify-center">
-							<LazyLoadImage effect="blur" src={icon} alt="..." className="w-96 h-44" />
+							<LazyLoadImage
+								effect="blur"
+								src={icon}
+								alt="card-image"
+								className="object-fill h-full rounded-xl duration-300 hover:scale-110 "
+								width="400"
+								height="200"
+							/>
 						</div>
 
 						<h2 className="text-2xl text-color-header font-bold mb-2 mt-5">{title}</h2>
