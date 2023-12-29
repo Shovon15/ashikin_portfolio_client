@@ -186,8 +186,15 @@ border:none !important;
         animation:fade-in linear;
         animation-timeline: view();
         animation-delay: 8ms;
-        animation-range-start:0px ;
+        animation-range-start:-5px ;
         animation-range-end:50px ;
+      }
+      .animation-experience-section{
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-delay: 2ms;
+        animation-range-start:0px ;
+        animation-range-end:250px ;
       }
       .animation-banner{
         animation:fade-in linear;

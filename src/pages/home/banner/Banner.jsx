@@ -28,7 +28,7 @@ const Banner = () => {
 		return (
 			<div
 				role="status"
-				className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center h-[35rem] p-10"
+				className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center h-[35rem] p-10 pt-[150px]"
 			>
 				<div className="w-full md:w-8/12">
 					<div className="h-4 bg-color-secondary rounded-full mb-2.5  max-w-[580px]"></div>
@@ -38,7 +38,7 @@ const Banner = () => {
 					<div className="h-2 bg-color-secondary rounded-full max-w-[460px] mb-2.5"></div>
 					<div className="h-2 bg-color-secondary rounded-full  max-w-[360px]"></div>
 				</div>
-				<div className="flex items-center justify-center w-72 md:w-3/12 h-80 bg-color-secondary rounded pt-10 mx-auto mt-10">
+				<div className="flex items-center justify-center w-72 md:w-3/12 h-96 bg-color-secondary rounded pt-10 mx-auto ">
 					<svg
 						className="w-10 h-10 text-[#264763] "
 						aria-hidden="true"

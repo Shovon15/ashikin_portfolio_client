@@ -41,7 +41,7 @@ const ExperianceSection = () => {
 			<div className="pt-[9rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
 				{Data.map(({ icon, title, desc, link }) => (
 					<a key={title} href={link} target="_blank" rel="noopener noreferrer">
-						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-body">
+						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-experience-section">
 							<LazyLoadImage
 								effect="blur"
 								src={icon}
