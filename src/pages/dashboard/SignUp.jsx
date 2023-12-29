@@ -5,17 +5,15 @@ import { PiEye, PiEyeClosed } from "react-icons/pi";
 import loginIcon from "../../assets/icon/user.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
 import { AuthContext } from "../../context/AuthProvider";
-import { get, post } from "../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
+import { get, post } from "../../utils/fetchApi";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 
-const Login = () => {
+const SignUp = () => {
 	const { user, fetchData } = useContext(AuthContext);
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-
 	const {
 		register,
 		formState: { errors },
@@ -32,8 +30,8 @@ const Login = () => {
 			const hasUsers = response.data.payload.data;
 			if (hasUsers.length > 0 && user) {
 				navigate("/dashboard");
-			} else if (hasUsers.length === 0) {
-				navigate("/signup");
+			} else if (hasUsers.length > 0) {
+				navigate("/login");
 			}
 		};
 		fetchData();
@@ -43,8 +41,9 @@ const Login = () => {
 		setPasswordShown(!passwordShown);
 	};
 
-	const handleLogin = async (data) => {
-		const loginData = {
+	const handleSignup = async (data) => {
+		const signupData = {
+			name: data.name,
 			email: data.email,
 			password: data.password,
 		};
@@ -52,7 +51,7 @@ const Login = () => {
 		try {
 			setIsLoading(true);
 
-			const response = await post("admin/login", loginData);
+			const response = await post("admin/signup", signupData);
 			const userToken = response.data.payload?.token;
 			Cookies.set("token", userToken, {
 				expires: 30,
@@ -68,16 +67,30 @@ const Login = () => {
 			setIsLoading(false);
 		}
 	};
+
 	return (
 		<div className="flex justify-center items-center bg-color-primary dark:bg-darkPrimary min-h-screen">
 			<Card className="px-5 py-10 bg-color-secondary">
 				<div className="mx-auto flex flex-col items-center gap-3">
-					<p className="font-bold text-3xl text-color-header text-center">Admin Login</p>
+					<p className="font-bold text-3xl text-color-header text-center">Admin Signup</p>
 					<img src={loginIcon} alt="..." className="w-20 h-20" />
 				</div>
 
-				<form onSubmit={handleSubmit(handleLogin)} className="my-8 mb-2 w-80 max-w-screen-lg">
+				<form onSubmit={handleSubmit(handleSignup)} className="my-8 mb-2 w-80 max-w-screen-lg">
 					<div className="mb-4 flex flex-col gap-6 text-start">
+						<div>
+							<Input
+								size="lg"
+								label="name"
+								color="yellow"
+								type="text"
+								{...register("name", {
+									required: "Name is Required *",
+								})}
+								className="text-color-text"
+							/>
+							{errors.name && <p className="text-red-500">{errors.name.message}</p>}
+						</div>
 						<div>
 							<Input
 								size="lg"
@@ -119,12 +132,7 @@ const Login = () => {
 						{isLoading ? <Spinner color="gray" className="mx-auto my-0.5 h-5 w-5" /> : "submit"}
 					</PrimaryButton>
 
-					<div className="py-5">
-						<Link to="/forget-password">
-							<p className="text-color-text hover:text-color-header">Forget Password?</p>
-						</Link>
-					</div>
-					<div>
+					<div className="mt-5">
 						<Link to="/">
 							<PrimaryButton className="w-full">Home</PrimaryButton>
 						</Link>
@@ -135,4 +143,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignUp;

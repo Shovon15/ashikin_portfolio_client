@@ -23,7 +23,8 @@ function App() {
 	useEffect(() => {
 		window.history.scrollRestoration = "manual";
 	}, []);
-
+	// https://i.ibb.co/M9mb97w/bg.jpg
+	// https://i.ibb.co/XkX5T9w/creative-people-working-office.jpg
 	return (
 		<div className="bg-color-primary">
 			{loading ? (

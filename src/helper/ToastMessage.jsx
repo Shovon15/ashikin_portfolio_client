@@ -11,9 +11,6 @@ export function showErrorToast(message) {
 		progress: undefined,
 		// theme: "light",
 		theme: "colored",
-		style: {
-			top: "50px",
-		},
 	});
 }
 
@@ -28,8 +25,5 @@ export function showSuccessToast(message) {
 		progress: undefined,
 		// theme: "light",
 		theme: "colored",
-		style: {
-			top: "50px",
-		},
 	});
 }

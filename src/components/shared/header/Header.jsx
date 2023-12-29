@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
-import { Navbar, IconButton, Tooltip, Typography } from "@material-tailwind/react";
+import { IconButton, Tooltip, Typography } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 // import logo from "../../../assets/logo/Logo-New.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import "./header.css";
 
 export function Header() {
 	const [openNav, setOpenNav] = useState(false);
@@ -97,12 +96,12 @@ export function Header() {
 
 	return (
 		<>
-			<Navbar
-				id="header"
-				className={`max-w-full sticky top-0 z-30  border-none bg-color-secondary rounded-none
-				 ${scrollPosition > 0 ? "shadow-xl py-0 header-scroll" : "shadow-none header "}`}
+			<navbar
+				className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
+					scrollPosition > 0 ? "bg-color-secondary p-5 shadow-xl" : "p-10 bg-none"
+				}`}
 			>
-				<div className="flex justify-between items-center py-2 px-0 md:px-5 lg:px-10">
+				<div className="flex justify-between items-center py-0 md:px-5 lg:px-10">
 					<div className="flex items-center ">
 						<Link to="/" className="cursor-pointer px-0">
 							{/* <img
@@ -114,7 +113,7 @@ export function Header() {
 							/> */}
 							<Typography
 								variant="h4"
-								className={` transform transition w-44 md:w-56 duration-500 text-color-text origin-left pl-0 py-3 ${
+								className={` transform transition w-44 md:w-56 duration-500 text-color-text origin-left pl-0 py-0 ${
 									scrollPosition > 0 ? "scale-90" : "scale-110"
 								}`}
 							>
@@ -122,16 +121,16 @@ export function Header() {
 							</Typography>
 						</Link>
 					</div>
-					<div className=" lg:flex gap-20">
+					<div className="lg:flex gap-20">
 						{/* ------------navlist lg----------- */}
-						<div className="hidden lg:flex gap-5">
+						<div className="hidden lg:flex gap-10">
 							{navLinks.map(({ name, link }) => (
-								<ul key={name} className="flex p-2 flex-row gap-2 items-center">
+								<ul key={name} className="flex flex-row gap-2 items-center">
 									<NavLink
 										to={link}
 										className={({ isActive }) => (isActive ? "active" : "inactive hover:active")}
 									>
-										<Typography variant="h6" className="font-bold capitalize">
+										<Typography variant="h5" className="font-semibold capitalize">
 											{name}
 										</Typography>
 									</NavLink>
@@ -140,17 +139,17 @@ export function Header() {
 						</div>
 						{/* ----------toggle button lg---------- */}
 						<div>
-							{!openNav && (
-								<IconButton
-									variant="text"
-									className="lg:hidden h-10 text-color-header rounded-full"
-									ripple={false}
+							{!openNav ? (
+								<button
+									className="lg:hidden w-10 h-10 text-color-header rounded-full center"
 									onClick={() => setOpenNav(true)}
 								>
-									<FaBars className="w-5 h-5" />
-								</IconButton>
+									<FaBars className="w-6 h-6 " />
+								</button>
+							) : (
+								<div className="w-10 h-10 rounded-full"></div>
 							)}
-							<div className="hidden lg:flex justify-center items-center gap-3 py-5">
+							<div className="hidden lg:flex justify-center items-center gap-3 my-auto">
 								<Tooltip
 									content="facebook"
 									placement="top"
@@ -161,7 +160,7 @@ export function Header() {
 									}}
 								>
 									<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-										<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 " />
+										<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 m-auto" />
 									</a>
 								</Tooltip>
 								<Tooltip
@@ -245,7 +244,7 @@ export function Header() {
 						</motion.div>
 					)}
 				</AnimatePresence>
-			</Navbar>
+			</navbar>
 		</>
 	);
 }

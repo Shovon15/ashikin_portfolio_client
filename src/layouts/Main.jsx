@@ -7,7 +7,7 @@ const Main = () => {
 		<div className="">
 			<Header />
 
-			<div className=" mx-auto">
+			<div className="w-full h-full">
 				<Outlet />
 			</div>
 			<Footer />

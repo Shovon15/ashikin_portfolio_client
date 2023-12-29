@@ -57,7 +57,7 @@ export function AdminSidebar() {
 	return (
 		<div
 			className={`${
-				isSidebarOpen ? "w-0 lg:w-72 z-30 min-h-screen hidden lg:block lg:fixed left-0 top-16" : "w-0 hidden"
+				isSidebarOpen ? "w-0 lg:w-72 z-50 min-h-screen hidden lg:block lg:fixed left-0 top-16" : "w-0 hidden"
 			} p-4 shadow-xl  bg-color-primary transition-all duration-300 ease-in-out`}
 		>
 			<div className="mb-2 flex justify-end items-center text-color-header ">

@@ -50,8 +50,8 @@ const Services = () => {
 				<meta name="description" content="Ashikin Alam personal portfolio services page" />
 				<link rel="canonical" href="/services" />
 			</Helmet>
-			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-				<HeaderText className="text-start pl-5 md:pl-14">Services</HeaderText>
+			<div className="page-container">
+				<HeaderText className="text-start pl-5 text-4xl md:text-5xl md:pl-14">Services</HeaderText>
 
 				{/* -----------------service cards------------------ */}
 				<div className="flex flex-wrap gap-10 md:gap-5 justify-center items-center p-5 md:p-10">

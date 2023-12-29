@@ -34,8 +34,8 @@ const EventsPage = () => {
 				<link rel="canonical" href="/programs" />
 			</Helmet>
 
-			<div className="max-w-[1560px] mx-auto pt-5 md:pt-10">
-				<HeaderText className="pl-5 md:pl-10 text-start text-5xl">Programs</HeaderText>
+			<div className="page-container">
+				<HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">Programs</HeaderText>
 
 				<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
 					{eventData.length !== 0 &&

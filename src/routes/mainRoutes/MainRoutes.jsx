@@ -36,6 +36,7 @@ import PrimaryButton from "../../components/Button/PrimaryButton";
 import { PiSmileySadThin } from "react-icons/pi";
 import BlogViewPage from "../../pages/home/blogs/BlogViewPage";
 import CreateBanner from "../../pages/dashboard/banner/CreateBanner";
+import SignUp from "../../pages/dashboard/SignUp";
 
 const MainRoutes = () => {
 	return (
@@ -56,6 +57,7 @@ const MainRoutes = () => {
 					<Route path="blog/:id" element={<BlogViewPage />} />
 				</Route>
 
+				<Route path="/signup" element={<SignUp />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/forget-password" element={<ForgetPassword />} />
 				<Route path="/reset-password/:id/:token" element={<ResetPassword />} />

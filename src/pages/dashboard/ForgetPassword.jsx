@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { Card, Input, Spinner } from "@material-tailwind/react";
 import loginIcon from "../../assets/icon/user.png";
 import { useNavigate } from "react-router-dom";
-import { post } from "../../utils/fetchApi";
+import { get, post } from "../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../helper/ToastMessage";
 import PrimaryButton from "../../components/Button/PrimaryButton";
 import GoBackButton from "../../components/Button/GoBackButton";
@@ -22,10 +22,18 @@ const ForgetPassword = () => {
 	} = useForm();
 
 	const navigate = useNavigate();
+
 	useEffect(() => {
-		if (user) {
-			navigate("/dashboard");
-		}
+		const fetchData = async () => {
+			const response = await get("admin");
+			const hasUsers = response.data.payload.data;
+			if (hasUsers.length > 0 && user) {
+				navigate("/dashboard");
+			} else if (hasUsers.length === 0) {
+				navigate("/signup");
+			}
+		};
+		fetchData();
 	});
 
 	const handleForgetPasswor = async (data) => {

@@ -18,8 +18,8 @@ const HomePage = () => {
 				<link rel="canonical" href="/" />
 			</Helmet>
 
-			<div className="max-w-[1560px] mx-auto ">
-				<Banner />
+			<Banner />
+			<div className="max-w-[1560px] mx-auto">
 				<ExperianceSection style={{ marginTop: "700px" }} />
 				<EventSection />
 				<BLogSection />

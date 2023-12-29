@@ -29,7 +29,7 @@ const ExperianceSection = () => {
 
 	return (
 		<div className="relative p-0 md:p-10 bg-color-secondary z-20">
-			<div className="absolute -mt-5 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl animation-header">
+			<div className="absolute -mt-10 md:-mt-24 mx-[2rem] md:mx-[3rem] lg:mx-[10rem] shadow-xl bg-color-secondary rounded-xl animation-body">
 				<Typography
 					variant="paragraph"
 					className="text-color-text text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold"
@@ -50,7 +50,7 @@ const ExperianceSection = () => {
 								width="50"
 								height="50"
 							/>
-							
+
 							<div>
 								<Typography variant="h5" className="font-bold text-color-header">
 									{title}

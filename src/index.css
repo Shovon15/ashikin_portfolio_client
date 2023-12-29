@@ -53,6 +53,12 @@ body{
 .backdrop-blur-sm{
     position:fixed !important;
 }
+.page-container{
+  max-width: 1560px;
+  margin: auto;
+ padding-top: 130px;
+ min-height: screen;
+}
 
 
 
@@ -180,8 +186,8 @@ border:none !important;
         animation:fade-in linear;
         animation-timeline: view();
         animation-delay: 8ms;
-        animation-range-start:10px ;
-        animation-range-end:200px ;
+        animation-range-start:0px ;
+        animation-range-end:50px ;
       }
       .animation-banner{
         animation:fade-in linear;
