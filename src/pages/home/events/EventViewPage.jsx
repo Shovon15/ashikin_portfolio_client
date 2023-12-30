@@ -34,14 +34,8 @@ const EventViewPage = () => {
 		};
 		fetchData();
 	}, []);
-	console.log(eventsData, "eventsData");
-	const { cover, content, dateTime, title, eventType } = eventsData || {
-		cover: "",
-		content: "",
-		dateTime: "",
-		title: "",
-		eventType: "",
-	};
+	// console.log(eventsData, "eventsData");
+	const { cover, content, dateTime, title, eventType } = eventsData;
 
 	const dateAndTime = new Date(dateTime);
 	// -------------date-----------------------
@@ -61,11 +55,9 @@ const EventViewPage = () => {
 	const words = content?.length;
 	const shouldShowButton = words > 600;
 
-	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-	// const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
+	// const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+	const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
 	console.log(shareUrl, "shareUrl");
-
-	
 
 	if (isLoading) {
 		return <LoadingSpinner />;
@@ -199,7 +191,7 @@ const EventViewPage = () => {
 							</div>
 
 							<div className="">
-								<FacebookShareButton url={shareUrl} quote={title}>
+								<FacebookShareButton url={shareUrl} quote={"hello there"}>
 									<FacebookIcon size={32} round />
 									<span>Share on Facebook</span>
 								</FacebookShareButton>
