@@ -65,7 +65,7 @@ const EventViewPage = () => {
 	// const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
 	console.log(shareUrl, "shareUrl");
 
-	const quote = typeof document !== "undefined" ? document.title : "Check out this awesome content!";
+	
 
 	if (isLoading) {
 		return <LoadingSpinner />;
