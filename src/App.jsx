@@ -2,7 +2,6 @@ import { ToastContainer } from "react-toastify";
 import MainRoutes from "./routes/mainRoutes/MainRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import "aos/dist/aos.css";
 import LoadingSpinner from "./components/shared/loadingSpinner/LoadingSpinner";
 import ScrollButton from "./components/Button/ScrollButton";
 import "react-lazy-load-image-component/src/effects/blur.css";
