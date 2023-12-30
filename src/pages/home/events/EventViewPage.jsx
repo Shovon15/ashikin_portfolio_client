@@ -55,8 +55,8 @@ const EventViewPage = () => {
 	const words = content?.length;
 	const shouldShowButton = words > 600;
 
-	// const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-	const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+	// const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
 	console.log(shareUrl, "shareUrl");
 
 	if (isLoading) {
