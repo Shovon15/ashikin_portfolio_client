@@ -4,7 +4,7 @@ import { DashboardContext } from "../../../context/DashboardContext";
 import { get } from "../../../utils/fetchApi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const Banner = () => {
+const Banner = ({ setBannerImage }) => {
 	const { scrollPosition } = useContext(DashboardContext);
 	const [isLoading, setIsLoading] = useState(false);
 	const [bannerData, setBannerData] = useState({
@@ -19,6 +19,7 @@ const Banner = () => {
 			setIsLoading(true);
 			const response = await get("banner");
 			setBannerData(response.data.payload.data);
+			setBannerImage(response.data.payload.data.backgroundImage);
 			setIsLoading(false);
 		};
 		fetchData();

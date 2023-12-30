@@ -14,8 +14,7 @@ import ButtonOutline from "../../../components/Button/ButtonOutline";
 import bgImg from "../../../assets/image/abstract-offer.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PiShareFat } from "react-icons/pi";
-import { FacebookIcon, FacebookShareButton } from "react-share";
-import { Helmet } from "react-helmet-async";
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from "react-share";
 import PageHelmet from "../../../helper/PageHelmet";
 
 const EventViewPage = () => {
@@ -62,8 +61,8 @@ const EventViewPage = () => {
 	const words = content?.length;
 	const shouldShowButton = words > 600;
 
-	// const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-	const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+	// const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
 	console.log(shareUrl, "shareUrl");
 
 	const quote = typeof document !== "undefined" ? document.title : "Check out this awesome content!";
@@ -74,15 +73,14 @@ const EventViewPage = () => {
 
 	return (
 		<>
-			<PageHelmet title={title} cover={cover} link={shareUrl} />
-			{/* <Helmet>
-				<title>Ashikin Alam | Program</title>
-				<meta name="description" content={title} />
-				<meta property="og:image" content={cover} />
-				<meta name="twitter:image" content=" https://foo.com/thumbnail.jpg" />
-				<meta name="twitter:card" content="summary_large_image" />
-				<link rel="canonical" href={shareUrl} />
-			</Helmet> */}
+			<PageHelmet
+				title={title}
+				description={title}
+				name="ashikin alam"
+				image={cover}
+				link={shareUrl}
+				type="webapp"
+			/>
 
 			<div className="bg-color-primary relative min-h-screen">
 				<div className="absolute top-0 left-0 flex justify-between w-full pointer-events-none">
@@ -200,11 +198,15 @@ const EventViewPage = () => {
 								</Link>
 							</div>
 
-							<div className="bg-green-500 h-[500px]">
-								<FacebookShareButton url={shareUrl} quote={quote} picture={cover}>
+							<div className="">
+								<FacebookShareButton url={shareUrl} quote={title}>
 									<FacebookIcon size={32} round />
 									<span>Share on Facebook</span>
 								</FacebookShareButton>
+
+								<TwitterShareButton url={shareUrl} quote={title}>
+									<TwitterIcon size={32} round />
+								</TwitterShareButton>
 							</div>
 						</div>
 					</div>

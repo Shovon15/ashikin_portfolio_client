@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import LoadingSpinner from "./components/shared/loadingSpinner/LoadingSpinner";
 import ScrollButton from "./components/Button/ScrollButton";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -23,15 +24,18 @@ function App() {
 	useEffect(() => {
 		window.history.scrollRestoration = "manual";
 	}, []);
-	// https://i.ibb.co/M9mb97w/bg.jpg
-	// https://i.ibb.co/XkX5T9w/creative-people-working-office.jpg
+
+	const helmetContext = {};
+
 	return (
 		<div className="bg-color-primary">
 			{loading ? (
 				<LoadingSpinner />
 			) : (
 				<>
-					<MainRoutes />
+					<HelmetProvider context={helmetContext}>
+						<MainRoutes />
+					</HelmetProvider>
 					<ToastContainer />
 					<ScrollButton />
 				</>

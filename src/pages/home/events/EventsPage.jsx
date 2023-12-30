@@ -2,8 +2,8 @@ import { get } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import EventCard from "../../../components/card/event/EventCard";
-import { Helmet } from "react-helmet-async";
 import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
+import PageHelmet from "../../../helper/PageHelmet";
 
 const EventsPage = () => {
 	const { data: eventData = [], isLoading } = useQuery({
@@ -15,6 +15,7 @@ const EventsPage = () => {
 			return data;
 		},
 	});
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
 	if (isLoading) {
 		return (
@@ -28,11 +29,12 @@ const EventsPage = () => {
 	}
 	return (
 		<>
-			<Helmet>
-				<title>Ashikin Alam | Programs</title>
-				<meta name="description" content="Ashikin Alam personal portfolio event page" />
-				<link rel="canonical" href="/programs" />
-			</Helmet>
+			<PageHelmet
+				title="Ashikin Alam | programs"
+				description="Embark on an inspiring journey with seminars, events, and motivational lectures. Elevate experiences, empower teams, ignite positive change."
+				link={shareUrl}
+				type="webapp"
+			/>
 
 			<div className="page-container">
 				<HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">Programs</HeaderText>

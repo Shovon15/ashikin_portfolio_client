@@ -8,6 +8,7 @@ import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpi
 import ButtonOutline from "../../../components/Button/ButtonOutline";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import bgImg from "../../../assets/image/abstract-offer.png";
+import PageHelmet from "../../../helper/PageHelmet";
 const BlogViewPage = () => {
 	const { fetchBlogBySlug } = useContext(DataContext);
 	const { slug } = useParams();
@@ -16,6 +17,7 @@ const BlogViewPage = () => {
 	const [blogData, setblogData] = useState({});
 	const { title, cover, content } = blogData;
 
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
@@ -35,6 +37,14 @@ const BlogViewPage = () => {
 
 	return (
 		<>
+			<PageHelmet
+				title={title}
+				description={title}
+				name="ashikin alam"
+				image={cover}
+				link={shareUrl}
+				type="webapp"
+			/>
 			<div className="bg-color-primary relative min-h-screen pb-10">
 				<div className="absolute top-0 left-0 flex justify-between w-full pointer-events-none">
 					<div>

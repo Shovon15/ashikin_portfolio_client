@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { get } from "../../../utils/fetchApi";
 import BlogCardSkeletion from "../../../components/card/blog/BlogCardSkeletion";
 import BlogCard from "../../../components/card/blog/BlogCard";
+import PageHelmet from "../../../helper/PageHelmet";
 
 const BlogPage = () => {
 	const [blogData, setBlogData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	
+
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
@@ -19,6 +20,7 @@ const BlogPage = () => {
 		};
 		fetchData();
 	}, []);
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
 	if (isLoading) {
 		return (
@@ -67,11 +69,14 @@ const BlogPage = () => {
 	// }, [controls, isVisible]);
 	return (
 		<>
-			<Helmet>
-				<title>Ashikin Alam | Blogs</title>
-				<meta name="description" content="Ashikin Alam personal portfolio blog page" />
-				<link rel="canonical" href="/blogs" />
-			</Helmet>
+			<PageHelmet
+				title="Ashikin Alam | Blogs"
+				// description={title}
+				name="ashikin alam"
+				// image={cover}
+				link={shareUrl}
+				type="webapp"
+			/>
 			<div className="page-container">
 				<HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">Blog</HeaderText>
 				<div className="p-5">

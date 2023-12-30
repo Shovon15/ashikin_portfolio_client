@@ -6,12 +6,14 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 import { get } from "../../../utils/fetchApi";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import PageHelmet from "../../../helper/PageHelmet";
 
 const Services = () => {
 	const [hoveredItem, setHoveredItem] = useState(null);
 	const [serviceData, setServiceData] = useState([]);
 	const [isLaoding, setIsLoading] = useState(false);
 
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
@@ -45,11 +47,12 @@ const Services = () => {
 
 	return (
 		<>
-			<Helmet>
-				<title>Ashikin Alam | Services</title>
-				<meta name="description" content="Ashikin Alam personal portfolio services page" />
-				<link rel="canonical" href="/services" />
-			</Helmet>
+			<PageHelmet
+				title="Ashikin Alam | services"
+				description="Discover tailored services for leaders and entrepreneurs—insightful consultations, impactful speaking sessions, and corporate solutions driving success."
+				link={shareUrl}
+				type="webapp"
+			/>
 			<div className="page-container">
 				<HeaderText className="text-start pl-5 text-4xl md:text-5xl md:pl-14">Services</HeaderText>
 
