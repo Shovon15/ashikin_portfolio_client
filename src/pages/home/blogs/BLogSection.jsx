@@ -30,7 +30,7 @@ const BLogSection = () => {
 		);
 	}
 	return (
-		<div className="p-5">
+		<div className="p-5 bg-color-secondary">
 			{blogData.length > 0 && (
 				<>
 					<HeaderText className="py-5">Blog</HeaderText>

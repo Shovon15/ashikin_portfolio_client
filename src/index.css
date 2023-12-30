@@ -56,7 +56,7 @@ body{
 .page-container{
   max-width: 1560px;
   margin: auto;
- padding-top: 130px;
+ padding-top: 120px;
  min-height: screen;
 }
 
@@ -141,19 +141,21 @@ border:none !important;
   
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
+    /* box-shadow: inset 0 0 5px grey;  */
+    background: var(--background-color-secondary); 
+   
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #2d71ac; 
-    border-radius: 10px;
+    background: var(--text-color); 
+   
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: var(--button-color); 
+    cursor: pointer;
   }
 
   /* ----------------animations----------- */

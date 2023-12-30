@@ -9,6 +9,7 @@ import BlogCard from "../../../components/card/blog/BlogCard";
 const BlogPage = () => {
 	const [blogData, setBlogData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);

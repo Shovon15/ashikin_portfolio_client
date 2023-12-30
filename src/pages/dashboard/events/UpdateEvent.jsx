@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IconButton, Input, Option, Select, Spinner } from "@material-tailwind/react";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import DateTimePicker from "react-datetime-picker";
 import { useNavigate, useParams } from "react-router-dom";
-import { DataContext } from "../../../context/DataContext";
+
 import { BsTrashFill } from "react-icons/bs";
 import { LuUploadCloud } from "react-icons/lu";
 import handleFileUpload from "../../../helper/ImageUploader";
-import { put } from "../../../utils/fetchApi";
+import { get, put } from "../../../utils/fetchApi";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { Editor } from "@tinymce/tinymce-react";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
@@ -16,8 +16,6 @@ import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const UpdateEvent = () => {
-	const { fetchEventById } = useContext(DataContext);
-
 	const [title, setTitle] = useState("");
 	const [eventType, setEventType] = useState("");
 	const [oldImage, setOldImage] = useState("");
@@ -29,20 +27,20 @@ const UpdateEvent = () => {
 	const [isDataLoading, setIsDataLoading] = useState(false);
 
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
-	const [eventData, setEventData] = useState(false);
+	const [eventData, setEventData] = useState({});
 
 	const editorRef = useRef(null);
 	const inputImageRef = useRef(null);
 
 	const navigate = useNavigate();
 
-	const { id } = useParams();
+	const { slug } = useParams();
 
 	useEffect(() => {
 		const fetchEvent = async () => {
 			setIsDataLoading(true);
-			const data = await fetchEventById(id);
-			setEventData(data);
+			const response = await get("events/" + slug, slug);
+			setEventData(response.data.payload.data);
 			setIsDataLoading(false);
 		};
 		fetchEvent();
@@ -86,7 +84,7 @@ const UpdateEvent = () => {
 		}
 
 		try {
-			const res = await put(`events/${id}`, formData);
+			const res = await put(`events/${slug}`, formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/programs");
 		} catch (err) {

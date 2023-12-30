@@ -71,7 +71,7 @@ const Banner = () => {
 						/>
 					</div>
 					<div className="absolute top-20 left-0 right-0 mx-auto max-w-[1560px] flex flex-col md:flex-row">
-						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justify-start md-mt-5 lg:mt-10">
+						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justify-start md:justify-center">
 							<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
 								{bannerData?.bannerHeader}
 							</Typography>

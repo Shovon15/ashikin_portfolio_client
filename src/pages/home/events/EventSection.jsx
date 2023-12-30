@@ -104,10 +104,10 @@ const EventSection = () => {
 								</div>
 							))}
 						</div>
-						<div className="py-5">
+						<div className="pt-5 pb-10">
 							{/* Render tab content based on the active tab */}
 							{activeTab && (
-								<div className="flex flex-col md:flex-row flex-grow  gap-3 md:gap-5 justify-center p-1">
+								<div className="flex flex-col md:flex-row flex-grow gap-5 justify-center p-1">
 									{!isLoading && filteredEvents.length > 0 ? (
 										filteredEvents.map((event, index) => (
 											<div key={index} value={tabValue} className="p-0">

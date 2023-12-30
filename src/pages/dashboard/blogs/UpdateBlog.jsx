@@ -1,7 +1,7 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
-import { put } from "../../../utils/fetchApi";
+import { get, put } from "../../../utils/fetchApi";
 import { useNavigate, useParams } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
@@ -10,7 +10,6 @@ import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import { Editor } from "@tinymce/tinymce-react";
-import { DataContext } from "../../../context/DataContext";
 
 const UpdateBlog = () => {
 	const [blogData, setBlogData] = useState([]);
@@ -23,27 +22,25 @@ const UpdateBlog = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
 
-	const { fetchBlogById } = useContext(DataContext);
-
 	const inputImageRef = useRef(null);
 	const editorRef = useRef(null);
 
 	const navigate = useNavigate();
 
-	const { id } = useParams();
+	const { slug } = useParams();
 
 	useEffect(() => {
-		const fetchEvent = async () => {
+		const fetchBlog = async () => {
 			setIsLoading(true);
-			const data = await fetchBlogById(id);
-			setBlogData(data);
+			const response = await get("blogs/" + slug, slug);
+			setBlogData(response.data.payload.data);
 			setIsLoading(false);
 		};
-		fetchEvent();
+		fetchBlog();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// console.log(blogData);
+	console.log(blogData);
 
 	// console.log(serviceData, "serviceData");
 
@@ -80,7 +77,7 @@ const UpdateBlog = () => {
 		}
 
 		try {
-			const res = await put(`blogs/${id}`, formData);
+			const res = await put(`blogs/${slug}`, formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/blogs");
 		} catch (err) {

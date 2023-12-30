@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DataContext } from "../../../context/DataContext";
 import { useParams } from "react-router-dom";
-import Aos from "aos";
+
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import { post } from "../../../utils/fetchApi";
@@ -18,8 +18,8 @@ const EventRegister = () => {
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [eventData, setEventData] = useState({});
 
-	const { id } = useParams();
-	const { fetchEventById } = useContext(DataContext);
+	const { slug } = useParams();
+	const { fetchEventBySlug } = useContext(DataContext);
 
 	const {
 		register,
@@ -31,7 +31,7 @@ const EventRegister = () => {
 	useEffect(() => {
 		const fetchEvent = async () => {
 			setIsLoading(true);
-			const event = await fetchEventById(id);
+			const event = await fetchEventBySlug(slug);
 			setEventData(event);
 			setIsLoading(false);
 		};
@@ -67,7 +67,8 @@ const EventRegister = () => {
 			email: data.email,
 			instituteName: data.instituteName,
 			accountNumber: data.accountNumber,
-			eventId: id,
+			// eventId: id,
+			eventSlug: slug,
 			eventTitle: title,
 		};
 		// console.log(registerData, "items");
@@ -109,7 +110,7 @@ const EventRegister = () => {
 		);
 	};
 	return (
-		<div className="w-full lg:w-[60rem] flex flex-col lg:flex-row-reverse mx-auto justify-start p-5 ">
+		<div className="w-full  page-container flex flex-col lg:flex-row-reverse mx-auto justify-start p-5 ">
 			<div className="pb-5 lg:hidden">
 				<GoBackButton />
 			</div>
@@ -117,10 +118,7 @@ const EventRegister = () => {
 				<Skeleton />
 			) : (
 				<>
-					<div
-						// data-aos="zoom-in"
-						className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 "
-					>
+					<div className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 ">
 						<p className="text-2xl font-semibold text-center text-color-header">{title}</p>
 						<p className="text-color-text capitalize pt-3">{eventType} program</p>
 						<p className="text-color-text">
@@ -131,15 +129,16 @@ const EventRegister = () => {
 					</div>
 				</>
 			)}
-			<form onSubmit={handleSubmit(handleAddItems)} className="w-full lg:w-9/12 lg:p-5">
+			<form onSubmit={handleSubmit(handleAddItems)} className="w-full lg:w-[50rem]  lg:p-5">
 				<div className="hidden lg:block">
 					<GoBackButton />
 				</div>
 				<HeaderText className="py-5 ">Program Register</HeaderText>
 				<div className="flex flex-col lg:flex-row gap-5">
-					<div 
-					// data-aos="fade-up" 
-					className="flex flex-col gap-1 w-full">
+					<div
+						// data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							variant="standard"
 							color="yellow"
@@ -153,8 +152,9 @@ const EventRegister = () => {
 						{errors.firstName && <p className="text-red-500 text-sm ">{errors.firstName.message}</p>}
 					</div>
 					<div
-					//  data-aos="fade-up"
-					  className="flex flex-col gap-1 w-full">
+						//  data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							variant="standard"
 							color="yellow"
@@ -169,9 +169,10 @@ const EventRegister = () => {
 					</div>
 				</div>
 				<div className="flex flex-col lg:flex-row gap-5 pt-5">
-					<div 
-					// data-aos="fade-up"
-					 className="flex flex-col gap-1 w-full">
+					<div
+						// data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							variant="standard"
 							color="yellow"
@@ -185,8 +186,9 @@ const EventRegister = () => {
 						{errors.whatsapp && <p className="text-red-500 text-sm ">{errors.whatsapp.message}</p>}
 					</div>
 					<div
-					//  data-aos="fade-up"
-					 className="flex flex-col gap-1 w-full">
+						//  data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							variant="standard"
 							color="yellow"
@@ -201,9 +203,10 @@ const EventRegister = () => {
 					</div>
 				</div>
 				<div className="flex flex-col gap-5 py-5">
-					<div 
-					// data-aos="fade-up"
-					 className="flex flex-col gap-1 w-full">
+					<div
+						// data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							color="yellow"
 							variant="standard"
@@ -216,9 +219,10 @@ const EventRegister = () => {
 						/>
 						{errors.email && <p className="text-red-500 text-sm ">{errors.email.message}</p>}
 					</div>
-					<div 
-					// data-aos="fade-up"
-					 className="flex flex-col gap-1 w-full">
+					<div
+						// data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							color="yellow"
 							variant="standard"
@@ -234,8 +238,9 @@ const EventRegister = () => {
 						)}
 					</div>
 					<div
-					//  data-aos="fade-up"
-					 className="flex flex-col gap-1 w-full">
+						//  data-aos="fade-up"
+						className="flex flex-col gap-1 w-full"
+					>
 						<Input
 							color="yellow"
 							variant="standard"
@@ -251,9 +256,10 @@ const EventRegister = () => {
 						)}
 					</div>
 				</div>
-				<div className="flex justify-center pb-10"
-				//  data-aos="zoom-in"
-				 >
+				<div
+					className="flex justify-center pb-10"
+					//  data-aos="zoom-in"
+				>
 					<PrimaryButton buttonType={"submit"} className="px-12" disabled={buttonLoading}>
 						{buttonLoading ? <Spinner color="yellow" className="mx-auto" /> : "Submit"}
 					</PrimaryButton>

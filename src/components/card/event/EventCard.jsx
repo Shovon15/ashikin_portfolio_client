@@ -8,7 +8,7 @@ import ImageComponent from "../../ImageComponent";
 
 export function EventCard({ eventData }) {
 	// console.log(eventData, "eventData");
-	const { _id, title, cover, dateTime, eventType } = eventData || {
+	const { _id, slug, title, cover, dateTime, eventType } = eventData || {
 		_id: "",
 		title: "",
 		cover: "",
@@ -56,18 +56,13 @@ export function EventCard({ eventData }) {
 			</CardHeader>
 			<CardBody className="flex flex-col items-center">
 				<Typography
-					// data-aos="zoom-in"
-					// data-aos-anchor-placement="top-bottom"
 					variant="h5"
 					className="mb-2 font-bold text-color-header h-14 overflow-y-auto my-auto text-center"
 				>
 					{title}
 				</Typography>
 
-				<div
-					// data-aos="zoom-in" data-aos-anchor-placement="top-bottom"
-					className="flex justify-center"
-				>
+				<div className="flex justify-center">
 					<Typography variant="h6" className="text-color-text">
 						{formattedDate}
 					</Typography>
@@ -81,8 +76,8 @@ export function EventCard({ eventData }) {
 				className="pt-0 mx-auto"
 				// data-aos="zoom-in" data-aos-anchor-placement="top-bottom"
 			>
-				{_id && (
-					<Link to={`/program/${_id}`}>
+				{slug && (
+					<Link to={`/program/${slug}`}>
 						<ButtonOutline className="px-8">Details</ButtonOutline>
 					</Link>
 				)}

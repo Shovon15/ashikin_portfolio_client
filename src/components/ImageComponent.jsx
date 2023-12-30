@@ -9,8 +9,8 @@ const ImageComponent = ({ src }) => {
 				src={src}
 				alt="card-image"
 				className="object-fill h-full rounded-t-xl "
-				width="400px"
-				height="200px"
+				width="100%"
+				height="100%"
 			/>
 		</>
 	);

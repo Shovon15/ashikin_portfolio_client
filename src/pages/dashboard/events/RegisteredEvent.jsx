@@ -20,7 +20,7 @@ const RegisteredEvent = () => {
 	const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [deletingRegisteredData, setDeletingRegisteredData] = useState(null);
 
-	const { id } = useParams();
+	const { slug } = useParams();
 
 	const {
 		data: registerData = [],
@@ -29,7 +29,7 @@ const RegisteredEvent = () => {
 	} = useQuery({
 		queryKey: ["registerData"],
 		queryFn: async () => {
-			const res = await get(`events/register-event/${id}`);
+			const res = await get(`events/register-event/${slug}`);
 			let data = res.data.payload?.registeredEvent;
 			setEventData(res.data.payload.eventData[0]);
 
@@ -37,9 +37,7 @@ const RegisteredEvent = () => {
 		},
 	});
 
-	// console.log(eventData);
 	const { register, eventType, title } = eventData;
-	// console.log(registerData);
 
 	const TABLE_HEAD = ["No.", "Name", "Whatsapp", "Phone", "Email", "institute", "Account Number", "action"];
 
@@ -50,7 +48,7 @@ const RegisteredEvent = () => {
 
 	const handleDeleteEvent = async ({ _id, title }) => {
 		try {
-			const response = await del(`/events/registered-event/${_id}/${id}`);
+			const response = await del(`/events/registered-event/${_id}/${slug}`);
 			refetch();
 			showSuccessToast(response.data.message);
 		} catch (error) {
@@ -67,28 +65,31 @@ const RegisteredEvent = () => {
 			<div className="flex flex-col md:flex-row md:justify-between md:px-5">
 				<HeaderText className="text-start py-2">{title}</HeaderText>
 				<div>
-					<Typography className="font-semibold">
-						Total registration: <span className="font-bold text-xl">{register}</span>{" "}
+					<Typography className="font-semibold text-color-text">
+						Total registration: <span className="font-bold text-xl text-color-header">{register}</span>{" "}
 					</Typography>
-					<Typography className="pb-5 font-semibold">
-						<span className="text-textPrimary font-bold">{eventType}</span> Event
+					<Typography className="pb-5 font-semibold text-color-text">
+						<span className="text-color-header font-bold capitalize">{eventType}</span> Event
 					</Typography>
 				</div>
 			</div>
 			<div className="relative overflow-x-auto">
-				<table className="w-full text-sm text-left rtl:text-right text-gray-800 dark:text-white">
-					<thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+				<table className="w-full text-sm text-left rtl:text-right ">
+					<thead className="text-xs text-color-text uppercase">
 						<tr>
 							{TABLE_HEAD.map((head) => (
-								<th key={head} className="border-b  border-blue-gray-100 bg-blue-800 p-4">
-									<Typography variant="small" className="font-bold text-white opacity-70 text-center">
+								<th key={head} className="border-b  border-color-border bg-color-secondary p-4">
+									<Typography
+										variant="small"
+										className="font-bold text-color-header opacity-70 text-center"
+									>
 										{head}
 									</Typography>
 								</th>
 							))}
 						</tr>
 					</thead>
-					<tbody className="dark:bg-darkPrimary ">
+					<tbody className="text-color-text">
 						{!isLoading &&
 							registerData.length !== 0 &&
 							registerData.map(
@@ -96,10 +97,7 @@ const RegisteredEvent = () => {
 									{ _id, firstName, lastName, whatsapp, phone, email, instituteName, accountNumber },
 									index
 								) => (
-									<tr
-										key={_id}
-										className="even:bg-gray-200  dark:even:bg-gray-800 text-center dark:bg-gray-500"
-									>
+									<tr key={_id} className="even:bg-color-primary text-center">
 										<td className="p-2 w-5">
 											<Typography className="font-bold ">{String(index + 1) + "."}</Typography>
 										</td>
@@ -140,17 +138,11 @@ const RegisteredEvent = () => {
 													/>
 												}
 												fileName={`${firstName}_${title}_register.pdf`}
-												className=" px-3 py-2 hover:bg-blue-gray-50 rounded-full"
+												className=" px-3 py-2 bg-color-secondary rounded-full"
 											>
 												<BsFiletypePdf className="w-5 h-5" />
 											</PDFDownloadLink>
-											{/* <Button
-												// onClick={handleMakePdf}
-												variant="text"
-												className="py-2 px-3 rounded-full"
-											>
-												
-											</Button> */}
+
 											<Button
 												variant="text"
 												className="focus:ring-0  border-none rounded-full p-3"

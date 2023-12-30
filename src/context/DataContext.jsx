@@ -16,9 +16,9 @@ export const DataContextProvider = ({ children }) => {
 		}
 	};
 
-	const fetchEventById = async (id) => {
+	const fetchEventBySlug = async (slug) => {
 		try {
-			const response = await get("events/" + id, id);
+			const response = await get("events/" + slug, slug);
 			return response.data?.payload?.data;
 		} catch (error) {
 			showErrorToast(error.message);
@@ -33,9 +33,9 @@ export const DataContextProvider = ({ children }) => {
 		}
 	};
 
-	const fetchBlogById = async (id) => {
+	const fetchBlogBySlug = async (slug) => {
 		try {
-			const response = await get("blogs/" + id, id);
+			const response = await get("blogs/" + slug, slug);
 			return response.data?.payload?.data;
 		} catch (error) {
 			showErrorToast(error.message);
@@ -44,9 +44,9 @@ export const DataContextProvider = ({ children }) => {
 
 	const dataInfo = {
 		fetchEventData,
-		fetchEventById,
+		fetchEventBySlug,
 		fetchServiceById,
-		fetchBlogById,
+		fetchBlogBySlug,
 	};
 	return <DataContext.Provider value={dataInfo}>{children}</DataContext.Provider>;
 };

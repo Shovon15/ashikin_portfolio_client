@@ -48,13 +48,13 @@ const MainRoutes = () => {
 					<Route path="/" element={<HomePage />} />
 
 					<Route path="programs" element={<EventsPage />} />
-					<Route path="program/:id" element={<EventViewPage />} />
-					<Route path="program/register/:id" element={<EventRegister />} />
+					<Route path="program/:slug" element={<EventViewPage />} />
+					<Route path="program/register/:slug" element={<EventRegister />} />
 
 					<Route path="services" element={<Services />} />
 
 					<Route path="blogs" element={<BlogPage />} />
-					<Route path="blog/:id" element={<BlogViewPage />} />
+					<Route path="blog/:slug" element={<BlogViewPage />} />
 				</Route>
 
 				<Route path="/signup" element={<SignUp />} />
@@ -83,7 +83,7 @@ const MainRoutes = () => {
 						<Route path="blogs">
 							<Route path="" element={<BlogManage />} />
 							<Route path="write-blog" element={<CreateBlog />} />
-							<Route path="update-blog/:id" element={<UpdateBlog />} />
+							<Route path="update-blog/:slug" element={<UpdateBlog />} />
 						</Route>
 
 						<Route path="banner">
@@ -100,9 +100,9 @@ const MainRoutes = () => {
 
 						<Route path="programs">
 							<Route path="" element={<EventManage />} />
-							<Route path=":id" element={<RegisteredEvent />} />
+							<Route path=":slug" element={<RegisteredEvent />} />
 							<Route path="write-program" element={<CreateEvent />} />
-							<Route path="update-program/:id" element={<UpdateEvent />} />
+							<Route path="update-program/:slug" element={<UpdateEvent />} />
 						</Route>
 
 						<Route path="reviews">

@@ -59,9 +59,9 @@ const EventManage = () => {
 		setDeleteModalOpen(false);
 	};
 
-	const handleDeleteEvent = async ({ _id, title }) => {
+	const handleDeleteEvent = async ({ slug, title }) => {
 		try {
-			const response = await del(`events/${_id}`);
+			const response = await del(`events/${slug}`);
 			refetch();
 			showSuccessToast(response.data.message);
 		} catch (error) {
@@ -72,11 +72,11 @@ const EventManage = () => {
 		}
 	};
 
-	const handlePublished = async ({ id, isPublished, eventType }) => {
+	const handlePublished = async ({ slug, isPublished, eventType }) => {
 		try {
 			const updatedIsPublished = !isPublished;
 
-			await put(`events/${id}`, { isPublished: updatedIsPublished, eventType });
+			await put(`events/${slug}`, { isPublished: updatedIsPublished, eventType });
 
 			refetch();
 			showSuccessToast(updatedIsPublished ? "Published" : "Unpublished");
@@ -118,9 +118,9 @@ const EventManage = () => {
 			{eventData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
 					<p className="text-lg text-color-text">
-						You have not created any events yet.
+						You have not created any program yet.
 						<br />
-						Please add an event to get started!
+						Please add program to get started!
 					</p>
 				</div>
 			) : (
@@ -146,10 +146,10 @@ const EventManage = () => {
 									eventData.length !== 0 &&
 									eventData.map(
 										(
-											{ _id, title, cover, eventType, register, content, isPublished, dateTime },
+											{ slug, title, cover, eventType, register, content, isPublished, dateTime },
 											index
 										) => (
-											<tr key={_id} className="even:bg-color-secondary text-center">
+											<tr key={slug} className="even:bg-color-secondary text-center">
 												<td className="p-2">
 													<p className="font-bold">{String(index + 1) + "."}</p>
 												</td>
@@ -182,7 +182,7 @@ const EventManage = () => {
 														{register === 0 ? (
 															<p>0</p>
 														) : (
-															<Link to={`/dashboard/programs/${_id}`}>
+															<Link to={`/dashboard/programs/${slug}`}>
 																<Button className="capitalize p-2  bg-color-button hover:bg-color-buttonHover text-color-text">
 																	{register} Registered
 																</Button>
@@ -205,7 +205,7 @@ const EventManage = () => {
 														<Button
 															onClick={() =>
 																handlePublished({
-																	id: _id,
+																	slug,
 																	isPublished,
 																	eventType,
 																})
@@ -236,7 +236,7 @@ const EventManage = () => {
 													>
 														<VscScreenFull className="w-5 h-5 " />
 													</Button>
-													<Link to={`update-program/${_id}`}>
+													<Link to={`update-program/${slug}`}>
 														<Button
 															variant="outlined"
 															size="sm"
@@ -251,7 +251,7 @@ const EventManage = () => {
 														className="focus:ring-0  border-none rounded-full p-3"
 														onClick={() => {
 															setDeleteModalOpen(true);
-															setDeletingEventData({ _id, title });
+															setDeletingEventData({ slug, title });
 														}}
 													>
 														<FaTrashAlt className="w-5 h-5 text-red-500" />
@@ -271,7 +271,7 @@ const EventManage = () => {
 						setViewModalOpen={setViewModalOpen}
 					/>
 					<ConfirmationModal
-						message={`Warning: Deleting this event is permanent and cannot be undone. Also, all registered data for this event will be deleted.`}
+						message={`Warning: Deleting this program is permanent and cannot be undone. Also, all registered data for this program will be deleted.`}
 						isOpen={isDeleteModalOpen}
 						onClose={handleCloseDeleteModal}
 						content={deletingEventData}

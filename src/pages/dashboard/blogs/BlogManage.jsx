@@ -69,11 +69,11 @@ const BlogManage = () => {
 		}
 	};
 
-	const handlePublished = async ({ id, isPublished }) => {
+	const handlePublished = async ({ slug, isPublished }) => {
 		try {
 			const updatedIsPublished = !isPublished;
 
-			await put(`blogs/${id}`, { isPublished: updatedIsPublished });
+			await put(`blogs/${slug}`, { isPublished: updatedIsPublished });
 
 			refetch();
 			showSuccessToast(updatedIsPublished ? "Published" : "Unpublished");
@@ -140,7 +140,7 @@ const BlogManage = () => {
 							<tbody className="text-color-text">
 								{!isLoading &&
 									blogData.length !== 0 &&
-									blogData.map(({ _id, title, cover, content, isPublished }, index) => (
+									blogData.map(({ _id, slug, title, cover, content, isPublished }, index) => (
 										<tr key={_id} className="even:bg-color-secondary text-center">
 											<td className="p-2">
 												<p className="font-bold">{String(index + 1) + "."}</p>
@@ -163,7 +163,7 @@ const BlogManage = () => {
 													<Button
 														onClick={() =>
 															handlePublished({
-																id: _id,
+																slug,
 																isPublished,
 															})
 														}
@@ -191,7 +191,7 @@ const BlogManage = () => {
 												>
 													<VscScreenFull className="w-5 h-5 " />
 												</Button>
-												<Link to={`update-blog/${_id}`}>
+												<Link to={`update-blog/${slug}`}>
 													<Button
 														variant="outlined"
 														size="sm"

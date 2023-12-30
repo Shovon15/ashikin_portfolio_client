@@ -96,7 +96,7 @@ export function Header() {
 
 	return (
 		<>
-			<navbar
+			<nav
 				className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
 					scrollPosition > 0 ? "bg-color-secondary p-5 shadow-xl" : "p-10 bg-none"
 				}`}
@@ -244,7 +244,7 @@ export function Header() {
 						</motion.div>
 					)}
 				</AnimatePresence>
-			</navbar>
+			</nav>
 		</>
 	);
 }
