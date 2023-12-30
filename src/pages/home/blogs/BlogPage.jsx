@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 // import { useScroll, motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";

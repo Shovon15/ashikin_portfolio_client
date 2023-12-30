@@ -1,7 +1,7 @@
 import { Input, Spinner, Textarea } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
-import Aos from "aos";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { post } from "../../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
@@ -38,18 +38,11 @@ const ContactForm = () => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	Aos.init({ duration: 1000 });
-	// }, []);
-
 	return (
 		<div className="p-5 md:p-10">
 			<form onSubmit={handleSubmit(handleInvitation)}>
 				<div className="flex flex-col lg:flex-row gap-5 ">
-					<div
-						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full  animation-header"
-					>
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
 							variant="standard"
@@ -63,10 +56,7 @@ const ContactForm = () => {
 						/>
 						{errors.name && <p className="text-red-500 text-sm ">{errors.name.message}</p>}
 					</div>
-					<div
-						// data-aos="fade-up"
-						className="flex flex-col gap-1 w-full  animation-header"
-					>
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
 							variant="standard"
@@ -81,10 +71,7 @@ const ContactForm = () => {
 						{errors.phone && <p className="text-red-500 text-sm ">{errors.phone.message}</p>}
 					</div>
 				</div>
-				<div
-					// data-aos="fade-up"
-					className="flex flex-col gap-5 py-5"
-				>
+				<div className="flex flex-col gap-5 py-5">
 					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
@@ -99,10 +86,7 @@ const ContactForm = () => {
 						/>
 						{errors.organization && <p className="text-red-500 text-sm ">{errors.organization.message}</p>}
 					</div>
-					<div
-						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full  animation-header"
-					>
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
 							color="yellow"
@@ -116,10 +100,7 @@ const ContactForm = () => {
 						/>
 						{errors.location && <p className="text-red-500 text-sm ">{errors.location.message}</p>}
 					</div>
-					<div
-						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full  animation-header"
-					>
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Input
 							type="text"
 							variant="standard"
@@ -135,10 +116,7 @@ const ContactForm = () => {
 							<p className="text-red-500 text-sm ">{errors.audienceNumber.message}</p>
 						)}
 					</div>
-					<div
-						//  data-aos="fade-up"
-						className="flex flex-col gap-1 w-full  animation-header"
-					>
+					<div className="flex flex-col gap-1 w-full  animation-header">
 						<Textarea
 							type="text"
 							color="yellow"
@@ -153,10 +131,7 @@ const ContactForm = () => {
 						{errors.eventText && <p className="text-red-500 text-sm">{errors.eventText.message}</p>}
 					</div>
 				</div>
-				<div
-					className="flex justify-center mt-5"
-					// data-aos="zoom-in"
-				>
+				<div className="flex justify-center mt-5">
 					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-10">
 						{isLoading ? <Spinner color="gray" className="mx-4 my-0.5 h-5 w-5" /> : "submit"}
 					</PrimaryButton>

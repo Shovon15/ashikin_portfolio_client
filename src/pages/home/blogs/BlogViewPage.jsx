@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
-import { Button, IconButton, Typography } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import { DataContext } from "../../../context/DataContext";
 import { RxDoubleArrowUp } from "react-icons/rx";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
-import ButtonOutline from "../../../components/Button/ButtonOutline";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import bgImg from "../../../assets/image/abstract-offer.png";
 import PageHelmet from "../../../helper/PageHelmet";

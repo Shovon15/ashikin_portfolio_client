@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
-import { Helmet } from "react-helmet-async";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 import { get } from "../../../utils/fetchApi";
@@ -77,7 +76,6 @@ const Services = () => {
 									backgroundPosition: "center",
 								}}
 								className="h-96 w-[20rem] md:w-[14.5rem] bg-color-primary p-2 flex flex-col justify-end  font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
-								// data-aos="flip-left"
 							>
 								<p className="text-xl py-2 text-color-header">{item.heading}</p>
 								<p className="text-color-text">{item.title}</p>
@@ -101,28 +99,19 @@ const Services = () => {
 
 								<p className="text-2xl font-bold text-color-text">{title}</p>
 								{description.map((item, index) => (
-									<p
-										key={index}
-										className="flex gap-3 font-semibold text-color-text text-justify"
-										// data-aos="fade-up"
-									>
+									<p key={index} className="flex gap-3 font-semibold text-color-text text-justify">
 										<i>
 											<IoMdCheckmark className="w-5 h-5 text-color-text " />
 										</i>
 										{item}
 									</p>
 								))}
-								<div
-								// data-aos="fade-up"
-								>
+								<div>
 									<PrimaryButton>{heading}</PrimaryButton>
 								</div>
 							</div>
 							<div className="w-full lg:w-1/2 m-auto">
-								<div
-									className="bg-color-secondary hover:bg-color-primary h-44 md:h-96 w-full rounded-xl px-[3rem] md:px-[5rem] pt-[2rem] md:pt-[4rem]"
-									// data-aos="zoom-in"
-								>
+								<div className="bg-color-secondary hover:bg-color-primary h-44 md:h-96 w-full rounded-xl px-[3rem] md:px-[5rem] pt-[2rem] md:pt-[4rem]">
 									<img src={cover} alt="..." className="overflow-hidden w-full h-full" />
 								</div>
 							</div>

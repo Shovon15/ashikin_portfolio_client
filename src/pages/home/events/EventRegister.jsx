@@ -138,10 +138,7 @@ const EventRegister = () => {
 					</div>
 					<HeaderText className="py-5 ">Program Register</HeaderText>
 					<div className="flex flex-col lg:flex-row gap-5">
-						<div
-							// data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
 								color="yellow"
@@ -154,10 +151,7 @@ const EventRegister = () => {
 							/>
 							{errors.firstName && <p className="text-red-500 text-sm ">{errors.firstName.message}</p>}
 						</div>
-						<div
-							//  data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
 								color="yellow"
@@ -172,10 +166,7 @@ const EventRegister = () => {
 						</div>
 					</div>
 					<div className="flex flex-col lg:flex-row gap-5 pt-5">
-						<div
-							// data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
 								color="yellow"
@@ -188,10 +179,7 @@ const EventRegister = () => {
 							/>
 							{errors.whatsapp && <p className="text-red-500 text-sm ">{errors.whatsapp.message}</p>}
 						</div>
-						<div
-							//  data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
 								color="yellow"
@@ -206,10 +194,7 @@ const EventRegister = () => {
 						</div>
 					</div>
 					<div className="flex flex-col gap-5 py-5">
-						<div
-							// data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								color="yellow"
 								variant="standard"
@@ -222,10 +207,7 @@ const EventRegister = () => {
 							/>
 							{errors.email && <p className="text-red-500 text-sm ">{errors.email.message}</p>}
 						</div>
-						<div
-							// data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								color="yellow"
 								variant="standard"
@@ -240,10 +222,7 @@ const EventRegister = () => {
 								<p className="text-red-500 text-sm ">{errors.instituteName.message}</p>
 							)}
 						</div>
-						<div
-							//  data-aos="fade-up"
-							className="flex flex-col gap-1 w-full"
-						>
+						<div className="flex flex-col gap-1 w-full">
 							<Input
 								color="yellow"
 								variant="standard"
@@ -259,10 +238,7 @@ const EventRegister = () => {
 							)}
 						</div>
 					</div>
-					<div
-						className="flex justify-center pb-10"
-						//  data-aos="zoom-in"
-					>
+					<div className="flex justify-center pb-10">
 						<PrimaryButton buttonType={"submit"} className="px-12" disabled={buttonLoading}>
 							{buttonLoading ? <Spinner color="yellow" className="mx-auto" /> : "Submit"}
 						</PrimaryButton>

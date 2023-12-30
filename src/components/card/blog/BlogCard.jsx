@@ -2,7 +2,7 @@
 import { Card, CardHeader, CardBody, Typography, CardFooter } from "@material-tailwind/react";
 import ButtonOutline from "../../Button/ButtonOutline";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import ImageComponent from "../../ImageComponent";
 
 const BlogCard = ({ item }) => {
@@ -16,11 +16,7 @@ const BlogCard = ({ item }) => {
 				</div>
 			</CardHeader>
 			<CardBody className="mx-auto p-4">
-				<Typography
-					// data-aos="zoom-in"
-					// data-aos-anchor-placement="top-bottom"
-					className="mb-2 font-bold text-color-header h-16 overflow-y-auto my-auto text-center text-xl  normal-case"
-				>
+				<Typography className="mb-2 font-bold text-color-header h-16 overflow-y-auto my-auto text-center text-xl  normal-case">
 					{title}
 				</Typography>
 			</CardBody>

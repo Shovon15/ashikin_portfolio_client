@@ -2,8 +2,7 @@
 import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import ButtonOutline from "../../Button/ButtonOutline";
-import LoadingSkeleton from "../LoadingSkeleton";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import ImageComponent from "../../ImageComponent";
 
 export function EventCard({ eventData }) {
@@ -15,10 +14,6 @@ export function EventCard({ eventData }) {
 		dateTime: "",
 		eventType: "",
 	};
-
-	// useEffect(() => {
-	// 	Aos.init({ duration: 1000 });
-	// }, []);
 
 	const dateAndTime = new Date(dateTime);
 
@@ -72,10 +67,7 @@ export function EventCard({ eventData }) {
 					</Typography>
 				</div>
 			</CardBody>
-			<CardFooter
-				className="pt-0 mx-auto"
-				// data-aos="zoom-in" data-aos-anchor-placement="top-bottom"
-			>
+			<CardFooter className="pt-0 mx-auto">
 				{slug && (
 					<Link to={`/program/${slug}`}>
 						<ButtonOutline className="px-8">Details</ButtonOutline>
