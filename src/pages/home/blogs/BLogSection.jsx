@@ -14,7 +14,7 @@ const BLogSection = () => {
 			setIsLoading(true);
 			const res = await get("blogs/published");
 			setIsLoading(false);
-			setBlogData(res.data.payload.data);
+			setBlogData(res.data.payload.data.slice(0, 4));
 		};
 		fetchData();
 	}, []);
@@ -30,7 +30,7 @@ const BLogSection = () => {
 		);
 	}
 	return (
-		<div className="p-5 bg-color-secondary">
+		<div className="p-5">
 			{blogData.length > 0 && (
 				<>
 					<HeaderText className="py-5">Blog</HeaderText>

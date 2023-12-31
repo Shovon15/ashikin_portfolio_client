@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import LoadingSpinner from "./components/shared/loadingSpinner/LoadingSpinner";
 import ScrollButton from "./components/Button/ScrollButton";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { HelmetProvider } from "react-helmet-async";
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -24,17 +23,14 @@ function App() {
 		window.history.scrollRestoration = "manual";
 	}, []);
 
-	const helmetContext = {};
-
 	return (
 		<div className="bg-color-primary">
 			{loading ? (
 				<LoadingSpinner />
 			) : (
 				<>
-					<HelmetProvider context={helmetContext}>
-						<MainRoutes />
-					</HelmetProvider>
+					<MainRoutes />
+
 					<ToastContainer />
 					<ScrollButton />
 				</>

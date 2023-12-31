@@ -23,7 +23,7 @@ const BlogPage = () => {
 
 	if (isLoading) {
 		return (
-			<div className="flex flex-wrap gap-4 py-5">
+			<div className="flex flex-wrap gap-4 py-5 pt-[150px]">
 				<BlogCardSkeletion />
 				<BlogCardSkeletion />
 				<BlogCardSkeletion />

@@ -7,6 +7,8 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 import EventCard from "../../../components/card/event/EventCard";
 import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
+import { Link } from "react-router-dom";
+import PrimaryButton from "../../../components/Button/PrimaryButton";
 
 const EventSection = () => {
 	const [filteredEvents, setFilteredEvents] = useState([]);
@@ -45,7 +47,7 @@ const EventSection = () => {
 			if (tabValue === "all") {
 				const freeEvents = eventData.filter((event) => event.eventType === "free");
 				// Check if there are more than 2 free events
-				if (freeEvents.length > 3) {
+				if (freeEvents.length > 2) {
 					// Slice the array to include only the first 2 elements
 					filteredEvents = [...freeEvents.slice(0, 2)];
 
@@ -83,7 +85,7 @@ const EventSection = () => {
 		<>
 			<HeaderText className="py-5">Upcoming Programs</HeaderText>
 			{eventData.length > 0 && (
-				<div className="px-5 md:px-10">
+				<div className="px-5 md:px-10 pb-5">
 					<div>
 						<div className="flex flex-col md:flex-row gap-3 md:gap-5 justify-center items-center">
 							{/* Render tab headers dynamically */}
@@ -104,7 +106,7 @@ const EventSection = () => {
 								</div>
 							))}
 						</div>
-						<div className="pt-5 pb-10">
+						<div className="py-5">
 							{/* Render tab content based on the active tab */}
 							{activeTab && (
 								<div className="flex flex-col md:flex-row flex-grow gap-5 justify-center p-1">
@@ -122,6 +124,11 @@ const EventSection = () => {
 								</div>
 							)}
 						</div>
+					</div>
+					<div className="text-center py-5">
+						<Link to="/programs">
+							<PrimaryButton className="px-10">View More</PrimaryButton>
+						</Link>
 					</div>
 				</div>
 				// <div className="p-5 ">

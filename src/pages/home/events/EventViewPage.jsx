@@ -70,9 +70,9 @@ const EventViewPage = () => {
 				title={title}
 				description={title}
 				name="ashikin alam"
-				image="https://i.ibb.co/nrcx2h9/https-api-wearehomesforstudents-com-wp-content-uploads-2020-07-photo-of-woman-holding-a-green-paper.webp"
+				image={cover}
 				link={shareUrl}
-				type="website"
+				type="webapp"
 			/>
 
 			<div className="bg-color-primary relative min-h-screen">
