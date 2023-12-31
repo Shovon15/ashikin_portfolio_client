@@ -191,7 +191,7 @@ const EventViewPage = () => {
 							</div>
 
 							<div className="">
-								<FacebookShareButton url={shareUrl} quote={"hello there"}>
+								<FacebookShareButton url={shareUrl} quote={title}>
 									<FacebookIcon size={32} round />
 									<span>Share on Facebook</span>
 								</FacebookShareButton>
