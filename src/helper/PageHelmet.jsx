@@ -11,7 +11,10 @@ const PageHelmet = ({ title, description, type, name, link, image }) => {
 
 			<meta property="og:type" content={type} />
 			<meta property="og:url" content={link} />
-			<meta property="og:image" content={image} />
+			<meta
+				property="og:image"
+				content="https://i.ibb.co/nrcx2h9/https-api-wearehomesforstudents-com-wp-content-uploads-2020-07-photo-of-woman-holding-a-green-paper.webp"
+			/>
 			<meta property="og:title" content={title} />
 			<meta property="og:description" content={description} />
 
