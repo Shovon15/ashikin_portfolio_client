@@ -57,11 +57,12 @@ const EventViewPage = () => {
 
 	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	// const shareUrl = "https://ashikin-alam.netlify.app/program/this-is-the-program-title";
-	console.log(shareUrl, "shareUrl");
+	// console.log(shareUrl, "shareUrl");
 
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
+	// console.log(cover, "cover");
 
 	return (
 		<>
@@ -69,7 +70,7 @@ const EventViewPage = () => {
 				title={title}
 				description={title}
 				name="ashikin alam"
-				image={cover}
+				image="https://i.ibb.co/nrcx2h9/https-api-wearehomesforstudents-com-wp-content-uploads-2020-07-photo-of-woman-holding-a-green-paper.webp"
 				link={shareUrl}
 				type="webapp"
 			/>
@@ -191,7 +192,7 @@ const EventViewPage = () => {
 							</div>
 
 							<div className="">
-								<FacebookShareButton url={shareUrl} quote={title}>
+								<FacebookShareButton url={shareUrl} quote={"this is demo title"}>
 									<FacebookIcon size={32} round />
 									<span>Share on Facebook</span>
 								</FacebookShareButton>
