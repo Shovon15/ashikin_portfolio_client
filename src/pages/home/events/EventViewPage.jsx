@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, IconButton, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { DataContext } from "../../../context/DataContext";
 
 import { RxDoubleArrowUp } from "react-icons/rx";
@@ -13,8 +13,8 @@ import PrimaryButton from "../../../components/Button/PrimaryButton";
 import ButtonOutline from "../../../components/Button/ButtonOutline";
 import bgImg from "../../../assets/image/abstract-offer.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { PiShareFat } from "react-icons/pi";
-import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from "react-share";
+// import { PiShareFat } from "react-icons/pi";
+// import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from "react-share";
 import PageHelmet from "../../../helper/PageHelmet";
 
 const EventViewPage = () => {
@@ -23,7 +23,7 @@ const EventViewPage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [showMore, setShowMore] = useState(false);
 	const [eventsData, setEventsData] = useState({});
-	const [isOpen, setIsOpen] = useState(false);
+	// const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -89,7 +89,7 @@ const EventViewPage = () => {
 						<GoBackButton />
 					</div>
 					<div className="max-w-[800px] mx-auto">
-						<div className="flex justify-end relative">
+						{/* <div className="flex justify-end relative">
 							<IconButton
 								variant="text"
 								className="rounded-full bg-color-secondary shadow-xl"
@@ -106,7 +106,7 @@ const EventViewPage = () => {
 									</ul>
 								</div>
 							)}
-						</div>
+						</div> */}
 						<div className="flex justify-center text-color-text">
 							<Typography variant="h6" className=" ">
 								{formattedDate}
@@ -191,7 +191,7 @@ const EventViewPage = () => {
 								</Link>
 							</div>
 
-							<div className="">
+							{/* <div className="">
 								<FacebookShareButton url={shareUrl} quote={"this is demo title"}>
 									<FacebookIcon size={32} round />
 									<span>Share on Facebook</span>
@@ -200,7 +200,7 @@ const EventViewPage = () => {
 								<TwitterShareButton url={shareUrl} quote={title}>
 									<TwitterIcon size={32} round />
 								</TwitterShareButton>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

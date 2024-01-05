@@ -25,6 +25,7 @@
         @apply text-color-text
     }
 }
+
 html {
     scroll-behavior: smooth;
   }
