@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { DataContext } from "../../../context/DataContext";
 
 import { RxDoubleArrowUp } from "react-icons/rx";
@@ -14,8 +14,16 @@ import ButtonOutline from "../../../components/Button/ButtonOutline";
 import bgImg from "../../../assets/image/abstract-offer.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 // import { PiShareFat } from "react-icons/pi";
-// import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from "react-share";
+import {
+	FacebookIcon,
+	FacebookShareButton,
+	TwitterIcon,
+	TwitterShareButton,
+	WhatsappIcon,
+	WhatsappShareButton,
+} from "react-share";
 import PageHelmet from "../../../helper/PageHelmet";
+import { PiShareFat } from "react-icons/pi";
 
 const EventViewPage = () => {
 	const { fetchEventBySlug } = useContext(DataContext);
@@ -23,7 +31,7 @@ const EventViewPage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [showMore, setShowMore] = useState(false);
 	const [eventsData, setEventsData] = useState({});
-	// const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -62,7 +70,7 @@ const EventViewPage = () => {
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
-	// console.log(cover, "cover");
+	// console.log(shareUrl, "shareUrl");
 
 	return (
 		<>
@@ -89,7 +97,7 @@ const EventViewPage = () => {
 						<GoBackButton />
 					</div>
 					<div className="max-w-[800px] mx-auto">
-						{/* <div className="flex justify-end relative">
+						<div className="flex justify-end relative pr-2">
 							<IconButton
 								variant="text"
 								className="rounded-full bg-color-secondary shadow-xl"
@@ -98,15 +106,33 @@ const EventViewPage = () => {
 								<PiShareFat className="w-5 h-5 text-color-text" />
 							</IconButton>
 							{isOpen && (
-								<div className="absolute right-0 mt-10 w-44 bg-green-600 rounded-lg overflow-hidden shadow-lg">
-									<ul className="py-2 px-4 space-y-2">
-										<li className="text-white">Facebook</li>
-										<li className="text-white">YouTube</li>
-										<li className="text-white">WhatsApp</li>
-									</ul>
+								<div className="absolute right-0 mt-10 w-16 md:w-44 rounded-lg overflow-hidden shadow-lg p-4 flex flex-col md:flex-row gap-3 justify-center items-center bg-color-secondary">
+									<FacebookShareButton
+										url={shareUrl}
+										quote={title}
+										// hashtag={"#portfolio..."}
+									>
+										<FacebookIcon size={40} round={true} />
+									</FacebookShareButton>
+									<WhatsappShareButton
+										url={shareUrl}
+										quote={title}
+										// hashtag={"#portfolio..."}
+									>
+										<WhatsappIcon size={40} round={true} />
+									</WhatsappShareButton>
+									
+
+									<TwitterShareButton
+										url={shareUrl}
+										quote={title}
+										// hashtag={"#portfolio..."}
+									>
+										<TwitterIcon size={40} round={true} />
+									</TwitterShareButton>
 								</div>
 							)}
-						</div> */}
+						</div>
 						<div className="flex justify-center text-color-text">
 							<Typography variant="h6" className=" ">
 								{formattedDate}
@@ -210,3 +236,12 @@ const EventViewPage = () => {
 };
 
 export default EventViewPage;
+
+// FacebookShareButton
+// 										<li className="text-white">Facebook</li>
+// 										<li className="text-white">YouTube</li>
+// 										<li className="text-white">
+// 											WhatsApp
+// 											{/* <img src={facebookIcon} alt="facebook-cion"/> */}
+// 											{FacebookIcon}
+// 										</li>

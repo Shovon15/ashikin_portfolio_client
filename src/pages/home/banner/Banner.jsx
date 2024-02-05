@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Typography } from "@material-tailwind/react";
 import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
@@ -71,14 +72,14 @@ const Banner = ({ setBannerImage }) => {
 							}}
 						/>
 					</div>
-					<div className="absolute top-20 left-0 right-0 mx-auto max-w-[1560px] flex flex-col md:flex-row">
-						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justify-start md:justify-center">
+					<div className="absolute top-20 md:top-15 left-0 right-0 mx-auto max-w-[1560px] flex flex-col md:flex-row min-h-[30rem] ">
+						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justify-start md:justify-center ">
 							<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
 								{bannerData?.bannerHeader}
 							</Typography>
 							<Typography className="text-md text-color-text pt-5">{bannerData?.bannerText}</Typography>
 						</div>
-						<div className="w-full md:w-5/12 max-w-[23rem] max-h[10rem] p-5 md:p-10 mx-auto ">
+						<div className="w-full md:w-5/12 max-w-[23rem] max-h[10rem] p-5 md:p-10 mx-auto">
 							<LazyLoadImage
 								effect="blur"
 								src={bannerData?.portfolioImage}

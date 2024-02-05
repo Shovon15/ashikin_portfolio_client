@@ -37,6 +37,7 @@ import { PiSmileySadThin } from "react-icons/pi";
 import BlogViewPage from "../../pages/home/blogs/BlogViewPage";
 import CreateBanner from "../../pages/dashboard/banner/CreateBanner";
 import SignUp from "../../pages/dashboard/SignUp";
+import About from "../../pages/home/about/about";
 
 const MainRoutes = () => {
 	return (
@@ -55,6 +56,9 @@ const MainRoutes = () => {
 
 					<Route path="blogs" element={<BlogPage />} />
 					<Route path="blog/:slug" element={<BlogViewPage />} />
+					<Route path="about" element={<About />} />
+
+
 				</Route>
 
 				<Route path="/signup" element={<SignUp />} />

@@ -6,7 +6,7 @@ const Footer = () => {
 	const Data = [
 		{
 			name: "About",
-			link: "",
+			link: "/about",
 		},
 		{
 			name: "License",
