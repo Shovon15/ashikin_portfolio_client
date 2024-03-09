@@ -22,6 +22,11 @@ export function AdminSidebar() {
 			icon: <RxDashboard className="w-5 h-5" />,
 		},
 		{
+			name: "Logo",
+			link: "/dashboard/logo",
+			icon: <BsCalendar2Event className="w-5 h-5" />,
+		},
+		{
 			name: "banner",
 			link: "/dashboard/banner",
 			icon: <BsCalendar2Event className="w-5 h-5" />,

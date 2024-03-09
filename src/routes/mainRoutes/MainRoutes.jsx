@@ -38,6 +38,9 @@ import BlogViewPage from "../../pages/home/blogs/BlogViewPage";
 import CreateBanner from "../../pages/dashboard/banner/CreateBanner";
 import SignUp from "../../pages/dashboard/SignUp";
 import About from "../../pages/home/about/about";
+import LogoManage from "../../pages/dashboard/logo/LogoManage";
+import CreateLogo from "../../pages/dashboard/logo/CreateLogo";
+import UpdateLogo from "../../pages/dashboard/logo/UpdateLogo";
 
 const MainRoutes = () => {
 	return (
@@ -57,8 +60,6 @@ const MainRoutes = () => {
 					<Route path="blogs" element={<BlogPage />} />
 					<Route path="blog/:slug" element={<BlogViewPage />} />
 					<Route path="about" element={<About />} />
-
-
 				</Route>
 
 				<Route path="/signup" element={<SignUp />} />
@@ -88,6 +89,12 @@ const MainRoutes = () => {
 							<Route path="" element={<BlogManage />} />
 							<Route path="write-blog" element={<CreateBlog />} />
 							<Route path="update-blog/:slug" element={<UpdateBlog />} />
+						</Route>
+
+						<Route path="logo">
+							<Route path="" element={<LogoManage />} />
+							<Route path="create-logo" element={<CreateLogo />} />
+							<Route path="update-logo" element={<UpdateLogo />} />
 						</Route>
 
 						<Route path="banner">

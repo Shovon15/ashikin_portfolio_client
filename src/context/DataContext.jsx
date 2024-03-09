@@ -24,6 +24,7 @@ export const DataContextProvider = ({ children }) => {
 			showErrorToast(error.message);
 		}
 	};
+	
 	const fetchServiceById = async (id) => {
 		try {
 			const response = await get("services/" + id, id);

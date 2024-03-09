@@ -8,6 +8,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaBars, FaXmark } from "react-icons/fa6";
+import Logo from "../../Logo";
 
 export function Header() {
 	const [openNav, setOpenNav] = useState(false);
@@ -98,27 +99,13 @@ export function Header() {
 		<>
 			<nav
 				className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
-					scrollPosition > 0 ? "bg-color-secondary p-5 shadow-xl" : "p-10 bg-none"
+					scrollPosition > 0 ? "bg-color-secondary p-5 shadow-xl" : "p-5 lg:p-10 bg-none"
 				}`}
 			>
 				<div className="flex justify-between items-center py-0 md:px-5 lg:px-10">
 					<div className="flex items-center ">
 						<Link to="/" className="cursor-pointer px-0">
-							{/* <img
-								src={logo}
-								alt="..."
-								className={` transform transition w-44 md:w-56 duration-500 pl-0 py-3 ${
-									scrollPosition > 0 ? "scale-90" : "scale-110"
-								}`}
-							/> */}
-							<Typography
-								variant="h4"
-								className={` transform transition w-44 md:w-56 duration-500 text-color-text origin-left pl-0 py-0 ${
-									scrollPosition > 0 ? "scale-90" : "scale-110"
-								}`}
-							>
-								ASHIKIN ALAM
-							</Typography>
+							<Logo />
 						</Link>
 					</div>
 					<div className="lg:flex gap-20">

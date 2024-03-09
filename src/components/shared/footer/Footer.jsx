@@ -1,5 +1,6 @@
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import Logo from "../../Logo";
 // import logo from "../../../assets/logo/Logo-New.png";
 
 const Footer = () => {
@@ -26,10 +27,7 @@ const Footer = () => {
 	return (
 		<footer className="w-full bg-color-secondary p-8">
 			<div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-inherit text-center md:justify-between">
-				<Typography variant="h4" className="text-color-header">
-					ASHIKIN ALAM
-				</Typography>
-				{/* <img src={logo} alt="logo" className="w-44" /> */}
+				<Logo />
 				<div className="flex gap-6">
 					{Data.map(({ name, link }) => (
 						<Link to={link} key={name}>
