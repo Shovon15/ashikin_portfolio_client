@@ -41,6 +41,9 @@ import About from "../../pages/home/about/about";
 import LogoManage from "../../pages/dashboard/logo/LogoManage";
 import CreateLogo from "../../pages/dashboard/logo/CreateLogo";
 import UpdateLogo from "../../pages/dashboard/logo/UpdateLogo";
+import SocialManage from "../../pages/dashboard/social/socialManage";
+import CreateSocial from "../../pages/dashboard/social/CreateSocial";
+import UpdateSocial from "../../pages/dashboard/social/UpdateSocial";
 
 const MainRoutes = () => {
 	return (
@@ -101,6 +104,12 @@ const MainRoutes = () => {
 							<Route path="" element={<BannerManage />} />
 							<Route path="create-banner" element={<CreateBanner />} />
 							<Route path="update-banner" element={<UpdateBanner />} />
+						</Route>
+
+						<Route path="social">
+							<Route path="" element={<SocialManage />} />
+							<Route path="create-social" element={<CreateSocial />} />
+							<Route path="update-social/:id" element={<UpdateSocial />} />
 						</Route>
 
 						<Route path="services">

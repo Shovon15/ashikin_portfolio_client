@@ -1,31 +1,24 @@
-import whatsappOriginal from "../../../assets/icon/whatsapp-original.png";
-import facebookOriginal from "../../../assets/icon/facebook-original.png";
-import youtubeOriginal from "../../../assets/icon/youtube.png";
 import { Typography } from "@material-tailwind/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useQuery } from "@tanstack/react-query";
+import { get } from "../../../utils/fetchApi";
+
 
 const ExperianceSection = () => {
-	const Data = [
-		{
-			icon: facebookOriginal,
-			title: "Facebook",
-			desc: "25.2k followers",
-			link: "https://www.facebook.com",
-		},
-		{
-			icon: youtubeOriginal,
-			title: "Youtube",
-			desc: "30.9k followers",
-			link: "https://www.youtube.com",
-		},
+	const {
+		data: socialData = [],
+		isLoading,
+	} = useQuery({
+		queryKey: ["socialData"],
+		queryFn: async () => {
+			const res = await get("social/all");
+			const data = res.data.payload.data;
 
-		{
-			icon: whatsappOriginal,
-			title: "Whatsapp",
-			desc: "01700000000",
-			link: "https://www.whatsapp.com",
+			return data;
 		},
-	];
+	});
+
+
 
 	return (
 		<div className="relative p-0 md:p-10 bg-color-secondary z-20">
@@ -38,31 +31,40 @@ const ExperianceSection = () => {
 					Performers and Titans of Industryo
 				</Typography>
 			</div>
-			<div className="pt-[9rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
-				{Data.map(({ icon, title, desc, link }) => (
-					<a key={title} href={link} target="_blank" rel="noopener noreferrer">
-						<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-experience-section">
-							<LazyLoadImage
-								effect="blur"
-								src={icon}
-								alt="card-image"
-								className="object-fill"
-								width="50"
-								height="50"
-							/>
+			{isLoading ? (
+				<div className=" flex justify-center items-center mt-36 min-h-80">
+					<div className="spinner">
+						<div className="spinner-circle"></div>
+					</div>
+				</div>
+			) : (
+				<div className="pt-[9rem] md:pt-[6rem]  py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly">
+					{socialData &&
+						socialData.map(({ name, logo, description, socialLink }) => (
+							<a key={socialLink} href={socialLink} target="_blank" rel="noopener noreferrer">
+								<div className="flex gap-3 bg-color-primary shadow-xl rounded-xl w-72 p-3 animation-experience-section">
+									<LazyLoadImage
+										effect="blur"
+										src={logo}
+										alt="card-image"
+										className="object-fill"
+										width="50"
+										height="50"
+									/>
 
-							<div>
-								<Typography variant="h5" className="font-bold text-color-header">
-									{title}
-								</Typography>
-								<Typography variant="paragraph" className="text-color-text">
-									{desc}
-								</Typography>
-							</div>
-						</div>
-					</a>
-				))}
-			</div>
+									<div>
+										<Typography variant="h5" className="font-bold text-color-header">
+											{name}
+										</Typography>
+										<Typography variant="paragraph" className="text-color-text">
+											{description}
+										</Typography>
+									</div>
+								</div>
+							</a>
+						))}
+				</div>
+			)}
 		</div>
 	);
 };

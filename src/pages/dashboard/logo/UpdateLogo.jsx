@@ -89,13 +89,13 @@ const UpdateLogo = () => {
 					{/* portfolio image */}
 					<div>
 						<p className="font-bold text-color-text py-2">
-							Portfolio Image <span className="text-red-500">*</span>
+							Logo <span className="text-red-500">*</span>
 						</p>
 						<div style={{ maxWidth: "400px" }} className="mx-auto">
 							{!isUpdateLogoImage ? (
 								<div className="border-2 border-dashed border-color-border w-full flex flex-col justify-center p-3">
 									<img src={oldLogoImage} alt="logo" />
-									<div className="flex justify-center mt-2 pb-2">
+									<div className="flex justify-center mt-5 pb-2">
 										<PrimaryButton className=" py-2 " onClick={() => setIsUpdateLogoImage(true)}>
 											Upload new Image
 										</PrimaryButton>

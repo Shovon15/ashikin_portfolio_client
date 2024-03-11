@@ -1,16 +1,15 @@
-import { IconButton } from "@material-tailwind/react";
+import { IconButton, Typography } from "@material-tailwind/react";
 import { DashboardContext } from "../../../context/DashboardContext";
 import { useContext } from "react";
-// import { AuthContext } from "../../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import LogoutButton from "../../../components/Button/LogoutButton";
-import Logo from "../../../components/Logo";
-// import ThemeButton from "../../../components/Button/ThemeButton";
+import { AuthContext } from "../../../context/AuthProvider";
+
 const DashboardNav = () => {
 	const { toggleDrawer, isSidebarOpen, setIsSidebarOpen } = useContext(DashboardContext);
-	// const { user } = useContext(AuthContext);
-	// const { name, avatar } = user;
+	const { user } = useContext(AuthContext);
+	const { name, avatar } = user;
 
 	return (
 		<div
@@ -19,11 +18,10 @@ const DashboardNav = () => {
 		>
 			<div className="flex justify-between lg:justify-start lg:gap-5 items-center">
 				<div className="flex gap-2 items-center">
-					{/* <img src={avatar} alt="..." className="w-12 h-12 rounded-full" />
+					<img src={avatar} alt="..." className="w-12 h-12 rounded-full" />
 					<Typography variant="h2" className="text-lg text-color-header">
 						{name}
-					</Typography> */}
-					<Logo />
+					</Typography>
 				</div>
 				{/* ---------------------sidebar button------------------- */}
 				{!isSidebarOpen && (

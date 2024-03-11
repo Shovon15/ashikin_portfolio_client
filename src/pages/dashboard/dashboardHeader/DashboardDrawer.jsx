@@ -4,58 +4,12 @@ import { DashboardContext } from "../../../context/DashboardContext";
 import LogoutButton from "../../../components/Button/LogoutButton";
 import { Link, NavLink } from "react-router-dom";
 
-import { RxDashboard } from "react-icons/rx";
-import { BsCalendar2Event } from "react-icons/bs";
-import { MdOutlineMessage } from "react-icons/md";
-import { SlEnvolopeLetter } from "react-icons/sl";
+
 import PrimaryButton from "../../../components/Button/PrimaryButton";
+import { dashboardLinkItems } from "../../../config/docs";
 
 const DashboardDrawer = () => {
 	const { isDrawerOpen, toggleDrawer } = useContext(DashboardContext);
-
-	const links = [
-		{
-			name: "dashboard",
-			link: "/dashboard/admin",
-			icon: <RxDashboard className="w-5 h-5" />,
-		},
-		{
-			name: "Logo",
-			link: "/dashboard/logo",
-			icon: <BsCalendar2Event className="w-5 h-5" />,
-		},
-		{
-			name: "banner",
-			link: "/dashboard/banner",
-			icon: <BsCalendar2Event className="w-5 h-5" />,
-		},
-		{
-			name: "services",
-			link: "/dashboard/services",
-			icon: <BsCalendar2Event className="w-5 h-5" />,
-		},
-		{
-			name: "programs",
-			link: "/dashboard/programs",
-			icon: <BsCalendar2Event className="w-5 h-5" />,
-		},
-		{
-			name: "blogs",
-			link: "/dashboard/blogs",
-			icon: <MdOutlineMessage className="w-5 h-5" />,
-		},
-		{
-			name: "reviews",
-			link: "/dashboard/reviews",
-			icon: <MdOutlineMessage className="w-5 h-5" />,
-		},
-
-		{
-			name: "invitations",
-			link: "/dashboard/invitations",
-			icon: <SlEnvolopeLetter className="w-5 h-5" />,
-		},
-	];
 
 	const activeClass = "!bg-color-button  text-color-header font-bold";
 	const SidebarClass =
@@ -84,21 +38,22 @@ const DashboardDrawer = () => {
 
 				<div>
 					<List className="p-0">
-						{links.map(({ name, link, icon }) => (
-							<NavLink
-								key={name}
-								to={link}
-								// end
-								className={({ isActive }) =>
-									isActive ? `${activeClass} ${SidebarClass}` : `${SidebarClass}`
-								}
-								onClick={toggleDrawer}
-							>
-								{icon}
-								{name.charAt(0).toUpperCase()}
-								{name.slice(1)}
-							</NavLink>
-						))}
+						{dashboardLinkItems &&
+							dashboardLinkItems.map(({ name, link, icon }) => (
+								<NavLink
+									key={name}
+									to={link}
+									// end
+									className={({ isActive }) =>
+										isActive ? `${activeClass} ${SidebarClass}` : `${SidebarClass}`
+									}
+									onClick={toggleDrawer}
+								>
+									{icon}
+									{name.charAt(0).toUpperCase()}
+									{name.slice(1)}
+								</NavLink>
+							))}
 					</List>
 				</div>
 				<div className="flex gap-3 py-5 w-full">

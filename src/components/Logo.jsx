@@ -33,7 +33,9 @@ const Logo = () => {
 	}, []);
 
 	return (
-		<div className={`${scrollPosition > 0 ? "h-14" : "h-16"}  w-48 transform transition duration-500`}>
+		<div
+			className={`${scrollPosition > 0 ? "h-14" : "h-16"}  w-48 transform transition duration-500 flex items-center`}
+		>
 			{isLoading ? (
 				<ClipLoader color="#0c0c0c" size={30} aria-label="Loading Spinner" data-testid="loader" />
 			) : (
