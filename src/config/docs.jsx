@@ -20,6 +20,11 @@ export const dashboardLinkItems = [
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
+		name: "Brands",
+		link: "/dashboard/brand",
+		icon: <BsCalendar2Event className="w-5 h-5" />,
+	},
+	{
 		name: "Social Link",
 		link: "/dashboard/social",
 		icon: <BsCalendar2Event className="w-5 h-5" />,

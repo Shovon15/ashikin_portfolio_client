@@ -9,7 +9,7 @@ const DashboardLayout = () => {
 	const { isSidebarOpen } = useContext(DashboardContext);
 
 	return (
-		<div>
+		<div className="bg-color-secondary">
 			<DashboardDrawer />
 			<DashboardNav />
 			<div className="flex">

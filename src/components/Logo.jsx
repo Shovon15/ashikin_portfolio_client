@@ -4,7 +4,7 @@ import { get } from "../utils/fetchApi";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Logo = () => {
-	const [scrollPosition, setScrollPosition] = useState(0);
+	// const [scrollPosition, setScrollPosition] = useState(0);
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [logoData, setLogoData] = useState(null);
@@ -24,18 +24,17 @@ const Logo = () => {
 		fetchData();
 	}, []);
 
-	useEffect(() => {
-		window.addEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
+	// useEffect(() => {
+	// 	window.addEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
 
-		return () => {
-			window.removeEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener("scroll", () => setScrollPosition(Math.round(window.scrollY)));
+	// 	};
+	// }, []);
 
 	return (
-		<div
-			className={`${scrollPosition > 0 ? "h-14" : "h-16"}  w-48 transform transition duration-500 flex items-center`}
-		>
+		//${scrollPosition > 0 ? "h-14" : "h-16"}
+		<div className={` transform transition duration-500 flex items-center`}>
 			{isLoading ? (
 				<ClipLoader color="#0c0c0c" size={30} aria-label="Loading Spinner" data-testid="loader" />
 			) : (

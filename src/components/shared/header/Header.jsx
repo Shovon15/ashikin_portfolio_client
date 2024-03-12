@@ -98,11 +98,11 @@ export function Header() {
 	return (
 		<>
 			<nav
-				className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
-					scrollPosition > 0 ? "bg-color-secondary p-5 shadow-xl" : "p-5 lg:p-10 bg-none"
-				}`}
+				className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out bg-color-secondary h-16 py-3.5 
+				 ${scrollPosition > 0 && "border-b border-color-border"}
+				`}
 			>
-				<div className="flex justify-between items-center py-0 md:px-5 lg:px-10">
+				<div className="flex justify-between items-center py-0 px-5 lg:px-10">
 					<div className="flex items-center ">
 						<Link to="/" className="cursor-pointer px-0">
 							<Logo />

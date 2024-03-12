@@ -82,7 +82,7 @@ const EventSection = () => {
 	}
 
 	return (
-		<>
+		<div className="bg-color-secondary">
 			<HeaderText className="py-5">Upcoming Programs</HeaderText>
 			{eventData.length > 0 && (
 				<div className="px-5 md:px-10 pb-5">
@@ -194,7 +194,7 @@ const EventSection = () => {
 				// 	</div>
 				// </div>
 			)}
-		</>
+		</div>
 	);
 };
 

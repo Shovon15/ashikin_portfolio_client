@@ -41,8 +41,8 @@ const SocialManage = () => {
 			refetch();
 			showSuccessToast(response.data.message);
 		} catch (error) {
-			console.error("Error deleting service:", error);
-			showErrorToast(`Error deleting service with Title: ${title}`);
+			console.error("Error deleting social link:", error);
+			showErrorToast(`Error deleting social link with Title: ${title}`);
 		} finally {
 			handleCloseDeleteModal();
 		}

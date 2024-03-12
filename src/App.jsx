@@ -24,7 +24,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="bg-color-primary">
+		<div className="">
 			{loading ? (
 				<LoadingSpinner />
 			) : (

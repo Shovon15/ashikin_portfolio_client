@@ -104,7 +104,7 @@ const UpdateLogo = () => {
 							) : (
 								<div>
 									<div
-										className={`flex justify-center items-center border-2 border-dashed  w-full h-44 cursor-pointer  ${
+										className={`flex justify-center items-center border-2 border-dashed  w-full h-34 cursor-pointer  ${
 											newLogoImage ? "border-color-border" : "border-gray-500"
 										}`}
 										onClick={() => inputLogoImageRef.current.click()}
@@ -131,7 +131,7 @@ const UpdateLogo = () => {
 												alt={logoImageFileName}
 											/>
 										) : (
-											<div className="flex flex-col items-center gap-2 text-color-text">
+											<div className="flex flex-col items-center gap-2 text-color-text py-5">
 												<LuUploadCloud className="w-12 h-12" />
 												<p>Browse file to upload</p>
 											</div>

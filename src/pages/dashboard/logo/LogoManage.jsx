@@ -45,8 +45,8 @@ const LogoManage = () => {
 				)}
 			</div>
 			{logoData ? (
-				<div className="flex justify-center items-center">
-					<div className="max-w-80 w-80 h-44">
+				<div className="flex justify-center items-center ">
+					<div className="max-w-80 w-80 h-44 bg-color-secondary flex justify-center items-center">
 						<img src={logoData?.logoImage} className="object-cover rounded-lg" alt="logo-image" />
 					</div>
 				</div>

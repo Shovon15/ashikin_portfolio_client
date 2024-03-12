@@ -6,11 +6,15 @@
 
 @layer base{
     :root {
-        --background-color: #0A3A63;
-        --background-color-secondary: #063359;
+         /* --background-color: #0A3A63; */
+         --background-color-secondary: #063359; 
+        --background-color: #e3e6e9;
+        /* --background-color-secondary: #6b7379;  */
         --text-header-color: #CCA531;
         --border-color: #CCA531;
         --text-color: #FFFFFF;
+        --text-color-secondary: #090a0a;
+        /* --text-color: #254161; */
         --button-color: #CCA531;
         --button-hover-color: #AD8C2A;
         --button-hover-ring: #AD8C2A;

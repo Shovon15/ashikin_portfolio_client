@@ -24,9 +24,9 @@ const HomePage = () => {
 				type="webapp"
 			/>
 
-			<Banner setBannerImage={setBannerImage} />
-			<div className="max-w-[1560px] mx-auto">
-				<ExperianceSection style={{ marginTop: "700px" }} />
+			<div className="mx-auto bg-color-primary">
+				<Banner setBannerImage={setBannerImage} />
+				<ExperianceSection  />
 				<EventSection />
 				<BLogSection />
 				<ContactSection />
@@ -38,3 +38,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+//max-w-[1560px]

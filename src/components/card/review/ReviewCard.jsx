@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const ReviewCard = ({ data }) => {
 	const { name, cover, designation, reviewText } = data;
 	return (
-		<div className="bg-color-primary p-2 md:p-5 shadow-xl h-[34rem] md:h-[25rem] rounded-3xl">
+		<div className="bg-color-secondary p-2 md:p-5 shadow-xl h-[34rem] md:h-[25rem] rounded-3xl">
 			<LuQuote className="w-7 md:w-10 h-7 md:h-10 rotate-180 text-gray-700" />
 			<div className="h-[20rem] md:h-44 flex items-center  px-2 py-2 text-sm md:text-md lg:text-lg text-color-text  overflow-y-auto">
 				<Typography variant="paragraph">{reviewText}</Typography>
