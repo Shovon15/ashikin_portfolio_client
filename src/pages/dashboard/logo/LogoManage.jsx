@@ -46,12 +46,12 @@ const LogoManage = () => {
 			</div>
 			{logoData ? (
 				<div className="flex justify-center items-center ">
-					<div className="max-w-80 w-80 h-44 bg-color-secondary flex justify-center items-center">
+					<div className="max-w-80 w-80 h-80 bg-color-secondary border border-dashed p-2 flex justify-center items-center">
 						<img src={logoData?.logoImage} className="object-cover rounded-lg" alt="logo-image" />
 					</div>
 				</div>
 			) : (
-				<div className="flex flex-col gap-3 justify-center items-center min-h-screen">
+				<div className="flex flex-col gap-3 justify-center items-center min-h-80">
 					<p className="text-xl text-color-text">No content found please create logo</p>
 					<Link to="/dashboard/logo/create-logo">
 						<IconButton>Create logo</IconButton>

@@ -38,7 +38,7 @@ const Logo = () => {
 			{isLoading ? (
 				<ClipLoader color="#0c0c0c" size={30} aria-label="Loading Spinner" data-testid="loader" />
 			) : (
-				logoData && <img src={logoData.logoImage} alt="..." className="max-h-16 w-48" />
+				logoData && <img src={logoData.logoImage} alt="..." className="w-[65px] h-[65px]" />
 			)}
 		</div>
 	);

@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import { get, put } from "../../../utils/fetchApi";
-import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
 
@@ -24,10 +23,6 @@ const UpdateLogo = () => {
 	const navigate = useNavigate();
 
 	const [isUpdateLogoImage, setIsUpdateLogoImage] = useState(false);
-
-	// const handleUploadImage = () => {
-	// 	setIsUpdateImage(true);
-	// };
 
 	const [logoData, setLogoData] = useState([]);
 
@@ -49,26 +44,21 @@ const UpdateLogo = () => {
 		e.preventDefault();
 		setIsLoading(true);
 
-		let logoImageData = {};
-
-		if (newLogoImage && isUpdateLogoImage) {
-			logoImageData = await handleFileUpload(newLogoImage);
-		}
-
-		const formData = {
-			...(isUpdateLogoImage ? { logoImage: logoImageData?.url || null } : {}),
-		};
-		console.log(formData, "formData");
-
-		if (Object.values(formData).some((field) => !field)) {
-			// Handle the case where data is missing
+		if (isUpdateLogoImage && !newLogoImage) {
 			setIsLoading(false);
-			showErrorToast("Please Fill in All Fields");
+			showErrorToast("social image is required");
 			return;
 		}
 
+		const formData = new FormData();
+	
+		if (isUpdateLogoImage && newLogoImage) {
+			formData.append("logo", newLogoImage);
+		}
+
+
 		try {
-			const res = await put("logo/update-logo", formData);
+			const res = await put("logo/update-logo", formData, "multipart/form-data");
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/logo");
 		} catch (err) {
@@ -93,8 +83,8 @@ const UpdateLogo = () => {
 						</p>
 						<div style={{ maxWidth: "400px" }} className="mx-auto">
 							{!isUpdateLogoImage ? (
-								<div className="border-2 border-dashed border-color-border w-full flex flex-col justify-center p-3">
-									<img src={oldLogoImage} alt="logo" />
+								<div className="border-2 border-dashed border-color-border w-80 h-80 flex flex-col justify-center p-3">
+									<img src={oldLogoImage} alt="logo" className="" />
 									<div className="flex justify-center mt-5 pb-2">
 										<PrimaryButton className=" py-2 " onClick={() => setIsUpdateLogoImage(true)}>
 											Upload new Image
@@ -104,7 +94,7 @@ const UpdateLogo = () => {
 							) : (
 								<div>
 									<div
-										className={`flex justify-center items-center border-2 border-dashed  w-full h-34 cursor-pointer  ${
+										className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer  ${
 											newLogoImage ? "border-color-border" : "border-gray-500"
 										}`}
 										onClick={() => inputLogoImageRef.current.click()}

@@ -5,7 +5,6 @@ import { BsTrashFill } from "react-icons/bs";
 import { LuUploadCloud } from "react-icons/lu";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
 import { post } from "../../../utils/fetchApi";
@@ -25,26 +24,17 @@ const CreateLogo = () => {
 		e.preventDefault();
 		setIsLoading(true);
 
-		let logoImageData = {};
-
-		if (logoImage) {
-			logoImageData = await handleFileUpload(logoImage);
-		}
-
-		const formData = {
-			logoImage: logoImageData?.url || null,
-		};
-
-		if (Object.values(formData).some((field) => !field)) {
-			// Handle the case where data is missing
+		if (!logoImage) {
 			setIsLoading(false);
-			showErrorToast("Please Fill in All Fields");
+			showErrorToast("logo is required");
 			return;
 		}
-		console.log(formData, "formData");
+
+		const formData = new FormData();
+		formData.append("logo", logoImage);
 
 		try {
-			const res = await post("logo/create-logo", formData);
+			const res = await post("logo/create-logo", formData, "multipart/form-data");
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/logo");
 		} catch (err) {
@@ -67,7 +57,7 @@ const CreateLogo = () => {
 							Logo <span className="text-red-500">*</span>
 						</p>
 						<div
-							className={`mx-auto border-2 border-dashed max-w-80 h-44 cursor-pointer
+							className={`mx-auto border-2 border-dashed max-w-80 h-80 cursor-pointer
                             ${logoImage ? "border-color-border" : "border-gray-500"}`}
 							onClick={() => inputLogoImageRef.current.click()}
 						>
@@ -89,7 +79,7 @@ const CreateLogo = () => {
 							{logoImage ? (
 								<img
 									src={URL.createObjectURL(logoImage)}
-									className="w-full h-full p-5"
+									className="w-80 h-80 p-5"
 									alt={logoFileName}
 								/>
 							) : (

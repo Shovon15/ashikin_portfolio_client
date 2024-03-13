@@ -55,39 +55,6 @@ const UpdateSocial = () => {
 		setIsUpdateImage(true);
 	};
 
-	// const handleEventForm = async (e) => {
-	// 	e.preventDefault();
-	// 	setIsLoading(true);
-	// let imgData = {};
-	// if (isUpdateImage && image) {
-	// 	imgData = await handleFileUpload(image);
-	// }
-
-	// const formData = {
-	// 	title,
-	// 	eventType,
-	// 	content,
-	// 	dateTime: dateTime.toString(),
-	// 	...(isUpdateImage ? { cover: imgData?.url || null } : {}),
-	// };
-
-	// if (Object.values(formData).some((field) => !field)) {
-	// 	// Handle the case where data is missing
-	// 	setIsLoading(false);
-	// 	showErrorToast("Please Fill in All Fields");
-	// 	return;
-	// }
-
-	// try {
-	// 	const res = await put(`events/${slug}`, formData);
-	// 	showSuccessToast(res.data?.message);
-	// 	navigate("/dashboard/programs");
-	// } catch (err) {
-	// 	showErrorToast(err?.response?.data.message || "An error occurred");
-	// } finally {
-	// 	setIsLoading(false);
-	// }
-	// };
 
 	const handleEventForm = async (e) => {
 		e.preventDefault();
