@@ -46,16 +46,15 @@ const UpdateLogo = () => {
 
 		if (isUpdateLogoImage && !newLogoImage) {
 			setIsLoading(false);
-			showErrorToast("social image is required");
+			showErrorToast("logo image is required");
 			return;
 		}
 
 		const formData = new FormData();
-	
+
 		if (isUpdateLogoImage && newLogoImage) {
 			formData.append("logo", newLogoImage);
 		}
-
 
 		try {
 			const res = await put("logo/update-logo", formData, "multipart/form-data");
@@ -77,13 +76,13 @@ const UpdateLogo = () => {
 			<form onSubmit={handleBannerForm}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					{/* portfolio image */}
-					<div>
+					<div className="mx-auto">
 						<p className="font-bold text-color-text py-2">
 							Logo <span className="text-red-500">*</span>
 						</p>
-						<div style={{ maxWidth: "400px" }} className="mx-auto">
+						<div>
 							{!isUpdateLogoImage ? (
-								<div className="border-2 border-dashed border-color-border w-80 h-80 flex flex-col justify-center p-3">
+								<div className="border-2 border-dashed border-color-border flex flex-col justify-center p-3">
 									<img src={oldLogoImage} alt="logo" className="" />
 									<div className="flex justify-center mt-5 pb-2">
 										<PrimaryButton className=" py-2 " onClick={() => setIsUpdateLogoImage(true)}>
@@ -94,7 +93,7 @@ const UpdateLogo = () => {
 							) : (
 								<div>
 									<div
-										className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer  ${
+										className={`flex justify-center items-center border-2 border-dashed w-96 h-80 cursor-pointer mx-auto  ${
 											newLogoImage ? "border-color-border" : "border-gray-500"
 										}`}
 										onClick={() => inputLogoImageRef.current.click()}
@@ -127,7 +126,7 @@ const UpdateLogo = () => {
 											</div>
 										)}
 									</div>
-									<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
+									<section className="flex justify-end gap-3 items-center bg-gray-700 text-color-text rounded-md mt-1 p-2">
 										{logoImageFileName}
 										{newLogoImage !== null && (
 											<IconButton variant="text" className="rounded-full">
