@@ -8,6 +8,7 @@ import { BsTrashFill } from "react-icons/bs";
 import { get, put } from "../../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const UpdateLogo = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -57,14 +58,26 @@ const UpdateLogo = () => {
 		}
 
 		try {
-			const res = await put("logo/update-logo", formData, "multipart/form-data");
-			showSuccessToast(res.data?.message);
-			navigate("/dashboard/logo");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+			if (isUpdateLogoImage && newLogoImage) {
+				let formData = {};
+				const data = await cloudinaryImageUploader(newLogoImage);
+				formData = { logo: data.url };
+
+				try {
+					const res = await put("logo/update-logo", formData);
+					showSuccessToast(res.data?.message);
+					navigate("/dashboard/logo");
+				} catch (err) {
+					showErrorToast(err?.response?.data.message);
+				}
+			}
+		} catch (error) {
+			console.error("Failed to upload image:", error);
+			showErrorToast("Failed to upload image. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}
+
 	};
 
 	return (
@@ -82,8 +95,8 @@ const UpdateLogo = () => {
 						</p>
 						<div>
 							{!isUpdateLogoImage ? (
-								<div className="border-2 border-dashed border-color-border flex flex-col justify-center p-3">
-									<img src={oldLogoImage} alt="logo" className="" />
+								<div className="border-2 border-dashed border-color-border flex flex-col justify-center p-3 ">
+									<img src={oldLogoImage} alt="logo" className="w-[200px] h-[200px]" />
 									<div className="flex justify-center mt-5 pb-2">
 										<PrimaryButton className=" py-2 " onClick={() => setIsUpdateLogoImage(true)}>
 											Upload new Image

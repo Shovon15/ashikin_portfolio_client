@@ -8,12 +8,12 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
 import { post } from "../../../utils/fetchApi";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const CreateLogo = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [logoImage, setLogoImage] = useState(null);
-
 	const [logoFileName, setLogoFileName] = useState("No file choosen");
 
 	const inputLogoImageRef = useRef(null);
@@ -30,15 +30,23 @@ const CreateLogo = () => {
 			return;
 		}
 
-		const formData = new FormData();
-		formData.append("logo", logoImage);
-
 		try {
-			const res = await post("logo/create-logo", formData, "multipart/form-data");
-			showSuccessToast(res.data?.message);
-			navigate("/dashboard/logo");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+			if (logoImage) {
+				let formData = {};
+				const data = await cloudinaryImageUploader(logoImage);
+				formData = { logo: data.url };
+
+				try {
+					const res = await post("logo/create-logo", formData);
+					showSuccessToast(res.data?.message);
+					navigate("/dashboard/logo");
+				} catch (err) {
+					showErrorToast(err?.response?.data.message);
+				}
+			}
+		} catch (error) {
+			console.error("Failed to upload image:", error);
+			showErrorToast("Failed to upload image. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}

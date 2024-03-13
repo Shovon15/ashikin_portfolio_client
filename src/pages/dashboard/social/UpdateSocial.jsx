@@ -10,6 +10,7 @@ import GoBackButton from "../../../components/Button/GoBackButton";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const UpdateSocial = () => {
 	const [socialData, setSocialData] = useState({});
@@ -55,7 +56,6 @@ const UpdateSocial = () => {
 		setIsUpdateImage(true);
 	};
 
-
 	const handleEventForm = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
@@ -71,28 +71,42 @@ const UpdateSocial = () => {
 			return;
 		}
 
-		const formData = new FormData();
-		formData.append("name", name);
-		formData.append("description", description);
-		formData.append("socialLink", socialLink);
-
-		if (isUpdateImage && image) {
-			formData.append("logo", image);
-		}
-
-		// for (const [key, value] of formData.entries()) {
-		// 	console.log(`${key}: ${value}`);
-		// }
-
 		try {
-			const res = await put(`social/update-social/${id}`, formData, "multipart/form-data");
-			showSuccessToast(res.data?.message);
-			navigate("/dashboard/social");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+			let formData = {
+				name,
+				description,
+				socialLink,
+			};
+
+			// Add image to formData if isUpdateImage is true and image exists
+			if (isUpdateImage && image) {
+				const data = await cloudinaryImageUploader(image);
+				formData.logo = data.url;
+			}
+
+			try {
+				const res = await put(`social/update-social/${id}`, formData);
+				showSuccessToast(res.data?.message);
+				navigate("/dashboard/social");
+			} catch (err) {
+				showErrorToast(err?.response?.data.message);
+			}
+		} catch (error) {
+			console.error("Failed to upload image:", error);
+			showErrorToast("Failed to upload image. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}
+
+		// try {
+		// 	const res = await put(`social/update-social/${id}`, formData, "multipart/form-data");
+		// 	showSuccessToast(res.data?.message);
+		// 	navigate("/dashboard/social");
+		// } catch (err) {
+		// 	showErrorToast(err?.response?.data.message);
+		// } finally {
+		// 	setIsLoading(false);
+		// }
 	};
 
 	if (isDataLoading) {

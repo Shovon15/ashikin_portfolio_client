@@ -8,6 +8,7 @@ import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import GoBackButton from "../../../components/Button/GoBackButton";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const CreateSocial = () => {
 	const [name, setName] = useState("");
@@ -33,18 +34,28 @@ const CreateSocial = () => {
 			return;
 		}
 
-		const formData = new FormData();
-		formData.append("name", name);
-		formData.append("description", description);
-		formData.append("socialLink", socialLink);
-		formData.append("logo", image); 
-
 		try {
-			const res = await post("social/create-social", formData, "multipart/form-data");
-			showSuccessToast(res.data?.message);
-			navigate("/dashboard/social");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+			let formData = {
+				name,
+				description,
+				socialLink,
+			};
+
+			if (image) {
+				const data = await cloudinaryImageUploader(image);
+				formData.logo = data.url;
+			}
+			
+			try {
+				const res = await post("social/create-social", formData);
+				showSuccessToast(res.data?.message);
+				navigate("/dashboard/social");
+			} catch (err) {
+				showErrorToast(err?.response?.data.message);
+			}
+		} catch (error) {
+			console.error("Failed to upload image:", error);
+			showErrorToast("Failed to upload image. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}

@@ -12,6 +12,8 @@ import { del, get, post } from "../../../utils/fetchApi";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmationModal from "../../../helper/ConfirmationModal";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const BrandManage = () => {
 	const [isAddBrand, setIsAddBrand] = useState(false);
@@ -67,23 +69,50 @@ const BrandManage = () => {
 			return;
 		}
 
-		const formData = new FormData();
-		formData.append("brand", image);
-
+		// const formData = new FormData();
+		// formData.append("brand", image);
 		try {
-			const res = await post("brands/create-brand", formData, "multipart/form-data");
-			refetch();
-			showSuccessToast(res.data?.message);
-			setIsAddBrand(false);
-			setImage(null);
-			setFileName("No file selected");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+			let formData = {};
+
+			if (image) {
+				const data = await cloudinaryImageUploader(image);
+				formData.brand = data.url;
+
+				try {
+					const res = await post("brands/create-brand", formData);
+					refetch();
+					showSuccessToast(res.data?.message);
+					setIsAddBrand(false);
+					setImage(null);
+					setFileName("No file selected");
+				} catch (err) {
+					showErrorToast(err?.response?.data.message);
+				}
+			}
+		} catch (error) {
+			console.error("Failed to upload image:", error);
+			showErrorToast("Failed to upload image. Please try again.");
 		} finally {
 			setLoading(false);
 		}
+
+		// try {
+		// 	const res = await post("brands/create-brand", formData, "multipart/form-data");
+		// 	refetch();
+		// 	showSuccessToast(res.data?.message);
+		// 	setIsAddBrand(false);
+		// 	setImage(null);
+		// 	setFileName("No file selected");
+		// } catch (err) {
+		// 	showErrorToast(err?.response?.data.message);
+		// } finally {
+		// 	setLoading(false);
+		// }
 	};
 	const TABLE_HEAD = ["No.", "Logo", "Action"];
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<div>
@@ -127,7 +156,7 @@ const BrandManage = () => {
 												<p className="font-bold">{String(index + 1) + "."}</p>
 											</td>
 
-											<td className="p-2 center">
+											<td className="p-2 center w-full h-20 flex items-center">
 												<img
 													src={brandLogo}
 													alt="logo"
