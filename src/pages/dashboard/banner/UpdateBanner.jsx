@@ -6,95 +6,115 @@ import { useEffect, useRef, useState } from "react";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
 import { get, put } from "../../../utils/fetchApi";
-import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const UpdateBanner = () => {
-	const [isLoading, setIsLoading] = useState(false);
-
 	const [bannerHeader, setBannerHeader] = useState("");
 	const [bannerText, setBannerText] = useState("");
-	const [oldBackgroundImage, setOldBackgroundImage] = useState("");
-	const [oldPortfolioImage, setOldPortfolioImage] = useState("");
+	const [oldImageList, setOldImageList] = useState([]);
+	const [newImageList, setNewImageList] = useState([]);
+	const [loading, setLoading] = useState(false);
 
-	const [newBackgroundImage, setNewBackgroundImage] = useState(null);
-	const [newPortfolioImage, setNewPortfolioImage] = useState(null);
-
-	const [backgroundImageFileName, setBackgroundImageFileName] = useState("No file choosen");
-	const [portfolioFileName, setPortfolioFileName] = useState("No file choosen");
-
-	const inputBackgroundImageRef = useRef(null);
-	const inputPortfolioImageRef = useRef(null);
+	const inputBannerImageRef = useRef(null);
 
 	const navigate = useNavigate();
 
-	const [isUpdateBackgroundImage, setIsUpdateBackgroundImage] = useState(false);
-	const [isUpdatePortfolioImage, setIsUpdatePortfolioImage] = useState(false);
+	const { data: bannerData = [], isLoading } = useQuery({
+		queryKey: ["bannerData"],
+		queryFn: async () => {
+			const res = await get("banner");
+			const data = res.data.payload.data;
 
-	// const handleUploadImage = () => {
-	// 	setIsUpdateImage(true);
-	// };
-
-	const [bannerData, setBannerData] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await get("banner");
-			setBannerData(response.data.payload.data);
-		};
-		fetchData();
-	}, []);
+			return data;
+		},
+	});
 
 	useEffect(() => {
 		if (Object.keys(bannerData).length !== 0) {
-			setBannerHeader(bannerData?.bannerHeader);
-			setBannerText(bannerData?.bannerText);
-			setOldBackgroundImage(bannerData?.backgroundImage);
-			setOldPortfolioImage(bannerData?.portfolioImage);
+			setBannerHeader(bannerData[0]?.bannerHeader);
+			setBannerText(bannerData[0]?.bannerText);
+			setOldImageList(bannerData[0]?.imageList);
 		}
 	}, [bannerData]);
-	console.log(bannerData[0]?.backgroundImage);
+
+	const handleImageChange = (event) => {
+		const files = event.target.files;
+		const imagesArray = Array.from(files);
+		setNewImageList((prevImages) => [...prevImages, ...imagesArray]);
+	};
 
 	const handleBannerForm = async (e) => {
 		e.preventDefault();
-		setIsLoading(true);
+		console.log(oldImageList, newImageList);
 
-		let backgroundmgData = {};
-		let portfolioImageData = {};
-
-		if (newBackgroundImage && isUpdateBackgroundImage) {
-			backgroundmgData = await handleFileUpload(newBackgroundImage);
-		}
-		if (newPortfolioImage && isUpdatePortfolioImage) {
-			portfolioImageData = await handleFileUpload(newPortfolioImage);
-		}
-
-		const formData = {
-			bannerHeader,
-			bannerText,
-			...(isUpdateBackgroundImage ? { backgroundImage: backgroundmgData?.url || null } : {}),
-			...(isUpdatePortfolioImage ? { portfolioImage: portfolioImageData?.url || null } : {}),
-		};
-		console.log(formData, "formData");
-
-		if (Object.values(formData).some((field) => !field)) {
-			// Handle the case where data is missing
-			setIsLoading(false);
+		if (Object.values({ bannerHeader, bannerText }).some((field) => !field)) {
+			setLoading(false);
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
 
 		try {
+			setLoading(true);
+			let formData = {
+				bannerHeader,
+				bannerText,
+				imageList: [] // Initialize with an empty array
+			};
+			
+			if (oldImageList.length > 0) {
+				formData.imageList = [...oldImageList]; 
+			}
+			
+			if (newImageList.length > 0) {
+				const newImagesUploaded = await Promise.all(
+					newImageList.map(async (image) => {
+						try {
+							const imageData = await cloudinaryImageUploader(image);
+							return imageData.url;
+						} catch (error) {
+							console.error("Error uploading image:", error);
+							return null;
+						}
+					})
+				);
+			
+				if (newImagesUploaded.some((url) => url === null)) {
+					showErrorToast("Error occurred during image upload. Please try again.");
+					setLoading(false);
+					return;
+				}
+			
+				formData.imageList = [...formData.imageList, ...newImagesUploaded];
+			}
+			
+			if (formData.imageList.length === 0) {
+				// Handle the case where no images are present
+				showErrorToast("Please upload at least one image.");
+				setLoading(false);
+				return;
+			}
+
+			
+
 			const res = await put("banner/update-banner", formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/banner");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+		} catch (error) {
+			console.error("Error upload banner ", error);
+			const errorMessage = error?.response?.data?.message || "An error occurred while uploading the banner.";
+			showErrorToast(errorMessage);
 		} finally {
-			setIsLoading(false);
+			setLoading(false);
 		}
 	};
+
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<div className="pb-10">
@@ -109,10 +129,10 @@ const UpdateBanner = () => {
 							Banner Heading <span className="text-red-500">*</span>
 						</p>
 						<Input
-							value={bannerHeader}
 							size="lg"
+							value={bannerHeader}
 							color="yellow"
-							label="Blog Title"
+							label="Banner Heading"
 							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setBannerHeader(ev.target.value)}
@@ -120,177 +140,103 @@ const UpdateBanner = () => {
 					</div>
 					<div>
 						<p className="font-bold text-color-text  py-2">
-							Blog Title <span className="text-red-500">*</span>
+							Banner Description <span className="text-red-500">*</span>
 						</p>
 						<Textarea
 							value={bannerText}
 							size="lg"
 							color="yellow"
-							label="Blog title"
+							label="Banner description"
 							className="text-color-text "
 							rows={4}
 							onChange={(ev) => setBannerText(ev.target.value)}
 						/>
 					</div>
-					{/* background image */}
-					<div>
+
+					<div className="">
 						<p className="font-bold text-color-text py-2">
-							Banner Image <span className="text-red-500">*</span>
+							Banner Image(&apos;s) <span className="text-red-500">*</span>
 						</p>
-						<div className="mx-auto">
-							{!isUpdateBackgroundImage ? (
-								<div className=" border-2 border-dashed border-color-border p-5">
-									<img src={oldBackgroundImage} alt="..." />
-									<div className="flex justify-center mt-2">
-										<PrimaryButton
-											className="py-2"
-											onClick={() => setIsUpdateBackgroundImage(true)}
+						{oldImageList.length > 0 && (
+							<>
+								<p className="font-bold text-color-text py-2">Uploaded image lists</p>
+								<div className="flex gap-2 flex-wrap justify-center border">
+									{oldImageList.map((image, index) => (
+										<div
+											key={index}
+											className="flex flex-col justify-center items-center hover:ring-2 p-1"
 										>
-											Upload new Image
-										</PrimaryButton>
-									</div>
-								</div>
-							) : (
-								<div>
-									<div
-										className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer  ${
-											newBackgroundImage ? "border-color-border" : "border-gray-500"
-										}`}
-										onClick={() => inputBackgroundImageRef.current.click()}
-									>
-										<input
-											type="file"
-											accept="image/*"
-											className="input-field"
-											hidden
-											onChange={(event) => {
-												const files = event.target.files;
-												if (files[0]) {
-													setBackgroundImageFileName(files[0].name);
-													setNewBackgroundImage(files[0]);
+											<img src={image} className="w-44 h-34" alt={`image-${index}`} />
+											<IconButton
+												onClick={() =>
+													setOldImageList((prevImages) =>
+														prevImages.filter((_, i) => i !== index)
+													)
 												}
-											}}
-											ref={inputBackgroundImageRef}
-											key={backgroundImageFileName}
-										/>
-										{newBackgroundImage ? (
-											<img
-												src={URL.createObjectURL(newBackgroundImage)}
-												className="w-full h-full p-5"
-												alt={backgroundImageFileName}
-											/>
-										) : (
-											<div className="flex flex-col items-center gap-2 text-color-text">
-												<LuUploadCloud className="w-12 h-12" />
-												<p>Browse file to upload</p>
-											</div>
-										)}
-									</div>
-									<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
-										{backgroundImageFileName}
-										{newBackgroundImage !== null && (
-											<IconButton variant="text" className="rounded-full">
-												<BsTrashFill
-													onClick={() => {
-														setBackgroundImageFileName("No file selected");
-														setNewBackgroundImage(null);
-														inputBackgroundImageRef.current.value = null;
-													}}
-													className="w-5 h-5 text-red-500 cursor-pointer"
-												/>
+												variant="text"
+												className="text-red-500 rounded-full"
+											>
+												<BsTrashFill className="w-5 h-5" />
 											</IconButton>
-										)}
-									</section>
-									<p className="text-red-500 text-md py-2">
-										Note: If you don&apos;t want to upload a new blog image, please refresh the page
-										before clicking the update button.
-									</p>
+										</div>
+									))}
 								</div>
-							)}
-						</div>
-					</div>
-					{/* portfolio image */}
-					<div>
-						<p className="font-bold text-color-text py-2">
-							Portfolio Image <span className="text-red-500">*</span>
-						</p>
-						<div style={{ maxWidth: "400px" }} className="mx-auto">
-							{!isUpdatePortfolioImage ? (
-								<div className="border-2 border-dashed border-color-border">
-									<img src={oldPortfolioImage} alt="..." />
-									<div className="flex justify-center mt-2 pb-2">
-										<PrimaryButton
-											className=" py-2 "
-											onClick={() => setIsUpdatePortfolioImage(true)}
+							</>
+						)}
+
+						{newImageList.length > 0 && (
+							<>
+								<p className="font-bold text-color-text py-2">New Image(&apos;s)</p>
+								<div className="flex gap-2 flex-wrap justify-center border">
+									{newImageList.map((image, index) => (
+										<div
+											key={index}
+											className="flex flex-col justify-center items-center hover:ring-2 p-1"
 										>
-											Upload new Image
-										</PrimaryButton>
-									</div>
-								</div>
-							) : (
-								<div>
-									<div
-										className={`flex justify-center items-center border-2 border-dashed  w-full h-80 cursor-pointer  ${
-											newPortfolioImage ? "border-color-border" : "border-gray-500"
-										}`}
-										onClick={() => inputPortfolioImageRef.current.click()}
-									>
-										<input
-											type="file"
-											accept="image/*"
-											className="input-field"
-											hidden
-											onChange={(event) => {
-												const files = event.target.files;
-												if (files[0]) {
-													setPortfolioFileName(files[0].name);
-													setNewPortfolioImage(files[0]);
+											<img src={URL.createObjectURL(image)} className="w-44 h-34" alt={[index]} />
+											<IconButton
+												onClick={() =>
+													setNewImageList((prevImages) =>
+														prevImages.filter((image, i) => i !== index)
+													)
 												}
-											}}
-											ref={inputPortfolioImageRef}
-											key={portfolioFileName}
-										/>
-										{newPortfolioImage ? (
-											<img
-												src={URL.createObjectURL(newPortfolioImage)}
-												className="w-full h-full p-5"
-												alt={portfolioFileName}
-											/>
-										) : (
-											<div className="flex flex-col items-center gap-2 text-color-text">
-												<LuUploadCloud className="w-12 h-12" />
-												<p>Browse file to upload</p>
-											</div>
-										)}
-									</div>
-									<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
-										{portfolioFileName}
-										{newPortfolioImage !== null && (
-											<IconButton variant="text" className="rounded-full">
-												<BsTrashFill
-													onClick={() => {
-														setPortfolioFileName("No file selected");
-														setNewPortfolioImage(null);
-														inputPortfolioImageRef.current.value = null;
-													}}
-													className="w-5 h-5 text-red-500 cursor-pointer"
-												/>
+												variant="text"
+												className=" text-red-500 rounded-full"
+											>
+												<BsTrashFill className="w-5 h-5" />
 											</IconButton>
-										)}
-									</section>
-									<p className="text-red-500 text-md py-2">
-										Note: If you don&apos;t want to upload a new blog image, please refresh the page
-										before clicking the update button.
-									</p>
+										</div>
+									))}
 								</div>
-							)}
+							</>
+						)}
+
+						<div className="flex justify-center p-2">
+							<div
+								className={`center border-2 border-dashed w-44 h-44 cursor-pointer border-gray-500}`}
+								onClick={() => inputBannerImageRef.current.click()}
+							>
+								<input
+									type="file"
+									accept="image/*"
+									className="input-field"
+									hidden
+									onChange={handleImageChange}
+									ref={inputBannerImageRef}
+									multiple
+								/>
+								<div className="flex flex-col items-center gap-2 text-color-text">
+									<LuUploadCloud className="w-12 h-12 " />
+									<p className="">Browse file to upload</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div className="w-full flex justify-center items-center my-10 ">
-					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-[5rem]">
-						{isLoading ? <Spinner color="gray" className="mx-auto" /> : "Update"}
+					<PrimaryButton buttonType={"submit"} disabled={loading} className="px-[5rem]">
+						{loading ? <Spinner color="gray" className="mx-auto" /> : "Update"}
 					</PrimaryButton>
 				</div>
 			</form>

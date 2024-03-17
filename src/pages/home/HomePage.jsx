@@ -13,7 +13,7 @@ import { useState } from "react";
 const HomePage = () => {
 	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	const [bannerImage, setBannerImage] = useState("");
-
+console.log(bannerImage, "bannerImage");
 	return (
 		<>
 			<PageHelmet

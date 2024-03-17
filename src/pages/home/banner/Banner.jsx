@@ -1,30 +1,32 @@
-/* eslint-disable react/prop-types */
 import { Typography } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
-// import { DashboardContext } from "../../../context/DashboardContext";
+
 import { get } from "../../../utils/fetchApi";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import BannerSwipper from "./bannerSwipper";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
+// eslint-disable-next-line react/prop-types
 const Banner = ({ setBannerImage }) => {
-	// const { scrollPosition } = useContext(DashboardContext);
-	const [isLoading, setIsLoading] = useState(false);
-	const [bannerData, setBannerData] = useState({
-		bannerHeader: "",
-		bannerText: "",
-		backgroundImage: "",
-		portfolioImage: "",
-	});
+	const {
+		data: bannerData = [],
+		// refetch,
+		isLoading,
+	} = useQuery({
+		queryKey: ["bannerData"],
+		queryFn: async () => {
+			const res = await get("banner");
+			const data = res?.data?.payload.data;
 
+			return data;
+		},
+	});
+	
 	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true);
-			const response = await get("banner");
-			setBannerData(response.data.payload.data);
-			setBannerImage(response.data.payload.data.backgroundImage);
-			setIsLoading(false);
-		};
-		fetchData();
-	}, [setBannerImage]);
+        if (bannerData.length > 0) {
+            const seoImage = bannerData[0]?.imageList[0];
+            setBannerImage(seoImage);
+        }
+    }, [bannerData, setBannerImage]);
 
 	if (isLoading) {
 		return (
@@ -56,21 +58,16 @@ const Banner = ({ setBannerImage }) => {
 	}
 
 	return (
-		<div className="min-h-screen md:min-h-[500px] md:h-[500px] flex justify-center items-center bg-color-secondary">
-			<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row">
-				<div className="p-5 md:p-10 w-full md:w-5/12 flex flex-col justify-start md:justify-center ">
+		<div className="bg-color-secondary">
+			<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5">
+				<div className="p-5 md:p-10 w-full h-96 lg:w-5/12 flex flex-col justify-center md:justify-center">
 					<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
-						{bannerData?.bannerHeader}
+						{bannerData[0]?.bannerHeader}
 					</Typography>
-					<Typography className="text-lg text-color-text pt-5">{bannerData?.bannerText}</Typography>
+					<Typography className="text-lg text-color-text pt-5">{bannerData[0]?.bannerText}</Typography>
 				</div>
-				<div className="w-full md:w-7/12 max-w-[23rem] max-h[10rem] p-5 md:p-10 mx-auto">
-					<LazyLoadImage
-						effect="blur"
-						src={bannerData?.portfolioImage}
-						alt="portfolio-image"
-						className="object-cover  rounded-lg"
-					/>
+				<div className="w-full hidden lg:block md:w-7/12 rounded-xl">
+					<BannerSwipper imageList={bannerData[0]?.imageList} />
 				</div>
 			</div>
 		</div>

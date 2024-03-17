@@ -1,7 +1,7 @@
-const cloudinaryImageUploader = async (logoImage) => {
+const cloudinaryImageUploader = async (image) => {
 	try {
 		const formData = new FormData();
-		formData.append("file", logoImage);
+		formData.append("file", image);
 		formData.append("upload_preset", "react_upload");
 		formData.append("cloud_name", "dreeqkcfb");
 
@@ -25,7 +25,7 @@ const cloudinaryImageUploader = async (logoImage) => {
 		return data;
 	} catch (error) {
 		console.error("Error uploading image:", error);
-		throw new Error("Failed to upload image");
+		throw new Error("Failed to upload image.", error);
 	}
 };
 

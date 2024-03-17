@@ -1,35 +1,35 @@
 import { Typography } from "@material-tailwind/react";
-import { useContext, useEffect, useState } from "react";
-import { DashboardContext } from "../../../context/DashboardContext";
+
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import IconButton from "../../../components/Button/IconButton";
 import { Link } from "react-router-dom";
 import { get } from "../../../utils/fetchApi";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
+import BannerSwipper from "../../home/banner/bannerSwipper";
 
 const BannerManage = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [bannerData, setBannerData] = useState({});
+	const {
+		data: bannerData = [],
+		// refetch,
+		isLoading,
+	} = useQuery({
+		queryKey: ["bannerData"],
+		queryFn: async () => {
+			const res = await get("banner");
+			const data = res.data.payload.data;
 
-	const { scrollPosition } = useContext(DashboardContext);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true);
-			const response = await get("banner");
-			setBannerData(response.data.payload.data);
-			setIsLoading(false);
-		};
-		fetchData();
-	}, []);
+			return data;
+		},
+	});
 
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
 
 	return (
-		<div className="min-h-[50rem]">
+		<div className="">
 			<div>
 				<GoBackButton />
 			</div>
@@ -39,40 +39,25 @@ const BannerManage = () => {
 					<IconButton>update banner</IconButton>
 				</Link>
 			</div>
-			{bannerData ? (
-				<div className="relative h-[45rem] md:h-[30rem] flex">
-					<div
-						style={{
-							position: "absolute",
-							top: 0,
-							left: 0,
-							width: "100%",
-							height: "100%",
-							backgroundImage: `url(${bannerData?.backgroundImage})`,
-							backgroundSize: "cover",
-							backgroundPosition: "center",
-							opacity: 0.4 - Math.min(scrollPosition / 700, 1),
-						}}
-					></div>
-					<div className="flex flex-col md:flex-row gap-0 md:gap-5 z-10">
-						<div className="p-5 md:p-10 w-full md:w-7/12 flex flex-col justifystart md:justify-center">
+			{bannerData.length > 0 ? (
+				<div className="bg-color-secondary pt-5">
+					<div className="max-w-[1000px] mx-auto flex flex-col md:flex-row ">
+						<div className="p-5 md:p-10 w-full md:w-5/12 flex flex-col justify-start md:justify-center">
 							<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
-								{bannerData?.bannerHeader}
+								{bannerData[0]?.bannerHeader}
 							</Typography>
-							<Typography className="text-md text-color-text pt-5">{bannerData?.bannerText}</Typography>
+							<Typography className="text-lg text-color-text pt-5">
+								{bannerData[0]?.bannerText}
+							</Typography>
 						</div>
-						<div className="w-full md:w-5/12 p-5 md:p-10 max-h-[40rem] max-w-[20rem] flex flex-col justify-start md:justify-end mx-auto">
-							<img
-								src={bannerData?.portfolioImage}
-								className="object-cover  rounded-lg"
-								alt="secondary-image"
-							/>
+						<div className="w-full md:w-7/12 rounded-xl">
+							<BannerSwipper imageList={bannerData[0]?.imageList} />
 						</div>
 					</div>
 				</div>
 			) : (
-				<div className="flex justify-center itmes-center min-h-screen">
-					<p className="text-xl text-color-text">No content found please update banner</p>
+				<div className="flex flex-col justify-center items-center gap-5 min-h-screen">
+					<p className="text-xl text-color-text">No content found please create banner</p>
 					<Link to="/dashboard/banner/create-banner">
 						<IconButton>Create banner</IconButton>
 					</Link>

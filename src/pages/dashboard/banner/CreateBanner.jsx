@@ -1,72 +1,87 @@
-import { IconButton, Input, Spinner } from "@material-tailwind/react";
+import { IconButton, Input, Spinner, Textarea } from "@material-tailwind/react";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import { useRef, useState } from "react";
 import { BsTrashFill } from "react-icons/bs";
 import { LuUploadCloud } from "react-icons/lu";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import handleFileUpload from "../../../helper/ImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { post } from "../../../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
+import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 
 const CreateBanner = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [bannerHeader, setBannerHeader] = useState("");
 	const [bannerText, setBannerText] = useState("");
 
-	const [backgroundImage, setBackgroundImage] = useState(null);
-	const [portfolioImage, setPortfolioImage] = useState(null);
-
-	const [backgroundFileName, setBackgroundFileName] = useState("No file choosen");
-	const [portfolioFileName, setPortfolioFileName] = useState("No file choosen");
-
-	const inputBackgroundImageRef = useRef(null);
-	const inputPortfolioImageRef = useRef(null);
+	const [selectedImages, setSelectedImages] = useState([]);
+	const [selectedImageFileNames, setSelectedImageFileNames] = useState([]);
+	const inputBannerImageRef = useRef(null);
 
 	const navigate = useNavigate();
 
-	// console.log(portfolioImage, portfolioFileName);
+	const handleImageChange = (event) => {
+		const files = event.target.files;
+		const imagesArray = Array.from(files);
+		setSelectedImages((prevImages) => [...prevImages, ...imagesArray]);
+
+		const fileNamesArray = Array.from(files).map((file) => file.name);
+		setSelectedImageFileNames((prevNames) => [...prevNames, ...fileNamesArray]);
+	};
+
+	const removeImage = (index) => {
+		setSelectedImages((prevImages) => prevImages.filter((image, i) => i !== index));
+		setSelectedImageFileNames((prevNames) => prevNames.filter((name, i) => i !== index));
+	};
 
 	const handleBannerForm = async (e) => {
 		e.preventDefault();
-		setIsLoading(true);
 
-		let backgroundmgData = {};
-		let portfolioImageData = {};
-
-		if (backgroundImage) {
-			backgroundmgData = await handleFileUpload(backgroundImage);
-		}
-		if (portfolioImage) {
-			portfolioImageData = await handleFileUpload(portfolioImage);
-		}
-
-		const formData = {
-			bannerHeader,
-			bannerText,
-			backgroundImage: backgroundmgData?.url || null,
-			portfolioImage: portfolioImageData?.url || null,
-		};
-		console.log(formData, "formData");
-
-		if (Object.values(formData).some((field) => !field)) {
-			// Handle the case where data is missing
+		if (Object.values({ bannerHeader, bannerText }).some((field) => !field) || !selectedImages.length > 0) {
 			setIsLoading(false);
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
 
 		try {
+			setIsLoading(true);
+
+			const imageList = await Promise.all(
+				selectedImages.map(async (image) => {
+					try {
+						const imageData = await cloudinaryImageUploader(image);
+						return imageData.url;
+					} catch (error) {
+						// Handle error for individual image upload
+						console.error("Error uploading image:", error);
+						return null;
+					}
+				})
+			);
+			if (imageList.some((url) => url === null)) {
+				showErrorToast("Error occurred during image upload. Please try again.");
+				return;
+			}
+
+			const formData = {
+				bannerHeader,
+				bannerText,
+				imageList: imageList.filter((url) => url !== null),
+			};
+
 			const res = await post("banner/create-banner", formData);
 			showSuccessToast(res.data?.message);
 			navigate("/dashboard/banner");
-		} catch (err) {
-			showErrorToast(err?.response?.data.message);
+		} catch (error) {
+			console.error("Error upload banner ", error);
+			const errorMessage = error?.response?.data?.message || "An error occurred while uploading the banner.";
+			showErrorToast(errorMessage);
 		} finally {
 			setIsLoading(false);
 		}
 	};
+
 	return (
 		<div className="pb-10">
 			<div>
@@ -77,12 +92,13 @@ const CreateBanner = () => {
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-text  py-2">
-							Blog Title <span className="text-red-500">*</span>
+							Banner Heading <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
+							value={bannerHeader}
 							color="yellow"
-							label="Blog Title"
+							label="Banner Heading"
 							className="text-color-text "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setBannerHeader(ev.target.value)}
@@ -90,129 +106,66 @@ const CreateBanner = () => {
 					</div>
 					<div>
 						<p className="font-bold text-color-text  py-2">
-							Blog Title <span className="text-red-500">*</span>
+							Banner Description <span className="text-red-500">*</span>
 						</p>
-						<Input
+						<Textarea
+							value={bannerText}
 							size="lg"
 							color="yellow"
-							label="Blog Title"
+							label="Banner description"
 							className="text-color-text "
-							style={{ fontSize: "18px", fontWeight: "normal" }}
+							rows={4}
 							onChange={(ev) => setBannerText(ev.target.value)}
 						/>
 					</div>
 
-					<div>
+					<div className="">
 						<p className="font-bold text-color-text py-2">
-							Background Image <span className="text-red-500">*</span>
+							Banner Image(&apos;s) <span className="text-red-500">*</span>
 						</p>
-						<div
-							className={`center border-2 border-dashed w-full h-80 cursor-pointer
-                            ${backgroundImage ? "border-color-border" : "border-gray-500"}`}
-							onClick={() => inputBackgroundImageRef.current.click()}
-						>
-							<input
-								type="file"
-								accept="image/*"
-								className="input-field"
-								hidden
-								onChange={(event) => {
-									const files = event.target.files;
-									if (files[0]) {
-										setBackgroundFileName(files[0].name);
-										setBackgroundImage(files[0]);
-									}
-								}}
-								ref={inputBackgroundImageRef}
-								key={backgroundFileName}
-							/>
-							{backgroundImage ? (
-								<img
-									src={URL.createObjectURL(backgroundImage)}
-									className="w-full h-full p-5"
-									alt={backgroundFileName}
+
+						<div className="flex gap-2 flex-wrap justify-center ">
+							{selectedImages.length > 0 &&
+								selectedImages.map((image, index) => (
+									<div
+										key={index}
+										className="flex flex-col justify-center items-center hover:ring-2 p-1"
+									>
+										<img
+											src={URL.createObjectURL(image)}
+											className="w-44 h-34"
+											alt={selectedImageFileNames[index]}
+										/>
+										<IconButton
+											onClick={() => removeImage(index)}
+											variant="text"
+											className=" text-red-500 rounded-full"
+										>
+											<BsTrashFill className="w-5 h-5" />
+										</IconButton>
+									</div>
+								))}
+						</div>
+						<div className="flex justify-center p-2">
+							<div
+								className={`center border-2 border-dashed w-44 h-44 cursor-pointer border-gray-500}`}
+								onClick={() => inputBannerImageRef.current.click()}
+							>
+								<input
+									type="file"
+									accept="image/*"
+									className="input-field"
+									hidden
+									onChange={handleImageChange}
+									ref={inputBannerImageRef}
+									multiple
 								/>
-							) : (
 								<div className="flex flex-col items-center gap-2 text-color-text">
 									<LuUploadCloud className="w-12 h-12 " />
 									<p className="">Browse file to upload</p>
 								</div>
-							)}
+							</div>
 						</div>
-						<section
-							className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text"
-						>
-							{backgroundFileName}
-							{backgroundImage !== null && (
-								<IconButton variant="text" className="rounded-full">
-									<BsTrashFill
-										onClick={() => {
-											setBackgroundFileName("No file selected");
-											setBackgroundImage(null);
-											inputBackgroundImageRef.current.value = null;
-										}}
-										className="w-5 h-5 text-red-500 cursor-pointer"
-									/>
-								</IconButton>
-							)}
-						</section>
-					</div>
-					<div>
-						<p className="font-bold text-color-text py-2">
-							Portfolio Image <span className="text-red-500">*</span>
-						</p>
-						<div
-							className={`center border-2 border-dashed w-full max-w-[300px] mx-auto h-80 cursor-pointer
-                            ${portfolioImage ? "border-color-border" : "border-gray-500"}`}
-							onClick={() => inputPortfolioImageRef.current.click()}
-						>
-							<input
-								type="file"
-								accept="image/*"
-								className="input-field"
-								hidden
-								onChange={(event) => {
-									const files = event.target.files;
-									if (files[0]) {
-										setPortfolioFileName(files[0].name);
-										setPortfolioImage(files[0]);
-									}
-								}}
-								ref={inputPortfolioImageRef}
-								key={portfolioFileName}
-							/>
-							{portfolioImage ? (
-								<img
-									src={URL.createObjectURL(portfolioImage)}
-									className="w-full h-full p-5"
-									alt={portfolioFileName}
-								/>
-							) : (
-								<div className="flex flex-col items-center gap-2 text-color-text">
-									<LuUploadCloud className="w-12 h-12 " />
-									<p className="">Browse file to upload</p>
-								</div>
-							)}
-						</div>
-						<section
-							className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text"
-						>
-							{portfolioFileName}
-							{portfolioImage !== null && (
-								<IconButton variant="text" className="rounded-full">
-									<BsTrashFill
-										onClick={() => {
-											setPortfolioFileName("No file selected");
-											setPortfolioImage(null);
-											inputPortfolioImageRef.current.value = null;
-										}}
-										className="w-5 h-5 text-red-500 cursor-pointer"
-									/>
-								</IconButton>
-							)}
-						</section>
 					</div>
 				</div>
 
