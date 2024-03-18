@@ -27,7 +27,9 @@ const Footer = () => {
 	return (
 		<footer className="w-full bg-color-secondary p-8">
 			<div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-inherit text-center md:justify-between">
-				<Logo />
+				<div className="h-28">
+					<Logo />
+				</div>
 				<div className="flex gap-6">
 					{Data.map(({ name, link }) => (
 						<Link to={link} key={name}>

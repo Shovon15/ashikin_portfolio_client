@@ -34,17 +34,17 @@ const Banner = ({ setBannerImage }) => {
 				role="status"
 				className="space-y-8  md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center h-[500px] p-10 bg-color-secondary"
 			>
-				<div className="w-full md:w-8/12 animate-pulse">
-					<div className="h-4 bg-color-primary rounded-full mb-2.5  max-w-[580px]"></div>
-					<div className="h-4 bg-color-primary rounded-full w-48 mb-8"></div>
-					<div className="h-2 bg-color-primary rounded-full  max-w-[480px] mb-2.5"></div>
-					<div className="h-2 bg-color-primary rounded-full max-w-[440px] mb-2.5"></div>
-					<div className="h-2 bg-color-primary rounded-full max-w-[460px] mb-2.5"></div>
-					<div className="h-2 bg-color-primary rounded-full  max-w-[360px]"></div>
+				<div className="w-full h-full md:w-5/12 animate-pulse flex flex-col justify-center">
+					<div className="h-4 bg-[#264763] rounded-full mb-2.5  max-w-[580px]"></div>
+					<div className="h-4 bg-[#264763] rounded-full w-48 mb-8"></div>
+					<div className="h-2 bg-[#264763] rounded-full  max-w-[480px] mb-2.5"></div>
+					<div className="h-2 bg-[#264763] rounded-full max-w-[440px] mb-2.5"></div>
+					<div className="h-2 bg-[#264763] rounded-full max-w-[460px] mb-2.5"></div>
+					<div className="h-2 bg-[#264763] rounded-full  max-w-[360px]"></div>
 				</div>
-				<div className="flex items-center justify-center w-72 md:w-3/12 h-96 bg-color-secondary rounded pt-10 mx-auto animate-pulse">
+				<div className=" items-center justify-center w-72 md:w-7/12 h-96 bg-[#264763] rounded pt-10 mx-auto animate-pulse hidden lg:flex">
 					<svg
-						className="w-10 h-10 text-[#264763] "
+						className="w-10 h-10 text-[#5181ac] "
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
@@ -59,17 +59,19 @@ const Banner = ({ setBannerImage }) => {
 
 	return (
 		<div className="bg-color-secondary">
-			<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5">
-				<div className="p-5 md:p-10 w-full h-96 lg:w-5/12 flex flex-col justify-center md:justify-center">
-					<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
-						{bannerData[0]?.bannerHeader}
-					</Typography>
-					<Typography className="text-lg text-color-text pt-5">{bannerData[0]?.bannerText}</Typography>
+			{bannerData.length > 0 && (
+				<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5">
+					<div className="p-5 md:p-10 w-full h-96 lg:w-5/12 flex flex-col justify-center md:justify-center">
+						<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
+							{bannerData[0]?.bannerHeader}
+						</Typography>
+						<Typography className="text-lg text-color-text pt-5">{bannerData[0]?.bannerText}</Typography>
+					</div>
+					<div className="w-full hidden lg:block md:w-7/12 rounded-xl">
+						<BannerSwipper imageList={bannerData[0]?.imageList} />
+					</div>
 				</div>
-				<div className="w-full hidden lg:block md:w-7/12 rounded-xl">
-					<BannerSwipper imageList={bannerData[0]?.imageList} />
-				</div>
-			</div>
+			)}
 		</div>
 		//  {bannerData && (
 		// 	<div className="relative">

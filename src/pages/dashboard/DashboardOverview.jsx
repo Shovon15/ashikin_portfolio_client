@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import shieldIcon from "../../assets/icon/shield.png";
 import PrimaryButton from "../../components/Button/PrimaryButton";
+import LogoutButton from "../../components/Button/LogoutButton";
 
 const DashboardOverview = () => {
 	const { user } = useContext(AuthContext);
@@ -32,6 +33,16 @@ const DashboardOverview = () => {
 				<Link to="/dashboard/password-update" className="w-[196px]">
 					<PrimaryButton className="w-full">Update Paswsword</PrimaryButton>
 				</Link>
+			</div>
+			<div className="lg:hidden gap-3 w-full flex flex-col">
+				<Link to="/" className="w-[196px]">
+					<PrimaryButton className="px-10 py-2.5 w-full">Home</PrimaryButton>
+				</Link>
+				<div className="w-[196px]">
+					<div className="w-full">
+						<LogoutButton />
+					</div>
+				</div>
 			</div>
 		</div>
 	);

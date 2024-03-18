@@ -45,6 +45,9 @@ import SocialManage from "../../pages/dashboard/social/socialManage";
 import CreateSocial from "../../pages/dashboard/social/CreateSocial";
 import UpdateSocial from "../../pages/dashboard/social/UpdateSocial";
 import BrandManage from "../../pages/dashboard/brands/brandManage";
+import AboutManager from "../../pages/dashboard/about/aboutManager";
+import CreateAbout from "../../pages/dashboard/about/createAbout";
+import UpdateAbout from "../../pages/dashboard/about/updateAbout";
 
 const MainRoutes = () => {
 	return (
@@ -129,6 +132,11 @@ const MainRoutes = () => {
 							<Route path=":slug" element={<RegisteredEvent />} />
 							<Route path="write-program" element={<CreateEvent />} />
 							<Route path="update-program/:slug" element={<UpdateEvent />} />
+						</Route>
+						<Route path="about">
+							<Route path="" element={<AboutManager />} />
+							<Route path="create-about" element={<CreateAbout />} />
+							<Route path="update-about" element={<UpdateAbout />} />
 						</Route>
 
 						<Route path="reviews">

@@ -1,4 +1,4 @@
-import { Typography } from "@material-tailwind/react";
+import { Spinner, Typography } from "@material-tailwind/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
@@ -26,7 +26,7 @@ const ExperianceSection = () => {
 
 	return (
 		<div className="max-w-[1560px] mx-auto">
-			<div className="bg-color-secondary max-w-[1200px] mx-auto rounded-b-md shadow-xl">
+			<div className="bg-color-secondary max-w-[1560px] mx-auto rounded-b-md shadow-xl">
 				{loading ? (
 					<div className="flex justify-center items-center h-20">
 						<div className="spinner">
@@ -37,9 +37,9 @@ const ExperianceSection = () => {
 					<>
 						{brandData.length !== 0 && (
 							// <BrandSwiper data={brandData} />
-							<div className="flex justify-center gap-5">
+							<div className="flex justify-center items-center gap-5 p-3">
 								{brandData.map(({ brandLogo, _id }) => (
-									<div key={_id}>
+									<div key={_id} className="">
 										<img src={brandLogo} alt="brand" />
 									</div>
 								))}
@@ -57,36 +57,35 @@ const ExperianceSection = () => {
 			</div>
 			{isLoading ? (
 				<div className="flex justify-center items-center h-80">
-					<div className="spinner">
-						<div className="spinner-circle"></div>
-					</div>
+					<Spinner className="text-[#6982b8]" />
 				</div>
 			) : (
-				<div className="py-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly ">
+				<div className="p-10 flex flex-wrap gap-5 justify-center items-center md:justify-evenly ">
 					{socialData &&
-						socialData.map(({ name, logo, description, socialLink }) => (
-							<a key={socialLink} href={socialLink} target="_blank" rel="noopener noreferrer">
-								<div className="flex gap-3 bg-color-secondary shadow-xl rounded-xl w-60 justify-center p-3 animation-experience-section">
-									<LazyLoadImage
-										effect="blur"
-										src={logo}
-										alt="card-image"
-										className="object-fill"
-										width="50"
-										height="50"
-									/>
-
-									<div>
-										<Typography variant="h5" className="font-bold text-color-header">
-											{name.charAt(0).toUpperCase() + name.slice(1)}
-										</Typography>
-										<Typography variant="paragraph" className="text-color-text">
-											{description}
-										</Typography>
+						socialData.map(({ name, logo, description, socialLink, isPublished }) =>
+							isPublished ? (
+								<a key={socialLink} href={socialLink} target="_blank" rel="noopener noreferrer">
+									<div className="flex gap-3 bg-color-secondary shadow-xl rounded-xl w-60 justify-center p-3 animation-experience-section">
+										<LazyLoadImage
+											effect="blur"
+											src={logo}
+											alt="card-image"
+											className="object-fill"
+											width="50"
+											height="50"
+										/>
+										<div>
+											<Typography variant="h5" className="font-bold text-color-header">
+												{name.charAt(0).toUpperCase() + name.slice(1)}
+											</Typography>
+											<Typography variant="paragraph" className="text-color-text">
+												{description}
+											</Typography>
+										</div>
 									</div>
-								</div>
-							</a>
-						))}
+								</a>
+							) : null
+						)}
 				</div>
 			)}
 		</div>

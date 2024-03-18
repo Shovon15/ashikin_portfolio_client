@@ -49,6 +49,11 @@ export const dashboardLinkItems = [
 		link: "/dashboard/reviews",
 		icon: <MdOutlineMessage className="w-5 h-5" />,
 	},
+	{
+		name: "about",
+		link: "/dashboard/about",
+		icon: <MdOutlineMessage className="w-5 h-5" />,
+	},
 
 	{
 		name: "invitations",

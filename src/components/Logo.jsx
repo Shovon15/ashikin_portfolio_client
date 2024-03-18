@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { get } from "../utils/fetchApi";
 
-import ClipLoader from "react-spinners/ClipLoader";
+import { Spinner } from "@material-tailwind/react";
 
 const Logo = () => {
 	// const [scrollPosition, setScrollPosition] = useState(0);
@@ -34,11 +34,14 @@ const Logo = () => {
 
 	return (
 		//${scrollPosition > 0 ? "h-14" : "h-16"}
-		<div className={` transform transition duration-500 flex items-center`}>
+		<div className={` transform transition duration-500 flex items-center h-full`}>
 			{isLoading ? (
-				<ClipLoader color="#0c0c0c" size={30} aria-label="Loading Spinner" data-testid="loader" />
+				<div className="flex justify-center items-center ">
+					<Spinner className="text-[#4480a3]" />
+				</div>
 			) : (
-				logoData && <img src={logoData.logoImage} alt="..." className="w-[65px] h-[65px]" />
+				// logoData && <img src={logoData.logoImage} alt="..." className="w-[65px] h-[65px]" />
+				logoData && <img src={logoData.logoImage} alt="logo" className="w-full h-full" />
 			)}
 		</div>
 	);

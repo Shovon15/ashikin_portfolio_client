@@ -97,8 +97,8 @@ export function Header() {
 
 	return (
 		<nav
-			className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out bg-color-secondary h-20 py-2 flex justify-between px-5 md:px-10
-				 ${scrollPosition > 0 && "border-b border-color-border"}
+			className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out bg-color-secondary  py-2 flex justify-between px-5 md:px-10 border-color-border
+				 ${scrollPosition > 0 ? "h-20 border-b " : "h-28"}
 				`}
 		>
 			<Link to="/" className="cursor-pointer px-0">
@@ -174,7 +174,7 @@ export function Header() {
 					>
 						<div className="flex h-full flex-col">
 							<div className="flex justify-between items-center">
-								<Link to="/" className="cursor-pointer px-0">
+								<Link to="/" className="cursor-pointer px-0 h-28">
 									<Logo />
 								</Link>
 								<IconButton

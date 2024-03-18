@@ -76,7 +76,7 @@ const LogoutButton = () => {
 			<Button
 				onClick={() => setIsLogOutModalOpen(true)}
 				variant="text"
-				className="py-2 px-8 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white rounded-none"
+				className="py-2 px-8 bg-red-500 hover:bg-red-800 active:bg-red-600 capitalize text-lg text-white rounded-none w-full"
 			>
 				Logout
 			</Button>

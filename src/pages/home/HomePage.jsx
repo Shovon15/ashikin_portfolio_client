@@ -9,11 +9,12 @@ import SocialSupport from "./socialSupport/SocialSupport";
 import Review from "./review/Review";
 import PageHelmet from "../../helper/PageHelmet";
 import { useState } from "react";
+import Profile from "./profile/profile";
 
 const HomePage = () => {
 	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	const [bannerImage, setBannerImage] = useState("");
-console.log(bannerImage, "bannerImage");
+	// console.log(bannerImage, "bannerImage");
 	return (
 		<>
 			<PageHelmet
@@ -26,11 +27,12 @@ console.log(bannerImage, "bannerImage");
 
 			<div className="mx-auto bg-color-primary">
 				<Banner setBannerImage={setBannerImage} />
-				<ExperianceSection  />
+				<ExperianceSection />
 				<EventSection />
 				<BLogSection />
 				<ContactSection />
 				<Review />
+				<Profile />
 				<SocialSupport />
 			</div>
 		</>
