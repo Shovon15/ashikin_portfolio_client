@@ -51,7 +51,8 @@ import UpdateAbout from "../../pages/dashboard/about/updateAbout";
 import PressPage from "../../pages/home/press/pressPage";
 import PressManager from "../../pages/dashboard/press/pressManager";
 import CreatePress from "../../pages/dashboard/press/createPress";
-import UpdatePress from "../../pages/dashboard/press/UpdatePress";
+import UpdatePress from "../../pages/dashboard/press/updatePress";
+
 
 const MainRoutes = () => {
 	return (
