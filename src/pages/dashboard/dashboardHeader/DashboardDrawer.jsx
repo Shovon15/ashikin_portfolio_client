@@ -17,7 +17,7 @@ const DashboardDrawer = () => {
 
 	return (
 		<>
-			<Drawer open={isDrawerOpen} onClose={toggleDrawer} className="p-4 min-h-screen bg-color-primary">
+			<Drawer open={isDrawerOpen} onClose={toggleDrawer} className="p-4 min-h-screen bg-color-primary overflow-y-scroll">
 				<div className="mb-6 flex items-center justify-between">
 					<Typography variant="h5" className="text-color-header">
 						Dashboard

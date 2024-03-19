@@ -48,6 +48,10 @@ import BrandManage from "../../pages/dashboard/brands/brandManage";
 import AboutManager from "../../pages/dashboard/about/aboutManager";
 import CreateAbout from "../../pages/dashboard/about/createAbout";
 import UpdateAbout from "../../pages/dashboard/about/updateAbout";
+import PressPage from "../../pages/home/press/pressPage";
+import PressManager from "../../pages/dashboard/press/pressManager";
+import CreatePress from "../../pages/dashboard/press/createPress";
+import UpdatePress from "../../pages/dashboard/press/UpdatePress";
 
 const MainRoutes = () => {
 	return (
@@ -67,6 +71,7 @@ const MainRoutes = () => {
 					<Route path="blogs" element={<BlogPage />} />
 					<Route path="blog/:slug" element={<BlogViewPage />} />
 					<Route path="about" element={<About />} />
+					<Route path="press" element={<PressPage />} />
 				</Route>
 
 				<Route path="/signup" element={<SignUp />} />
@@ -117,8 +122,6 @@ const MainRoutes = () => {
 						</Route>
 						<Route path="brand">
 							<Route path="" element={<BrandManage />} />
-							{/* <Route path="create-social" element={<CreateSocial />} />
-							<Route path="update-social/:id" element={<UpdateSocial />} /> */}
 						</Route>
 
 						<Route path="services">
@@ -133,10 +136,16 @@ const MainRoutes = () => {
 							<Route path="write-program" element={<CreateEvent />} />
 							<Route path="update-program/:slug" element={<UpdateEvent />} />
 						</Route>
+
 						<Route path="about">
 							<Route path="" element={<AboutManager />} />
 							<Route path="create-about" element={<CreateAbout />} />
 							<Route path="update-about" element={<UpdateAbout />} />
+						</Route>
+						<Route path="press">
+							<Route path="" element={<PressManager />} />
+							<Route path="create-press" element={<CreatePress />} />
+							<Route path="update-press/:id" element={<UpdatePress />} />
 						</Route>
 
 						<Route path="reviews">
@@ -150,7 +159,7 @@ const MainRoutes = () => {
 					path="*"
 					element={
 						<div className="flex flex-col gap-3 justify-center items-center min-h-screen">
-							<p className="text-center text-color-text font-bold text-3xl">Page not found</p>
+							<p className="text-center text-color-primary font-bold text-3xl">Page not found</p>
 							<PiSmileySadThin className="text-color-text w-12 h-12" />
 							<Link to="/">
 								<PrimaryButton>Home</PrimaryButton>

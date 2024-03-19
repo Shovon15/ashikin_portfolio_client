@@ -2,6 +2,7 @@ import { Spinner, Typography } from "@material-tailwind/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
+import BrandSwiper from "./brandSwiper";
 // import BrandSwiper from "./brandSwiper";
 
 const ExperianceSection = () => {
@@ -26,34 +27,14 @@ const ExperianceSection = () => {
 
 	return (
 		<div className="max-w-[1560px] mx-auto">
-			<div className="bg-color-secondary max-w-[1560px] mx-auto rounded-b-md shadow-xl">
+			<div className="bg-[#22417a] max-w-[1560px] mx-auto shadow-xl">
 				{loading ? (
 					<div className="flex justify-center items-center h-20">
-						<div className="spinner">
-							<div className="spinner-circle"></div>
-						</div>
+						<Spinner className="text-color-secondary" />
 					</div>
 				) : (
-					<>
-						{brandData.length !== 0 && (
-							// <BrandSwiper data={brandData} />
-							<div className="flex justify-center items-center gap-5 p-3">
-								{brandData.map(({ brandLogo, _id }) => (
-									<div key={_id} className="">
-										<img src={brandLogo} alt="brand" />
-									</div>
-								))}
-							</div>
-						)}
-					</>
+					<div className="py-2">{brandData.length !== 0 && <BrandSwiper data={brandData} />}</div>
 				)}
-				{/* <Typography
-					variant="paragraph"
-					className="text-color-text text-center p-5 md:py-10 md:px-[3rem] lg:px-[10rem] font-semibold"
-				>
-					Celebrated Leadership Icon and Trusted Advisor to Fortune 100 Companies, Sport Legends, Elite
-					Performers and Titans of Industryo
-				</Typography> */}
 			</div>
 			{isLoading ? (
 				<div className="flex justify-center items-center h-80">

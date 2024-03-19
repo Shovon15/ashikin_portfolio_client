@@ -6,14 +6,16 @@
 
 @layer base{
     :root {
-         /* --background-color: #0A3A63; */
-         --background-color-secondary: #063359; 
-        --background-color: #e3e6e9;
-        /* --background-color-secondary: #6b7379;  */
-        --text-header-color: #CCA531;
-        --border-color: #CCA531;
-        --text-color: #FFFFFF;
-        --text-color-secondary: #090a0a;
+         --background-color-primary: #ffffff;
+         --background-color-secondary: #0d55da; 
+
+         --text-color-primary: #000000;
+         --text-color-secondary: #0d55da;
+         --text-header-color: #CCA531;
+         --text-color: #FFFFFF;
+
+        --border-color: #c7b61f;
+        /* --text-color-secondary: #090a0a; */
         /* --text-color: #254161; */
         --button-color: #CCA531;
         --button-hover-color: #AD8C2A;
@@ -23,10 +25,10 @@
 
 @layer components{
     .active{
-        @apply text-color-header
+        @apply text-color-secondary
     }
     .inactive{
-        @apply text-color-text
+        @apply text-color-primary
     }
 }
 
@@ -61,7 +63,7 @@ body{
 .page-container{
   max-width: 1560px;
   margin: auto;
- padding-top: 120px;
+ /* padding-top: 120px; */
  min-height: screen;
 }
 

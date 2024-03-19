@@ -10,23 +10,23 @@ import "./brandSwiper.css";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 
 const BrandSwiper = ({ data }) => {
-	console.log(data, "data");
+	
 	return (
-		<div className="bg-red-500">
-			{data && (
+		<div className="">
+			{data.length > 0 && (
 				<Swiper
-					grabCursor={true}
+					// grabCursor={true}
 					centeredSlides={true}
 					slidesPerView={"auto"}
 					loop={data.length > 0}
 					speed={5000}
-					autoplay={{ delay: 0, disableOnInteraction: false }}
+					autoplay={{ delay: -1000, disableOnInteraction: false }}
 					modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
-					className="h-12 w-full mx-auto"
+					className="h-12 w-auto max-w-[900px] mx-auto"
 				>
 					{data.map(({ brandLogo, _id }) => (
-						<SwiperSlide key={_id}>
-							<img src={brandLogo} alt="brand" />
+						<SwiperSlide key={_id} className="w-44 h-12">
+							<img src={brandLogo} alt="brand" className="w-full h-full px-2" />
 						</SwiperSlide>
 					))}
 				</Swiper>
