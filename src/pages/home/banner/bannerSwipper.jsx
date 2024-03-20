@@ -19,18 +19,16 @@ const BannerSwipper = ({ imageList }) => {
 					autoplay={{ delay: 3000, disableOnInteraction: false }}
 					modules={[Autoplay]}
 					slidesPerView={1}
-					className="h-[450px] rounded-xl "
+					className="h-[16rem] md:h-[450px] rounded-xl "
 				>
 					{imageList.map((imageUrl, index) => (
-						<SwiperSlide key={index}>
-							<div style={{ height: "450px" }}>
+						<SwiperSlide key={index} className="!w-full !h-[16rem] !md:h-[450px]">
+							<div className="md:h-auto">
 								<LazyLoadImage
 									effect="blur"
 									src={imageUrl}
 									alt={`banner-img-${index}`}
-									className="object-fill h-full"
-									width="100%"
-									height="100%"
+									className="object-fill h-full  rounded-xl"
 								/>
 							</div>
 						</SwiperSlide>

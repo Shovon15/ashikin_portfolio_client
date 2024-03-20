@@ -61,13 +61,14 @@ const Banner = ({ setBannerImage }) => {
 		<div className="bg-color-secondary">
 			{bannerData.length > 0 && (
 				<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5">
-					<div className="p-5 md:p-10 w-full  lg:w-5/12 flex flex-col justify-center md:justify-center">
+					<div className="p-5 md:p-10 w-full lg:w-5/12 flex flex-col justify-center md:justify-center min-h-[300px] md:min-h-auto">
 						<Typography className="text-4xl lg:text-5xl font-bold text-white">
 							{bannerData[0]?.bannerHeader}
 						</Typography>
 						<Typography className="text-lg text-color-text pt-5">{bannerData[0]?.bannerText}</Typography>
 					</div>
-					<div className="w-full hidden lg:block md:w-7/12 rounded-xl py-5">
+					<div className="w-full block md:w-7/12 rounded-xl md:py-5 md:pl-10">
+					
 						<BannerSwipper imageList={bannerData[0]?.imageList} />
 					</div>
 				</div>
