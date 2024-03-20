@@ -9,14 +9,17 @@ const BlogCard = ({ item }) => {
 	const { slug, cover, title } = item;
 
 	return (
-		<Card className="bg-color-secondary w-full h-auto max-w-[19rem] hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-blog-card">
+		<Card className="bg-color-primary w-full h-auto max-w-[19rem] hover:ring-1 hover:ring-color-buttonRing rounded-b-none shadow-xl">
 			<CardHeader floated={false} className="relative m-0 rounded-b-none shadow-none  bg-inherit">
 				<div className="duration-300 hover:scale-110 rounded-b-none transition ease-in-out object-fill h-full">
 					<ImageComponent src={cover} />
 				</div>
 			</CardHeader>
 			<CardBody className="mx-auto p-4">
-				<Typography className="mb-2 font-bold text-color-header h-16 overflow-y-auto my-auto text-center text-xl  normal-case">
+				<Typography
+					variant="h6"
+					className="mb-2 font-bold text-color-headerPrimary h-14 overflow-y-auto my-auto text-center"
+				>
 					{title}
 				</Typography>
 			</CardBody>
@@ -32,3 +35,6 @@ const BlogCard = ({ item }) => {
 };
 
 export default BlogCard;
+
+
+//animation-blog-card

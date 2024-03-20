@@ -8,18 +8,21 @@
     :root {
          --background-color-primary: #ffffff;
          --background-color-secondary: #0d55da; 
+         --background-color-custom: #dddddd; 
 
          --text-color-primary: #000000;
          --text-color-secondary: #0d55da;
-         --text-header-color: #CCA531;
+         --text-header-primary: #0d55da;
+         --text-header-secondary: #ffffff;
+         /* --text-header-color: #CCA531; */
          --text-color: #FFFFFF;
 
-        --border-color: #c7b61f;
+        --border-color: #0d55da;
         /* --text-color-secondary: #090a0a; */
         /* --text-color: #254161; */
-        --button-color: #CCA531;
-        --button-hover-color: #AD8C2A;
-        --button-hover-ring: #AD8C2A;
+        --button-color: #0d55da;
+        --button-hover-color: #0f4bb9;
+        --button-hover-ring: #0d55da;
     }
 }
 
@@ -127,11 +130,11 @@ border-radius: 5px;
 /* -------------------------------- */
 
 /* select background */
-.bg-white{
+/* .bg-white{
 background-color: var(--background-color-secondary) !important;
 border:none !important;
 
-}
+} */
 
 
 /* -------------------------text editor--------------- */
@@ -149,14 +152,14 @@ border:none !important;
   /* Track */
   ::-webkit-scrollbar-track {
     /* box-shadow: inset 0 0 5px grey;  */
-    background: var(--background-color-secondary); 
    
+    background: var(--background-color-custom); 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--text-color); 
-   
+
+    background: var(--background-color-secondary); 
   }
   
   /* Handle on hover */

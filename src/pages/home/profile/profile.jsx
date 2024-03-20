@@ -32,7 +32,9 @@ const Profile = () => {
 							/>
 						</div>
 						<div className="w-full md:w-3/5 p-5 md:p-10">
-							<HeaderText>{profileData[0]?.profileHeader}</HeaderText>
+							<HeaderText className="text-color-headerSecondary">
+								{profileData[0]?.profileHeader}
+							</HeaderText>
 							<div
 								className="text-white py-5 text-pretty "
 								dangerouslySetInnerHTML={{ __html: profileData[0]?.description }}

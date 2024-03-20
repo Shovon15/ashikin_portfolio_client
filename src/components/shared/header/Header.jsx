@@ -93,7 +93,7 @@ export function Header() {
 										to={link}
 										className={({ isActive }) => (isActive ? "active" : "inactive hover:active")}
 									>
-										<Typography variant="h5" className="font-semibold capitalize">
+										<Typography variant="h6" className="font-semibold capitalize">
 											{name}
 										</Typography>
 									</NavLink>
@@ -222,7 +222,7 @@ const mobileLinkVars = {
 const MobileNavLink = ({ name }) => {
 	return (
 		<motion.div variants={mobileLinkVars} className="flex justify-center py-2 border-b border-gray-500">
-			<Typography variant="h4" className="capitalize font-bold">
+			<Typography variant="h6" className="capitalize font-bold">
 				{name}
 			</Typography>
 		</motion.div>

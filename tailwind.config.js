@@ -10,6 +10,7 @@ module.exports = withMT({
 				color: {
 					primary: "var(--background-color-primary)",
 					secondary: "var(--background-color-secondary)",
+					custom: "var(--background-color-custom)",
 					button: "var(--button-color)",
 					buttonHover: "var(--button-hover-color)",
 				},
@@ -27,7 +28,8 @@ module.exports = withMT({
 
 			textColor: {
 				color: {
-					header: "var(--text-header-color)",
+					headerPrimary: "var(--text-header-primary)",
+					headerSecondary: "var(--text-header-secondary)",
 					text: "var(--text-color)",
 					primary: "var(--text-color-primary)",
 					secondary: "var(--text-color-secondary)",

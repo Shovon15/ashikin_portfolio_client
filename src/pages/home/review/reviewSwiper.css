@@ -90,5 +90,5 @@
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
-  background: var(--text-header-color);
+  background: var(--text-header-primary);
 }

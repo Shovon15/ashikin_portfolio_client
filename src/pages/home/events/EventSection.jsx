@@ -82,8 +82,8 @@ const EventSection = () => {
 	}
 
 	return (
-		<div className="bg-color-secondary">
-			<div className="max-w-[1560px] mx-auto p-5 md:p-10">
+		<div className="bg-color-custom">
+			<div className="max-w-[1560px] mx-auto px-5 md:px-10">
 				<HeaderText className="py-5">Upcoming Programs</HeaderText>
 				{eventData.length > 0 && (
 					<div className="px-5 md:px-10 pb-5">
@@ -97,10 +97,10 @@ const EventSection = () => {
 											setTabValue(value);
 											setActiveTab(value);
 										}}
-										className={` border border-color-border w-56 center px-3 py-2 cursor-pointer animation-button ${
+										className={` border border-color-border w-56 center px-3 py-2 cursor-pointer  ${
 											activeTab === value
-												? "text-color-text bg-color-button hover:bg-color-buttonHover py-2  capitalize text-lg"
-												: "text-color-text hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
+												? "text-white bg-color-button hover:bg-color-buttonHover py-2  capitalize text-lg"
+												: "text-color-secondary hover:ring-1 hover:ring-color-buttonRing py-2  capitalize text-lg px-2"
 										}`}
 									>
 										{label}

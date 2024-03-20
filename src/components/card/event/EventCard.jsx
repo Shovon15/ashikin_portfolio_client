@@ -33,9 +33,9 @@ export function EventCard({ eventData }) {
 	// if (!eventData) {
 	// 	return <LoadingSkeleton />;
 	// }
-
+	//animation-event-card
 	return (
-		<Card className="relative bg-[#274561] w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none animation-event-card">
+		<Card className="relative bg-gray-100 w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none ">
 			<div
 				className={`absolute top-3 right-5 z-10 px-2 text-color-text text-lg rounded-md ${
 					eventType === "free" ? "bg-green-900" : "bg-orange-700"
@@ -58,18 +58,18 @@ export function EventCard({ eventData }) {
 			</CardHeader>
 			<CardBody className="flex flex-col items-center">
 				<Typography
-					variant="h5"
-					className="mb-2 font-bold text-color-header h-14 overflow-y-auto my-auto text-center"
+					variant="h6"
+					className="mb-2 font-bold text-color-headerPrimary h-14 overflow-y-auto my-auto text-center"
 				>
 					{title}
 				</Typography>
 
 				<div className="flex justify-center">
-					<Typography variant="h6" className="text-color-text">
+					<Typography variant="paragraph" className="text-color-secondary">
 						{formattedDate}
 					</Typography>
 					<span className="px-2">|</span>
-					<Typography variant="h6" className="text-color-text">
+					<Typography variant="paragraph" className="text-color-secondary">
 						{formattedTime}
 					</Typography>
 				</div>

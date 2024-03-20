@@ -14,7 +14,7 @@ const ButtonOutline = ({
 		<Button
 			variant="text"
 			type={buttonType}
-			className={`px-6 py-2 bg-inherit text-color-text hover:bg-color-buttonHover rounded-none ring-1 ring-color-buttonRing active:bg-color-button capitalize text-md ${className}  ${
+			className={`px-6 py-2 bg-inherit text-color-secondary hover:bg-color-buttonHover rounded-none hover:text-white ring-1 ring-color-buttonRing active:bg-color-button capitalize text-md ${className}  ${
 				disabled && "cursor-not-allowed"
 			}`}
 			onClick={onClick}

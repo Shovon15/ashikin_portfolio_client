@@ -147,7 +147,7 @@ const UpdateEvent = () => {
 									style={{
 										fontSize: "18px",
 										fontWeight: "normal",
-										color: eventType === item.value ? "#CCA531 " : "white",
+										color: eventType === item.value ? "#CCA531 " : "#000",
 										backgroundColor: "inherit",
 									}}
 									className="!bg-color-primary mt-2 "

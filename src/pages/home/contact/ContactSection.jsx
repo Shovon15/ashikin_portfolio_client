@@ -4,10 +4,10 @@ import HeaderText from "../../../components/shared/textHeader/HeaderText";
 
 const ContactSection = () => {
 	return (
-		<div className=" bg-color-secondary">
+		<div className=" bg-color-custom">
 			<div className="flex flex-col md:flex-row p-5 lg:p-10 max-w-[1560px] mx-auto">
 				<div className="w-full md:w-1/2">
-					<HeaderText>
+					<HeaderText className="text-color-headerPrimary">
 						Invite Ashikin
 						<br /> as a Speaker
 					</HeaderText>

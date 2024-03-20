@@ -33,7 +33,7 @@ const ExperianceSection = () => {
 						<Spinner className="text-color-secondary" />
 					</div>
 				) : (
-					<div className="py-2">{brandData.length !== 0 && <BrandSwiper data={brandData} />}</div>
+					<div className="py-2 px-5">{brandData.length !== 0 && <BrandSwiper data={brandData} />}</div>
 				)}
 			</div>
 			{isLoading ? (
@@ -46,20 +46,22 @@ const ExperianceSection = () => {
 						socialData.map(({ name, logo, description, socialLink, isPublished }) =>
 							isPublished ? (
 								<a key={socialLink} href={socialLink} target="_blank" rel="noopener noreferrer">
-									<div className="flex gap-3 bg-color-secondary shadow-xl rounded-xl w-60 justify-center p-3 animation-experience-section">
-										<LazyLoadImage
-											effect="blur"
-											src={logo}
-											alt="card-image"
-											className="object-fill"
-											width="50"
-											height="50"
-										/>
+									<div className="flex gap-3 border shadow-xl rounded-xl  justify-center py-2 px-3 w-44">
+										<div className="flex justify-center items-center">
+											<LazyLoadImage
+												effect="blur"
+												src={logo}
+												alt="card-image"
+												className="object-fill "
+												width="40"
+												height="40"
+											/>
+										</div>
 										<div>
-											<Typography variant="h5" className="font-bold text-color-header">
+											<Typography variant="h6" className="font-bold text-color-secondary">
 												{name.charAt(0).toUpperCase() + name.slice(1)}
 											</Typography>
-											<Typography variant="paragraph" className="text-color-text">
+											<Typography variant="small" className="font-medium ">
 												{description}
 											</Typography>
 										</div>

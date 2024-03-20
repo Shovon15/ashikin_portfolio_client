@@ -42,91 +42,91 @@ const ContactForm = () => {
 		<div className="p-5 md:p-10">
 			<form onSubmit={handleSubmit(handleInvitation)}>
 				<div className="flex flex-col lg:flex-row gap-5 ">
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Input
 							type="text"
 							variant="standard"
-							color="yellow"
+							color="blue"
 							label="Name"
 							{...register("name", {
 								required: "Required *",
 							})}
 							error={!!errors.name}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.name && <p className="text-red-500 text-sm ">{errors.name.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Input
 							type="text"
 							variant="standard"
-							color="yellow"
+							color="blue"
 							label="Phone"
 							{...register("phone", {
 								required: "Required *",
 							})}
 							error={!!errors.phone}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.phone && <p className="text-red-500 text-sm ">{errors.phone.message}</p>}
 					</div>
 				</div>
 				<div className="flex flex-col gap-5 py-5">
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Input
 							type="text"
-							color="yellow"
+							color="blue"
 							variant="standard"
 							label="Organization name"
 							{...register("organization", {
 								required: "Required *",
 							})}
 							error={!!errors.organization}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.organization && <p className="text-red-500 text-sm ">{errors.organization.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Input
 							type="text"
-							color="yellow"
+							color="blue"
 							variant="standard"
 							label="Location of the Event"
 							{...register("location", {
 								required: "Required *",
 							})}
 							error={!!errors.location}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.location && <p className="text-red-500 text-sm ">{errors.location.message}</p>}
 					</div>
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Input
 							type="text"
 							variant="standard"
-							color="yellow"
+							color="blue"
 							label="Number of Audience"
 							{...register("audienceNumber", {
 								required: "Required *",
 							})}
 							error={!!errors.audienceNumber}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.audienceNumber && (
 							<p className="text-red-500 text-sm ">{errors.audienceNumber.message}</p>
 						)}
 					</div>
-					<div className="flex flex-col gap-1 w-full  animation-header">
+					<div className="flex flex-col gap-1 w-full  ">
 						<Textarea
 							type="text"
-							color="yellow"
+							color="blue"
 							variant="standard"
 							label="About the Event"
 							{...register("eventText", {
 								required: "Please write something about the Event *",
 							})}
 							error={!!errors.eventText}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.eventText && <p className="text-red-500 text-sm">{errors.eventText.message}</p>}
 					</div>

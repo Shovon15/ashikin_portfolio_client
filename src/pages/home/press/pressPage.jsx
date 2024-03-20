@@ -28,7 +28,7 @@ const PressPage = () => {
 				pressData
 					.filter((item) => item.isPublished) // Filter items based on isPublished
 					.map(({ _id, image, heading, buttonText, description, link }) => (
-						<div key={_id} className="flex flex-col md:flex-row max-w-[1200px] mx-auto py-2">
+						<div key={_id} className="flex flex-col md:flex-row max-w-[1200px] mx-auto border border-gray-300 rounded-xl shadow-lg my-3">
 							<div className="w-full md:w-1/2 p-5 md:p-10 md:pr-2 flex justify-center items-center">
 								<LazyLoadImage
 									effect="blur"

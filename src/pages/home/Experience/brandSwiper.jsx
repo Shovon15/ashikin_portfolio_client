@@ -22,11 +22,11 @@ const BrandSwiper = ({ data }) => {
 					speed={5000}
 					autoplay={{ delay: -1000, disableOnInteraction: false }}
 					modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
-					className="h-12 w-auto max-w-[900px] mx-auto"
+					className="w-auto max-w-[900px] mx-auto"
 				>
 					{data.map(({ brandLogo, _id }) => (
-						<SwiperSlide key={_id} className="w-44 h-12">
-							<img src={brandLogo} alt="brand" className="w-full h-full px-2" />
+						<SwiperSlide key={_id} className="!w-auto !h-auto">
+							<img src={brandLogo} alt="brand" className="!w-24 !md:w-24 h-full px-2" />
 						</SwiperSlide>
 					))}
 				</Swiper>
