@@ -68,15 +68,15 @@ const UpdatePassword = () => {
 						<Input
 							type={showOldPassword ? "text" : "password"}
 							size="lg"
-							color="yellow"
+							color="blue"
 							value={oldPassword}
 							label="Old Password"
-							className="text-color-text"
+							className="text-color-primary"
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setOldPassword(ev.target.value)}
 						/>
 						<div
-							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-primary"
 							onClick={handleToggleOldPassword}
 						>
 							{showOldPassword ? <PiEyeClosed /> : <PiEye />}
@@ -86,15 +86,15 @@ const UpdatePassword = () => {
 						<Input
 							type={showNewPassword ? "text" : "password"}
 							size="lg"
-							color="yellow"
+							color="blue"
 							value={newPassword}
 							label="New Password"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setNewPassword(ev.target.value)}
 						/>
 						<div
-							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-primary"
 							onClick={handleToggleNewPassword}
 						>
 							{showNewPassword ? <PiEyeClosed /> : <PiEye />}
@@ -104,15 +104,15 @@ const UpdatePassword = () => {
 						<Input
 							type={showNewPassword ? "text" : "password"}
 							size="lg"
-							color="yellow"
+							color="blue"
 							value={confirmNewPassword}
 							label="Confirm New Password"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setConfirmNewPassword(ev.target.value)}
 						/>
 						<div
-							className="cursor-pointer absolute top-3 right-4 z-30 text-color-text"
+							className="cursor-pointer absolute top-3 right-4 z-30 text-color-primary"
 							onClick={handleToggleNewPassword}
 						>
 							{showNewPassword ? <PiEyeClosed /> : <PiEye />}
@@ -126,7 +126,7 @@ const UpdatePassword = () => {
 					></Button>
 					<div className="mx-auto">
 						<PrimaryButton buttonType={"submit"} className="px-12">
-							{isLoading ? <Spinner color="yellow" className="mx-auto" /> : "Update"}
+							{isLoading ? <Spinner color="blue" className="mx-auto" /> : "Update"}
 						</PrimaryButton>
 					</div>
 				</div>

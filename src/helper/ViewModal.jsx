@@ -33,7 +33,7 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 				<DialogBody>
 					<div className="flex justify-between gap-10">
 						<div></div>
-						<h1 className="text-2xl md:text-3xl font-bold text-center text-color-header py-5 capitalize">
+						<h1 className="text-2xl md:text-3xl font-bold text-center text-color-primary py-5 capitalize">
 							{content?.title}
 						</h1>
 						<IconButton
@@ -59,14 +59,14 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 						<Typography
 							variant="h6"
 							className={`${
-								content?.eventType === "free" ? "text-green-500" : "text-yellow-800"
+								content?.eventType === "free" ? "text-green-500" : "text-blue-800"
 							} font-bold text-center`}
 						>
 							{content?.eventType?.charAt(0).toUpperCase() + content?.eventType?.slice(1)}
 						</Typography>
 					)}
 					{content?.dateTime && (
-						<Typography variant="small" className="font-bold text-center  text-color-text py-2">
+						<Typography variant="small" className="font-bold text-center  text-color-primary py-2">
 							{new Date(content?.dateTime).toLocaleString("en-US", {
 								weekday: "short",
 								year: "numeric",
@@ -87,7 +87,7 @@ const ViewModal = ({ isOpen, onClose, content, setViewModalOpen }) => {
 					/>
 					<div
 						dangerouslySetInnerHTML={{ __html: content?.content }}
-						className="mx-auto py-2  text-color-text"
+						className="mx-auto py-2  text-color-primary"
 					/>
 				</DialogBody>
 				<DialogFooter>

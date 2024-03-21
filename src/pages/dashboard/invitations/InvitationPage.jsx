@@ -62,7 +62,7 @@ const InvitationPage = () => {
 			<HeaderText>Invitaitons</HeaderText>
 			{invitationData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-color-text">
+					<p className="text-lg text-color-primary">
 						You have not created any events yet.
 						<br />
 						Please add an event to get started!
@@ -81,7 +81,7 @@ const InvitationPage = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									invitationData.length > 0 &&
 									invitationData.map(({ _id, name, phone, organizationName, location }, index) => (
@@ -108,7 +108,7 @@ const InvitationPage = () => {
 														variant="text"
 														className=" hover:bg-color-secondary shadow-xl capitalize text-md px-3 rounded-full"
 													>
-														<VscScreenFull className="w-5 h-5 text-color-text" />
+														<VscScreenFull className="w-5 h-5 text-color-primary" />
 													</Button>
 												</Link>
 												<Button

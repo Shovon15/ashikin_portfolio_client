@@ -69,10 +69,10 @@ export default BrandSwiper;
 
 // 				{/* <div className="slider-controler pt-12">
 // 							<div className="swiper-button-prev slider-arrow hidden lg:block !shadow-lg rounded-full ">
-// 								<IoIosArrowBack className="w-4 h-4 text-color-text hover:text-color-header" />
+// 								<IoIosArrowBack className="w-4 h-4 text-color-primary hover:text-color-header" />
 // 							</div>
 // 							<div className="swiper-button-next  slider-arrow hidden lg:block !shadow-lg rounded-full">
-// 								<IoIosArrowForward className="w-5 h-5  text-color-text hover:text-color-header " />
+// 								<IoIosArrowForward className="w-5 h-5  text-color-primary hover:text-color-header " />
 // 							</div>
 // 							<div className="swiper-pagination"></div>
 // 						</div> */}

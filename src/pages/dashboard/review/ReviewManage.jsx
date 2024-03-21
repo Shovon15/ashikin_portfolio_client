@@ -69,7 +69,7 @@ const ReviewManage = () => {
 			</div>
 			{reviewData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-color-text">
+					<p className="text-lg text-color-primary">
 						You have not created any review yet.
 						<br />
 						Please add review to get started!
@@ -93,7 +93,7 @@ const ReviewManage = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									reviewData.length !== 0 &&
 									reviewData.map(({ _id, name, designation, cover, reviewText }, index) => (
@@ -121,27 +121,29 @@ const ReviewManage = () => {
 												<p className="font-bold">{reviewText}</p>
 											</td>
 
-											<td className="p-2 flex gap-3 my-auto ">
-												<Link to={`update-review/${_id}`}>
-													<Button
-														variant="outlined"
-														size="sm"
-														className="focus:ring-0 border-none rounded-full p-3"
-													>
-														<BiSolidEdit className="w-5 h-5 text-color-text dark:text-white" />
-													</Button>
-												</Link>
+											<td className="p-2">
+												<div className="flex gap-3 justify-center items-center">
+													<Link to={`update-review/${_id}`}>
+														<Button
+															variant="outlined"
+															size="sm"
+															className="focus:ring-0 border-none rounded-full p-3"
+														>
+															<BiSolidEdit className="w-5 h-5 text-color-primary dark:text-white" />
+														</Button>
+													</Link>
 
-												<Button
-													variant="text"
-													className="focus:ring-0  border-none rounded-full p-3"
-													onClick={() => {
-														setDeleteModalOpen(true);
-														setDeletingReviewData({ _id, title: name });
-													}}
-												>
-													<FaTrashAlt className="w-5 h-5 text-red-500" />
-												</Button>
+													<Button
+														variant="text"
+														className="focus:ring-0  border-none rounded-full p-3"
+														onClick={() => {
+															setDeleteModalOpen(true);
+															setDeletingReviewData({ _id, title: name });
+														}}
+													>
+														<FaTrashAlt className="w-5 h-5 text-red-500" />
+													</Button>
+												</div>
 											</td>
 										</tr>
 									))}

@@ -12,7 +12,7 @@ const ScrollButton = () => {
 		<button
 			onClick={handleScroll}
 			style={{ zIndex: "999" }}
-			className={`fixed  bottom-5 right-5 bg-color-secondary text-color-text
+			className={`fixed  bottom-5 right-5 bg-color-secondary text-color-primary
               rounded-full px-2 py-2 shadow-md hover:shadow-xl hover:text-color-header ${
 					scrollPosition > 100 ? "block " : "hidden"
 				}`}

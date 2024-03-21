@@ -58,7 +58,7 @@ const Services = () => {
 				{/* -----------------service cards------------------ */}
 				<div className="flex flex-wrap gap-10 md:gap-5 justify-center items-center p-5 md:p-10">
 					{serviceData.length === 0 ? (
-						<div className="min-h-screen center text-color-text text-2xl">Coming Soon</div>
+						<div className="min-h-screen center text-color-primary text-2xl">Coming Soon</div>
 					) : (
 						serviceData.map((item, i) => (
 							<div
@@ -78,7 +78,7 @@ const Services = () => {
 								className="h-96 w-[20rem] md:w-[14.5rem] bg-color-primary p-2 flex flex-col justify-end  font-semibold cursor-pointer hover:scale-110 hover:text-textPrimary transition duration-500 ease-in-out pb-5"
 							>
 								<p className="text-xl py-2 text-color-header">{item.heading}</p>
-								<p className="text-color-text">{item.title}</p>
+								<p className="text-color-primary">{item.title}</p>
 							</div>
 						))
 					)}
@@ -97,11 +97,11 @@ const Services = () => {
 							<div className="w-full lg:w-1/2 p-5 md:p-10 text-start flex flex-col gap-5 items-start">
 								<p className="text-3xl md:text-4xl font-bold text-color-header">{heading}</p>
 
-								<p className="text-2xl font-bold text-color-text">{title}</p>
+								<p className="text-2xl font-bold text-color-primary">{title}</p>
 								{description.map((item, index) => (
-									<p key={index} className="flex gap-3 font-semibold text-color-text text-justify">
+									<p key={index} className="flex gap-3 font-semibold text-color-primary text-justify">
 										<i>
-											<IoMdCheckmark className="w-5 h-5 text-color-text " />
+											<IoMdCheckmark className="w-5 h-5 text-color-primary " />
 										</i>
 										{item}
 									</p>

@@ -70,47 +70,47 @@ const CreateSocial = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Social Link Name <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Facebook"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setName(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text capitalize py-2">
+						<p className="font-bold text-color-primary capitalize py-2">
 							Social Description <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="2.3k followers"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setDescription(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text capitalize py-2">
+						<p className="font-bold text-color-primary capitalize py-2">
 							Social Link <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="https://www.facebook.com"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setSocialLink(ev.target.value)}
 						/>
 					</div>
 					{/* image-input */}
 					<div>
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Social logo <span className="text-red-500">*</span>
 						</p>
 						<div className="w-80 h-80 mx-auto">
@@ -141,7 +141,7 @@ const CreateSocial = () => {
 										alt={fileName}
 									/>
 								) : (
-									<div className="flex flex-col items-center gap-2 text-color-text">
+									<div className="flex flex-col items-center gap-2 text-color-primary">
 										<LuUploadCloud className="w-12 h-12 " />
 										<p className="">Browse file to upload</p>
 									</div>
@@ -149,7 +149,7 @@ const CreateSocial = () => {
 							</div>
 							<section
 								className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text my-5"
+                           rounded-md mt-1 p-2 pr-2 text-color-primary my-5"
 							>
 								{fileName}
 								{image !== null && (

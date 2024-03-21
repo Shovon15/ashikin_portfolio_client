@@ -99,7 +99,7 @@ const EventManage = () => {
 			<HeaderText className="pb-5">Manage Events</HeaderText>
 			<div className="flex flex-col-reverse gap-5 md:flex-row md:gap-0 justify-between items-center pb-5 ">
 				<div className="flex gap-2 items-center">
-					<p className="text-color-text">Sort by created time order:</p>
+					<p className="text-color-primary">Sort by created time order:</p>
 					<Button
 						onClick={() => setSortOrder(!sortOrder)}
 						className="px-5 py-1 bg-color-button active:bg-color-button hover:bg-color-buttonHover "
@@ -117,7 +117,7 @@ const EventManage = () => {
 			</div>
 			{eventData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-color-text">
+					<p className="text-lg text-color-primary">
 						You have not created any program yet.
 						<br />
 						Please add program to get started!
@@ -141,7 +141,7 @@ const EventManage = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									eventData.length !== 0 &&
 									eventData.map(
@@ -183,7 +183,7 @@ const EventManage = () => {
 															<p>0</p>
 														) : (
 															<Link to={`/dashboard/programs/${slug}`}>
-																<Button className="capitalize p-2  bg-color-button hover:bg-color-buttonHover text-color-text">
+																<Button className="capitalize p-2  bg-color-button hover:bg-color-buttonHover text-color-primary">
 																	{register} Registered
 																</Button>
 															</Link>
@@ -193,7 +193,7 @@ const EventManage = () => {
 												<td className="p-2 ">
 													<p
 														className={`${
-															eventType === "free" ? "text-green-500" : "text-yellow-800"
+															eventType === "free" ? "text-green-500" : "text-blue-800"
 														} font-bold`}
 													>
 														{String(eventType)?.charAt(0).toUpperCase() +
@@ -218,44 +218,46 @@ const EventManage = () => {
 														</Button>
 													</p>
 												</td>
-												<td className="p-2 flex gap-3 justify-center items-center ">
-													<Button
-														variant="outlined"
-														// size="sm"
-														onClick={() => {
-															setViewModalOpen(true);
-															setViewEventData({
-																title,
-																dateTime,
-																eventType,
-																content,
-																cover,
-															});
-														}}
-														className="focus:ring-0 border-none rounded-full p-3 text-color-text"
-													>
-														<VscScreenFull className="w-5 h-5 " />
-													</Button>
-													<Link to={`update-program/${slug}`}>
+												<td className="p-2">
+													<div className="flex gap-3 justify-center items-center">
 														<Button
 															variant="outlined"
-															size="sm"
-															className="focus:ring-0 border-none rounded-full p-3"
+															// size="sm"
+															onClick={() => {
+																setViewModalOpen(true);
+																setViewEventData({
+																	title,
+																	dateTime,
+																	eventType,
+																	content,
+																	cover,
+																});
+															}}
+															className="focus:ring-0 border-none rounded-full p-3 text-color-primary"
 														>
-															<BiSolidEdit className="w-5 h-5 text-color-text dark:text-white" />
+															<VscScreenFull className="w-5 h-5 " />
 														</Button>
-													</Link>
+														<Link to={`update-program/${slug}`}>
+															<Button
+																variant="outlined"
+																size="sm"
+																className="focus:ring-0 border-none rounded-full p-3"
+															>
+																<BiSolidEdit className="w-5 h-5 text-color-primary dark:text-white" />
+															</Button>
+														</Link>
 
-													<Button
-														variant="text"
-														className="focus:ring-0  border-none rounded-full p-3"
-														onClick={() => {
-															setDeleteModalOpen(true);
-															setDeletingEventData({ slug, title });
-														}}
-													>
-														<FaTrashAlt className="w-5 h-5 text-red-500" />
-													</Button>
+														<Button
+															variant="text"
+															className="focus:ring-0  border-none rounded-full p-3"
+															onClick={() => {
+																setDeleteModalOpen(true);
+																setDeletingEventData({ slug, title });
+															}}
+														>
+															<FaTrashAlt className="w-5 h-5 text-red-500" />
+														</Button>
+													</div>
 												</td>
 											</tr>
 										)

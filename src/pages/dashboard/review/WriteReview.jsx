@@ -64,33 +64,33 @@ const WriteReview = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Reviewer Name<span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Name"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setName(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text capitalize py-2">
+						<p className="font-bold text-color-primary capitalize py-2">
 							Reviewer Designation<span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Designation"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "14px", fontWeight: "normal" }}
 							onChange={(ev) => setDesignation(ev.target.value)}
 						/>
 					</div>
 					{/* image-input */}
-					<p className="font-bold text-color-text py-2">
+					<p className="font-bold text-color-primary py-2">
 						reviewer Image <span className="text-red-500">*</span>
 					</p>
 					<div style={{ maxWidth: "400px" }} className="mx-auto">
@@ -117,7 +117,7 @@ const WriteReview = () => {
 							{image ? (
 								<img src={URL.createObjectURL(image)} className="w-full h-full p-5" alt={fileName} />
 							) : (
-								<div className="flex flex-col items-center gap-2 text-color-text">
+								<div className="flex flex-col items-center gap-2 text-color-primary">
 									<LuUploadCloud className="w-12 h-12 " />
 									<p className="">Browse file to upload</p>
 								</div>
@@ -125,7 +125,7 @@ const WriteReview = () => {
 						</div>
 						<section
 							className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text"
+                           rounded-md mt-1 p-2 pr-2 text-color-primary"
 						>
 							{fileName}
 							{image !== null && (
@@ -143,14 +143,14 @@ const WriteReview = () => {
 						</section>
 					</div>
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Reviewer Comment<span className="text-red-500">*</span>
 						</p>
 						<Textarea
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Comment"
-							className="text-color-text "
+							className="text-color-primary "
 							rows={8}
 							onChange={(ev) => setReviewText(ev.target.value)}
 						/>

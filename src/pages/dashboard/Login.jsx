@@ -82,12 +82,12 @@ const Login = () => {
 							<Input
 								size="lg"
 								label="email"
-								color="yellow"
+								color="blue"
 								type="text"
 								{...register("email", {
 									required: "Email is Required *",
 								})}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.email && <p className="text-red-500">{errors.email.message}</p>}
 						</div>
@@ -95,19 +95,19 @@ const Login = () => {
 							<Input
 								size="lg"
 								label="password"
-								color="yellow"
+								color="blue"
 								type={passwordShown ? "text" : "password"}
 								{...register("password", {
 									required: "password is Required *",
 								})}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							<div className="absolute inset-y-0 right-0 pr-3 flex items-center h-12">
 								<span onClick={togglePassword} className="cursor-pointer text-xl">
 									{passwordShown === true ? (
-										<PiEye className="text-color-text" />
+										<PiEye className="text-color-primary" />
 									) : (
-										<PiEyeClosed className="text-color-text" />
+										<PiEyeClosed className="text-color-primary" />
 									)}
 								</span>
 							</div>
@@ -121,7 +121,7 @@ const Login = () => {
 
 					<div className="py-5">
 						<Link to="/forget-password">
-							<p className="text-color-text hover:text-color-header">Forget Password?</p>
+							<p className="text-color-primary hover:text-color-header">Forget Password?</p>
 						</Link>
 					</div>
 					<div>

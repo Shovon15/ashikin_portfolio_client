@@ -65,10 +65,9 @@ const Banner = ({ setBannerImage }) => {
 						<Typography className="text-4xl lg:text-5xl font-bold text-white">
 							{bannerData[0]?.bannerHeader}
 						</Typography>
-						<Typography className="text-lg text-color-text pt-5">{bannerData[0]?.bannerText}</Typography>
+						<Typography className="text-lg text-color-primary pt-5">{bannerData[0]?.bannerText}</Typography>
 					</div>
 					<div className="w-full block md:w-7/12 rounded-xl md:py-5 md:pl-10">
-					
 						<BannerSwipper imageList={bannerData[0]?.imageList} />
 					</div>
 				</div>
@@ -94,7 +93,7 @@ const Banner = ({ setBannerImage }) => {
 		// 				<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
 		// 					{bannerData?.bannerHeader}
 		// 				</Typography>
-		// 				<Typography className="text-md text-color-text pt-5">{bannerData?.bannerText}</Typography>
+		// 				<Typography className="text-md text-color-primary pt-5">{bannerData?.bannerText}</Typography>
 		// 			</div>
 		// 			<div className="w-full md:w-5/12 max-w-[23rem] max-h[10rem] p-5 md:p-10 mx-auto">
 		// 				<LazyLoadImage

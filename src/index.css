@@ -7,22 +7,22 @@
 @layer base{
     :root {
          --background-color-primary: #ffffff;
-         --background-color-secondary: #0d55da; 
+         --background-color-secondary: #4074d4; 
          --background-color-custom: #dddddd; 
 
          --text-color-primary: #000000;
-         --text-color-secondary: #0d55da;
-         --text-header-primary: #0d55da;
+         --text-color-secondary: #4074d4;
+         --text-header-primary: #4074d4;
          --text-header-secondary: #ffffff;
          /* --text-header-color: #CCA531; */
          --text-color: #FFFFFF;
 
-        --border-color: #0d55da;
+        --border-color: #4074d4;
         /* --text-color-secondary: #090a0a; */
         /* --text-color: #254161; */
-        --button-color: #0d55da;
-        --button-hover-color: #0f4bb9;
-        --button-hover-ring: #0d55da;
+        --button-color: #4074d4;
+        --button-hover-color: #1751bd;
+        --button-hover-ring: #4074d4;
     }
 }
 

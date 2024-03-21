@@ -92,35 +92,35 @@ const UpdateReview = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="w-full lg:w-1/2 flex flex-col mx-auto gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Reviewer Name<span className="text-red-500">*</span>
 						</p>
 						<Input
 							value={name}
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Name"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setName(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text capitalize py-2">
+						<p className="font-bold text-color-primary capitalize py-2">
 							Reviewer Designation<span className="text-red-500">*</span>
 						</p>
 						<Input
 							value={designation}
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Designation"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "14px", fontWeight: "normal" }}
 							onChange={(ev) => setDesignation(ev.target.value)}
 						/>
 					</div>
 					{/* image-input */}
-					<p className="font-bold text-color-text py-2">
+					<p className="font-bold text-color-primary py-2">
 						Service Image <span className="text-red-500">*</span>
 					</p>
 					<div style={{ maxWidth: "400px" }} className="mx-auto">
@@ -163,13 +163,13 @@ const UpdateReview = () => {
 											alt={fileName}
 										/>
 									) : (
-										<div className="flex flex-col items-center gap-2 text-color-text">
+										<div className="flex flex-col items-center gap-2 text-color-primary">
 											<LuUploadCloud className="w-12 h-12" />
 											<p>Browse file to upload</p>
 										</div>
 									)}
 								</div>
-								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
+								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-primary rounded-md mt-1 p-2">
 									{fileName}
 									{image !== null && (
 										<IconButton variant="text" className="rounded-full">
@@ -192,15 +192,15 @@ const UpdateReview = () => {
 						)}
 					</div>
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Reviewer Comment<span className="text-red-500">*</span>
 						</p>
 						<Textarea
 							value={reviewText}
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Reviewer Comment"
-							className="text-color-text "
+							className="text-color-primary "
 							rows={8}
 							onChange={(ev) => setReviewText(ev.target.value)}
 						/>

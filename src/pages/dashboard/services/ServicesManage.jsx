@@ -81,7 +81,7 @@ const ServicesManage = () => {
 
 			{serviceData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-color-text">
+					<p className="text-lg text-color-primary">
 						You have not created any service yet.
 						<br />
 						Please add an service to get started!
@@ -105,7 +105,7 @@ const ServicesManage = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									serviceData.length !== 0 &&
 									serviceData.map(({ _id, heading, title, cover, isPublished }, index) => (
@@ -146,27 +146,29 @@ const ServicesManage = () => {
 													</Button>
 												</p>
 											</td>
-											<td className="p-2 flex gap-3 justify-center items-center ">
-												<Link to={`update-service/${_id}`}>
-													<Button
-														variant="outlined"
-														size="sm"
-														className="focus:ring-0 border-none rounded-full p-3"
-													>
-														<BiSolidEdit className="w-5 h-5 text-color-text dark:text-white" />
-													</Button>
-												</Link>
+											<td className="p-2">
+												<div className="flex gap-3 justify-center items-center">
+													<Link to={`update-service/${_id}`}>
+														<Button
+															variant="outlined"
+															size="sm"
+															className="focus:ring-0 border-none rounded-full p-3"
+														>
+															<BiSolidEdit className="w-5 h-5 text-color-primary dark:text-white" />
+														</Button>
+													</Link>
 
-												<Button
-													variant="text"
-													className="focus:ring-0  border-none rounded-full p-3"
-													onClick={() => {
-														setDeleteModalOpen(true);
-														setDeletingEventData({ _id, title: heading });
-													}}
-												>
-													<FaTrashAlt className="w-5 h-5 text-red-500" />
-												</Button>
+													<Button
+														variant="text"
+														className="focus:ring-0  border-none rounded-full p-3"
+														onClick={() => {
+															setDeleteModalOpen(true);
+															setDeletingEventData({ _id, title: heading });
+														}}
+													>
+														<FaTrashAlt className="w-5 h-5 text-red-500" />
+													</Button>
+												</div>
 											</td>
 										</tr>
 									))}

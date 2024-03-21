@@ -61,7 +61,7 @@ const CreateLogo = () => {
 			<form onSubmit={handleBannerForm}>
 				<div className="max-w-80 lg:w-1/3 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Logo <span className="text-red-500">*</span>
 						</p>
 						<div
@@ -91,7 +91,7 @@ const CreateLogo = () => {
 									alt={logoFileName}
 								/>
 							) : (
-								<div className="h-full flex flex-col justify-center items-center gap-2 text-color-text">
+								<div className="h-full flex flex-col justify-center items-center gap-2 text-color-primary">
 									<LuUploadCloud className="w-12 h-12 " />
 									<p className="">Browse file to upload</p>
 								</div>
@@ -99,7 +99,7 @@ const CreateLogo = () => {
 						</div>
 						<section
 							className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text"
+                           rounded-md mt-1 p-2 pr-2 text-color-primary"
 						>
 							{logoFileName}
 							{logoImage !== null && (

@@ -46,7 +46,7 @@ const BannerManage = () => {
 							<Typography className="text-4xl lg:text-5xl font-bold text-color-header">
 								{bannerData[0]?.bannerHeader}
 							</Typography>
-							<Typography className="text-lg text-color-text pt-5">
+							<Typography className="text-lg text-color-primary pt-5">
 								{bannerData[0]?.bannerText}
 							</Typography>
 						</div>
@@ -57,7 +57,7 @@ const BannerManage = () => {
 				</div>
 			) : (
 				<div className="flex flex-col justify-center items-center gap-5 min-h-screen">
-					<p className="text-xl text-color-text">No content found please create banner</p>
+					<p className="text-xl text-color-primary">No content found please create banner</p>
 					<Link to="/dashboard/banner/create-banner">
 						<IconButton>Create banner</IconButton>
 					</Link>

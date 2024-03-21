@@ -78,34 +78,34 @@ const CreateService = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Service Heading <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Service Heading"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setHeading(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text capitalize py-2">
+						<p className="font-bold text-color-primary capitalize py-2">
 							service Title <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="service Title"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
 					{/* image-input */}
 					<div>
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Service Image <span className="text-red-500">*</span>
 						</p>
 						<div
@@ -131,7 +131,7 @@ const CreateService = () => {
 							{image ? (
 								<img src={URL.createObjectURL(image)} className="w-full h-full p-5" alt={fileName} />
 							) : (
-								<div className="flex flex-col items-center gap-2 text-color-text">
+								<div className="flex flex-col items-center gap-2 text-color-primary">
 									<LuUploadCloud className="w-12 h-12 " />
 									<p className="">Browse file to upload</p>
 								</div>
@@ -139,7 +139,7 @@ const CreateService = () => {
 						</div>
 						<section
 							className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text"
+                           rounded-md mt-1 p-2 pr-2 text-color-primary"
 						>
 							{fileName}
 							{image !== null && (
@@ -157,16 +157,16 @@ const CreateService = () => {
 						</section>
 					</div>
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Service Description <span className="text-red-500">*</span>
 						</p>
 						{description.map((item, index) => (
 							<div key={index} className="mb-4 flex">
 								<Input
 									size="lg"
-									color="yellow"
+									color="blue"
 									label={`Service description ${index + 1}`}
-									className="text-color-text "
+									className="text-color-primary "
 									value={item}
 									onChange={(e) => handleDescInputChange(index, e.target.value)}
 								/>

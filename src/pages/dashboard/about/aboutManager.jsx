@@ -59,7 +59,7 @@ const AboutManager = () => {
 				</>
 			) : (
 				<div className="flex flex-col justify-center items-center gap-5 min-h-screen">
-					<p className="text-xl text-color-text">No content found please create profile</p>
+					<p className="text-xl text-color-primary">No content found please create profile</p>
 					<Link to="/dashboard/about/create-about">
 						<IconButton>Create Profile</IconButton>
 					</Link>

@@ -81,19 +81,19 @@ const ResetPassword = () => {
 							<Input
 								size="lg"
 								label="password"
-								color="yellow"
+								color="blue"
 								type={passwordShown ? "text" : "password"}
 								{...register("password", {
 									required: " Required",
 								})}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							<div className="absolute inset-y-0 right-0 pr-3 flex items-center h-12">
 								<span onClick={togglePassword} className="cursor-pointer text-xl">
 									{passwordShown === true ? (
-										<PiEye className="text-color-text" />
+										<PiEye className="text-color-primary" />
 									) : (
-										<PiEyeClosed className="text-color-text" />
+										<PiEyeClosed className="text-color-primary" />
 									)}
 								</span>
 							</div>
@@ -103,19 +103,19 @@ const ResetPassword = () => {
 							<Input
 								size="lg"
 								label="Confirm password"
-								color="yellow"
+								color="blue"
 								type={passwordShown ? "text" : "password"}
 								{...register("confirmPassword", {
 									required: " Required",
 								})}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							<div className="absolute inset-y-0 right-0 pr-3 flex items-center h-12">
 								<span onClick={togglePassword} className="cursor-pointer text-xl">
 									{passwordShown === true ? (
-										<PiEye className="text-color-text" />
+										<PiEye className="text-color-primary" />
 									) : (
-										<PiEyeClosed className="text-color-text" />
+										<PiEyeClosed className="text-color-primary" />
 									)}
 								</span>
 							</div>

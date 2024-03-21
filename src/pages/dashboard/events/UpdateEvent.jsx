@@ -116,28 +116,28 @@ const UpdateEvent = () => {
 			<form onSubmit={handleEventForm}>
 				<div className="w-full md:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Program Title <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
-							color="yellow"
+							color="blue"
 							value={title}
 							label="Program Title"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Program Type <span className="text-red-500">*</span>
 						</p>
 						<Select
 							value={eventType}
 							onChange={(value) => setEventType(value)}
 							label="Select Event Type"
-							color="yellow"
+							color="blue"
 							className="!p-0 "
 						>
 							{selectData.map((item) => (
@@ -158,7 +158,7 @@ const UpdateEvent = () => {
 						</Select>
 					</div>
 					<div>
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Cover Image <span className="text-red-500">*</span>
 						</p>
 						{!isUpdateImage ? (
@@ -200,13 +200,13 @@ const UpdateEvent = () => {
 											alt={fileName}
 										/>
 									) : (
-										<div className="flex flex-col items-center gap-2 text-color-text">
+										<div className="flex flex-col items-center gap-2 text-color-primary">
 											<LuUploadCloud className="w-12 h-12" />
 											<p>Browse file to upload</p>
 										</div>
 									)}
 								</div>
-								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
+								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-primary rounded-md mt-1 p-2">
 									{fileName}
 									{image !== null && (
 										<IconButton variant="text" className="rounded-full">
@@ -229,7 +229,7 @@ const UpdateEvent = () => {
 						)}
 					</div>
 					<div className="my-5 flex flex-col ">
-						<label className="font-bold text-color-text py-2">
+						<label className="font-bold text-color-primary py-2">
 							Select date and time of event <span className="text-red-500">*</span>
 						</label>
 						<DateTimePicker onChange={setDateTime} value={dateTime} className="pb-5" />
@@ -237,7 +237,7 @@ const UpdateEvent = () => {
 				</div>
 
 				<div className="h-auto">
-					<p className="font-bold text-color-text dark:text-white py-2">
+					<p className="font-bold text-color-primary dark:text-white py-2">
 						Event Content <span className="text-red-500">*</span>
 					</p>
 					<Editor

@@ -67,19 +67,19 @@ const ForgetPassword = () => {
 
 				<form onSubmit={handleSubmit(handleForgetPasswor)} className="my-8 mb-2 w-80 max-w-screen-lg ">
 					<div className="mb-4 flex flex-col gap-2 text-start">
-						<p className="text-color-text text-center">
+						<p className="text-color-primary text-center">
 							Please enter the email address associated with your account. We will send you a link to
 							reset your password.
 						</p>
 						<Input
 							size="lg"
 							label="email"
-							color="yellow"
+							color="blue"
 							type="text"
 							{...register("email", {
 								required: "Email is Required *",
 							})}
-							className="text-color-text"
+							className="text-color-primary"
 						/>
 						{errors.email && <p className="text-red-500">{errors.email.message}</p>}
 					</div>

@@ -119,7 +119,7 @@ const EventSection = () => {
 											))
 										) : (
 											<div className="w-full h-44 max-w-[25rem]  flex justify-center items-center">
-												<p className="font-semibold text-xl text-color-text">Coming soon</p>
+												<p className="font-semibold text-xl text-color-primary">Coming soon</p>
 											</div>
 										)}
 									</div>

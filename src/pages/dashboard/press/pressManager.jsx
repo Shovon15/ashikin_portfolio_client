@@ -104,7 +104,7 @@ const PressManager = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									pressData.map(({ _id, heading, description, isPublished, image }, index) => (
 										<tr key={_id} className="even:bg-color-secondary text-center">
@@ -141,42 +141,44 @@ const PressManager = () => {
 													</Button>
 												</p>
 											</td>
-											<td className="p-2 flex gap-3 justify-center items-center ">
-												<Button
-													variant="outlined"
-													// size="sm"
-													onClick={() => {
-														setViewModalOpen(true);
-														setViewPressData({
-															title: heading,
-															content: description,
-															cover: image,
-														});
-													}}
-													className="focus:ring-0 border-none rounded-full p-3 text-color-text"
-												>
-													<VscScreenFull className="w-5 h-5 " />
-												</Button>
-												<Link to={`update-press/${_id}`}>
+											<td className="p-2">
+												<div className="flex gap-3 justify-center items-center">
 													<Button
 														variant="outlined"
-														size="sm"
-														className="focus:ring-0 border-none rounded-full p-3"
+														// size="sm"
+														onClick={() => {
+															setViewModalOpen(true);
+															setViewPressData({
+																title: heading,
+																content: description,
+																cover: image,
+															});
+														}}
+														className="focus:ring-0 border-none rounded-full p-3 text-color-primary"
 													>
-														<BiSolidEdit className="w-5 h-5 text-color-text dark:text-white" />
+														<VscScreenFull className="w-5 h-5 " />
 													</Button>
-												</Link>
+													<Link to={`update-press/${_id}`}>
+														<Button
+															variant="outlined"
+															size="sm"
+															className="focus:ring-0 border-none rounded-full p-3"
+														>
+															<BiSolidEdit className="w-5 h-5 text-color-primary dark:text-white" />
+														</Button>
+													</Link>
 
-												<Button
-													variant="text"
-													className="focus:ring-0  border-none rounded-full p-3"
-													onClick={() => {
-														setDeleteModalOpen(true);
-														setDeletingData({ _id, title: heading });
-													}}
-												>
-													<FaTrashAlt className="w-5 h-5 text-red-500" />
-												</Button>
+													<Button
+														variant="text"
+														className="focus:ring-0  border-none rounded-full p-3"
+														onClick={() => {
+															setDeleteModalOpen(true);
+															setDeletingData({ _id, title: heading });
+														}}
+													>
+														<FaTrashAlt className="w-5 h-5 text-red-500" />
+													</Button>
+												</div>
 											</td>
 										</tr>
 									))}
@@ -201,7 +203,7 @@ const PressManager = () => {
 				</div>
 			) : (
 				<div className="flex flex-col gap-3 justify-center items-center min-h-80">
-					<p className="text-xl text-color-text">No content found please create press data</p>
+					<p className="text-xl text-color-primary">No content found please create press data</p>
 					<Link to="/dashboard/press/create-press">
 						<IconButton>Create Press</IconButton>
 					</Link>

@@ -114,27 +114,27 @@ export function Header() {
 							<Tooltip
 								content="facebook"
 								placement="top"
-								className="bg-color-secondary px-4 py-1 shadow-xl text-color-text"
+								className="bg-color-secondary px-4 py-1 shadow-xl text-color-primary"
 								animate={{
 									mount: { scale: 1, y: 0 },
 									unmount: { scale: 0, y: 25 },
 								}}
 							>
 								<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-									<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 m-auto" />
+									<FaFacebookF className="text-color-primary hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 m-auto" />
 								</a>
 							</Tooltip>
 							<Tooltip
 								content="youtube"
 								placement="top"
-								className="bg-color-secondary px-4 py-1 shadow-xltext-color-text"
+								className="bg-color-secondary px-4 py-1 shadow-xltext-color-primary"
 								animate={{
 									mount: { scale: 1, y: 0 },
 									unmount: { scale: 0, y: 25 },
 								}}
 							>
 								<a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-									<FaYoutube className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-5 h-5" />
+									<FaYoutube className="text-color-primary hover:text-color-header cursor-pointer hover:scale-110  w-5 h-5" />
 								</a>
 							</Tooltip>
 						</div> */}
@@ -179,7 +179,7 @@ export function Header() {
 													<NavLink
 														to={link}
 														className={({ isActive }) =>
-															isActive ? "active" : "text-color-text hover:active"
+															isActive ? "active" : "text-color-primary hover:active"
 														}
 														onClick={() => setOpenNav(false)}
 													>
@@ -250,12 +250,12 @@ const MobileNavLink = ({ name }) => {
 // 		<motion.div variants={mobileSocialLinkVars} className="flex gap-2 mt-5">
 // 			<IconButton variant="text" className="">
 // 				<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-// 					<FaFacebookF className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
+// 					<FaFacebookF className="text-color-primary hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
 // 				</a>
 // 			</IconButton>
 // 			<IconButton variant="text">
 // 				<a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-// 					<FaYoutube className="text-color-text hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
+// 					<FaYoutube className="text-color-primary hover:text-color-header cursor-pointer hover:scale-110  w-7 h-7" />
 // 				</a>
 // 			</IconButton>
 // 		</motion.div>

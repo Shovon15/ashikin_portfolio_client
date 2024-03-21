@@ -9,7 +9,7 @@ export function AdminSidebar() {
 
 	const activeClass = "!bg-color-button  text-color-header font-bold";
 	const SidebarClass =
-		"flex gap-3 items-center bg-color-secondary text-color-text py-3 px-5 active:!bg-color-button hover:!bg-color-buttonHover";
+		"flex gap-3 items-center bg-color-secondary text-color-primary py-3 px-5 active:!bg-color-button hover:!bg-color-buttonHover";
 
 	return (
 		<div

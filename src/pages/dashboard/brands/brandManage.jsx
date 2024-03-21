@@ -123,7 +123,7 @@ const BrandManage = () => {
 
 			{brandData.length === 0 ? (
 				<div className="text-center py-8 px-5 lg:px-0">
-					<p className="text-lg text-color-text">
+					<p className="text-lg text-color-primary">
 						You have not created any brand yet.
 						<br />
 						Please add brand to get started!
@@ -147,7 +147,7 @@ const BrandManage = () => {
 									))}
 								</tr>
 							</thead>
-							<tbody className="text-color-text">
+							<tbody className="text-color-primary">
 								{!isLoading &&
 									brandData.length !== 0 &&
 									brandData.map(({ _id, brandLogo }, index) => (
@@ -219,7 +219,7 @@ const BrandManage = () => {
 						</IconButton>
 					</div>
 					<div className="w-80 mx-auto">
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Brand logo <span className="text-red-500">*</span>
 						</p>
 						<div className="w-full h-36 mx-auto">
@@ -250,7 +250,7 @@ const BrandManage = () => {
 										alt={fileName}
 									/>
 								) : (
-									<div className="flex flex-col items-center gap-2 text-color-text">
+									<div className="flex flex-col items-center gap-2 text-color-primary">
 										<LuUploadCloud className="w-12 h-12 " />
 										<p className="">Browse file to upload</p>
 									</div>
@@ -258,7 +258,7 @@ const BrandManage = () => {
 							</div>
 							<section
 								className="flex-end gap-3 bg-color-secondary
-                           rounded-md mt-1 p-2 pr-2 text-color-text my-5"
+                           rounded-md mt-1 p-2 pr-2 text-color-primary my-5"
 							>
 								{fileName}
 								{image !== null && (
@@ -286,7 +286,7 @@ const BrandManage = () => {
 				<div className="flex justify-center py-5">
 					<Button
 						onClick={() => setIsAddBrand(true)}
-						className="px-6 py-3 bg-color-button text-color-text hover:bg-color-buttonHover rounded-none active:bg-color-button capitalize text-md flex gap-2"
+						className="px-6 py-3 bg-color-button text-color-primary hover:bg-color-buttonHover rounded-none active:bg-color-button capitalize text-md flex gap-2"
 					>
 						<IoIosAdd className="w-6 h-6" />
 						Add Brand

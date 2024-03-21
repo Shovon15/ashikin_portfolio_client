@@ -123,8 +123,8 @@ const EventRegister = () => {
 					<>
 						<div className="w-full lg:w-3/12 h-max  border border-gray-500 flex flex-col items-center p-2 py-5 ">
 							<p className="text-2xl font-semibold text-center text-color-header">{title}</p>
-							<p className="text-color-text capitalize pt-3">{eventType} program</p>
-							<p className="text-color-text">
+							<p className="text-color-primary capitalize pt-3">{eventType} program</p>
+							<p className="text-color-primary">
 								{formattedDate}
 								<span className="text-gray-500"> | </span>
 								{formattedTime}
@@ -141,26 +141,26 @@ const EventRegister = () => {
 						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
-								color="yellow"
+								color="blue"
 								label="First Name"
 								{...register("firstName", {
 									required: "Required *",
 								})}
 								error={!!errors.firstName}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.firstName && <p className="text-red-500 text-sm ">{errors.firstName.message}</p>}
 						</div>
 						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
-								color="yellow"
+								color="blue"
 								label="Last Name"
 								{...register("lastName", {
 									required: "Required *",
 								})}
 								error={!!errors.lastName}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.lastName && <p className="text-red-500 text-sm ">{errors.lastName.message}</p>}
 						</div>
@@ -169,26 +169,26 @@ const EventRegister = () => {
 						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
-								color="yellow"
+								color="blue"
 								label="Whatsapp Number"
 								{...register("whatsapp", {
 									required: "Required *",
 								})}
 								error={!!errors.whatsapp}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.whatsapp && <p className="text-red-500 text-sm ">{errors.whatsapp.message}</p>}
 						</div>
 						<div className="flex flex-col gap-1 w-full">
 							<Input
 								variant="standard"
-								color="yellow"
+								color="blue"
 								label="Phone Number"
 								{...register("phone", {
 									required: "Required *",
 								})}
 								error={!!errors.phone}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.phone && <p className="text-red-500 text-sm ">{errors.phone.message}</p>}
 						</div>
@@ -196,27 +196,27 @@ const EventRegister = () => {
 					<div className="flex flex-col gap-5 py-5">
 						<div className="flex flex-col gap-1 w-full">
 							<Input
-								color="yellow"
+								color="blue"
 								variant="standard"
 								label="Email"
 								{...register("email", {
 									required: "Required *",
 								})}
 								error={!!errors.email}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.email && <p className="text-red-500 text-sm ">{errors.email.message}</p>}
 						</div>
 						<div className="flex flex-col gap-1 w-full">
 							<Input
-								color="yellow"
+								color="blue"
 								variant="standard"
 								label="Institute name with designation"
 								{...register("instituteName", {
 									required: "Required *",
 								})}
 								error={!!errors.instituteName}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.instituteName && (
 								<p className="text-red-500 text-sm ">{errors.instituteName.message}</p>
@@ -224,14 +224,14 @@ const EventRegister = () => {
 						</div>
 						<div className="flex flex-col gap-1 w-full">
 							<Input
-								color="yellow"
+								color="blue"
 								variant="standard"
 								label="Sender Account Number"
 								{...register("accountNumber", {
 									required: "Required *",
 								})}
 								error={!!errors.accountNumber}
-								className="text-color-text"
+								className="text-color-primary"
 							/>
 							{errors.accountNumber && (
 								<p className="text-red-500 text-sm ">{errors.accountNumber.message}</p>
@@ -240,7 +240,7 @@ const EventRegister = () => {
 					</div>
 					<div className="flex justify-center pb-10">
 						<PrimaryButton buttonType={"submit"} className="px-12" disabled={buttonLoading}>
-							{buttonLoading ? <Spinner color="yellow" className="mx-auto" /> : "Submit"}
+							{buttonLoading ? <Spinner color="blue" className="mx-auto" /> : "Submit"}
 						</PrimaryButton>
 					</div>
 				</form>

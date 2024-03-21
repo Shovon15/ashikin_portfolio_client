@@ -103,7 +103,7 @@ const EventViewPage = () => {
 								className="rounded-full bg-color-secondary shadow-xl"
 								onClick={() => setIsOpen(!isOpen)}
 							>
-								<PiShareFat className="w-5 h-5 text-color-text" />
+								<PiShareFat className="w-5 h-5 text-color-primary" />
 							</IconButton>
 							{isOpen && (
 								<div className="absolute right-0 mt-10 w-16 md:w-44 rounded-lg overflow-hidden shadow-lg p-4 flex flex-col md:flex-row gap-3 justify-center items-center bg-color-secondary">
@@ -121,7 +121,6 @@ const EventViewPage = () => {
 									>
 										<WhatsappIcon size={40} round={true} />
 									</WhatsappShareButton>
-									
 
 									<TwitterShareButton
 										url={shareUrl}
@@ -133,7 +132,7 @@ const EventViewPage = () => {
 								</div>
 							)}
 						</div>
-						<div className="flex justify-center text-color-text">
+						<div className="flex justify-center text-color-primary">
 							<Typography variant="h6" className=" ">
 								{formattedDate}
 							</Typography>
@@ -168,7 +167,7 @@ const EventViewPage = () => {
 							<Typography variant="h3" className="py-2 text-color-header">
 								Time Schedule
 							</Typography>
-							<div className="flex flex-col  gap-2 text-color-text">
+							<div className="flex flex-col  gap-2 text-color-primary">
 								<Typography variant="h6" className="flex gap-2 items-center">
 									<BsCalendar2Check className="w-4 h-4" />
 									{formattedDate}
@@ -185,7 +184,7 @@ const EventViewPage = () => {
 								dangerouslySetInnerHTML={{
 									__html: shouldShowButton && !showMore ? `${content.slice(0, 600)} ...` : content,
 								}}
-								className="pb-2 transition text-color-text "
+								className="pb-2 transition text-color-primary "
 							/>
 							{shouldShowButton && !showMore && (
 								<div className="flex justify-end mx-10">

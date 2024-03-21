@@ -65,17 +65,17 @@ const RegisteredEvent = () => {
 			<div className="flex flex-col md:flex-row md:justify-between md:px-5">
 				<HeaderText className="text-start py-2">{title}</HeaderText>
 				<div>
-					<Typography className="font-semibold text-color-text">
+					<Typography className="font-semibold text-color-primary">
 						Total registration: <span className="font-bold text-xl text-color-header">{register}</span>{" "}
 					</Typography>
-					<Typography className="pb-5 font-semibold text-color-text">
+					<Typography className="pb-5 font-semibold text-color-primary">
 						<span className="text-color-header font-bold capitalize">{eventType}</span> Event
 					</Typography>
 				</div>
 			</div>
 			<div className="relative overflow-x-auto">
 				<table className="w-full text-sm text-left rtl:text-right ">
-					<thead className="text-xs text-color-text uppercase">
+					<thead className="text-xs text-color-primary uppercase">
 						<tr>
 							{TABLE_HEAD.map((head) => (
 								<th key={head} className="border-b  border-color-border bg-color-secondary p-4">
@@ -89,7 +89,7 @@ const RegisteredEvent = () => {
 							))}
 						</tr>
 					</thead>
-					<tbody className="text-color-text">
+					<tbody className="text-color-primary">
 						{!isLoading &&
 							registerData.length !== 0 &&
 							registerData.map(

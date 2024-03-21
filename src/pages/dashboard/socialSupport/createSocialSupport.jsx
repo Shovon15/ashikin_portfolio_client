@@ -6,29 +6,25 @@ import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 import { post } from "../../../utils/fetchApi";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { IconButton, Input, Spinner } from "@material-tailwind/react";
+import { IconButton, Input, Spinner, Textarea } from "@material-tailwind/react";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
-import { Editor } from "@tinymce/tinymce-react";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 
-const CreatePress = () => {
-	const [heading, setHeading] = useState("");
+const CreateSocialSupport = () => {
+	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [buttonText, setButtonText] = useState("");
-	const [link, setLink] = useState("");
 	const [image, setImage] = useState(null);
 	const [fileName, setFileName] = useState("No file choosen");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const inputImageRef = useRef(null);
-	const editorRef = useRef(null);
 	const navigate = useNavigate();
 
 	const handleForm = async (e) => {
 		e.preventDefault();
 
-		if (!(heading || description || image || buttonText || link)) {
+		if (!(title || description || image)) {
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
@@ -43,19 +39,17 @@ const CreatePress = () => {
 			}
 
 			const formData = {
-				heading,
+				title,
 				description,
-				buttonText,
-				link,
 				image: imageData.url,
 			};
 
 			// Proceed with the submission
-			const res = await post("press/create-press", formData);
+			const res = await post("social-support/create-social-support", formData);
 			showSuccessToast(res.data?.message);
-			navigate("/dashboard/press");
+			navigate("/dashboard/social-support");
 		} catch (error) {
-			console.error("Error uploading profile ", error);
+			console.error("Error uploading social support ", error);
 			const errorMessage = error?.response?.data?.message || "An error occurred while uploading the profile.";
 			showErrorToast(errorMessage);
 		} finally {
@@ -66,55 +60,43 @@ const CreatePress = () => {
 	return (
 		<div className="lg:pb-10">
 			<GoBackButton />
-			<HeaderText className="py-5">Create Press </HeaderText>
+			<HeaderText className="py-5">Create Social Support </HeaderText>
 			<form onSubmit={handleForm}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
 						<p className="font-bold text-color-primary  py-2">
-							Heading <span className="text-red-500">*</span>
+							Title <span className="text-red-500">*</span>
 						</p>
 						<Input
-							value={heading}
+							value={title}
 							size="lg"
 							color="blue"
-							label="heading"
-							className="text-color-primary "
+							label="title"
+							className="text-color-primary"
 							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setHeading(ev.target.value)}
+							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
+
 					<div>
 						<p className="font-bold text-color-primary  py-2">
-							Button text <span className="text-red-500">*</span>
+							Description <span className="text-red-500">*</span>
 						</p>
-						<Input
-							value={buttonText}
+
+						<Textarea
+							value={description}
 							size="lg"
 							color="blue"
-							label="read more"
-							className="text-color-primary "
-							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setButtonText(ev.target.value)}
-						/>
-					</div>
-					<div>
-						<p className="font-bold text-color-primary  py-2">
-							Redirect link <span className="text-red-500">*</span>
-						</p>
-						<Input
-							value={link}
-							size="lg"
-							color="blue"
-							label="https://todaysnews.com/demo"
-							className="text-color-primary "
-							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setLink(ev.target.value)}
+							label="description"
+							className="text-color-primary"
+							rows={4}
+							onChange={(ev) => setDescription(ev.target.value)}
 						/>
 					</div>
 
 					<div className="w-full">
 						<p className="font-bold text-color-primary py-2">
-							press Image <span className="text-red-500">*</span>
+							Image <span className="text-red-500">*</span>
 						</p>
 						<div
 							className={`center border-2 border-dashed mx-auto w-full h-80 cursor-pointer
@@ -165,25 +147,6 @@ const CreatePress = () => {
 						</section>
 					</div>
 				</div>
-				{/* text-editor */}
-				<div className="h-auto">
-					<p className="font-bold text-color-primary py-2">
-						Description <span className="text-red-500">*</span>
-					</p>
-					<Editor
-						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
-						onInit={(evt, editor) => {
-							editorRef.current = editor;
-							editor.on("change", () => setDescription(editor.getContent()));
-						}}
-						init={{
-							plugins:
-								"anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
-							toolbar:
-								"undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
-						}}
-					/>
-				</div>
 				<div className="w-full flex justify-center items-center my-10 ">
 					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-16">
 						{isLoading ? <Spinner color="gray" className="mx-auto" /> : "Submit"}
@@ -194,4 +157,4 @@ const CreatePress = () => {
 	);
 };
 
-export default CreatePress;
+export default CreateSocialSupport;

@@ -64,7 +64,7 @@ const InvitationDetails = () => {
 						/>
 					}
 					fileName={`${name}_invitation.pdf`}
-					className=" px-6 py-2 border border-color-border hover:bg-color-button text-color-text"
+					className=" px-6 py-2 border border-color-border hover:bg-color-button text-color-primary"
 				>
 					<BsFiletypePdf className="w-5 h-5" />
 				</PDFDownloadLink>
@@ -82,22 +82,22 @@ const InvitationDetails = () => {
 						))}
 					</div>
 					<div className="w-3/5">
-						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{name}
 						</p>
-						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{organizationName}
 						</p>
-						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{phone}
 						</p>
-						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{location}
 						</p>
-						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-b border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{audienceNumber}
 						</p>
-						<p className="border-l border-color-border bg-color-secondary p-4 font-bold text-color-text ">
+						<p className="border-l border-color-border bg-color-secondary p-4 font-bold text-color-primary ">
 							{eventText}
 						</p>
 					</div>

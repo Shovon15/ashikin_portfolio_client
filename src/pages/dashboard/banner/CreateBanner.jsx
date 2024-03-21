@@ -91,36 +91,36 @@ const CreateBanner = () => {
 			<form onSubmit={handleBannerForm}>
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Banner Heading <span className="text-red-500">*</span>
 						</p>
 						<Input
 							size="lg"
 							value={bannerHeader}
-							color="yellow"
+							color="blue"
 							label="Banner Heading"
-							className="text-color-text "
+							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
 							onChange={(ev) => setBannerHeader(ev.target.value)}
 						/>
 					</div>
 					<div>
-						<p className="font-bold text-color-text  py-2">
+						<p className="font-bold text-color-primary  py-2">
 							Banner Description <span className="text-red-500">*</span>
 						</p>
 						<Textarea
 							value={bannerText}
 							size="lg"
-							color="yellow"
+							color="blue"
 							label="Banner description"
-							className="text-color-text "
+							className="text-color-primary "
 							rows={4}
 							onChange={(ev) => setBannerText(ev.target.value)}
 						/>
 					</div>
 
 					<div className="">
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Banner Image(&apos;s) <span className="text-red-500">*</span>
 						</p>
 
@@ -160,7 +160,7 @@ const CreateBanner = () => {
 									ref={inputBannerImageRef}
 									multiple
 								/>
-								<div className="flex flex-col items-center gap-2 text-color-text">
+								<div className="flex flex-col items-center gap-2 text-color-primary">
 									<LuUploadCloud className="w-12 h-12 " />
 									<p className="">Browse file to upload</p>
 								</div>

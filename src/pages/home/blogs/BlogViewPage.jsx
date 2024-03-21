@@ -74,7 +74,7 @@ const BlogViewPage = () => {
 							dangerouslySetInnerHTML={{
 								__html: shouldShowButton && !showMore ? `${content.slice(0, 600)} ...` : content,
 							}}
-							className="pb-2 transition text-color-text "
+							className="pb-2 transition text-color-primary "
 						/>
 						{shouldShowButton && !showMore && (
 							<div className="flex justify-end mx-10">
@@ -127,7 +127,7 @@ const BlogViewPage = () => {
 		// 			dangerouslySetInnerHTML={{
 		// 				__html: shouldShowButton && !showMore ? `${content.slice(0, 600)} ...` : content,
 		// 			}}
-		// 			className="pb-2 transition text-color-text "
+		// 			className="pb-2 transition text-color-primary "
 		// 		/>
 		// 		{shouldShowButton && !showMore && (
 		// 			<div className="flex justify-end mx-10">

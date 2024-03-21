@@ -17,7 +17,7 @@ const DashboardOverview = () => {
 				<div>
 					<div className="flex gap-1 items-center">
 						<img className="w-5 h-5" src={shieldIcon} />
-						<Typography variant="paragraph" className=" text-color-text text-md md:text-xl font-bold ">
+						<Typography variant="paragraph" className=" text-color-primary text-md md:text-xl font-bold ">
 							Admin
 						</Typography>
 					</div>

@@ -78,16 +78,16 @@ const UpdateProfile = () => {
 				<div className="w-full md:w-1/2 mx-auto">
 					<Input
 						size="lg"
-						color="yellow"
+						color="blue"
 						value={name}
 						label="Name"
-						className="text-color-text "
+						className="text-color-primary "
 						style={{ fontSize: "18px", fontWeight: "normal" }}
 						onChange={(ev) => setName(ev.target.value)}
 					/>
 
 					<div style={{ maxWidth: "400px" }} className="mx-auto py-5">
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Service Image <span className="text-red-500">*</span>
 						</p>
 						{!isUpdateImage ? (
@@ -129,13 +129,13 @@ const UpdateProfile = () => {
 											alt={fileName}
 										/>
 									) : (
-										<div className="flex flex-col items-center gap-2 text-color-text">
+										<div className="flex flex-col items-center gap-2 text-color-primary">
 											<LuUploadCloud className="w-12 h-12" />
 											<p>Browse file to upload</p>
 										</div>
 									)}
 								</div>
-								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-text rounded-md mt-1 p-2">
+								<section className="flex justify-end gap-3 items-center bg-color-secondary text-color-primary rounded-md mt-1 p-2">
 									{fileName}
 									{image !== null && (
 										<IconButton variant="text" className="rounded-full">

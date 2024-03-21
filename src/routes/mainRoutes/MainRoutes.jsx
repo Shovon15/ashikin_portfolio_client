@@ -52,7 +52,13 @@ import PressPage from "../../pages/home/press/pressPage";
 import PressManager from "../../pages/dashboard/press/pressManager";
 import CreatePress from "../../pages/dashboard/press/createPress";
 import UpdatePress from "../../pages/dashboard/press/updatePress";
-
+import SocialSupportManager from "../../pages/dashboard/socialSupport/socialSupportManager";
+import CreateSocialSupport from "../../pages/dashboard/socialSupport/createSocialSupport";
+import UpdateSocialSupport from "../../pages/dashboard/socialSupport/updateSocialSupport";
+import ContactUs from "../../pages/home/contactUs/contactUs";
+import ContactUsManager from "../../pages/dashboard/contactUs/contactUsManager";
+import UpdateContactUs from "../../pages/dashboard/contactUs/updateContactUs";
+import CreateContactUs from "../../pages/dashboard/contactUs/createContactUs";
 
 const MainRoutes = () => {
 	return (
@@ -72,6 +78,7 @@ const MainRoutes = () => {
 					<Route path="blogs" element={<BlogPage />} />
 					<Route path="blog/:slug" element={<BlogViewPage />} />
 					<Route path="about" element={<About />} />
+					<Route path="contact" element={<ContactUs />} />
 					<Route path="press" element={<PressPage />} />
 				</Route>
 
@@ -143,10 +150,22 @@ const MainRoutes = () => {
 							<Route path="create-about" element={<CreateAbout />} />
 							<Route path="update-about" element={<UpdateAbout />} />
 						</Route>
+
 						<Route path="press">
 							<Route path="" element={<PressManager />} />
 							<Route path="create-press" element={<CreatePress />} />
 							<Route path="update-press/:id" element={<UpdatePress />} />
+						</Route>
+
+						<Route path="social-support">
+							<Route path="" element={<SocialSupportManager />} />
+							<Route path="create-social-support" element={<CreateSocialSupport />} />
+							<Route path="update-social-support/:id" element={<UpdateSocialSupport />} />
+						</Route>
+						<Route path="contact">
+							<Route path="" element={<ContactUsManager />} />
+							<Route path="create-contact" element={<CreateContactUs />} />
+							<Route path="update-contact/:id" element={<UpdateContactUs />} />
 						</Route>
 
 						<Route path="reviews">
@@ -161,7 +180,7 @@ const MainRoutes = () => {
 					element={
 						<div className="flex flex-col gap-3 justify-center items-center min-h-screen">
 							<p className="text-center text-color-primary font-bold text-3xl">Page not found</p>
-							<PiSmileySadThin className="text-color-text w-12 h-12" />
+							<PiSmileySadThin className="text-color-primary w-12 h-12" />
 							<Link to="/">
 								<PrimaryButton>Home</PrimaryButton>
 							</Link>

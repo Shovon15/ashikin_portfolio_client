@@ -90,7 +90,7 @@ const UpdateLogo = () => {
 				<div className="w-full lg:w-1/2 mx-auto flex flex-col gap-2 pb-2">
 					{/* portfolio image */}
 					<div className="mx-auto">
-						<p className="font-bold text-color-text py-2">
+						<p className="font-bold text-color-primary py-2">
 							Logo <span className="text-red-500">*</span>
 						</p>
 						<div>
@@ -133,13 +133,13 @@ const UpdateLogo = () => {
 												alt={logoImageFileName}
 											/>
 										) : (
-											<div className="flex flex-col items-center gap-2 text-color-text py-5">
+											<div className="flex flex-col items-center gap-2 text-color-primary py-5">
 												<LuUploadCloud className="w-12 h-12" />
 												<p>Browse file to upload</p>
 											</div>
 										)}
 									</div>
-									<section className="flex justify-end gap-3 items-center bg-gray-700 text-color-text rounded-md mt-1 p-2">
+									<section className="flex justify-end gap-3 items-center bg-gray-700 text-color-primary rounded-md mt-1 p-2">
 										{logoImageFileName}
 										{newLogoImage !== null && (
 											<IconButton variant="text" className="rounded-full">

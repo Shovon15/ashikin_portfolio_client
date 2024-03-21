@@ -10,53 +10,63 @@ export const dashboardLinkItems = [
 		icon: <RxDashboard className="w-5 h-5" />,
 	},
 	{
-		name: "Logo",
+		name: "Logo Manager",
 		link: "/dashboard/logo",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "banner",
+		name: "Banner Manager",
 		link: "/dashboard/banner",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "Brands",
+		name: "Brands Manager",
 		link: "/dashboard/brand",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "Social Link",
+		name: "Social Link Manager",
 		link: "/dashboard/social",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "services",
+		name: "Service Manager",
 		link: "/dashboard/services",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "programs",
+		name: "Program Manager",
 		link: "/dashboard/programs",
 		icon: <BsCalendar2Event className="w-5 h-5" />,
 	},
 	{
-		name: "blogs",
+		name: "Blog Manager",
 		link: "/dashboard/blogs",
 		icon: <MdOutlineMessage className="w-5 h-5" />,
 	},
 	{
-		name: "reviews",
+		name: "Review Manager",
 		link: "/dashboard/reviews",
 		icon: <MdOutlineMessage className="w-5 h-5" />,
 	},
 	{
-		name: "about",
+		name: "About Manager",
 		link: "/dashboard/about",
 		icon: <MdOutlineMessage className="w-5 h-5" />,
 	},
 	{
-		name: "press",
+		name: "Press Manager",
 		link: "/dashboard/press",
+		icon: <MdOutlineMessage className="w-5 h-5" />,
+	},
+	{
+		name: "Social Support Manager",
+		link: "/dashboard/social-support",
+		icon: <MdOutlineMessage className="w-5 h-5" />,
+	},
+	{
+		name: "Contact Manager",
+		link: "/dashboard/contact",
 		icon: <MdOutlineMessage className="w-5 h-5" />,
 	},
 
@@ -97,5 +107,24 @@ export const navLinks = [
 		id: 6,
 		name: "contact us",
 		link: "contact",
+	},
+];
+
+export const FooterLinks = [
+	{
+		name: "About",
+		link: "/about",
+	},
+	{
+		name: "License",
+		link: "/",
+	},
+	{
+		name: "Contact",
+		link: "/contact",
+	},
+	{
+		name: "Admin",
+		link: "/dashboard",
 	},
 ];

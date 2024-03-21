@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 import { get, put } from "../../../utils/fetchApi";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
-import { IconButton, Input, Spinner } from "@material-tailwind/react";
+import { IconButton, Input, Spinner, Textarea } from "@material-tailwind/react";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -11,16 +11,13 @@ import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
-import { Editor } from "@tinymce/tinymce-react";
 import { RxCross2 } from "react-icons/rx";
 import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 
-const UpdatePress = () => {
-	const [heading, setHeading] = useState("");
+const UpdateSocialSupport = () => {
+	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [buttonText, setButtonText] = useState("");
-	const [link, setLink] = useState("");
 	const [oldImage, setOldImage] = useState(null);
 	const [image, setImage] = useState(null);
 	const [fileName, setFileName] = useState("No file choosen");
@@ -28,37 +25,31 @@ const UpdatePress = () => {
 	const [isUpdateImage, setIsUpdateImage] = useState(false);
 
 	const inputImageRef = useRef(null);
-	const editorRef = useRef(null);
 	const navigate = useNavigate();
 
 	const { id } = useParams();
-	const {
-		data: pressData = [],
-		// refetch,
-		isLoading: loading,
-	} = useQuery({
-		queryKey: ["pressData"],
+
+	const { data: socailSupportData = [], isLoading: loading } = useQuery({
+		queryKey: ["socailSupportData"],
 		queryFn: async () => {
-			const res = await get(`press/${id}`);
+			const res = await get(`social-support/${id}`);
 			const data = res.data.payload.data;
 
 			return data;
 		},
 	});
 	useEffect(() => {
-		if (Object.keys(pressData).length > 0) {
-			setHeading(pressData.heading);
-			setDescription(pressData.description);
-			setButtonText(pressData.buttonText);
-			setLink(pressData.link);
-			setOldImage(pressData.image);
+		if (Object.keys(socailSupportData).length > 0) {
+			setTitle(socailSupportData.title);
+			setDescription(socailSupportData.description);
+			setOldImage(socailSupportData.image);
 		}
-	}, [pressData]);
+	}, [socailSupportData]);
 
 	const handleForm = async (e) => {
 		e.preventDefault();
 
-		if (!(heading || description || buttonText || link)) {
+		if (!(title || description)) {
 			showErrorToast("Please Fill in All Fields");
 			return;
 		}
@@ -66,10 +57,8 @@ const UpdatePress = () => {
 		try {
 			setIsLoading(true);
 			const formData = {
-				heading,
+				title,
 				description,
-				buttonText,
-				link,
 			};
 
 			let profileImageUrl = null;
@@ -87,11 +76,11 @@ const UpdatePress = () => {
 				formData.image = profileImageUrl;
 			}
 			// Proceed with the submission
-			const res = await put(`press/update-press/${id}`, formData);
+			const res = await put(`social-support/update-social-support/${id}`, formData);
 			showSuccessToast(res.data?.message);
-			navigate("/dashboard/press");
+			navigate("/dashboard/social-support");
 		} catch (error) {
-			console.error("Error uploading profile ", error);
+			console.error("Error uploading social support ", error);
 			const errorMessage = error?.response?.data?.message || "An error occurred while uploading the profile.";
 			showErrorToast(errorMessage);
 		} finally {
@@ -114,47 +103,34 @@ const UpdatePress = () => {
 							Heading <span className="text-red-500">*</span>
 						</p>
 						<Input
-							value={heading}
+							value={title}
 							size="lg"
 							color="blue"
 							label="heading"
 							className="text-color-primary "
 							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setHeading(ev.target.value)}
+							onChange={(ev) => setTitle(ev.target.value)}
 						/>
 					</div>
+
 					<div>
 						<p className="font-bold text-color-primary  py-2">
-							Button text <span className="text-red-500">*</span>
+							Description<span className="text-red-500">*</span>
 						</p>
-						<Input
-							value={buttonText}
+						<Textarea
+							value={description}
 							size="lg"
 							color="blue"
-							label="read more"
-							className="text-color-primary "
-							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setButtonText(ev.target.value)}
-						/>
-					</div>
-					<div>
-						<p className="font-bold text-color-primary  py-2">
-							Redirect link <span className="text-red-500">*</span>
-						</p>
-						<Input
-							value={link}
-							size="lg"
-							color="blue"
-							label="https://todaysnews.com/demo"
-							className="text-color-primary "
-							style={{ fontSize: "18px", fontWeight: "normal" }}
-							onChange={(ev) => setLink(ev.target.value)}
+							label="description"
+							className="text-color-primary"
+							rows={4}
+							onChange={(ev) => setDescription(ev.target.value)}
 						/>
 					</div>
 
 					<div className="w-full">
 						<p className="font-bold text-color-primary py-2">
-							Press Image <span className="text-red-500">*</span>
+						Image <span className="text-red-500">*</span>
 						</p>
 						<div style={{ maxWidth: "600px" }} className="mx-auto">
 							{!isUpdateImage ? (
@@ -236,26 +212,6 @@ const UpdatePress = () => {
 						</div>
 					</div>
 				</div>
-				{/* text-editor */}
-				<div className="h-auto">
-					<p className="font-bold text-color-primary py-2">
-						Description <span className="text-red-500">*</span>
-					</p>
-					<Editor
-						apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
-						onInit={(evt, editor) => {
-							editorRef.current = editor;
-							editor.on("change", () => setDescription(editor.getContent()));
-						}}
-						init={{
-							plugins:
-								"anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
-							toolbar:
-								"undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
-						}}
-						initialValue={description}
-					/>
-				</div>
 				<div className="w-full flex justify-center items-center my-10 ">
 					<PrimaryButton buttonType={"submit"} disabled={isLoading} className="px-16">
 						{isLoading ? <Spinner color="gray" className="mx-auto" /> : "Submit"}
@@ -266,4 +222,4 @@ const UpdatePress = () => {
 	);
 };
 
-export default UpdatePress;
+export default UpdateSocialSupport;
