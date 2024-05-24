@@ -71,7 +71,7 @@ export function Header() {
 	return (
 		<div
 			className={`bg-color-primary sticky top-0 z-50 transition-all duration-300 ease-in-out  ${
-				scrollPosition > 0 && "border-b border-color-border"
+				scrollPosition > 0 && "shadow-md"
 			}`}
 		>
 			<nav

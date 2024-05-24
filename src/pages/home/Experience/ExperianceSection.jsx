@@ -27,7 +27,7 @@ const ExperianceSection = () => {
 
 	return (
 		<div className="max-w-[1560px] mx-auto">
-			<div className="bg-[#22417a] max-w-[1560px] mx-auto shadow-xl">
+			<div className="bg-white max-w-[1560px] mx-auto">
 				{loading ? (
 					<div className="flex justify-center items-center h-20">
 						<Spinner className="text-color-secondary" />
