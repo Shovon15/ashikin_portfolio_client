@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Port+Lligat+Sans&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,22 +8,23 @@
 @layer base{
     :root {
          --background-color-primary: #ffffff;
-         --background-color-secondary: #4074d4; 
+         /* --background-color-secondary: #bf9038;  */
+         --background-color-secondary: #c7a55e; 
          --background-color-custom: #dddddd; 
 
          --text-color-primary: #000000;
-         --text-color-secondary: #4074d4;
-         --text-header-primary: #4074d4;
+         --text-color-secondary: #bf9038;
+         --text-header-primary: #bf9038;
          --text-header-secondary: #ffffff;
          /* --text-header-color: #CCA531; */
          --text-color: #FFFFFF;
 
-        --border-color: #4074d4;
+        --border-color: #c7a55e;
         /* --text-color-secondary: #090a0a; */
         /* --text-color: #254161; */
-        --button-color: #4074d4;
-        --button-hover-color: #1751bd;
-        --button-hover-ring: #4074d4;
+        --button-color: #c7a55e;
+        --button-hover-color: #eeea8c;
+        --button-hover-ring: #faf7a3;
     }
 }
 
@@ -68,6 +70,13 @@ body{
   margin: auto;
  /* padding-top: 120px; */
  min-height: screen;
+}
+
+/* ----------------- text style----------------- */
+.port-lligat-sans-regular {
+  font-family: "Port Lligat Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 

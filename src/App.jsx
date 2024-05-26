@@ -24,7 +24,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="">
+		<div className="port-lligat-sans-regular">
 			{loading ? (
 				<LoadingSpinner />
 			) : (

@@ -93,9 +93,9 @@ export function Header() {
 										to={link}
 										className={({ isActive }) => (isActive ? "active" : "inactive hover:active")}
 									>
-										<Typography variant="h6" className="font-semibold capitalize">
+										<p className="font-semibold capitalize text-xl">
 											{name}
-										</Typography>
+										</p>
 									</NavLink>
 								</ul>
 							))}
