@@ -3,7 +3,7 @@
 import Banner from "./banner/Banner";
 import EventSection from "./events/EventSection";
 import BLogSection from "./blogs/BLogSection";
-import ContactSection from "./contact/ContactSection";
+// import ContactSection from "./contact/ContactSection";
 import ExperianceSection from "./Experience/ExperianceSection";
 import SocialSupport from "./socialSupport/SocialSupport";
 import Review from "./review/Review";
@@ -31,7 +31,7 @@ const HomePage = () => {
 				<SocialSupport />
 				<EventSection />
 				<BLogSection />
-				<ContactSection />
+				{/* <ContactSection /> */}
 				<Review />
 				<Profile />
 			</div>

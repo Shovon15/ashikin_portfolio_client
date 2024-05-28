@@ -35,7 +35,7 @@ export function EventCard({ eventData }) {
 	// }
 	//animation-event-card
 	return (
-		<Card className="relative bg-gray-100 w-full h-auto max-w-[25rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none ">
+		<Card className="relative bg-gray-100 w-full h-auto max-w-[20rem]  mx-auto flex-grow hover:ring-1 hover:ring-color-buttonRing rounded-b-none ">
 			<div
 				className={`absolute top-3 right-5 z-10 px-2 text-color-primary text-lg rounded-md ${
 					eventType === "free" ? "bg-green-900" : "bg-orange-700"

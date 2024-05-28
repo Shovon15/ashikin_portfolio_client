@@ -60,11 +60,11 @@ const Banner = ({ setBannerImage }) => {
 	}
 
 	return (
-		<div className="bg-[#F9FBE7]">
+		<div className="bg-color-custom">
 			{bannerData.length > 0 && (
 				<div className="max-w-[1560px] mx-auto flex flex-col lg:flex-row">
 					<div className="p-5 md:p-10 w-full lg:w-5/12 flex flex-col justify-center md:justify-center min-h-[300px] md:min-h-auto">
-						<p className="text-3xl md:text-4xl lg:text-5xl font-bold port-lligat-sans-regular text-color-headerPrimary">
+						<p className="text-3xl md:text-4xl lg:text-5xl font-bold text-color-headerPrimary">
 							{bannerData[0]?.bannerHeader}
 						</p>
 						<p className="text-2xl text-color-primary pt-5">{bannerData[0]?.bannerText}</p>

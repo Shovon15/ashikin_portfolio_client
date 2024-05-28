@@ -5,19 +5,30 @@ import EventCard from "../../../components/card/event/EventCard";
 import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
 import PageHelmet from "../../../helper/PageHelmet";
 
-const EventsPage = () => {
-	const { data: eventData = [], isLoading } = useQuery({
-		queryKey: ["eventData"],
-		queryFn: async () => {
-			const res = await get("events/all");
-			const data = await res?.data?.payload?.data;
+import React from "react";
+import Pagination from "../../../components/pagination";
 
-			return data;
+const EventsPage = () => {
+	const [pageNumber, setPageNumber] = React.useState(1);
+	const [pageData, setPageData] = React.useState({});
+
+	console.log(pageNumber, "number");
+
+	const { data: eventData = [], isLoading } = useQuery({
+		queryKey: ["eventData", pageNumber],
+		queryFn: async () => {
+			const res = await get(`events/published?page=${pageNumber}`);
+			const data = await res?.data?.payload;
+			const eventData = data?.data;
+			setPageData(data?.pagination);
+
+			return eventData;
 		},
 	});
+
 	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
-	if (isLoading) {
+	const Loader = () => {
 		return (
 			<div className="flex flex-wrap gap-5 p-5 md:p-10">
 				<LoadingSkeleton />
@@ -25,7 +36,8 @@ const EventsPage = () => {
 				<LoadingSkeleton />
 				<LoadingSkeleton />
 			</div>
-		);
+
+		)
 	}
 	return (
 		<>
@@ -39,10 +51,17 @@ const EventsPage = () => {
 			<div className="page-container">
 				<HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">Programs</HeaderText>
 
-				<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
-					{eventData.length !== 0 &&
-						eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
-				</div>
+				{
+					isLoading ? (<Loader/>) :
+						(
+							<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
+								{eventData.length !== 0 &&
+									eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
+							</div>
+						)
+				}
+				<Pagination paginationData={pageData} setPageNumber={setPageNumber} />
+
 			</div>
 		</>
 	);

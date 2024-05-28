@@ -50,7 +50,7 @@ const SocialSupport = () => {
 				<div className="bg-color-primary">
 					<div className="max-w-[1560px] mx-auto  p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col">
 						<HeaderText>Social Support</HeaderText>
-						<div className="flex flex-grow justify-end items-end gap-5 py-5">
+						<div className="flex flex-wrap flex-grow justify-end items-end gap-5 py-5">
 							{publishedData.map((data) => (
 								<SocialCard key={data.id} data={data} />
 							))}
