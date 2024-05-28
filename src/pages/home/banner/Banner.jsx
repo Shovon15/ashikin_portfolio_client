@@ -1,7 +1,8 @@
 // import { Typography } from "@material-tailwind/react";
 
 import { get } from "../../../utils/fetchApi";
-import BannerSwipper from "./bannerSwipper";
+import BannerSLider from "./bannerSlider.jsx";
+// import BannerSwipper from "./bannerSwipper";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 // import {img} from "../../../assets/image/"
@@ -59,21 +60,17 @@ const Banner = ({ setBannerImage }) => {
 	}
 
 	return (
-		<div className="">
-			{/* <img src={img} alt="img"/> */}
+		<div className="bg-[#F9FBE7]">
 			{bannerData.length > 0 && (
-				<div className="max-w-[1560px] mx-auto flex flex-col md:flex-row pb-5">
+				<div className="max-w-[1560px] mx-auto flex flex-col lg:flex-row">
 					<div className="p-5 md:p-10 w-full lg:w-5/12 flex flex-col justify-center md:justify-center min-h-[300px] md:min-h-auto">
-						{/* <Typography className="text-4xl lg:text-5xl font-bold text-color-primary">
-							{bannerData[0]?.bannerHeader}
-						</Typography> */}
-						<p className="text-4xl lg:text-5xl font-bold port-lligat-sans-regular">
+						<p className="text-3xl md:text-4xl lg:text-5xl font-bold port-lligat-sans-regular text-color-headerPrimary">
 							{bannerData[0]?.bannerHeader}
 						</p>
-						<p className="text-lg text-color-primary pt-5">{bannerData[0]?.bannerText}</p>
+						<p className="text-2xl text-color-primary pt-5">{bannerData[0]?.bannerText}</p>
 					</div>
-					<div className="w-full block md:w-7/12 rounded-xl md:py-5 md:pl-10">
-						<BannerSwipper imageList={bannerData[0]?.imageList} />
+					<div className="w-full block lg:w-7/12  rounded-xl">
+						<BannerSLider data= {bannerData[0]?.imageList} />
 					</div>
 				</div>
 			)}

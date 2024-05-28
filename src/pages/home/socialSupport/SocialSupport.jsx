@@ -1,11 +1,11 @@
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import { Spinner } from "@material-tailwind/react";
+import SocialCard from "./SocialCard";
 
 const SocialSupport = () => {
-	const { data: socailSupportData = [], isLoading } = useQuery({
+	const { data: socialSupportData = [], isLoading } = useQuery({
 		queryKey: ["socailSupportData"],
 		queryFn: async () => {
 			const res = await get("social-support/all");
@@ -14,6 +14,9 @@ const SocialSupport = () => {
 			return data;
 		},
 	});
+	const publishedData = socialSupportData.filter(
+		({ isPublished }) => isPublished === true
+	);
 
 	// const iconData = [
 	// 	{
@@ -41,53 +44,21 @@ const SocialSupport = () => {
 	}
 
 	return (
-		<div className=" bg-color-primary p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col">
-			<HeaderText>Social Support</HeaderText>
-			{/* <div className="">
-				<div className="flex gap-5 items-center justify-center m-5">
-					{iconData.map((icon) => (
-						<a href={icon.link} target="_blank" rel="noopener noreferrer" key={icon.id}>
-							<div className="relative transition-transform cursor-pointer z-10 transform hover:scale-110 animation-button">
-								<LazyLoadImage
-									effect="blur"
-									src={icon.original}
-									alt="..."
-									className="w-12 h-12 rounded-full shadow-xl"
-									width="50"
-									height="50"
-								/>
-							</div>
-						</a>
-					))}
+		<>
+			{
+				publishedData?.length > 0 &&
+				<div className="bg-color-primary">
+					<div className="max-w-[1560px] mx-auto  p-5 pt-10 md:p-10 md:px-[5rem] flex flex-col">
+						<HeaderText>Social Support</HeaderText>
+						<div className="flex flex-grow justify-end items-end gap-5 py-5">
+							{publishedData.map((data) => (
+								<SocialCard key={data.id} data={data} />
+							))}
+						</div>
+					</div>
 				</div>
-			</div> */}
-			<div className="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5 ">
-				{socailSupportData &&
-					socailSupportData.map(
-						({ id, image, title, description, isPublished }) =>
-							isPublished && (
-								<div
-									key={id}
-									className="bg-color-secondary p-4 rounded-lg shadow-lg hover:shadow-xl h-[23rem]"
-								>
-									<div className="w-full h-44 flex justify-center  duration-300 hover:scale-110 transition ease-in-out ">
-										<LazyLoadImage
-											effect="blur"
-											src={image}
-											alt="card-image"
-											className="object-fill h-full rounded-xl"
-											width="400"
-											height="200"
-										/>
-									</div>
-
-									<h2 className="text-2xl text-color-header font-bold mb-2 mt-5">{title}</h2>
-									<p className="text-color-primary">{description}</p>
-								</div>
-							)
-					)}
-			</div>
-		</div>
+			}
+		</>
 	);
 };
 

@@ -9,17 +9,18 @@
     :root {
          --background-color-primary: #ffffff;
          /* --background-color-secondary: #bf9038;  */
-         --background-color-secondary: #c7a55e; 
-         --background-color-custom: #dddddd; 
+         /* --background-color-secondary: #c7a55e;  */
+         --background-color-secondary: #d3b87e; 
+         --background-color-custom: #ffffff; 
 
          --text-color-primary: #000000;
-         --text-color-secondary: #bf9038;
-         --text-header-primary: #bf9038;
+         --text-color-secondary: #C07F00;
+         --text-header-primary: #C07F00;
          --text-header-secondary: #ffffff;
          /* --text-header-color: #CCA531; */
          --text-color: #FFFFFF;
 
-        --border-color: #c7a55e;
+        --border-color: #d6be8a;
         /* --text-color-secondary: #090a0a; */
         /* --text-color: #254161; */
         --button-color: #c7a55e;

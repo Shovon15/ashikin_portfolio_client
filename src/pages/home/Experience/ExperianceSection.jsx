@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { Spinner, Typography } from "@material-tailwind/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "../../../utils/fetchApi";
 import BrandSwiper from "./brandSwiper";
+import BrandSlider from "./brandSlider";
 // import BrandSwiper from "./brandSwiper";
 
 const ExperianceSection = () => {
@@ -26,17 +28,18 @@ const ExperianceSection = () => {
 	});
 
 	return (
-		<div className="max-w-[1560px] mx-auto">
-			<div className="bg-white max-w-[1560px] mx-auto">
+		<div className="max-w-[1560px] bg-color-primary mx-auto pt-5 md:pt-10">
+			<div className=" max-w-[1560px] mx-auto">
 				{loading ? (
 					<div className="flex justify-center items-center h-20">
 						<Spinner className="text-color-secondary" />
 					</div>
 				) : (
-					<div className="py-2 px-5">{brandData.length !== 0 && <BrandSwiper data={brandData} />}</div>
+					// <div className="py-2 px-5">{brandData.length !== 0 && <BrandSwiper data={brandData} />}</div>
+					<div className="py-2 px-5">{brandData.length !== 0 && <BrandSlider data={brandData} />}</div>
 				)}
 			</div>
-			{isLoading ? (
+			{/* {isLoading ? (
 				<div className="flex justify-center items-center h-80">
 					<Spinner className="text-[#6982b8]" />
 				</div>
@@ -70,7 +73,7 @@ const ExperianceSection = () => {
 							) : null
 						)}
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };

@@ -28,12 +28,12 @@ const HomePage = () => {
 			<div className="mx-auto bg-color-primary">
 				<Banner setBannerImage={setBannerImage} />
 				<ExperianceSection />
+				<SocialSupport />
 				<EventSection />
 				<BLogSection />
 				<ContactSection />
 				<Review />
 				<Profile />
-				<SocialSupport />
 			</div>
 		</>
 	);
