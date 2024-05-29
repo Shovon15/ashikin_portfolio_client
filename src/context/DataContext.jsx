@@ -1,20 +1,45 @@
 /* eslint-disable react/prop-types */
 
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { get } from "../utils/fetchApi";
 import { showErrorToast } from "../helper/ToastMessage";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
-	const fetchEventData = async () => {
+	const [serviceData, setServiceData] = useState([]);
+	const [eventData, setEventData] = useState([]);
+
+	const fetchEventData = async (pageNumber) => {
 		try {
-			const res = await get("events");
-			return res?.data?.payload;
+			const res = await get(`events/published?page=${pageNumber}`);
+			const data = res?.data?.payload?.data;
+			setEventData(data);
+			return data;
 		} catch (err) {
 			showErrorToast(err.message);
 		}
 	};
+	useEffect(() => {
+		fetchEventData(1);
+	}, []); // The empty dependency array ensures this runs only once when the component mounts
+
+	const fetchServiceData = async () => {
+		try {
+			const response = await get("services/published");
+			const data = response.data?.payload?.data;
+			setServiceData(data)
+			return data;
+		} catch (error) {
+			showErrorToast(error.message);
+		}
+	};
+	useEffect(() => {
+		fetchServiceData()
+	}, []);
+
+
+
 
 	const fetchEventBySlug = async (slug) => {
 		try {
@@ -24,7 +49,7 @@ export const DataContextProvider = ({ children }) => {
 			showErrorToast(error.message);
 		}
 	};
-	
+
 	const fetchServiceById = async (id) => {
 		try {
 			const response = await get("services/" + id, id);
@@ -43,7 +68,11 @@ export const DataContextProvider = ({ children }) => {
 		}
 	};
 
+
+
 	const dataInfo = {
+		serviceData,
+		eventData,
 		fetchEventData,
 		fetchEventBySlug,
 		fetchServiceById,

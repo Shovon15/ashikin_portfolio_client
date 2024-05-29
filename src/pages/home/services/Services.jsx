@@ -27,7 +27,7 @@ const Services = () => {
 		<LoadingSpinner />;
 	}
 	const handleScroll = (id) => {
-		console.log(id, "id");
+		// console.log(id, "id");
 		const element = document.getElementById(id);
 
 		if (element) {

@@ -9,62 +9,64 @@ import React from "react";
 import Pagination from "../../../components/pagination";
 
 const EventsPage = () => {
-	const [pageNumber, setPageNumber] = React.useState(1);
-	const [pageData, setPageData] = React.useState({});
+  const [pageNumber, setPageNumber] = React.useState(1);
+  const [pageData, setPageData] = React.useState({});
 
-	console.log(pageNumber, "number");
+  const { data: eventData = [], isLoading } = useQuery({
+    queryKey: ["eventData", pageNumber],
+    queryFn: async () => {
+      const res = await get(`events/published?page=${pageNumber}`);
+      const data = await res?.data?.payload;
+      const eventData = data?.data;
+      setPageData(data?.pagination);
 
-	const { data: eventData = [], isLoading } = useQuery({
-		queryKey: ["eventData", pageNumber],
-		queryFn: async () => {
-			const res = await get(`events/published?page=${pageNumber}`);
-			const data = await res?.data?.payload;
-			const eventData = data?.data;
-			setPageData(data?.pagination);
+      return eventData;
+    },
+  });
 
-			return eventData;
-		},
-	});
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
-	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const Loader = () => {
+    return (
+      <div className="flex flex-wrap gap-5 p-5 md:p-10">
+        <LoadingSkeleton />
+        <LoadingSkeleton />
+        <LoadingSkeleton />
+        <LoadingSkeleton />
+      </div>
+    );
+  };
+  return (
+    <>
+      <PageHelmet
+        title="Ashikin Alam | programs"
+        description="Embark on an inspiring journey with seminars, events, and motivational lectures. Elevate experiences, empower teams, ignite positive change."
+        link={shareUrl}
+        type="webapp"
+      />
 
-	const Loader = () => {
-		return (
-			<div className="flex flex-wrap gap-5 p-5 md:p-10">
-				<LoadingSkeleton />
-				<LoadingSkeleton />
-				<LoadingSkeleton />
-				<LoadingSkeleton />
-			</div>
+      <div className="page-container">
+        <HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">
+          Programs
+        </HeaderText>
 
-		)
-	}
-	return (
-		<>
-			<PageHelmet
-				title="Ashikin Alam | programs"
-				description="Embark on an inspiring journey with seminars, events, and motivational lectures. Elevate experiences, empower teams, ignite positive change."
-				link={shareUrl}
-				type="webapp"
-			/>
-
-			<div className="page-container">
-				<HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">Programs</HeaderText>
-
-				{
-					isLoading ? (<Loader/>) :
-						(
-							<div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
-								{eventData.length !== 0 &&
-									eventData.map((event) => <EventCard key={event._id} eventData={event} />)}
-							</div>
-						)
-				}
-				<Pagination paginationData={pageData} setPageNumber={setPageNumber} />
-
-			</div>
-		</>
-	);
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
+            {eventData.length !== 0 ? (
+              eventData.map((event) => (
+                <EventCard key={event._id} eventData={event} />
+              ))
+            ) : (
+				<div className="min-h-screen w-full flex justify-center items-center text-color-primary text-2xl">Coming Soon</div>
+            )}
+          </div>
+        )}
+        <Pagination paginationData={pageData} setPageNumber={setPageNumber} />
+      </div>
+    </>
+  );
 };
 
 export default EventsPage;

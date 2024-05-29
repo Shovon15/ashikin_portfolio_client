@@ -18,7 +18,7 @@ const Pagination = ({ paginationData, setPageNumber }) => {
 
   const getItemProps = (index) => ({
     // className: `page-item px-3 py-2 bg-green-500 ${active === index ? "active bg-red-500" : "bg-[#fcfcfc]"}`,
- 
+
     onClick: () => setActive(index),
   });
 
@@ -40,7 +40,7 @@ const Pagination = ({ paginationData, setPageNumber }) => {
         <Button
           key={i}
           {...getItemProps(i)}
-          variant={ active === i ? "filled" : "text"}
+          variant={active === i ? "filled" : "text"}
           className={`px-4 py-2 text-color-text text-md ${active === i ? "bg-color-button text-white" : ""}`}
         >
           {i}
@@ -52,28 +52,29 @@ const Pagination = ({ paginationData, setPageNumber }) => {
   };
 
   return (
-    <div className="flex justify-center items-center gap-4 py-5 md:py-10">
-      <Button
-        variant="text"
-        className="flex items-center gap-2"
-        onClick={prevButton}
-        disabled={previousPage === null}
-      >
-         <IoIosArrowBack strokeWidth={2} className="h-4 w-4" />
-        Previous
-      </Button>
-      {renderPageButtons()}
+  
+        <div className="flex justify-center items-center gap-4 py-5 md:py-10">
+          <Button
+            variant="text"
+            className="flex items-center gap-2"
+            onClick={prevButton}
+            disabled={previousPage === null}
+          >
+            <IoIosArrowBack strokeWidth={2} className="h-4 w-4" />
+            Previous
+          </Button>
+          {renderPageButtons()}
 
-      <Button
-        variant="text"
-        className="flex items-center gap-2"
-        onClick={nextButton}
-        disabled={nextPage === null}
-      >
-        Next
-        <IoIosArrowForward strokeWidth={2} className="h-4 w-4" />
-      </Button>
-    </div>
+          <Button
+            variant="text"
+            className="flex items-center gap-2"
+            onClick={nextButton}
+            disabled={nextPage === null}
+          >
+            Next
+            <IoIosArrowForward strokeWidth={2} className="h-4 w-4" />
+          </Button>
+        </div>
   );
 };
 

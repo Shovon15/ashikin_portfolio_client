@@ -21,12 +21,12 @@ const SocialLogos = () => {
     </div>)
     }
   return (
-    <div className="p-10 flex flex-col flex-wrap gap-5 justify-center items-center md:justify-evenly ">
+    <div className="p-5 flex  flex-wrap gap-5 justify-center items-center md:justify-evenly ">
     {socialData &&
-        socialData.map(({ name, logo, description, socialLink, isPublished }) =>
+        socialData.map(({ logo,  socialLink, isPublished }) =>
             isPublished ? (
                 <a key={socialLink} href={socialLink} target="_blank" rel="noopener noreferrer">
-                    <div className="flex gap-3 border border-color-border shadow-xl rounded-xl  justify-center py-2 px-3 w-44">
+                    <div className="flex gap-3 shadow-xl rounded-xl  justify-center ">
                         <div className="flex justify-center items-center">
                             <LazyLoadImage
                                 effect="blur"
@@ -37,14 +37,14 @@ const SocialLogos = () => {
                                 height="40"
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="font-bold text-color-secondary">
                                 {name.charAt(0).toUpperCase() + name.slice(1)}
                             </p>
                             <p  className="font-medium ">
                                 {description}
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 </a>
             ) : null

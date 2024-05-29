@@ -71,6 +71,7 @@ body{
   margin: auto;
  /* padding-top: 120px; */
  min-height: screen;
+ padding-bottom: 15px;
 }
 
 /* ----------------- text style----------------- */

@@ -23,7 +23,7 @@ const About = () => {
 		<div className="text-center font-semibold">
 			<>
 				{profileData.length > 0 && (
-					<div className="bg-color-secondary">
+					<div className="bg-color-custom">
 						<div className="max-w-[1560px] mx-auto p-5 md:p-10 flex flex-col md:flex-row">
 							<div className="w-full md:w-2/5 flex justify-center items-center py-5">
 								<LazyLoadImage
@@ -31,16 +31,16 @@ const About = () => {
 									src={profileData[0]?.profileImage}
 									alt="card-image"
 									className="object-fill h-full rounded-full"
-									width="200px"
-									height="200px"
+									width="250px"
+									height="250px"
 								/>
 							</div>
 							<div className="w-full md:w-3/5 p-5 md:p-10">
-								<HeaderText className="text-color-headerSecondary">
+								<HeaderText className="">
 									{profileData[0]?.profileHeader}
 								</HeaderText>
 								<div
-									className="text-white py-5 text-pretty "
+									className="text-color-text text-lg py-5 text-pretty "
 									dangerouslySetInnerHTML={{ __html: profileData[0]?.description }}
 								/>
 							</div>

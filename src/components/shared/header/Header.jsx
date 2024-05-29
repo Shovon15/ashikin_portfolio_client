@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { IconButton, Typography } from "@material-tailwind/react";
+import { IconButton } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaBars, FaXmark } from "react-icons/fa6";
@@ -110,34 +110,6 @@ export function Header() {
 								<FaBars className="w-6 h-6 " />
 							</button>
 						)}
-						{/* <div className="hidden lg:flex justify-center items-center gap-3 my-auto">
-							<Tooltip
-								content="facebook"
-								placement="top"
-								className="bg-color-secondary px-4 py-1 shadow-xl text-color-primary"
-								animate={{
-									mount: { scale: 1, y: 0 },
-									unmount: { scale: 0, y: 25 },
-								}}
-							>
-								<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-									<FaFacebookF className="text-color-primary hover:text-color-header cursor-pointer  w-5 h-5 hover:scale-110 m-auto" />
-								</a>
-							</Tooltip>
-							<Tooltip
-								content="youtube"
-								placement="top"
-								className="bg-color-secondary px-4 py-1 shadow-xltext-color-primary"
-								animate={{
-									mount: { scale: 1, y: 0 },
-									unmount: { scale: 0, y: 25 },
-								}}
-							>
-								<a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-									<FaYoutube className="text-color-primary hover:text-color-header cursor-pointer hover:scale-110  w-5 h-5" />
-								</a>
-							</Tooltip>
-						</div> */}
 					</div>
 				</div>
 
@@ -149,7 +121,7 @@ export function Header() {
 							initial="initial"
 							animate="animate"
 							exit="exit"
-							className="fixed left-0 top-0 w-full h-[35rem] origin-top bg-blue-300 text-black p-5 shadow-xl"
+							className="fixed left-0 top-0 w-full h-[35rem] origin-top bg-color-primary text-color-text port-lligat-sans-regular p-5 shadow-xl"
 						>
 							<div className="flex h-full flex-col">
 								<div className="flex justify-between items-center">
@@ -222,9 +194,9 @@ const mobileLinkVars = {
 const MobileNavLink = ({ name }) => {
 	return (
 		<motion.div variants={mobileLinkVars} className="flex justify-center py-2 border-b border-gray-500">
-			<Typography variant="h6" className="capitalize font-bold">
+			<p className="capitalize font-bold">
 				{name}
-			</Typography>
+			</p>
 		</motion.div>
 	);
 };

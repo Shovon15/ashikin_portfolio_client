@@ -111,20 +111,21 @@ export const navLinks = [
 ];
 
 export const FooterLinks = [
+	// {
+	// 	name: "About Us",
+	// 	link: "/about",
+	// },
 	{
-		name: "About",
-		link: "/about",
+		name: "Our Services",
+		link: "/services",
 	},
 	{
-		name: "License",
-		link: "/",
+		name: "Our Programs",
+		link: "/programs",
 	},
 	{
-		name: "Contact",
+		name: "Contact Us",
 		link: "/contact",
 	},
-	{
-		name: "Admin",
-		link: "/dashboard",
-	},
+
 ];

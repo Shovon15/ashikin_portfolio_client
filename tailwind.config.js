@@ -7,6 +7,7 @@ const Myclass = plugin(function ({ addUtilities }) {
 	addUtilities({
 		".my-rotate-y-180": {
 			transform: "rotateY(180deg)",
+			transition: "transform 0.5s ease-in-out",
 		},
 		".backface-hidden": {
 			backfaceVisibility: "hidden",

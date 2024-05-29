@@ -9,7 +9,7 @@ import SocialSupport from "./socialSupport/SocialSupport";
 import Review from "./review/Review";
 import PageHelmet from "../../helper/PageHelmet";
 import { useState } from "react";
-import Profile from "./profile/profile";
+import About from "./about/about";
 
 const HomePage = () => {
 	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -33,7 +33,7 @@ const HomePage = () => {
 				<BLogSection />
 				{/* <ContactSection /> */}
 				<Review />
-				<Profile />
+				<About/>
 			</div>
 		</>
 	);
