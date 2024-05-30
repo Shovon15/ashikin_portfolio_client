@@ -1,28 +1,26 @@
-import { get } from "../../../utils/fetchApi";
-import { useQuery } from "@tanstack/react-query";
-import HeaderText from "../../../components/shared/textHeader/HeaderText";
+
+// import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import EventCard from "../../../components/card/event/EventCard";
 import LoadingSkeleton from "../../../components/card/LoadingSkeleton";
 import PageHelmet from "../../../helper/PageHelmet";
 
-import React from "react";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../../../context/DataContext";
 import Pagination from "../../../components/pagination";
 
 const EventsPage = () => {
-  const [pageNumber, setPageNumber] = React.useState(1);
-  const [pageData, setPageData] = React.useState({});
+  const { eventData, isEventLoading, fetchEventData } = useContext(DataContext);
+  const [pageData, setPageData] = useState({});
+  
+  useEffect(() => {
+    if (eventData) {
+      setPageData(eventData.pagination);
+    }
+  }, [eventData]);
 
-  const { data: eventData = [], isLoading } = useQuery({
-    queryKey: ["eventData", pageNumber],
-    queryFn: async () => {
-      const res = await get(`events/published?page=${pageNumber}`);
-      const data = await res?.data?.payload;
-      const eventData = data?.data;
-      setPageData(data?.pagination);
-
-      return eventData;
-    },
-  });
+  const handlePageChange = (pageNumber) => {
+    fetchEventData(pageNumber)
+  }
 
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
@@ -46,24 +44,24 @@ const EventsPage = () => {
       />
 
       <div className="page-container">
-        <HeaderText className="pl-5 md:pl-10 text-start text-4xl md:text-5xl">
-          Programs
-        </HeaderText>
 
-        {isLoading ? (
+        {isEventLoading ? (
           <Loader />
         ) : (
           <div className="flex flex-wrap flex-grow gap-4 p-5 md:p-10">
-            {eventData.length !== 0 ? (
-              eventData.map((event) => (
+            {eventData.data.length !== 0 ? (
+              eventData.data.map((event) => (
                 <EventCard key={event._id} eventData={event} />
               ))
             ) : (
-				<div className="min-h-screen w-full flex justify-center items-center text-color-primary text-2xl">Coming Soon</div>
+              <div className="min-h-screen w-full flex justify-center items-center text-color-primary text-2xl">Coming Soon</div>
             )}
           </div>
         )}
-        <Pagination paginationData={pageData} setPageNumber={setPageNumber} />
+        <Pagination
+          paginationData={pageData}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </>
   );

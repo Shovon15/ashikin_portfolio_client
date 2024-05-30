@@ -2,11 +2,11 @@ const LoadingSkeleton = () => {
 	return (
 		<div
 			role="status"
-			className="max-w-sm p-4 border border-[#063359] rounded shadow animate-pulse md:p-6  w-72 md:w-80 mx-auto mb-5 md:mb-0"
+			className="max-w-sm p-4 border border-color-border rounded shadow animate-pulse md:p-6  w-72 md:w-80 mx-auto mb-5 md:mb-0"
 		>
 			<div className="flex items-center justify-center h-40 mb-4 bg-color-secondary rounded ">
 				<svg
-					className="w-10 h-10 text-[#264763] "
+					className="w-10 h-10 text-[#ecc570] "
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"

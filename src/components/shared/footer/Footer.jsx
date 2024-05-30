@@ -9,7 +9,7 @@ import { DataContext } from "../../../context/DataContext";
 const Footer = () => {
 
 	const { eventData, serviceData } = useContext(DataContext);
-	console.log(eventData)
+	// console.log(eventData)
 	const currentYear = new Date().getFullYear();
 
 	const capitalizeEachWord = (str) => {
@@ -45,7 +45,7 @@ const Footer = () => {
 								Our Programs
 							</p>
 						</Link>
-						{eventData && eventData.map(({ title }, i) => (
+						{eventData && eventData.data?.map(({ title }, i) => (
 							<p key={i} className="text-start text-white text-opacity-80 text-lg p-2"> {capitalizeEachWord(title)}</p>
 
 						))}

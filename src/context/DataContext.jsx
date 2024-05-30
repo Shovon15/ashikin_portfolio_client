@@ -7,21 +7,32 @@ import { showErrorToast } from "../helper/ToastMessage";
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
-	const [serviceData, setServiceData] = useState([]);
-	const [eventData, setEventData] = useState([]);
 
-	const fetchEventData = async (pageNumber) => {
+	const [isLogoLoading, setIsLogoLoading] = useState(false);
+	const [isEventLoading, setIsEventLoading] = useState(false);
+	const [isBlogLoading, setIsBlogLoading] = useState(false);
+	
+	const [logoData, setLogoData] = useState(null);
+	const [serviceData, setServiceData] = useState([]);
+	const [blogData, setBlogData] = useState({});
+	const [eventData, setEventData] = useState({});
+
+	const fetchEventData = async (pageNumber = 1) => {
 		try {
+			setIsEventLoading(true)
 			const res = await get(`events/published?page=${pageNumber}`);
-			const data = res?.data?.payload?.data;
+			const data = res?.data?.payload;
 			setEventData(data);
-			return data;
+			return data.data;
 		} catch (err) {
 			showErrorToast(err.message);
+		}finally{
+			setIsEventLoading(false)
 		}
 	};
+	console.log(eventData,"eventData from context")
 	useEffect(() => {
-		fetchEventData(1);
+		fetchEventData();
 	}, []); // The empty dependency array ensures this runs only once when the component mounts
 
 	const fetchServiceData = async () => {
@@ -38,6 +49,40 @@ export const DataContextProvider = ({ children }) => {
 		fetchServiceData()
 	}, []);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setIsLogoLoading(true);
+				const response = await get("logo");
+				setLogoData(response.data?.payload?.data);
+				setIsLogoLoading(false);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+				setIsLogoLoading(false);
+			}
+		};
+		fetchData();
+	}, []);
+
+
+
+	const fetchBlogData = async (page = 1) => {
+		try {
+			setIsBlogLoading(true);
+			const response = await get(`blogs/Published?page=${page}`);
+			const data = response.data?.payload;
+			setBlogData(data);
+			return data;
+		} catch (error) {
+			showErrorToast(error.message);
+		} finally {
+			setIsBlogLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		fetchBlogData();
+	}, []);
 
 
 
@@ -73,7 +118,13 @@ export const DataContextProvider = ({ children }) => {
 	const dataInfo = {
 		serviceData,
 		eventData,
+		logoData,
+		blogData,
+		isLogoLoading,
+		isBlogLoading,
+		isEventLoading,
 		fetchEventData,
+		fetchBlogData,
 		fetchEventBySlug,
 		fetchServiceById,
 		fetchBlogBySlug,

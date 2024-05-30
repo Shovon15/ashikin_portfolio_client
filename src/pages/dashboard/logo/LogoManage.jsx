@@ -1,33 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext} from "react";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
 import IconButton from "../../../components/Button/IconButton";
 import { Link } from "react-router-dom";
-import { get } from "../../../utils/fetchApi";
 import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
+import { DataContext } from "../../../context/DataContext";
 
 const LogoManage = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [logoData, setLogoData] = useState(null);
+	const {logoData, isLogoLoading} = useContext(DataContext);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setIsLoading(true);
-				const response = await get("logo");
-				setLogoData(response.data.payload.data);
-				setIsLoading(false);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-				setIsLoading(false);
-			}
-		};
-		fetchData();
-	}, []);
-
-	// console.log(logoData, "bannerData");
-
-	if (isLoading) {
+	if (isLogoLoading) {
 		return <LoadingSpinner />;
 	}
 

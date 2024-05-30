@@ -2,13 +2,15 @@ import { IconButton, Spinner } from "@material-tailwind/react";
 import GoBackButton from "../../../components/Button/GoBackButton";
 import PrimaryButton from "../../../components/Button/PrimaryButton";
 import HeaderText from "../../../components/shared/textHeader/HeaderText";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { LuUploadCloud } from "react-icons/lu";
 import { BsTrashFill } from "react-icons/bs";
-import { get, put } from "../../../utils/fetchApi";
+import { put } from "../../../utils/fetchApi";
 import { showErrorToast, showSuccessToast } from "../../../helper/ToastMessage";
 import { useNavigate } from "react-router-dom";
 import cloudinaryImageUploader from "../../../helper/cloudinaryImageUploader";
+import { DataContext } from "../../../context/DataContext";
+import LoadingSpinner from "../../../components/shared/loadingSpinner/LoadingSpinner";
 
 const UpdateLogo = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -25,21 +27,21 @@ const UpdateLogo = () => {
 
 	const [isUpdateLogoImage, setIsUpdateLogoImage] = useState(false);
 
-	const [logoData, setLogoData] = useState([]);
+	const {logoData, isLogoLoading} = useContext(DataContext);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await get("logo");
-			setLogoData(response.data.payload.data);
-		};
-		fetchData();
-	}, []);
-
+// console.log(logoData,"logoData")
 	useEffect(() => {
 		if (Object.keys(logoData).length !== 0) {
 			setOldLogoImage(logoData?.logoImage);
 		}
 	}, [logoData]);
+
+
+	if(isLogoLoading){
+		return (
+			<LoadingSpinner/>
+		)
+	}
 
 	const handleBannerForm = async (e) => {
 		e.preventDefault();
@@ -81,6 +83,7 @@ const UpdateLogo = () => {
 	};
 
 	return (
+		
 		<div className="pb-10">
 			<div>
 				<GoBackButton />

@@ -12,9 +12,9 @@
     height: 100%;
     display: block;
     animation: spinner-b4c8mmsm 0.4s backwards, spinner-49opz7sm 1s 0.4s infinite ease;
-    border: 4px solid #0d103d;
+    border: 4px solid var(--text-color-secondary);
     border-radius: 50%;
-    box-shadow: 0 -24px 0 -4px #0d103d;
+    box-shadow: 0 -24px 0 -4px var(--text-color-secondary);
     position: absolute;
   }
   
